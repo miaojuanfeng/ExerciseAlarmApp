@@ -6,20 +6,21 @@
 //  Copyright © 2018年 Dreamover Studio. All rights reserved.
 //
 
+#import "IndexController.h"
 #import "ViewController.h"
 
-@interface ViewController () <UITableViewDataSource>
+@interface IndexController () <UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
-@implementation ViewController
+@implementation IndexController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     self.tableView.dataSource = self;
-    self.automaticallyAdjustsScrollViewInsets = false;
+    self.tableView.delegate = self;
 }
 
 
@@ -27,6 +28,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -36,22 +38,28 @@
     return 2;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return @"Setting";
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [[UITableViewCell alloc] init];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    switch ( indexPath.row ) {
+    switch( indexPath.row ){
         case 0:
-            cell.textLabel.text = @"Picture";
+            cell.textLabel.text = @"Page1";
             break;
         case 1:
-            cell.textLabel.text = @"Music";
+            cell.textLabel.text = @"Page2";
             break;
     }
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    // 在storyboard中设置secondViewController的identifier为123
+    ViewController *viewCtrl = [self.storyboard instantiateViewControllerWithIdentifier:@"viewCtrl"];
+    // 进行跳转
+//    [self presentViewController:viewCtrl animated:YES completion:nil];
+    [self.navigationController pushViewController:viewCtrl animated:YES];
+    
+    NSLog(@"Jump");
 }
 
 @end
