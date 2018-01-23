@@ -11,14 +11,39 @@
 #import "VideoListController.h"
 #import "SettingController.h"
 
+#define kClockW _clockView.bounds.size.width
+#define angle2radion(angle) ((angle) / 180.0 * M_PI)
+
+// 1秒6度(秒针)
+#define perSecondA 6
+
+// 1分钟6度(分针)
+#define perMintueA 6
+
+// 1小时30度（时针）
+#define perHourA 30
+
+// 每分钟时针转(30 / 60 °)
+#define perMinHourA 0.5
+
+
 @interface IndexController () <UITableViewDataSource>
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property UIView *numberClockView;
 @property UIView *machineClockView;
+@property UILabel *nowLable;
 @property UILabel *dateLable;
 @property UILabel *timeLable;
+@property UILabel *weekLable;
+
+@property (weak, nonatomic) IBOutlet UIImageView *clockView;
+@property (nonatomic,weak) CALayer * secondLayer;
+@property (nonatomic,weak) CALayer * mintueLayer;
+@property (nonatomic,weak) CALayer * hourLayer;
 
 @end
+
 
 @implementation IndexController
 
@@ -35,6 +60,13 @@
     self.numberClockView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.numberClockView];
     
+    self.nowLable = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, self.numberClockView.frame.size.width-216, self.numberClockView.frame.size.height/4)];
+    //    self.dateLable.backgroundColor = [UIColor blueColor];
+    self.nowLable.text = @"現在時間";
+    self.nowLable.textAlignment = NSTextAlignmentCenter;
+    self.nowLable.font = [UIFont fontWithName:@"AppleGothic" size:[UIFont systemFontSize]];
+    [self.numberClockView addSubview:self.nowLable];
+    
     self.dateLable = [[UILabel alloc]initWithFrame:CGRectMake(0, self.numberClockView.frame.size.height/4, self.numberClockView.frame.size.width-216, self.numberClockView.frame.size.height/4)];
 //    self.dateLable.backgroundColor = [UIColor blueColor];
     self.dateLable.textAlignment = NSTextAlignmentCenter;
@@ -47,6 +79,12 @@
     self.timeLable.font = [UIFont fontWithName:@"AppleGothic" size:25];
     [self.numberClockView addSubview:self.timeLable];
     
+    self.weekLable = [[UILabel alloc]initWithFrame:CGRectMake(0, self.numberClockView.frame.size.height/4*3, self.numberClockView.frame.size.width-216, self.numberClockView.frame.size.height/4)];
+    //    self.timeLable.backgroundColor = [UIColor yellowColor];
+    self.weekLable.textAlignment = NSTextAlignmentCenter;
+    self.weekLable.font = [UIFont fontWithName:@"AppleGothic" size:[UIFont systemFontSize]];
+    [self.numberClockView addSubview:self.weekLable];
+    
     [self updateTime];
     
     self.machineClockView = [[UIView alloc] initWithFrame:CGRectMake(self.dateLable.frame.size.width, 64, self.view.frame.size.width-self.dateLable.frame.size.width, 216)];
@@ -58,12 +96,123 @@
     
     [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
     
+    
+    // Not finish yet
+    // 添加时针
+    [self setUpHourLayer];
+    
+    // 添加分针
+    [self setUpMinuteLayer];
+    
+    // 添加秒针
+    [self setUpSecondLayer];
+    
+    //添加定时器
+    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timeChange) userInfo:nil repeats:YES];
+    [self timeChange];
+    
 }
 
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+- (void)timeChange{
+    
+    // 获取当前系统时间
+    
+    NSCalendar * calender = [NSCalendar currentCalendar];
+    
+    NSDateComponents * cmp = [calender components:NSCalendarUnitSecond | NSCalendarUnitMinute | NSCalendarUnitHour  fromDate:[NSDate date]];
+    
+    CGFloat second = cmp.second;
+    
+    CGFloat secondA = (second * perSecondA) ;
+    
+    NSInteger minute = cmp.minute;
+    
+    CGFloat mintuteA = minute * perMintueA ;
+    
+    NSInteger hour = cmp.hour;
+    
+    CGFloat hourA = hour * perHourA  + minute * perMinHourA;
+    
+    _secondLayer.transform = CATransform3DMakeRotation(angle2radion(secondA), 0, 0, 1);
+    
+    _mintueLayer.transform = CATransform3DMakeRotation(angle2radion(mintuteA), 0, 0, 1);
+    
+    _hourLayer.transform = CATransform3DMakeRotation(angle2radion(hourA), 0, 0, 1);
+}
+
+#pragma mark - 添加秒针
+
+- (void)setUpSecondLayer{
+    
+    CALayer * secondL = [CALayer layer];
+    
+    secondL.backgroundColor = [UIColor redColor].CGColor ;
+    
+    // 设置锚点
+    
+    secondL.anchorPoint = CGPointMake(0.5, 1);
+    
+    secondL.position = CGPointMake(kClockW * 0.5, kClockW * 0.5);
+    
+    secondL.bounds = CGRectMake(0, 0, 1, kClockW * 0.5 - 20);
+    
+    
+    [_clockView.layer addSublayer:secondL];
+    
+    _secondLayer = secondL;
+}
+
+#pragma mark - 添加分针
+
+- (void)setUpMinuteLayer{
+    
+    CALayer * layer = [CALayer layer];
+    
+    layer.backgroundColor = [UIColor blackColor].CGColor ;
+    
+    // 设置锚点
+    
+    layer.anchorPoint = CGPointMake(0.5, 1);
+    
+    layer.position = CGPointMake(kClockW * 0.5, kClockW * 0.5);
+    
+    layer.bounds = CGRectMake(0, 0, 4, kClockW * 0.5 - 20);
+    
+    layer.cornerRadius = 4;
+    
+    [_clockView.layer addSublayer:layer];
+    
+    _mintueLayer = layer;
+}
+
+#pragma mark - 添加时针
+
+- (void)setUpHourLayer{
+    
+    CALayer * layer = [CALayer layer];
+    
+    layer.backgroundColor = [UIColor blackColor].CGColor ;
+    
+    // 设置锚点
+    
+    layer.anchorPoint = CGPointMake(0.5, 1);
+    
+    layer.position = CGPointMake(kClockW * 0.5, kClockW * 0.5);
+    
+    layer.bounds = CGRectMake(0, 0, 4, kClockW * 0.5 - 40);
+    
+    layer.cornerRadius = 4;
+    
+    [_clockView.layer addSublayer:layer];
+    
+    _hourLayer = layer;
 }
 
 
@@ -79,8 +228,13 @@
     [timeFormatter setDateFormat:@"HH:mm:ss"];
     NSString *timeString = [timeFormatter stringFromDate:currentDateTime];
     
+    NSDateFormatter *weekFormatter = [[NSDateFormatter alloc]init];
+    [weekFormatter setDateFormat:@"EEEE"];
+    NSString *weekString = [weekFormatter stringFromDate:currentDateTime];
+    
     self.dateLable.text = dateString;
     self.timeLable.text = timeString;
+    self.weekLable.text = weekString;
 }
 
 
