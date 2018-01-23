@@ -1,5 +1,5 @@
 //
-//  IndexController.h
+//  SelectMusicController.h
 //  alarm
 //
 //  Created by Dreamover Studio on 22/1/2018.
@@ -8,8 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface IndexController : UIViewController
+@interface SelectMusicController : UIViewController
 
 
 @end
-

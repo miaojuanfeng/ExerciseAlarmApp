@@ -25,7 +25,83 @@
             </objects>
             <point key="canvasLocation" x="-699" y="69"/>
         </scene>
-        <!--Exercise Alarm-->
+        <!--選擇<圖片>-->
+        <scene sceneID="O5N-a5-Iov">
+            <objects>
+                <viewController storyboardIdentifier="SelectPhotoController" id="69c-AD-mqC" customClass="SelectPhotoController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="asI-pa-TgN"/>
+                        <viewControllerLayoutGuide type="bottom" id="pKQ-bJ-fdP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="NPh-F2-rek">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="選擇&lt;圖片&gt;" id="FbY-r5-SR0"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ate-Ea-l4j" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-692" y="837"/>
+        </scene>
+        <!--系統設置-->
+        <scene sceneID="iFp-f6-oNv">
+            <objects>
+                <viewController storyboardIdentifier="SettingController" id="a1j-ex-b4F" customClass="SettingController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="byC-Yc-EeW"/>
+                        <viewControllerLayoutGuide type="bottom" id="BCg-mV-Wrf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wLz-YC-N3C">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="系統設置" id="EAF-x1-6QN"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a6T-4g-wem" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-689" y="1549"/>
+        </scene>
+        <!--選擇<鈴聲>-->
+        <scene sceneID="BZ2-nl-lfE">
+            <objects>
+                <viewController storyboardIdentifier="SelectMusicController" id="Klc-Hh-C5M" customClass="SelectMusicController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kQ5-A2-o2f"/>
+                        <viewControllerLayoutGuide type="bottom" id="mPD-za-h40"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Laq-KA-b96">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="選擇&lt;鈴聲&gt;" id="5zp-Gv-Vum"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XyS-Fi-3nu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="108" y="839"/>
+        </scene>
+        <!--教學視頻-->
+        <scene sceneID="Rjm-O1-3Ea">
+            <objects>
+                <viewController storyboardIdentifier="VideoListController" id="B0b-k4-CJv" customClass="VideoListController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vvK-Gj-YcU"/>
+                        <viewControllerLayoutGuide type="bottom" id="Hfz-vc-uI9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8Vs-ic-A8S">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="教學視頻" id="YQe-fs-7Tz"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="o6x-IP-LJ7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="866" y="842"/>
+        </scene>
+        <!--運動鬧鐘-->
         <scene sceneID="IYr-6B-P2Q">
             <objects>
                 <viewController id="aK8-0K-Z2b" customClass="IndexController" sceneMemberID="viewController">
@@ -37,15 +113,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rl1-LD-xaY">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="rl1-LD-xaY">
+                                <rect key="frame" x="0.0" y="280" width="375" height="387"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Exercise Alarm" id="KJY-0J-WFh"/>
+                    <navigationItem key="navigationItem" title="運動鬧鐘" id="KJY-0J-WFh"/>
                     <connections>
                         <outlet property="tableView" destination="rl1-LD-xaY" id="c6w-DN-Ay8"/>
                     </connections>
@@ -54,10 +130,10 @@
             </objects>
             <point key="canvasLocation" x="71" y="67"/>
         </scene>
-        <!--Add Alarm-->
+        <!--添加<提醒>-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="viewCtrl" id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddAlarmController" id="BYZ-38-t0r" customClass="AddAlarmController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -82,10 +158,10 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Add Alarm" id="Ky9-ek-VLh"/>
+                    <navigationItem key="navigationItem" title="添加&lt;提醒&gt;" id="Ky9-ek-VLh"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="tableView" destination="Jqc-qf-e7t" id="ngI-zX-Vd4"/>
+                        <outlet property="tableView" destination="Jqc-qf-e7t" id="oYY-ne-xnv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

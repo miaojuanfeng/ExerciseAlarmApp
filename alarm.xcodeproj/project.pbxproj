@@ -9,12 +9,16 @@
 /* Begin PBXBuildFile section */
 		990736A82016344C002EFEC5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 990736A72016344C002EFEC5 /* main.m */; };
 		990736AB2016344C002EFEC5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 990736AA2016344C002EFEC5 /* AppDelegate.m */; };
-		990736AE2016344C002EFEC5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 990736AD2016344C002EFEC5 /* ViewController.m */; };
+		990736AE2016344C002EFEC5 /* AddAlarmController.m in Sources */ = {isa = PBXBuildFile; fileRef = 990736AD2016344C002EFEC5 /* AddAlarmController.m */; };
 		990736B12016344C002EFEC5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 990736AF2016344C002EFEC5 /* Main.storyboard */; };
 		990736B32016344C002EFEC5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 990736B22016344C002EFEC5 /* Assets.xcassets */; };
 		990736C12016344C002EFEC5 /* alarmTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 990736C02016344C002EFEC5 /* alarmTests.m */; };
 		990736CC2016344C002EFEC5 /* alarmUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 990736CB2016344C002EFEC5 /* alarmUITests.m */; };
 		990736DA20163578002EFEC5 /* IndexController.m in Sources */ = {isa = PBXBuildFile; fileRef = 990736D920163578002EFEC5 /* IndexController.m */; };
+		9920D21220177AED00DA8D6D /* SelectPhotoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9920D21120177AED00DA8D6D /* SelectPhotoController.m */; };
+		9920D21620177C2800DA8D6D /* SelectMusicController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9920D21520177C2800DA8D6D /* SelectMusicController.m */; };
+		9920D2182017859900DA8D6D /* VideoListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9920D2172017859900DA8D6D /* VideoListController.m */; };
+		9920D21C2017860D00DA8D6D /* SettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9920D21B2017860D00DA8D6D /* SettingController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,8 +43,8 @@
 		990736A72016344C002EFEC5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		990736A92016344C002EFEC5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		990736AA2016344C002EFEC5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		990736AC2016344C002EFEC5 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		990736AD2016344C002EFEC5 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		990736AC2016344C002EFEC5 /* AddAlarmController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddAlarmController.h; sourceTree = "<group>"; };
+		990736AD2016344C002EFEC5 /* AddAlarmController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddAlarmController.m; sourceTree = "<group>"; };
 		990736B02016344C002EFEC5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		990736B22016344C002EFEC5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		990736B72016344C002EFEC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -52,6 +56,14 @@
 		990736CD2016344C002EFEC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		990736D920163578002EFEC5 /* IndexController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndexController.m; sourceTree = "<group>"; };
 		990736DB20163584002EFEC5 /* IndexController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndexController.h; sourceTree = "<group>"; };
+		9920D21120177AED00DA8D6D /* SelectPhotoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectPhotoController.m; sourceTree = "<group>"; };
+		9920D21320177B0800DA8D6D /* SelectPhotoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectPhotoController.h; sourceTree = "<group>"; };
+		9920D21420177C0900DA8D6D /* SelectMusicController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectMusicController.h; sourceTree = "<group>"; };
+		9920D21520177C2800DA8D6D /* SelectMusicController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectMusicController.m; sourceTree = "<group>"; };
+		9920D2172017859900DA8D6D /* VideoListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoListController.m; sourceTree = "<group>"; };
+		9920D219201785A600DA8D6D /* VideoListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoListController.h; sourceTree = "<group>"; };
+		9920D21A201785FB00DA8D6D /* SettingController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingController.h; sourceTree = "<group>"; };
+		9920D21B2017860D00DA8D6D /* SettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,9 +116,17 @@
 			children = (
 				990736A92016344C002EFEC5 /* AppDelegate.h */,
 				990736AA2016344C002EFEC5 /* AppDelegate.m */,
-				990736AC2016344C002EFEC5 /* ViewController.h */,
-				990736AD2016344C002EFEC5 /* ViewController.m */,
+				990736AC2016344C002EFEC5 /* AddAlarmController.h */,
+				990736AD2016344C002EFEC5 /* AddAlarmController.m */,
 				990736AF2016344C002EFEC5 /* Main.storyboard */,
+				9920D2172017859900DA8D6D /* VideoListController.m */,
+				9920D219201785A600DA8D6D /* VideoListController.h */,
+				9920D21A201785FB00DA8D6D /* SettingController.h */,
+				9920D21B2017860D00DA8D6D /* SettingController.m */,
+				9920D21120177AED00DA8D6D /* SelectPhotoController.m */,
+				9920D21420177C0900DA8D6D /* SelectMusicController.h */,
+				9920D21520177C2800DA8D6D /* SelectMusicController.m */,
+				9920D21320177B0800DA8D6D /* SelectPhotoController.h */,
 				990736DB20163584002EFEC5 /* IndexController.h */,
 				990736D920163578002EFEC5 /* IndexController.m */,
 				990736B22016344C002EFEC5 /* Assets.xcassets */,
@@ -275,8 +295,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9920D21C2017860D00DA8D6D /* SettingController.m in Sources */,
+				9920D21220177AED00DA8D6D /* SelectPhotoController.m in Sources */,
 				990736DA20163578002EFEC5 /* IndexController.m in Sources */,
-				990736AE2016344C002EFEC5 /* ViewController.m in Sources */,
+				990736AE2016344C002EFEC5 /* AddAlarmController.m in Sources */,
+				9920D21620177C2800DA8D6D /* SelectMusicController.m in Sources */,
+				9920D2182017859900DA8D6D /* VideoListController.m in Sources */,
 				990736AB2016344C002EFEC5 /* AppDelegate.m in Sources */,
 				990736A82016344C002EFEC5 /* main.m in Sources */,
 			);
