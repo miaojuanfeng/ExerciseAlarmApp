@@ -10,22 +10,8 @@
 #import "AddAlarmController.h"
 #import "VideoListController.h"
 #import "SettingController.h"
-
-#define kClockW _clockView.bounds.size.width
-#define angle2radion(angle) ((angle) / 180.0 * M_PI)
-
-// 1秒6度(秒针)
-#define perSecondA 6
-
-// 1分钟6度(分针)
-#define perMintueA 6
-
-// 1小时30度（时针）
-#define perHourA 30
-
-// 每分钟时针转(30 / 60 °)
-#define perMinHourA 0.5
-
+#import "HYBClockView.h"
+#import "HYBAnimationClock.h"
 
 @interface IndexController () <UITableViewDataSource>
 
@@ -37,10 +23,7 @@
 @property UILabel *timeLable;
 @property UILabel *weekLable;
 
-@property (weak, nonatomic) IBOutlet UIImageView *clockView;
-@property (nonatomic,weak) CALayer * secondLayer;
-@property (nonatomic,weak) CALayer * mintueLayer;
-@property (nonatomic,weak) CALayer * hourLayer;
+@property (nonatomic, strong) HYBClockView *clockView;
 
 @end
 
@@ -88,7 +71,7 @@
     [self updateTime];
     
     self.machineClockView = [[UIView alloc] initWithFrame:CGRectMake(self.dateLable.frame.size.width, 64, self.view.frame.size.width-self.dateLable.frame.size.width, 216)];
-    self.machineClockView.backgroundColor = [UIColor yellowColor];
+//    self.machineClockView.backgroundColor = [UIColor yellowColor];
     [self.view addSubview:self.machineClockView];
     
     //定时器 反复执行
@@ -97,122 +80,26 @@
     [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
     
     
-    // Not finish yet
-    // 添加时针
-    [self setUpHourLayer];
+    ////////
+//    CGFloat x = ([UIScreen mainScreen].bounds.size.width - 200) / 2;
+    self.clockView = [[HYBClockView alloc] initWithFrame:CGRectMake(18, 18, 180, 180)
+                                               imageName:@"clock"];
+    //  [self.view addSubview:self.clockView];
     
-    // 添加分针
-    [self setUpMinuteLayer];
+    HYBAnimationClock *aniClockView = [[HYBAnimationClock alloc] initWithFrame:CGRectMake(18, 18, 180, 180)
+                                                                     imageName:@"clock"];
     
-    // 添加秒针
-    [self setUpSecondLayer];
+    [self.machineClockView addSubview:aniClockView];
     
-    //添加定时器
-    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timeChange) userInfo:nil repeats:YES];
-    [self timeChange];
-    
+    [self.clockView releaseTimer];
+    //  [self.clockView removeFromSuperview];
+    self.clockView = nil;
 }
 
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-
-- (void)timeChange{
-    
-    // 获取当前系统时间
-    
-    NSCalendar * calender = [NSCalendar currentCalendar];
-    
-    NSDateComponents * cmp = [calender components:NSCalendarUnitSecond | NSCalendarUnitMinute | NSCalendarUnitHour  fromDate:[NSDate date]];
-    
-    CGFloat second = cmp.second;
-    
-    CGFloat secondA = (second * perSecondA) ;
-    
-    NSInteger minute = cmp.minute;
-    
-    CGFloat mintuteA = minute * perMintueA ;
-    
-    NSInteger hour = cmp.hour;
-    
-    CGFloat hourA = hour * perHourA  + minute * perMinHourA;
-    
-    _secondLayer.transform = CATransform3DMakeRotation(angle2radion(secondA), 0, 0, 1);
-    
-    _mintueLayer.transform = CATransform3DMakeRotation(angle2radion(mintuteA), 0, 0, 1);
-    
-    _hourLayer.transform = CATransform3DMakeRotation(angle2radion(hourA), 0, 0, 1);
-}
-
-#pragma mark - 添加秒针
-
-- (void)setUpSecondLayer{
-    
-    CALayer * secondL = [CALayer layer];
-    
-    secondL.backgroundColor = [UIColor redColor].CGColor ;
-    
-    // 设置锚点
-    
-    secondL.anchorPoint = CGPointMake(0.5, 1);
-    
-    secondL.position = CGPointMake(kClockW * 0.5, kClockW * 0.5);
-    
-    secondL.bounds = CGRectMake(0, 0, 1, kClockW * 0.5 - 20);
-    
-    
-    [_clockView.layer addSublayer:secondL];
-    
-    _secondLayer = secondL;
-}
-
-#pragma mark - 添加分针
-
-- (void)setUpMinuteLayer{
-    
-    CALayer * layer = [CALayer layer];
-    
-    layer.backgroundColor = [UIColor blackColor].CGColor ;
-    
-    // 设置锚点
-    
-    layer.anchorPoint = CGPointMake(0.5, 1);
-    
-    layer.position = CGPointMake(kClockW * 0.5, kClockW * 0.5);
-    
-    layer.bounds = CGRectMake(0, 0, 4, kClockW * 0.5 - 20);
-    
-    layer.cornerRadius = 4;
-    
-    [_clockView.layer addSublayer:layer];
-    
-    _mintueLayer = layer;
-}
-
-#pragma mark - 添加时针
-
-- (void)setUpHourLayer{
-    
-    CALayer * layer = [CALayer layer];
-    
-    layer.backgroundColor = [UIColor blackColor].CGColor ;
-    
-    // 设置锚点
-    
-    layer.anchorPoint = CGPointMake(0.5, 1);
-    
-    layer.position = CGPointMake(kClockW * 0.5, kClockW * 0.5);
-    
-    layer.bounds = CGRectMake(0, 0, 4, kClockW * 0.5 - 40);
-    
-    layer.cornerRadius = 4;
-    
-    [_clockView.layer addSublayer:layer];
-    
-    _hourLayer = layer;
 }
 
 
