@@ -139,12 +139,15 @@
     switch( indexPath.row ){
         case 0:
             cell.textLabel.text = @"運動鬧鐘";
+            cell.imageView.image = [UIImage imageNamed:@"deskclock"];
             break;
         case 1:
             cell.textLabel.text = @"教學視頻";
+            cell.imageView.image = [UIImage imageNamed:@"video"];
             break;
         case 2:
             cell.textLabel.text = @"系統設置";
+            cell.imageView.image = [UIImage imageNamed:@"settings"];
             break;
     }
     return cell;

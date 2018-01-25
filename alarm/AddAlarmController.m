@@ -49,9 +49,11 @@
     switch ( indexPath.row ) {
         case 0:
             cell.textLabel.text = @"圖片";
+            cell.imageView.image = [UIImage imageNamed:@"gallery"];
             break;
         case 1:
             cell.textLabel.text = @"鈴聲";
+            cell.imageView.image = [UIImage imageNamed:@"music"];
             break;
     }
     return cell;
