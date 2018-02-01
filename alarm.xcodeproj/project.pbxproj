@@ -21,6 +21,7 @@
 		9920D21C2017860D00DA8D6D /* SettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9920D21B2017860D00DA8D6D /* SettingController.m */; };
 		CE1A4979201A01DD005CB860 /* HYBAnimationClock.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1A4977201A01DC005CB860 /* HYBAnimationClock.m */; };
 		CE1A497C201A0219005CB860 /* HYBClockView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1A497B201A0219005CB860 /* HYBClockView.m */; };
+		CEA01CEB202337A60001DAF0 /* ListAlarmController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA01CEA202337A60001DAF0 /* ListAlarmController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,8 @@
 		CE1A4978201A01DD005CB860 /* HYBAnimationClock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYBAnimationClock.h; sourceTree = "<group>"; };
 		CE1A497A201A0219005CB860 /* HYBClockView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYBClockView.h; sourceTree = "<group>"; };
 		CE1A497B201A0219005CB860 /* HYBClockView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYBClockView.m; sourceTree = "<group>"; };
+		CEA01CEA202337A60001DAF0 /* ListAlarmController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListAlarmController.m; sourceTree = "<group>"; };
+		CEA01CEC202338020001DAF0 /* ListAlarmController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListAlarmController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +140,8 @@
 				9920D21420177C0900DA8D6D /* SelectMusicController.h */,
 				9920D21520177C2800DA8D6D /* SelectMusicController.m */,
 				9920D21320177B0800DA8D6D /* SelectPhotoController.h */,
+				CEA01CEA202337A60001DAF0 /* ListAlarmController.m */,
+				CEA01CEC202338020001DAF0 /* ListAlarmController.h */,
 				990736DB20163584002EFEC5 /* IndexController.h */,
 				990736D920163578002EFEC5 /* IndexController.m */,
 				990736B22016344C002EFEC5 /* Assets.xcassets */,
@@ -239,7 +244,7 @@
 				TargetAttributes = {
 					990736A22016344C002EFEC5 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 6A32892327;
+						DevelopmentTeam = R4M5UMCGE9;
 						ProvisioningStyle = Automatic;
 					};
 					990736BB2016344C002EFEC5 = {
@@ -306,6 +311,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9920D21C2017860D00DA8D6D /* SettingController.m in Sources */,
+				CEA01CEB202337A60001DAF0 /* ListAlarmController.m in Sources */,
 				9920D21220177AED00DA8D6D /* SelectPhotoController.m in Sources */,
 				990736DA20163578002EFEC5 /* IndexController.m in Sources */,
 				CE1A4979201A01DD005CB860 /* HYBAnimationClock.m in Sources */,
@@ -456,12 +462,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				DEVELOPMENT_TEAM = 6A32892327;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = R4M5UMCGE9;
 				INFOPLIST_FILE = alarm/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dreamover.alarm;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -470,12 +479,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				DEVELOPMENT_TEAM = 6A32892327;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = R4M5UMCGE9;
 				INFOPLIST_FILE = alarm/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dreamover.alarm;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};

@@ -7,7 +7,7 @@
 //
 
 #import "IndexController.h"
-#import "AddAlarmController.h"
+#import "ListAlarmController.h"
 #import "VideoListController.h"
 #import "SettingController.h"
 #import "HYBClockView.h"
@@ -154,13 +154,13 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    AddAlarmController *addAlarmController = nil;
+    ListAlarmController *listAlarmController = nil;
     VideoListController *videoListController = nil;
     SettingController *settingController = nil;
     switch( indexPath.row ){
         case 0:
-            addAlarmController = [self.storyboard instantiateViewControllerWithIdentifier:@"AddAlarmController"];
-            [self.navigationController pushViewController:addAlarmController animated:YES];
+            listAlarmController = [self.storyboard instantiateViewControllerWithIdentifier:@"ListAlarmController"];
+            [self.navigationController pushViewController:listAlarmController animated:YES];
             break;
         case 1:
             videoListController = [self.storyboard instantiateViewControllerWithIdentifier:@"VideoListController"];
@@ -174,5 +174,27 @@
     //
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
+
+//- (void)willMoveToParentViewController:(UIViewController*)parent{
+//    [superwillMoveToParentViewController:parent];
+//    NSLog(@"%s,%@",__FUNCTION__,parent);
+//}
+//- (void)didMoveToParentViewController:(UIViewController*)parent{
+//    [superdidMoveToParentViewController:parent];
+//    NSLog(@"%s,%@",__FUNCTION__,parent);
+//    if(!parent){
+//        NSLog(@"页面pop成功了");
+//    }
+//}
+
+//- (void)viewWillDisappear:(BOOL)animated
+//
+//{
+//    [super viewWillDisappear:animated];
+//    if (![[self.navigationController viewControllers] containsObject:self])
+//    {
+//        NSLog(@"用户点击了返回按钮");
+//    }
+//}
 
 @end
