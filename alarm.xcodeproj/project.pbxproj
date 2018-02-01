@@ -19,6 +19,7 @@
 		9920D21620177C2800DA8D6D /* SelectMusicController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9920D21520177C2800DA8D6D /* SelectMusicController.m */; };
 		9920D2182017859900DA8D6D /* VideoListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9920D2172017859900DA8D6D /* VideoListController.m */; };
 		9920D21C2017860D00DA8D6D /* SettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9920D21B2017860D00DA8D6D /* SettingController.m */; };
+		CE01F3FD202359A100040FC4 /* MyCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE01F3FC202359A100040FC4 /* MyCollectionViewCell.m */; };
 		CE1A4979201A01DD005CB860 /* HYBAnimationClock.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1A4977201A01DC005CB860 /* HYBAnimationClock.m */; };
 		CE1A497C201A0219005CB860 /* HYBClockView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1A497B201A0219005CB860 /* HYBClockView.m */; };
 		CEA01CEB202337A60001DAF0 /* ListAlarmController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA01CEA202337A60001DAF0 /* ListAlarmController.m */; };
@@ -67,6 +68,8 @@
 		9920D219201785A600DA8D6D /* VideoListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoListController.h; sourceTree = "<group>"; };
 		9920D21A201785FB00DA8D6D /* SettingController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingController.h; sourceTree = "<group>"; };
 		9920D21B2017860D00DA8D6D /* SettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingController.m; sourceTree = "<group>"; };
+		CE01F3FB2023598500040FC4 /* MyCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyCollectionViewCell.h; sourceTree = "<group>"; };
+		CE01F3FC202359A100040FC4 /* MyCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyCollectionViewCell.m; sourceTree = "<group>"; };
 		CE1A4977201A01DC005CB860 /* HYBAnimationClock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYBAnimationClock.m; sourceTree = "<group>"; };
 		CE1A4978201A01DD005CB860 /* HYBAnimationClock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYBAnimationClock.h; sourceTree = "<group>"; };
 		CE1A497A201A0219005CB860 /* HYBClockView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYBClockView.h; sourceTree = "<group>"; };
@@ -137,6 +140,8 @@
 				9920D21A201785FB00DA8D6D /* SettingController.h */,
 				9920D21B2017860D00DA8D6D /* SettingController.m */,
 				9920D21120177AED00DA8D6D /* SelectPhotoController.m */,
+				CE01F3FB2023598500040FC4 /* MyCollectionViewCell.h */,
+				CE01F3FC202359A100040FC4 /* MyCollectionViewCell.m */,
 				9920D21420177C0900DA8D6D /* SelectMusicController.h */,
 				9920D21520177C2800DA8D6D /* SelectMusicController.m */,
 				9920D21320177B0800DA8D6D /* SelectPhotoController.h */,
@@ -312,6 +317,7 @@
 			files = (
 				9920D21C2017860D00DA8D6D /* SettingController.m in Sources */,
 				CEA01CEB202337A60001DAF0 /* ListAlarmController.m in Sources */,
+				CE01F3FD202359A100040FC4 /* MyCollectionViewCell.m in Sources */,
 				9920D21220177AED00DA8D6D /* SelectPhotoController.m in Sources */,
 				990736DA20163578002EFEC5 /* IndexController.m in Sources */,
 				CE1A4979201A01DD005CB860 /* HYBAnimationClock.m in Sources */,
