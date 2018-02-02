@@ -23,7 +23,7 @@
     self.tableView.delegate = self;
     self.automaticallyAdjustsScrollViewInsets = false;
     
-    self.myButton = [[UIBarButtonItem alloc] initWithTitle:@"添加鬧鐘" style:UIBarButtonItemStyleBordered target:self action:@selector(clickEvent)];
+    self.myButton = [[UIBarButtonItem alloc] initWithTitle:@"添加" style:UIBarButtonItemStyleBordered target:self action:@selector(clickEvent)];
     self.navigationItem.rightBarButtonItem = self.myButton;
 }
 
@@ -49,21 +49,31 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
+    UISwitch *switchview = nil;
     UIFont *newFont = [UIFont fontWithName:@"AppleGothic" size:28.0];
     cell.textLabel.font = newFont;
-    cell.accessoryType = UITableViewCellAccessoryDetailButton;
+//    cell.accessoryType = UITableViewCellAccessoryDetailButton;
     switch( indexPath.row ){
         case 0:
             cell.textLabel.text = @"08:20";
-            cell.detailTextLabel.text = @"鬧鐘";
+            cell.detailTextLabel.text = @"跑步";
+            switchview = [[UISwitch alloc] initWithFrame:CGRectZero];
+            switchview.on = true;
+            cell.accessoryView = switchview;
             break;
         case 1:
             cell.textLabel.text = @"16:00";
-            cell.detailTextLabel.text = @"鬧鐘";
+            cell.detailTextLabel.text = @"瑜伽";
+            switchview = [[UISwitch alloc] initWithFrame:CGRectZero];
+            switchview.on = false;
+            cell.accessoryView = switchview;
             break;
         case 2:
             cell.textLabel.text = @"23:30";
-            cell.detailTextLabel.text = @"鬧鐘";
+            cell.detailTextLabel.text = @"仰臥起坐";
+            switchview = [[UISwitch alloc] initWithFrame:CGRectZero];
+            switchview.on = true;
+            cell.accessoryView = switchview;
             break;
     }
     return cell;

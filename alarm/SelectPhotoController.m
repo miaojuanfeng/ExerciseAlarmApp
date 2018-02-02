@@ -26,7 +26,7 @@
     //设置headerView的尺寸大小
 //    layout.headerReferenceSize = CGSizeMake(self.view.frame.size.width, 100);
     //该方法也可以设置itemSize
-    layout.itemSize =CGSizeMake(110, 150);
+    layout.itemSize =CGSizeMake(150, 150);
     
     //2.初始化collectionView
     self.mainCollectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
@@ -69,7 +69,7 @@
     
     MyCollectionViewCell *cell = (MyCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"cellId" forIndexPath:indexPath];
     
-    cell.botlabel.text = [NSString stringWithFormat:@"{%ld,%ld}",(long)indexPath.section,(long)indexPath.row];
+//    cell.botlabel.text = [NSString stringWithFormat:@"{%ld,%ld}",(long)indexPath.section,(long)indexPath.row];
     
     cell.backgroundColor = [UIColor yellowColor];
     
@@ -79,7 +79,7 @@
 //设置每个item的尺寸
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(90, 130);
+    return CGSizeMake(110, 110);
 }
 
 //footer的size

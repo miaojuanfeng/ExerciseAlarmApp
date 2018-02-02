@@ -11,6 +11,7 @@
 #import "SelectMusicController.h"
 
 @interface AddAlarmController () <UITableViewDataSource>
+@property UIBarButtonItem *myButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
@@ -23,6 +24,9 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.automaticallyAdjustsScrollViewInsets = false;
+    
+    self.myButton = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStyleBordered target:self action:@selector(clickEvent)];
+    self.navigationItem.rightBarButtonItem = self.myButton;
 }
 
 
@@ -73,6 +77,10 @@
             break;
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (void)clickEvent {
+    //    [self.myButton setAdjustsImageWhenHighlighted:NO];
 }
 
 @end

@@ -12,6 +12,6 @@
 
 @property (strong, nonatomic) UIImageView *topImage;
 
-@property (strong, nonatomic) UILabel *botlabel;
+//@property (strong, nonatomic) UILabel *botlabel;
 
 @end
