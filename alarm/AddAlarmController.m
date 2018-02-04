@@ -118,14 +118,26 @@
         
         // > 可在此设置添加后的一些设置
         // > 例如alertVC。。
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"本地通知" message:@"成功添加推送" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-        [alert addAction:cancelAction];
-        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
+//        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"本地通知" message:@"成功添加推送" preferredStyle:UIAlertControllerStyleAlert];
+//        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+//        [alert addAction:cancelAction];
+//        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
         
         //////////
         NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentsPath = [path objectAtIndex:0];
+        NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"alarmList.plist"];
+        //创建数据
+        NSMutableDictionary *newsDict = [NSMutableDictionary dictionary];
+        //赋值
+        [newsDict setObject:hh forKey:@"hour"];
+        [newsDict setObject:mm forKey:@"minute"];
+        [newsDict setObject:@"仰臥起坐" forKey:@"title"];
+        [newsDict setObject:@"1" forKey:@"status"];
         
+        NSMutableArray *newsArr = [[NSMutableArray alloc] initWithContentsOfFile:plistPath];
+        [newsArr addObject:newsDict];
+        [newsArr writeToFile:plistPath atomically:YES];
     }];
     
     [self.navigationController popViewControllerAnimated:true];

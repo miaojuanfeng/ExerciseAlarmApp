@@ -27,7 +27,7 @@
     alarmTime.frame = CGRectMake(self.view.frame.size.width/2 - 150, 50, 300, 100);
     alarmTime.text = @"22:00";
     alarmTime.textColor = [UIColor whiteColor];
-    alarmTime.font = [UIFont fontWithName:@"AppleGothic" size:38.0];
+    alarmTime.font = [UIFont fontWithName:@"AppleGothic" size:48.0];
     alarmTime.textAlignment = NSTextAlignmentCenter;
     [imageView addSubview:alarmTime];
     

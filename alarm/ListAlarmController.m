@@ -9,9 +9,10 @@
 #import "ListAlarmController.h"
 #import "AddAlarmController.h"
 
-@interface ListAlarmController () <UITableViewDataSource>
+@interface ListAlarmController () <UITableViewDataSource,UINavigationControllerDelegate>
 @property UIBarButtonItem *myButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property NSMutableArray *alarmList;
 @end
 
 @implementation ListAlarmController
@@ -25,12 +26,24 @@
     
     self.myButton = [[UIBarButtonItem alloc] initWithTitle:@"添加" style:UIBarButtonItemStyleBordered target:self action:@selector(clickEvent)];
     self.navigationItem.rightBarButtonItem = self.myButton;
+    
+    self.navigationController.delegate = self;
+    
+    [self loadAlarmList];
 }
 
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)loadAlarmList{
+    NSArray *pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *path = [pathArray objectAtIndex:0];
+    NSString *plistPath = [path stringByAppendingPathComponent:@"alarmList.plist"];
+    self.alarmList = [[NSMutableArray alloc] initWithContentsOfFile:plistPath];
+    NSLog(@"%@", self.alarmList);
 }
 
 - (void)clickEvent {
@@ -40,7 +53,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 3;
+    return self.alarmList.count;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -53,34 +66,55 @@
     UIFont *newFont = [UIFont fontWithName:@"AppleGothic" size:28.0];
     cell.textLabel.font = newFont;
 //    cell.accessoryType = UITableViewCellAccessoryDetailButton;
-    switch( indexPath.row ){
-        case 0:
-            cell.textLabel.text = @"08:20";
-            cell.detailTextLabel.text = @"跑步";
-            switchview = [[UISwitch alloc] initWithFrame:CGRectZero];
-            switchview.on = true;
-            cell.accessoryView = switchview;
-            break;
-        case 1:
-            cell.textLabel.text = @"16:00";
-            cell.detailTextLabel.text = @"瑜伽";
-            switchview = [[UISwitch alloc] initWithFrame:CGRectZero];
-            switchview.on = false;
-            cell.accessoryView = switchview;
-            break;
-        case 2:
-            cell.textLabel.text = @"23:30";
-            cell.detailTextLabel.text = @"仰臥起坐";
-            switchview = [[UISwitch alloc] initWithFrame:CGRectZero];
-            switchview.on = true;
-            cell.accessoryView = switchview;
-            break;
-    }
+//    switch( indexPath.row ){
+//        case 0:
+//            cell.textLabel.text = @"08:20";
+//            cell.detailTextLabel.text = @"跑步";
+//            switchview = [[UISwitch alloc] initWithFrame:CGRectZero];
+//            switchview.on = true;
+//            cell.accessoryView = switchview;
+//            break;
+//        case 1:
+//            cell.textLabel.text = @"16:00";
+//            cell.detailTextLabel.text = @"瑜伽";
+//            switchview = [[UISwitch alloc] initWithFrame:CGRectZero];
+//            switchview.on = false;
+//            cell.accessoryView = switchview;
+//            break;
+//        case 2:
+//            cell.textLabel.text = @"23:30";
+//            cell.detailTextLabel.text = @"仰臥起坐";
+//            switchview = [[UISwitch alloc] initWithFrame:CGRectZero];
+//            switchview.on = true;
+//            cell.accessoryView = switchview;
+//            break;
+//    }
+    NSMutableDictionary *alarmItem = self.alarmList[indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@:%@", [alarmItem objectForKey:@"hour"], [alarmItem objectForKey:@"minute"]];
+    cell.detailTextLabel.text = [alarmItem objectForKey:@"title"];
+    switchview = [[UISwitch alloc] initWithFrame:CGRectZero];
+    switchview.on = [alarmItem objectForKey:@"status"];
+    cell.accessoryView = switchview;
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+//- (void)viewWillAppear:(BOOL)animated {
+//    [super viewWillAppear:animated];
+//    
+//    [self loadAlarmList];
+//    NSLog(@"asdasd");
+//    [self.tableView reloadData];
+//}
+
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    
+    [self loadAlarmList];
+    NSLog(@"%ld", self.alarmList.count);
+    [self.tableView reloadData];
 }
 
 @end
