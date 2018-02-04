@@ -19,6 +19,7 @@
 		9920D21620177C2800DA8D6D /* SelectMusicController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9920D21520177C2800DA8D6D /* SelectMusicController.m */; };
 		9920D2182017859900DA8D6D /* VideoListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9920D2172017859900DA8D6D /* VideoListController.m */; };
 		9920D21C2017860D00DA8D6D /* SettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9920D21B2017860D00DA8D6D /* SettingController.m */; };
+		998F36D6202757D300676226 /* NoiseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 998F36D5202757D300676226 /* NoiseController.m */; };
 		CE01F3FD202359A100040FC4 /* MyCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE01F3FC202359A100040FC4 /* MyCollectionViewCell.m */; };
 		CE1A4979201A01DD005CB860 /* HYBAnimationClock.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1A4977201A01DC005CB860 /* HYBAnimationClock.m */; };
 		CE1A497C201A0219005CB860 /* HYBClockView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1A497B201A0219005CB860 /* HYBClockView.m */; };
@@ -68,6 +69,8 @@
 		9920D219201785A600DA8D6D /* VideoListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoListController.h; sourceTree = "<group>"; };
 		9920D21A201785FB00DA8D6D /* SettingController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingController.h; sourceTree = "<group>"; };
 		9920D21B2017860D00DA8D6D /* SettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingController.m; sourceTree = "<group>"; };
+		998F36D5202757D300676226 /* NoiseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoiseController.m; sourceTree = "<group>"; };
+		998F36D7202757E400676226 /* NoiseController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoiseController.h; sourceTree = "<group>"; };
 		CE01F3FB2023598500040FC4 /* MyCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyCollectionViewCell.h; sourceTree = "<group>"; };
 		CE01F3FC202359A100040FC4 /* MyCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyCollectionViewCell.m; sourceTree = "<group>"; };
 		CE1A4977201A01DC005CB860 /* HYBAnimationClock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYBAnimationClock.m; sourceTree = "<group>"; };
@@ -132,6 +135,8 @@
 				CE1A4977201A01DC005CB860 /* HYBAnimationClock.m */,
 				990736A92016344C002EFEC5 /* AppDelegate.h */,
 				990736AA2016344C002EFEC5 /* AppDelegate.m */,
+				998F36D5202757D300676226 /* NoiseController.m */,
+				998F36D7202757E400676226 /* NoiseController.h */,
 				990736AC2016344C002EFEC5 /* AddAlarmController.h */,
 				990736AD2016344C002EFEC5 /* AddAlarmController.m */,
 				990736AF2016344C002EFEC5 /* Main.storyboard */,
@@ -249,7 +254,7 @@
 				TargetAttributes = {
 					990736A22016344C002EFEC5 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = R4M5UMCGE9;
+						DevelopmentTeam = 6A32892327;
 						ProvisioningStyle = Automatic;
 					};
 					990736BB2016344C002EFEC5 = {
@@ -323,6 +328,7 @@
 				CE1A4979201A01DD005CB860 /* HYBAnimationClock.m in Sources */,
 				990736AE2016344C002EFEC5 /* AddAlarmController.m in Sources */,
 				9920D21620177C2800DA8D6D /* SelectMusicController.m in Sources */,
+				998F36D6202757D300676226 /* NoiseController.m in Sources */,
 				9920D2182017859900DA8D6D /* VideoListController.m in Sources */,
 				CE1A497C201A0219005CB860 /* HYBClockView.m in Sources */,
 				990736AB2016344C002EFEC5 /* AppDelegate.m in Sources */,
@@ -470,7 +476,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = R4M5UMCGE9;
+				DEVELOPMENT_TEAM = 6A32892327;
 				INFOPLIST_FILE = alarm/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -487,7 +493,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = R4M5UMCGE9;
+				DEVELOPMENT_TEAM = 6A32892327;
 				INFOPLIST_FILE = alarm/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

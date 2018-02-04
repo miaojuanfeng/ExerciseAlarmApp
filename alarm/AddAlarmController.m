@@ -6,6 +6,7 @@
 //  Copyright © 2018年 Dreamover Studio. All rights reserved.
 //
 
+#import <UserNotifications/UserNotifications.h>
 #import "AddAlarmController.h"
 #import "SelectPhotoController.h"
 #import "SelectMusicController.h"
@@ -13,6 +14,7 @@
 @interface AddAlarmController () <UITableViewDataSource>
 @property UIBarButtonItem *myButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
 
 @end
 
@@ -80,7 +82,53 @@
 }
 
 - (void)clickEvent {
-    //    [self.myButton setAdjustsImageWhenHighlighted:NO];
+    
+    NSDateComponents *components = [[NSDateComponents alloc] init];
+    NSDate *date = self.datePicker.date;
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"HH"];
+    NSString *hh = [dateFormatter stringFromDate:date];
+    [dateFormatter setDateFormat:@"mm"];
+    NSString *mm = [dateFormatter stringFromDate:date];
+    
+    //  > 使用 UNUserNotificationCenter 来管理通知-- 单例
+    UNUserNotificationCenter* center = [UNUserNotificationCenter currentNotificationCenter];
+    
+    // > 需创建一个包含待通知内容的 UNMutableNotificationContent 对象，可变 UNNotificationContent 对象，不可变
+    // > 通知内容
+    UNMutableNotificationContent* content = [[UNMutableNotificationContent alloc] init];
+    // > 通知的title
+    content.title = [NSString localizedUserNotificationStringForKey:@"運動提醒" arguments:nil];
+    // > 通知的要通知内容
+    content.body = [NSString localizedUserNotificationStringForKey:[NSString stringWithFormat:@"瑜伽運動 %@:%@", hh, mm] arguments:nil];
+    // > 通知的提示声音
+    content.sound = [UNNotificationSound defaultSound];
+    
+//    UNTimeIntervalNotificationTrigger* trigger = [UNTimeIntervalNotificationTrigger
+//                                                  triggerWithTimeInterval:60 repeats:YES];
+    components.hour = [hh intValue];
+    components.minute = [mm intValue];
+    UNCalendarNotificationTrigger *trigger = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:components repeats:YES];
+    
+    UNNotificationRequest* request = [UNNotificationRequest requestWithIdentifier:@"FiveSecond"
+                                                                          content:content trigger:trigger];
+    
+    //添加推送通知，等待通知即可！
+    [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
+        
+        // > 可在此设置添加后的一些设置
+        // > 例如alertVC。。
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"本地通知" message:@"成功添加推送" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        [alert addAction:cancelAction];
+        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
+        
+        //////////
+        NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        
+    }];
+    
+    [self.navigationController popViewControllerAnimated:true];
 }
 
 @end
