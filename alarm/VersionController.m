@@ -23,7 +23,7 @@
     
     UILabel *alarmTime = [[UILabel alloc] init];
     alarmTime.frame = CGRectMake(self.view.frame.size.width/2 - 150, 50, 300, 100);
-    alarmTime.text = @"修改密碼頁";
+    alarmTime.text = @"版本更新頁";
     alarmTime.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:alarmTime];
 }

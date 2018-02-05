@@ -136,7 +136,13 @@
         [newsDict setObject:@"仰臥起坐" forKey:@"title"];
         [newsDict setObject:@"1" forKey:@"status"];
         
-        NSMutableArray *newsArr = [[NSMutableArray alloc] initWithContentsOfFile:plistPath];
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        NSMutableArray *newsArr = nil;
+        if ([fileManager fileExistsAtPath:plistPath] == NO) {
+            newsArr = [[NSMutableArray alloc] init];
+        }else{
+            newsArr = [[NSMutableArray alloc] initWithContentsOfFile:plistPath];
+        }
         NSLog(@"%@", newsArr);
         NSLog(@"%@", newsDict);
         [newsArr addObject:newsDict];

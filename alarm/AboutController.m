@@ -21,10 +21,10 @@
     // Do any additional setup after loading the view, typically from a nib.]
     self.view.backgroundColor = [UIColor whiteColor];
     
-    UILabel *alarmTime = [[UILabel alloc] init];
-    alarmTime.frame = CGRectMake(self.view.frame.size.width/2 - 150, 50, 300, 100);
-    alarmTime.text = @"修改密碼頁";
-    alarmTime.textAlignment = NSTextAlignmentCenter;
+    UITextView *alarmTime = [[UITextView alloc] init];
+    alarmTime.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    alarmTime.text = @"<鍛鍊提醒> 程式是由香港大 學工業及製造系統工程系人 因工程實驗室開發的。如有需要，請與柯教授取得 聯繫(電話:1234-5678)";
+    alarmTime.font = [UIFont fontWithName:@"AppleGothic" size:16.0];
     [self.view addSubview:alarmTime];
 }
 
