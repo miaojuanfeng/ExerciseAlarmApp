@@ -137,6 +137,8 @@
         [newsDict setObject:@"1" forKey:@"status"];
         
         NSMutableArray *newsArr = [[NSMutableArray alloc] initWithContentsOfFile:plistPath];
+        NSLog(@"%@", newsArr);
+        NSLog(@"%@", newsDict);
         [newsArr addObject:newsDict];
         [newsArr writeToFile:plistPath atomically:YES];
     }];

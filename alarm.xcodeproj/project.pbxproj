@@ -23,6 +23,11 @@
 		CE01F3FD202359A100040FC4 /* MyCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE01F3FC202359A100040FC4 /* MyCollectionViewCell.m */; };
 		CE1A4979201A01DD005CB860 /* HYBAnimationClock.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1A4977201A01DC005CB860 /* HYBAnimationClock.m */; };
 		CE1A497C201A0219005CB860 /* HYBClockView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1A497B201A0219005CB860 /* HYBClockView.m */; };
+		CE446F5B202806FE009320EC /* VideoDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE446F5A202806FE009320EC /* VideoDetailController.m */; };
+		CE446F5E20280A1C009320EC /* PwdController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE446F5D20280A1C009320EC /* PwdController.m */; };
+		CE446F6220280A4B009320EC /* HelpController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE446F6120280A4B009320EC /* HelpController.m */; };
+		CE446F6420280A57009320EC /* AboutController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE446F6320280A57009320EC /* AboutController.m */; };
+		CE446F6820280A78009320EC /* VersionController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE446F6720280A78009320EC /* VersionController.m */; };
 		CEA01CEB202337A60001DAF0 /* ListAlarmController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA01CEA202337A60001DAF0 /* ListAlarmController.m */; };
 /* End PBXBuildFile section */
 
@@ -77,6 +82,16 @@
 		CE1A4978201A01DD005CB860 /* HYBAnimationClock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYBAnimationClock.h; sourceTree = "<group>"; };
 		CE1A497A201A0219005CB860 /* HYBClockView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYBClockView.h; sourceTree = "<group>"; };
 		CE1A497B201A0219005CB860 /* HYBClockView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYBClockView.m; sourceTree = "<group>"; };
+		CE446F5A202806FE009320EC /* VideoDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoDetailController.m; sourceTree = "<group>"; };
+		CE446F5C20280713009320EC /* VideoDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoDetailController.h; sourceTree = "<group>"; };
+		CE446F5D20280A1C009320EC /* PwdController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PwdController.m; sourceTree = "<group>"; };
+		CE446F5F20280A2D009320EC /* PwdController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PwdController.h; sourceTree = "<group>"; };
+		CE446F6020280A3E009320EC /* HelpController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelpController.h; sourceTree = "<group>"; };
+		CE446F6120280A4B009320EC /* HelpController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelpController.m; sourceTree = "<group>"; };
+		CE446F6320280A57009320EC /* AboutController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AboutController.m; sourceTree = "<group>"; };
+		CE446F6520280A61009320EC /* AboutController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AboutController.h; sourceTree = "<group>"; };
+		CE446F6620280A6D009320EC /* VersionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VersionController.h; sourceTree = "<group>"; };
+		CE446F6720280A78009320EC /* VersionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VersionController.m; sourceTree = "<group>"; };
 		CEA01CEA202337A60001DAF0 /* ListAlarmController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListAlarmController.m; sourceTree = "<group>"; };
 		CEA01CEC202338020001DAF0 /* ListAlarmController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListAlarmController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -139,6 +154,16 @@
 				998F36D7202757E400676226 /* NoiseController.h */,
 				990736AC2016344C002EFEC5 /* AddAlarmController.h */,
 				990736AD2016344C002EFEC5 /* AddAlarmController.m */,
+				CE446F5A202806FE009320EC /* VideoDetailController.m */,
+				CE446F5D20280A1C009320EC /* PwdController.m */,
+				CE446F5F20280A2D009320EC /* PwdController.h */,
+				CE446F6020280A3E009320EC /* HelpController.h */,
+				CE446F6120280A4B009320EC /* HelpController.m */,
+				CE446F6320280A57009320EC /* AboutController.m */,
+				CE446F6520280A61009320EC /* AboutController.h */,
+				CE446F6620280A6D009320EC /* VersionController.h */,
+				CE446F6720280A78009320EC /* VersionController.m */,
+				CE446F5C20280713009320EC /* VideoDetailController.h */,
 				990736AF2016344C002EFEC5 /* Main.storyboard */,
 				9920D2172017859900DA8D6D /* VideoListController.m */,
 				9920D219201785A600DA8D6D /* VideoListController.h */,
@@ -322,17 +347,22 @@
 			files = (
 				9920D21C2017860D00DA8D6D /* SettingController.m in Sources */,
 				CEA01CEB202337A60001DAF0 /* ListAlarmController.m in Sources */,
+				CE446F6420280A57009320EC /* AboutController.m in Sources */,
 				CE01F3FD202359A100040FC4 /* MyCollectionViewCell.m in Sources */,
 				9920D21220177AED00DA8D6D /* SelectPhotoController.m in Sources */,
 				990736DA20163578002EFEC5 /* IndexController.m in Sources */,
 				CE1A4979201A01DD005CB860 /* HYBAnimationClock.m in Sources */,
 				990736AE2016344C002EFEC5 /* AddAlarmController.m in Sources */,
 				9920D21620177C2800DA8D6D /* SelectMusicController.m in Sources */,
+				CE446F6220280A4B009320EC /* HelpController.m in Sources */,
+				CE446F5B202806FE009320EC /* VideoDetailController.m in Sources */,
 				998F36D6202757D300676226 /* NoiseController.m in Sources */,
 				9920D2182017859900DA8D6D /* VideoListController.m in Sources */,
 				CE1A497C201A0219005CB860 /* HYBClockView.m in Sources */,
+				CE446F6820280A78009320EC /* VersionController.m in Sources */,
 				990736AB2016344C002EFEC5 /* AppDelegate.m in Sources */,
 				990736A82016344C002EFEC5 /* main.m in Sources */,
+				CE446F5E20280A1C009320EC /* PwdController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

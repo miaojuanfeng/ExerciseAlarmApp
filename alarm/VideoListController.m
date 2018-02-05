@@ -7,6 +7,7 @@
 //
 
 #import "VideoListController.h"
+#import "VideoDetailController.h"
 
 @interface VideoListController () <UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -67,6 +68,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    VideoDetailController *videoDetailController = [[VideoDetailController alloc] init];
+    [self.navigationController pushViewController:videoDetailController animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

@@ -7,6 +7,10 @@
 //
 
 #import "SettingController.h"
+#import "PwdController.h"
+#import "HelpController.h"
+#import "AboutController.h"
+#import "VersionController.h"
 
 @interface SettingController () <UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -86,6 +90,33 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    PwdController *pwdController = nil;
+    HelpController *helpController = nil;
+    AboutController *aboutController = nil;
+    VersionController *versionController = nil;
+    if( indexPath.section == 0 ){
+        switch( indexPath.row ){
+            case 0:
+                pwdController = [[PwdController alloc] init];
+                [self.navigationController pushViewController:pwdController animated:YES];
+                break;
+            case 1:
+                helpController = [[HelpController alloc] init];
+                [self.navigationController pushViewController:helpController animated:YES];
+                break;
+            case 2:
+                aboutController = [[AboutController alloc] init];
+                [self.navigationController pushViewController:aboutController animated:YES];
+                break;
+        }
+    }else if( indexPath.section == 1 ){
+        switch( indexPath.row ){
+            case 0:
+                versionController = [[VersionController alloc] init];
+                [self.navigationController pushViewController:versionController animated:YES];
+                break;
+        }
+    }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
