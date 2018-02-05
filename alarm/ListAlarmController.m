@@ -22,6 +22,7 @@
     // Do any additional setup after loading the view, typically from a nib.
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    self.tableView.rowHeight = 60;
     self.automaticallyAdjustsScrollViewInsets = false;
     
     self.myButton = [[UIBarButtonItem alloc] initWithTitle:@"添加" style:UIBarButtonItemStyleBordered target:self action:@selector(clickEvent)];
@@ -43,7 +44,7 @@
     NSString *path = [pathArray objectAtIndex:0];
     NSString *plistPath = [path stringByAppendingPathComponent:@"alarmList.plist"];
     self.alarmList = [[NSMutableArray alloc] initWithContentsOfFile:plistPath];
-    NSLog(@"%@", self.alarmList);
+//    NSLog(@"%@", self.alarmList);
 }
 
 - (void)clickEvent {

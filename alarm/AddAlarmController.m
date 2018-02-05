@@ -119,9 +119,9 @@
         
         // > 可在此设置添加后的一些设置
         // > 例如alertVC。。
-//        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"本地通知" message:@"成功添加推送" preferredStyle:UIAlertControllerStyleAlert];
-//        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-//        [alert addAction:cancelAction];
+//        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"運動鬧鐘" message:@"成功添加鬧鐘" preferredStyle:UIAlertControllerStyleAlert];
+//        UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"確認" style:UIAlertActionStyleCancel handler:nil];
+//        [alert addAction:confirmAction];
 //        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
         
         //////////
@@ -143,13 +143,16 @@
         }else{
             newsArr = [[NSMutableArray alloc] initWithContentsOfFile:plistPath];
         }
-        NSLog(@"%@", newsArr);
-        NSLog(@"%@", newsDict);
         [newsArr addObject:newsDict];
         [newsArr writeToFile:plistPath atomically:YES];
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"運動鬧鐘" message:@"成功添加鬧鐘" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"確認" style:UIAlertActionStyleCancel handler:nil];
+        [alert addAction:confirmAction];
+        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
     }];
     
-    [self.navigationController popViewControllerAnimated:true];
+//    [self.navigationController popViewControllerAnimated:true];
 }
 
 @end
