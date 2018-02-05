@@ -9,6 +9,7 @@
 #import <UserNotifications/UserNotifications.h>
 #import "AppDelegate.h"
 #import "NoiseController.h"
+#import <AudioToolbox/AudioToolbox.h>
 
 @interface AppDelegate ()
 
@@ -85,6 +86,11 @@
     else {
         // 判断为本地通知
         NSLog(@"iOS10 前台收到本地通知:{\\\\nbody:%@，\\\\ntitle:%@,\\\\nsubtitle:%@,\\\\nbadge：%@，\\\\nsound：%@，\\\\nuserInfo：%@\\\\n}",body,title,subtitle,badge,sound,userInfo);
+        
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"ring" ofType:@"wav"];
+        SystemSoundID soundID;
+        AudioServicesCreateSystemSoundID ((__bridge CFURLRef)[NSURL fileURLWithPath:path], &soundID);
+        AudioServicesPlaySystemSound (soundID);
     }
     
     NoiseController *noiseController = [[NoiseController alloc] init];
@@ -112,6 +118,11 @@
         // 判断为本地通知
         NSLog(@"iOS10 收到本地通知:{\\\\nbody:%@，\\\\ntitle:%@,\\\\nsubtitle:%@,\\\\nbadge：%@，\\\\nsound：%@，\\\\nuserInfo：%@\\\\n}",body,title,subtitle,badge,sound,userInfo);
     }
+    
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"ring" ofType:@"wav"];
+    SystemSoundID soundID;
+    AudioServicesCreateSystemSoundID ((__bridge CFURLRef)[NSURL fileURLWithPath:path], &soundID);
+    AudioServicesPlaySystemSound (soundID);
     
     NoiseController *noiseController = [[NoiseController alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:noiseController];

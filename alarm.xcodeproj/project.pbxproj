@@ -15,6 +15,7 @@
 		990736C12016344C002EFEC5 /* alarmTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 990736C02016344C002EFEC5 /* alarmTests.m */; };
 		990736CC2016344C002EFEC5 /* alarmUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 990736CB2016344C002EFEC5 /* alarmUITests.m */; };
 		990736DA20163578002EFEC5 /* IndexController.m in Sources */ = {isa = PBXBuildFile; fileRef = 990736D920163578002EFEC5 /* IndexController.m */; };
+		9913F45E2028C285005B6B85 /* ring.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9913F45D2028C285005B6B85 /* ring.wav */; };
 		9920D21220177AED00DA8D6D /* SelectPhotoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9920D21120177AED00DA8D6D /* SelectPhotoController.m */; };
 		9920D21620177C2800DA8D6D /* SelectMusicController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9920D21520177C2800DA8D6D /* SelectMusicController.m */; };
 		9920D2182017859900DA8D6D /* VideoListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9920D2172017859900DA8D6D /* VideoListController.m */; };
@@ -66,6 +67,7 @@
 		990736CD2016344C002EFEC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		990736D920163578002EFEC5 /* IndexController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndexController.m; sourceTree = "<group>"; };
 		990736DB20163584002EFEC5 /* IndexController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndexController.h; sourceTree = "<group>"; };
+		9913F45D2028C285005B6B85 /* ring.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = ring.wav; path = ../../../ring.wav; sourceTree = "<group>"; };
 		9920D21120177AED00DA8D6D /* SelectPhotoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectPhotoController.m; sourceTree = "<group>"; };
 		9920D21320177B0800DA8D6D /* SelectPhotoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectPhotoController.h; sourceTree = "<group>"; };
 		9920D21420177C0900DA8D6D /* SelectMusicController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectMusicController.h; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 		990736A62016344C002EFEC5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				9913F45D2028C285005B6B85 /* ring.wav */,
 				990736A72016344C002EFEC5 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -319,6 +322,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9913F45E2028C285005B6B85 /* ring.wav in Resources */,
 				990736B32016344C002EFEC5 /* Assets.xcassets in Resources */,
 				990736B12016344C002EFEC5 /* Main.storyboard in Resources */,
 			);

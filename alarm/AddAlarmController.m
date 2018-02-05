@@ -103,7 +103,8 @@
     content.body = [NSString localizedUserNotificationStringForKey:[NSString stringWithFormat:@"瑜伽運動 %@:%@", hh, mm] arguments:nil];
     // > 通知的提示声音
 //    content.sound = [UNNotificationSound defaultSound];
-    content.sound = [UNNotificationSound soundNamed:@"ring.wav"];
+//    content.sound = [UNNotificationSound soundNamed:@"ring.wav"];
+    content.sound = nil;
     
 //    UNTimeIntervalNotificationTrigger* trigger = [UNTimeIntervalNotificationTrigger
 //                                                  triggerWithTimeInterval:60 repeats:YES];
