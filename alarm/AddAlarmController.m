@@ -11,7 +11,7 @@
 #import "SelectPhotoController.h"
 #import "SelectMusicController.h"
 
-@interface AddAlarmController () <UITableViewDataSource>
+@interface AddAlarmController () <UITableViewDataSource, UIImagePickerControllerDelegate>
 @property UIBarButtonItem *myButton;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
@@ -68,10 +68,15 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     SelectPhotoController *selectPhotoController = nil;
     SelectMusicController *selectMusicController = nil;
+    UIImagePickerController *pickerController = nil;
     switch (indexPath.row) {
         case 0:
-            selectPhotoController = [self.storyboard instantiateViewControllerWithIdentifier:@"SelectPhotoController"];
-            [self.navigationController pushViewController:selectPhotoController animated:YES];
+            // selectPhotoController = [self.storyboard instantiateViewControllerWithIdentifier:@"SelectPhotoController"];
+            // [self.navigationController pushViewController:selectPhotoController animated:YES];
+            pickerController = [[UIImagePickerController alloc] init];
+            pickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            pickerController.delegate = self;
+            [self presentViewController:pickerController animated:YES completion:nil];
             break;
         case 1:
             selectMusicController = [self.storyboard instantiateViewControllerWithIdentifier:@"SelectMusicController"];
@@ -79,6 +84,21 @@
             break;
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+    
+    NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
+    NSLog(@"123331213");
+    if ([type isEqualToString:@"public.image"]) {
+        UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+        //process image
+        [picker dismissViewControllerAnimated:YES completion:nil];
+    }
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)clickEvent {
