@@ -20,6 +20,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.]
     self.view.backgroundColor = [UIColor whiteColor];
+    self.navigationItem.title = @"視頻詳情";
     
     /*UILabel *alarmTime = [[UILabel alloc] init];
     alarmTime.frame = CGRectMake(self.view.frame.size.width/2 - 150, 50, 300, 100);

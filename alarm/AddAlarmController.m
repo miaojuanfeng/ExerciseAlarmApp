@@ -13,8 +13,8 @@
 
 @interface AddAlarmController () <UITableViewDataSource, UIImagePickerControllerDelegate>
 @property UIBarButtonItem *myButton;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
+@property UITableView *tableView;
+@property UIDatePicker *datePicker;
 
 @end
 
@@ -23,8 +23,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.navigationItem.title = @"添加提醒";
+    
+    self.datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, 216)];
+    self.datePicker.datePickerMode = UIDatePickerModeTime;
+    [self.view addSubview:self.datePicker];
+    
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 280, self.view.frame.size.width, self.view.frame.size.height-280) style:UITableViewStyleGrouped];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    [self.view addSubview:self.tableView];
     self.automaticallyAdjustsScrollViewInsets = false;
     
     self.myButton = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStyleBordered target:self action:@selector(clickEvent)];
@@ -154,7 +163,7 @@
         //赋值
         [newsDict setObject:hh forKey:@"hour"];
         [newsDict setObject:mm forKey:@"minute"];
-        [newsDict setObject:@"仰臥起坐" forKey:@"title"];
+        [newsDict setObject:@"鍛煉提醒" forKey:@"title"];
         [newsDict setObject:@"1" forKey:@"status"];
         
         NSFileManager *fileManager = [NSFileManager defaultManager];

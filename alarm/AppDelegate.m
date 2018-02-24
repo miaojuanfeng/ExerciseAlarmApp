@@ -9,6 +9,7 @@
 #import <UserNotifications/UserNotifications.h>
 #import "AppDelegate.h"
 #import "NoiseController.h"
+#import "WBTabBarController.h"
 #import <AudioToolbox/AudioToolbox.h>
 
 @interface AppDelegate ()
@@ -20,6 +21,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
+    //创建并初始化UITabBarController
+    WBTabBarController *tabBarController = [[WBTabBarController alloc]init];
+    self.window.rootViewController = tabBarController;
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self.window makeKeyAndVisible];
     
     
     // 使用 UNUserNotificationCenter 来管理通知

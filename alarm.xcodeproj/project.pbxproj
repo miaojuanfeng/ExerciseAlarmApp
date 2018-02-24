@@ -29,6 +29,8 @@
 		CE446F6420280A57009320EC /* AboutController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE446F6320280A57009320EC /* AboutController.m */; };
 		CE446F6820280A78009320EC /* VersionController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE446F6720280A78009320EC /* VersionController.m */; };
 		CEA01CEB202337A60001DAF0 /* ListAlarmController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA01CEA202337A60001DAF0 /* ListAlarmController.m */; };
+		CEBBACD02041214800F6262D /* WBTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBBACCF2041214800F6262D /* WBTabBarController.m */; };
+		CEBBACD42041609B00F6262D /* StatusController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBBACD32041609B00F6262D /* StatusController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +96,10 @@
 		CE446F6720280A78009320EC /* VersionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VersionController.m; sourceTree = "<group>"; };
 		CEA01CEA202337A60001DAF0 /* ListAlarmController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListAlarmController.m; sourceTree = "<group>"; };
 		CEA01CEC202338020001DAF0 /* ListAlarmController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListAlarmController.h; sourceTree = "<group>"; };
+		CEBBACCF2041214800F6262D /* WBTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WBTabBarController.m; sourceTree = "<group>"; };
+		CEBBACD12041215A00F6262D /* WBTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WBTabBarController.h; sourceTree = "<group>"; };
+		CEBBACD22041608D00F6262D /* StatusController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StatusController.h; sourceTree = "<group>"; };
+		CEBBACD32041609B00F6262D /* StatusController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StatusController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,7 +160,6 @@
 				998F36D7202757E400676226 /* NoiseController.h */,
 				990736AC2016344C002EFEC5 /* AddAlarmController.h */,
 				990736AD2016344C002EFEC5 /* AddAlarmController.m */,
-				CE446F5A202806FE009320EC /* VideoDetailController.m */,
 				CE446F5D20280A1C009320EC /* PwdController.m */,
 				CE446F5F20280A2D009320EC /* PwdController.h */,
 				CE446F6020280A3E009320EC /* HelpController.h */,
@@ -164,6 +169,7 @@
 				CE446F6620280A6D009320EC /* VersionController.h */,
 				CE446F6720280A78009320EC /* VersionController.m */,
 				CE446F5C20280713009320EC /* VideoDetailController.h */,
+				CE446F5A202806FE009320EC /* VideoDetailController.m */,
 				990736AF2016344C002EFEC5 /* Main.storyboard */,
 				9920D2172017859900DA8D6D /* VideoListController.m */,
 				9920D219201785A600DA8D6D /* VideoListController.h */,
@@ -172,6 +178,8 @@
 				9920D21120177AED00DA8D6D /* SelectPhotoController.m */,
 				CE01F3FB2023598500040FC4 /* MyCollectionViewCell.h */,
 				CE01F3FC202359A100040FC4 /* MyCollectionViewCell.m */,
+				CEBBACCF2041214800F6262D /* WBTabBarController.m */,
+				CEBBACD12041215A00F6262D /* WBTabBarController.h */,
 				9920D21420177C0900DA8D6D /* SelectMusicController.h */,
 				9920D21520177C2800DA8D6D /* SelectMusicController.m */,
 				9920D21320177B0800DA8D6D /* SelectPhotoController.h */,
@@ -179,6 +187,8 @@
 				CEA01CEC202338020001DAF0 /* ListAlarmController.h */,
 				990736DB20163584002EFEC5 /* IndexController.h */,
 				990736D920163578002EFEC5 /* IndexController.m */,
+				CEBBACD22041608D00F6262D /* StatusController.h */,
+				CEBBACD32041609B00F6262D /* StatusController.m */,
 				990736B22016344C002EFEC5 /* Assets.xcassets */,
 				990736B72016344C002EFEC5 /* Info.plist */,
 				990736A62016344C002EFEC5 /* Supporting Files */,
@@ -346,6 +356,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9920D21C2017860D00DA8D6D /* SettingController.m in Sources */,
+				CEBBACD42041609B00F6262D /* StatusController.m in Sources */,
 				CEA01CEB202337A60001DAF0 /* ListAlarmController.m in Sources */,
 				CE446F6420280A57009320EC /* AboutController.m in Sources */,
 				CE01F3FD202359A100040FC4 /* MyCollectionViewCell.m in Sources */,
@@ -362,6 +373,7 @@
 				CE446F6820280A78009320EC /* VersionController.m in Sources */,
 				990736AB2016344C002EFEC5 /* AppDelegate.m in Sources */,
 				990736A82016344C002EFEC5 /* main.m in Sources */,
+				CEBBACD02041214800F6262D /* WBTabBarController.m in Sources */,
 				CE446F5E20280A1C009320EC /* PwdController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

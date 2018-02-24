@@ -10,7 +10,7 @@
 #import "VideoDetailController.h"
 
 @interface VideoListController () <UITableViewDataSource>
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property UITableView *tableView;
 
 @end
 
@@ -19,10 +19,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    self.navigationItem.title = @"視頻";
+    
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height-64)];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    [self.view addSubview:self.tableView];
+    
     self.automaticallyAdjustsScrollViewInsets = false;
-    self.tableView.frame = CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height-64);
 }
 
 

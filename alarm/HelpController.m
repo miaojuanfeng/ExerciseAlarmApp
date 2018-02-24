@@ -20,12 +20,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.]
     self.view.backgroundColor = [UIColor whiteColor];
+    self.navigationItem.title = @"查看幫助";
     
-    UITextView *alarmTime = [[UITextView alloc] init];
-    alarmTime.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
-    alarmTime.text = @"歡迎使用 <鍛鍊提醒> 程式。這程式會提供鈴聲、圖片提醒。同時，使用者可以通過教學視頻進行自我學習。";
-    alarmTime.font = [UIFont fontWithName:@"AppleGothic" size:16.0];
-    [self.view addSubview:alarmTime];
+    UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height-64)];
+    textView.text = @"\n歡迎使用 <鍛鍊提醒> 程式。\n\n您可以自由設置鍛煉提醒，並觀看教學視頻進行康復鍛煉。\n\n通過“我的狀態”，您可以隨時查看近期鍛煉情況。\n\n您也可以在討論區提出疑問，與專家及其他用戶進行交流。";
+    textView.font = [UIFont fontWithName:@"AppleGothic" size:16.0];
+    [self.view addSubview:textView];
 }
 
 

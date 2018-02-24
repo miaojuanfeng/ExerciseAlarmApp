@@ -13,7 +13,7 @@
 #import "VersionController.h"
 
 @interface SettingController () <UITableViewDataSource>
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property UITableView *tableView;
 
 @end
 
@@ -22,10 +22,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    self.navigationItem.title = @"設置";
+    
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height - 64) style:UITableViewStyleGrouped];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-     self.automaticallyAdjustsScrollViewInsets = false;
-    self.tableView.frame = CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height-64);
+    self.automaticallyAdjustsScrollViewInsets = false;
+    [self.view addSubview:self.tableView];
+//    self.tableView.frame = CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height-64);
 }
 
 
@@ -35,7 +39,7 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -70,7 +74,7 @@
                 cell.imageView.image = [UIImage imageNamed:@"settings"];
                 break;
             case 1:
-                cell.textLabel.text = @"使用幫助";
+                cell.textLabel.text = @"查看幫助";
                 cell.imageView.image = [UIImage imageNamed:@"settings"];
                 break;
             case 2:

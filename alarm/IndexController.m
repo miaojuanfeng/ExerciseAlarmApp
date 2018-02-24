@@ -36,8 +36,7 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.automaticallyAdjustsScrollViewInsets = false;
-    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60)
-                                                         forBarMetrics:UIBarMetricsDefault];
+//    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60) forBarMetrics:UIBarMetricsDefault];
     
     self.numberClockView = [[UIView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, 216)];
     self.numberClockView.backgroundColor = [UIColor whiteColor];

@@ -11,7 +11,7 @@
 
 @interface ListAlarmController () <UITableViewDataSource,UINavigationControllerDelegate>
 @property UIBarButtonItem *myButton;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property UITableView *tableView;
 @property NSMutableArray *alarmList;
 @end
 
@@ -20,9 +20,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    self.navigationItem.title = @"鍛煉提醒";
+    
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height)];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.tableView.rowHeight = 60;
+    [self.view addSubview:self.tableView];
     self.automaticallyAdjustsScrollViewInsets = false;
     
     self.myButton = [[UIBarButtonItem alloc] initWithTitle:@"添加" style:UIBarButtonItemStyleBordered target:self action:@selector(clickEvent)];
@@ -48,7 +52,8 @@
 }
 
 - (void)clickEvent {
-    AddAlarmController *addAlarmController = [self.storyboard instantiateViewControllerWithIdentifier:@"AddAlarmController"];
+//    AddAlarmController *addAlarmController = [self.storyboard instantiateViewControllerWithIdentifier:@"AddAlarmController"];
+    AddAlarmController *addAlarmController = [[AddAlarmController alloc] init];
     [self.navigationController pushViewController:addAlarmController animated:YES];
 //    [self.myButton setAdjustsImageWhenHighlighted:NO];
 }
