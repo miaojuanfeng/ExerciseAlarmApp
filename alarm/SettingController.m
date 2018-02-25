@@ -29,7 +29,11 @@
     self.tableView.delegate = self;
     self.automaticallyAdjustsScrollViewInsets = false;
     [self.view addSubview:self.tableView];
-//    self.tableView.frame = CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height-64);
+    
+    UIButton *logoutButton = [[UIButton alloc] initWithFrame:CGRectMake(10, self.view.frame.size.height-200, self.view.frame.size.width-20, 44)];
+    logoutButton.backgroundColor = [UIColor blueColor];
+    [logoutButton setTitle:@"登出這個賬戶" forState:UIControlStateNormal];
+    [self.view addSubview:logoutButton];
 }
 
 
