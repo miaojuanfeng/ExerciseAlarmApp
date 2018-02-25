@@ -10,6 +10,7 @@
 #import "StatusController.h"
 #import "ListAlarmController.h"
 #import "VideoListController.h"
+#import "DiscussController.h"
 #import "SettingController.h"
 @interface WBTabBarController ()
 
@@ -25,18 +26,21 @@
     StatusController *oneVc = [[StatusController alloc]init];
     ListAlarmController *twoVc = [[ListAlarmController alloc]init];
     VideoListController *threeVc = [[VideoListController alloc]init];
+    DiscussController *fourVc = [[DiscussController alloc]init];
     SettingController *fiveVc = [[SettingController alloc]init];
     
     //为两个视图控制器添加导航栏控制器
     UINavigationController *navOne = [[UINavigationController alloc]initWithRootViewController:oneVc];
     UINavigationController *navTwo = [[UINavigationController alloc]initWithRootViewController:twoVc];
     UINavigationController *navThree = [[UINavigationController alloc]initWithRootViewController:threeVc];
+    UINavigationController *navFour = [[UINavigationController alloc]initWithRootViewController:fourVc];
     UINavigationController *navFive = [[UINavigationController alloc]initWithRootViewController:fiveVc];
     
     //设置控制器文字
     navOne.title = @"我的狀態";
     navTwo.title = @"鍛煉提醒";
     navThree.title = @"視頻";
+    navFour.title = @"討論";
     navFive.title = @"設置";
     
     //设置控制器图片(使用imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal,不被系统渲染成蓝色)
@@ -46,6 +50,8 @@
     navTwo.tabBarItem.selectedImage = [[UIImage imageNamed:@"icon_home_bottom_search_hl"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     navThree.tabBarItem.image = [[UIImage imageNamed:@"icon_home_bottom_search"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     navThree.tabBarItem.selectedImage = [[UIImage imageNamed:@"icon_home_bottom_search_hl"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    navFour.tabBarItem.image = [[UIImage imageNamed:@"icon_home_bottom_search"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    navFour.tabBarItem.selectedImage = [[UIImage imageNamed:@"icon_home_bottom_search_hl"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     navFive.tabBarItem.image = [[UIImage imageNamed:@"icon_home_bottom_search"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     navFive.tabBarItem.selectedImage = [[UIImage imageNamed:@"icon_home_bottom_search_hl"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
@@ -56,7 +62,7 @@
     [[UITabBarItem appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName:[UIColor redColor]} forState:UIControlStateSelected];
     
     //创建一个数组包含四个导航栏控制器
-    NSArray *vcArry = [NSArray arrayWithObjects:navOne,navTwo,navThree,navFive,nil];
+    NSArray *vcArry = [NSArray arrayWithObjects:navOne,navTwo,navThree,navFour,navFive,nil];
     
     //将数组传给UITabBarController
     self.viewControllers = vcArry;

@@ -19,6 +19,11 @@
 		990C85122042B20C00D36C9E /* StatusFourController.m in Sources */ = {isa = PBXBuildFile; fileRef = 990C850D2042B20C00D36C9E /* StatusFourController.m */; };
 		990C85132042B20C00D36C9E /* StatusThreeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 990C850F2042B20C00D36C9E /* StatusThreeController.m */; };
 		990C85142042B20C00D36C9E /* StatusTwoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 990C85112042B20C00D36C9E /* StatusTwoController.m */; };
+		990C851A2042C7BD00D36C9E /* DiscussController.m in Sources */ = {isa = PBXBuildFile; fileRef = 990C85192042C7BD00D36C9E /* DiscussController.m */; };
+		990C85202042CF9600D36C9E /* NewQuestionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 990C851F2042CF9600D36C9E /* NewQuestionController.m */; };
+		990C85222042D95D00D36C9E /* MyMsgController.m in Sources */ = {isa = PBXBuildFile; fileRef = 990C85212042D95D00D36C9E /* MyMsgController.m */; };
+		990C85262042DCBD00D36C9E /* MsgDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 990C85252042DCBD00D36C9E /* MsgDetailController.m */; };
+		990C85282042EA8C00D36C9E /* NewCommentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 990C85272042EA8C00D36C9E /* NewCommentController.m */; };
 		9920D21220177AED00DA8D6D /* SelectPhotoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9920D21120177AED00DA8D6D /* SelectPhotoController.m */; };
 		9920D21620177C2800DA8D6D /* SelectMusicController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9920D21520177C2800DA8D6D /* SelectMusicController.m */; };
 		9920D2182017859900DA8D6D /* VideoListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9920D2172017859900DA8D6D /* VideoListController.m */; };
@@ -80,6 +85,16 @@
 		990C850F2042B20C00D36C9E /* StatusThreeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusThreeController.m; sourceTree = "<group>"; };
 		990C85102042B20C00D36C9E /* StatusTwoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusTwoController.h; sourceTree = "<group>"; };
 		990C85112042B20C00D36C9E /* StatusTwoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusTwoController.m; sourceTree = "<group>"; };
+		990C85192042C7BD00D36C9E /* DiscussController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DiscussController.m; path = ../DiscussController.m; sourceTree = "<group>"; };
+		990C851C2042C87D00D36C9E /* DiscussController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiscussController.h; sourceTree = "<group>"; };
+		990C851E2042CF8400D36C9E /* NewQuestionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewQuestionController.h; sourceTree = "<group>"; };
+		990C851F2042CF9600D36C9E /* NewQuestionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewQuestionController.m; sourceTree = "<group>"; };
+		990C85212042D95D00D36C9E /* MyMsgController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyMsgController.m; sourceTree = "<group>"; };
+		990C85232042D96B00D36C9E /* MyMsgController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyMsgController.h; sourceTree = "<group>"; };
+		990C85242042DCAC00D36C9E /* MsgDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MsgDetailController.h; sourceTree = "<group>"; };
+		990C85252042DCBD00D36C9E /* MsgDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MsgDetailController.m; sourceTree = "<group>"; };
+		990C85272042EA8C00D36C9E /* NewCommentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewCommentController.m; sourceTree = "<group>"; };
+		990C85292042EA9D00D36C9E /* NewCommentController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewCommentController.h; sourceTree = "<group>"; };
 		9920D21120177AED00DA8D6D /* SelectPhotoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectPhotoController.m; sourceTree = "<group>"; };
 		9920D21320177B0800DA8D6D /* SelectPhotoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectPhotoController.h; sourceTree = "<group>"; };
 		9920D21420177C0900DA8D6D /* SelectMusicController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectMusicController.h; sourceTree = "<group>"; };
@@ -162,11 +177,11 @@
 		990736A52016344C002EFEC5 /* alarm */ = {
 			isa = PBXGroup;
 			children = (
+				990C851D2042C88F00D36C9E /* DiscussTab */,
 				990C85162042C62700D36C9E /* AlarmTab */,
 				990736A92016344C002EFEC5 /* AppDelegate.h */,
 				990736AA2016344C002EFEC5 /* AppDelegate.m */,
 				990736B22016344C002EFEC5 /* Assets.xcassets */,
-				990C85182042C68200D36C9E /* Unused */,
 				990736B72016344C002EFEC5 /* Info.plist */,
 				990736AF2016344C002EFEC5 /* Main.storyboard */,
 				998F36D7202757E400676226 /* NoiseController.h */,
@@ -174,6 +189,7 @@
 				990C85152042C5AE00D36C9E /* SettingTab */,
 				990C85072042AFA500D36C9E /* StatusTab */,
 				990736A62016344C002EFEC5 /* Supporting Files */,
+				990C85182042C68200D36C9E /* Unused */,
 				990C85172042C65400D36C9E /* VideoTab */,
 				CEBBACD12041215A00F6262D /* WBTabBarController.h */,
 				CEBBACCF2041214800F6262D /* WBTabBarController.m */,
@@ -243,10 +259,10 @@
 			isa = PBXGroup;
 			children = (
 				990736AC2016344C002EFEC5 /* AddAlarmController.h */,
-				990736AD2016344C002EFEC5 /* AddAlarmController.m */,
 				CEA01CEC202338020001DAF0 /* ListAlarmController.h */,
-				CEA01CEA202337A60001DAF0 /* ListAlarmController.m */,
 				9920D21420177C0900DA8D6D /* SelectMusicController.h */,
+				990736AD2016344C002EFEC5 /* AddAlarmController.m */,
+				CEA01CEA202337A60001DAF0 /* ListAlarmController.m */,
 				9920D21520177C2800DA8D6D /* SelectMusicController.m */,
 			);
 			name = AlarmTab;
@@ -280,6 +296,23 @@
 				CE446F6720280A78009320EC /* VersionController.m */,
 			);
 			name = Unused;
+			sourceTree = "<group>";
+		};
+		990C851D2042C88F00D36C9E /* DiscussTab */ = {
+			isa = PBXGroup;
+			children = (
+				990C851C2042C87D00D36C9E /* DiscussController.h */,
+				990C85192042C7BD00D36C9E /* DiscussController.m */,
+				990C851E2042CF8400D36C9E /* NewQuestionController.h */,
+				990C851F2042CF9600D36C9E /* NewQuestionController.m */,
+				990C85212042D95D00D36C9E /* MyMsgController.m */,
+				990C85232042D96B00D36C9E /* MyMsgController.h */,
+				990C85242042DCAC00D36C9E /* MsgDetailController.h */,
+				990C85252042DCBD00D36C9E /* MsgDetailController.m */,
+				990C85272042EA8C00D36C9E /* NewCommentController.m */,
+				990C85292042EA9D00D36C9E /* NewCommentController.h */,
+			);
+			name = DiscussTab;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -420,6 +453,8 @@
 				CEBBACD42041609B00F6262D /* StatusController.m in Sources */,
 				CEA01CEB202337A60001DAF0 /* ListAlarmController.m in Sources */,
 				990C85122042B20C00D36C9E /* StatusFourController.m in Sources */,
+				990C85222042D95D00D36C9E /* MyMsgController.m in Sources */,
+				990C85262042DCBD00D36C9E /* MsgDetailController.m in Sources */,
 				CE446F6420280A57009320EC /* AboutController.m in Sources */,
 				CE01F3FD202359A100040FC4 /* MyCollectionViewCell.m in Sources */,
 				9920D21220177AED00DA8D6D /* SelectPhotoController.m in Sources */,
@@ -438,7 +473,10 @@
 				990736AB2016344C002EFEC5 /* AppDelegate.m in Sources */,
 				990736A82016344C002EFEC5 /* main.m in Sources */,
 				CEBBACD02041214800F6262D /* WBTabBarController.m in Sources */,
+				990C851A2042C7BD00D36C9E /* DiscussController.m in Sources */,
+				990C85202042CF9600D36C9E /* NewQuestionController.m in Sources */,
 				CE446F5E20280A1C009320EC /* PwdController.m in Sources */,
+				990C85282042EA8C00D36C9E /* NewCommentController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
