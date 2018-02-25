@@ -24,6 +24,17 @@
 		990C85222042D95D00D36C9E /* MyMsgController.m in Sources */ = {isa = PBXBuildFile; fileRef = 990C85212042D95D00D36C9E /* MyMsgController.m */; };
 		990C85262042DCBD00D36C9E /* MsgDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 990C85252042DCBD00D36C9E /* MsgDetailController.m */; };
 		990C85282042EA8C00D36C9E /* NewCommentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 990C85272042EA8C00D36C9E /* NewCommentController.m */; };
+		990C85332042EECE00D36C9E /* YXCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 990C852B2042EECE00D36C9E /* YXCalendarView.m */; };
+		990C85342042EECE00D36C9E /* YXDateHelpObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 990C852D2042EECE00D36C9E /* YXDateHelpObject.m */; };
+		990C85352042EECE00D36C9E /* YXDayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 990C852F2042EECE00D36C9E /* YXDayCell.m */; };
+		990C85362042EECE00D36C9E /* YXDayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 990C85302042EECE00D36C9E /* YXDayCell.xib */; };
+		990C85372042EECE00D36C9E /* YXMonthView.m in Sources */ = {isa = PBXBuildFile; fileRef = 990C85322042EECE00D36C9E /* YXMonthView.m */; };
+		990C85412042EFA900D36C9E /* PGIndexBannerSubiew.m in Sources */ = {isa = PBXBuildFile; fileRef = 990C853B2042EFA900D36C9E /* PGIndexBannerSubiew.m */; };
+		990C85422042EFA900D36C9E /* NewPagedFlowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 990C853E2042EFA900D36C9E /* NewPagedFlowView.m */; };
+		990C85432042EFA900D36C9E /* SXYCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = 990C85402042EFA900D36C9E /* SXYCircle.m */; };
+		990C854B2042F3BF00D36C9E /* PTHistogramView.m in Sources */ = {isa = PBXBuildFile; fileRef = 990C85462042F3BF00D36C9E /* PTHistogramView.m */; };
+		990C854C2042F3BF00D36C9E /* UIView+Extend.m in Sources */ = {isa = PBXBuildFile; fileRef = 990C85482042F3BF00D36C9E /* UIView+Extend.m */; };
+		990C854D2042F3BF00D36C9E /* UICountingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 990C854A2042F3BF00D36C9E /* UICountingLabel.m */; };
 		9920D21220177AED00DA8D6D /* SelectPhotoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9920D21120177AED00DA8D6D /* SelectPhotoController.m */; };
 		9920D21620177C2800DA8D6D /* SelectMusicController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9920D21520177C2800DA8D6D /* SelectMusicController.m */; };
 		9920D2182017859900DA8D6D /* VideoListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9920D2172017859900DA8D6D /* VideoListController.m */; };
@@ -95,6 +106,27 @@
 		990C85252042DCBD00D36C9E /* MsgDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MsgDetailController.m; sourceTree = "<group>"; };
 		990C85272042EA8C00D36C9E /* NewCommentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewCommentController.m; sourceTree = "<group>"; };
 		990C85292042EA9D00D36C9E /* NewCommentController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewCommentController.h; sourceTree = "<group>"; };
+		990C852A2042EECE00D36C9E /* YXCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YXCalendarView.h; path = alarm/YXCalendar/YXCalendarView.h; sourceTree = "<group>"; };
+		990C852B2042EECE00D36C9E /* YXCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YXCalendarView.m; path = alarm/YXCalendar/YXCalendarView.m; sourceTree = "<group>"; };
+		990C852C2042EECE00D36C9E /* YXDateHelpObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YXDateHelpObject.h; path = alarm/YXCalendar/YXDateHelpObject.h; sourceTree = "<group>"; };
+		990C852D2042EECE00D36C9E /* YXDateHelpObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YXDateHelpObject.m; path = alarm/YXCalendar/YXDateHelpObject.m; sourceTree = "<group>"; };
+		990C852E2042EECE00D36C9E /* YXDayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YXDayCell.h; path = alarm/YXCalendar/YXDayCell.h; sourceTree = "<group>"; };
+		990C852F2042EECE00D36C9E /* YXDayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YXDayCell.m; path = alarm/YXCalendar/YXDayCell.m; sourceTree = "<group>"; };
+		990C85302042EECE00D36C9E /* YXDayCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = YXDayCell.xib; path = alarm/YXCalendar/YXDayCell.xib; sourceTree = "<group>"; };
+		990C85312042EECE00D36C9E /* YXMonthView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YXMonthView.h; path = alarm/YXCalendar/YXMonthView.h; sourceTree = "<group>"; };
+		990C85322042EECE00D36C9E /* YXMonthView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YXMonthView.m; path = alarm/YXCalendar/YXMonthView.m; sourceTree = "<group>"; };
+		990C853A2042EFA900D36C9E /* PGIndexBannerSubiew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGIndexBannerSubiew.h; sourceTree = "<group>"; };
+		990C853B2042EFA900D36C9E /* PGIndexBannerSubiew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGIndexBannerSubiew.m; sourceTree = "<group>"; };
+		990C853D2042EFA900D36C9E /* NewPagedFlowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPagedFlowView.h; sourceTree = "<group>"; };
+		990C853E2042EFA900D36C9E /* NewPagedFlowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewPagedFlowView.m; sourceTree = "<group>"; };
+		990C853F2042EFA900D36C9E /* SXYCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SXYCircle.h; path = alarm/Classes/SXYCircle.h; sourceTree = "<group>"; };
+		990C85402042EFA900D36C9E /* SXYCircle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SXYCircle.m; path = alarm/Classes/SXYCircle.m; sourceTree = "<group>"; };
+		990C85452042F3BF00D36C9E /* PTHistogramView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTHistogramView.h; path = alarm/PTView/PTHistogramView.h; sourceTree = "<group>"; };
+		990C85462042F3BF00D36C9E /* PTHistogramView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PTHistogramView.m; path = alarm/PTView/PTHistogramView.m; sourceTree = "<group>"; };
+		990C85472042F3BF00D36C9E /* UIView+Extend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+Extend.h"; path = "alarm/PTView/UIView+Extend.h"; sourceTree = "<group>"; };
+		990C85482042F3BF00D36C9E /* UIView+Extend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+Extend.m"; path = "alarm/PTView/UIView+Extend.m"; sourceTree = "<group>"; };
+		990C85492042F3BF00D36C9E /* UICountingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UICountingLabel.h; path = alarm/PTView/UICountingLabel.h; sourceTree = "<group>"; };
+		990C854A2042F3BF00D36C9E /* UICountingLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UICountingLabel.m; path = alarm/PTView/UICountingLabel.m; sourceTree = "<group>"; };
 		9920D21120177AED00DA8D6D /* SelectPhotoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectPhotoController.m; sourceTree = "<group>"; };
 		9920D21320177B0800DA8D6D /* SelectPhotoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectPhotoController.h; sourceTree = "<group>"; };
 		9920D21420177C0900DA8D6D /* SelectMusicController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectMusicController.h; sourceTree = "<group>"; };
@@ -157,6 +189,9 @@
 		9907369A2016344C002EFEC5 = {
 			isa = PBXGroup;
 			children = (
+				990C854E2042F3C600D36C9E /* PTView */,
+				990C85442042EFB200D36C9E /* Classes */,
+				990C85382042EED800D36C9E /* YXCalendar */,
 				990736A52016344C002EFEC5 /* alarm */,
 				990736BF2016344C002EFEC5 /* alarmTests */,
 				990736CA2016344C002EFEC5 /* alarmUITests */,
@@ -315,6 +350,66 @@
 			name = DiscussTab;
 			sourceTree = "<group>";
 		};
+		990C85382042EED800D36C9E /* YXCalendar */ = {
+			isa = PBXGroup;
+			children = (
+				990C852A2042EECE00D36C9E /* YXCalendarView.h */,
+				990C852B2042EECE00D36C9E /* YXCalendarView.m */,
+				990C852C2042EECE00D36C9E /* YXDateHelpObject.h */,
+				990C852D2042EECE00D36C9E /* YXDateHelpObject.m */,
+				990C852E2042EECE00D36C9E /* YXDayCell.h */,
+				990C852F2042EECE00D36C9E /* YXDayCell.m */,
+				990C85302042EECE00D36C9E /* YXDayCell.xib */,
+				990C85312042EECE00D36C9E /* YXMonthView.h */,
+				990C85322042EECE00D36C9E /* YXMonthView.m */,
+			);
+			name = YXCalendar;
+			sourceTree = "<group>";
+		};
+		990C85392042EFA900D36C9E /* CustomeView */ = {
+			isa = PBXGroup;
+			children = (
+				990C853A2042EFA900D36C9E /* PGIndexBannerSubiew.h */,
+				990C853B2042EFA900D36C9E /* PGIndexBannerSubiew.m */,
+			);
+			name = CustomeView;
+			path = alarm/Classes/CustomeView;
+			sourceTree = "<group>";
+		};
+		990C853C2042EFA900D36C9E /* NewPagedFlowView */ = {
+			isa = PBXGroup;
+			children = (
+				990C853D2042EFA900D36C9E /* NewPagedFlowView.h */,
+				990C853E2042EFA900D36C9E /* NewPagedFlowView.m */,
+			);
+			name = NewPagedFlowView;
+			path = alarm/Classes/NewPagedFlowView;
+			sourceTree = "<group>";
+		};
+		990C85442042EFB200D36C9E /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				990C85392042EFA900D36C9E /* CustomeView */,
+				990C853C2042EFA900D36C9E /* NewPagedFlowView */,
+				990C853F2042EFA900D36C9E /* SXYCircle.h */,
+				990C85402042EFA900D36C9E /* SXYCircle.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		990C854E2042F3C600D36C9E /* PTView */ = {
+			isa = PBXGroup;
+			children = (
+				990C85452042F3BF00D36C9E /* PTHistogramView.h */,
+				990C85462042F3BF00D36C9E /* PTHistogramView.m */,
+				990C85472042F3BF00D36C9E /* UIView+Extend.h */,
+				990C85482042F3BF00D36C9E /* UIView+Extend.m */,
+				990C85492042F3BF00D36C9E /* UICountingLabel.h */,
+				990C854A2042F3BF00D36C9E /* UICountingLabel.m */,
+			);
+			name = PTView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -424,6 +519,7 @@
 			files = (
 				990736B32016344C002EFEC5 /* Assets.xcassets in Resources */,
 				990736B12016344C002EFEC5 /* Main.storyboard in Resources */,
+				990C85362042EECE00D36C9E /* YXDayCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -453,8 +549,11 @@
 				CEBBACD42041609B00F6262D /* StatusController.m in Sources */,
 				CEA01CEB202337A60001DAF0 /* ListAlarmController.m in Sources */,
 				990C85122042B20C00D36C9E /* StatusFourController.m in Sources */,
+				990C854D2042F3BF00D36C9E /* UICountingLabel.m in Sources */,
+				990C85372042EECE00D36C9E /* YXMonthView.m in Sources */,
 				990C85222042D95D00D36C9E /* MyMsgController.m in Sources */,
 				990C85262042DCBD00D36C9E /* MsgDetailController.m in Sources */,
+				990C85342042EECE00D36C9E /* YXDateHelpObject.m in Sources */,
 				CE446F6420280A57009320EC /* AboutController.m in Sources */,
 				CE01F3FD202359A100040FC4 /* MyCollectionViewCell.m in Sources */,
 				9920D21220177AED00DA8D6D /* SelectPhotoController.m in Sources */,
@@ -468,6 +567,7 @@
 				9920D2182017859900DA8D6D /* VideoListController.m in Sources */,
 				CE1A497C201A0219005CB860 /* HYBClockView.m in Sources */,
 				CE446F6820280A78009320EC /* VersionController.m in Sources */,
+				990C85352042EECE00D36C9E /* YXDayCell.m in Sources */,
 				990C85142042B20C00D36C9E /* StatusTwoController.m in Sources */,
 				990C850A2042AFE400D36C9E /* StatusOneController.m in Sources */,
 				990736AB2016344C002EFEC5 /* AppDelegate.m in Sources */,
@@ -475,8 +575,14 @@
 				CEBBACD02041214800F6262D /* WBTabBarController.m in Sources */,
 				990C851A2042C7BD00D36C9E /* DiscussController.m in Sources */,
 				990C85202042CF9600D36C9E /* NewQuestionController.m in Sources */,
+				990C85332042EECE00D36C9E /* YXCalendarView.m in Sources */,
 				CE446F5E20280A1C009320EC /* PwdController.m in Sources */,
+				990C854C2042F3BF00D36C9E /* UIView+Extend.m in Sources */,
+				990C85432042EFA900D36C9E /* SXYCircle.m in Sources */,
+				990C85422042EFA900D36C9E /* NewPagedFlowView.m in Sources */,
+				990C85412042EFA900D36C9E /* PGIndexBannerSubiew.m in Sources */,
 				990C85282042EA8C00D36C9E /* NewCommentController.m in Sources */,
+				990C854B2042F3BF00D36C9E /* PTHistogramView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
