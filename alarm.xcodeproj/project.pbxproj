@@ -162,45 +162,19 @@
 		990736A52016344C002EFEC5 /* alarm */ = {
 			isa = PBXGroup;
 			children = (
-				CE446F6520280A61009320EC /* AboutController.h */,
-				CE446F6320280A57009320EC /* AboutController.m */,
-				990736AC2016344C002EFEC5 /* AddAlarmController.h */,
-				990736AD2016344C002EFEC5 /* AddAlarmController.m */,
+				990C85162042C62700D36C9E /* AlarmTab */,
 				990736A92016344C002EFEC5 /* AppDelegate.h */,
 				990736AA2016344C002EFEC5 /* AppDelegate.m */,
 				990736B22016344C002EFEC5 /* Assets.xcassets */,
-				CE446F6020280A3E009320EC /* HelpController.h */,
-				CE446F6120280A4B009320EC /* HelpController.m */,
-				CE1A4978201A01DD005CB860 /* HYBAnimationClock.h */,
-				CE1A4977201A01DC005CB860 /* HYBAnimationClock.m */,
-				CE1A497A201A0219005CB860 /* HYBClockView.h */,
-				CE1A497B201A0219005CB860 /* HYBClockView.m */,
-				990736DB20163584002EFEC5 /* IndexController.h */,
-				990736D920163578002EFEC5 /* IndexController.m */,
+				990C85182042C68200D36C9E /* Unused */,
 				990736B72016344C002EFEC5 /* Info.plist */,
-				CEA01CEC202338020001DAF0 /* ListAlarmController.h */,
-				CEA01CEA202337A60001DAF0 /* ListAlarmController.m */,
 				990736AF2016344C002EFEC5 /* Main.storyboard */,
-				CE01F3FB2023598500040FC4 /* MyCollectionViewCell.h */,
-				CE01F3FC202359A100040FC4 /* MyCollectionViewCell.m */,
 				998F36D7202757E400676226 /* NoiseController.h */,
 				998F36D5202757D300676226 /* NoiseController.m */,
-				CE446F5F20280A2D009320EC /* PwdController.h */,
-				CE446F5D20280A1C009320EC /* PwdController.m */,
-				9920D21420177C0900DA8D6D /* SelectMusicController.h */,
-				9920D21520177C2800DA8D6D /* SelectMusicController.m */,
-				9920D21320177B0800DA8D6D /* SelectPhotoController.h */,
-				9920D21120177AED00DA8D6D /* SelectPhotoController.m */,
-				9920D21A201785FB00DA8D6D /* SettingController.h */,
-				9920D21B2017860D00DA8D6D /* SettingController.m */,
-				990C85072042AFA500D36C9E /* Status */,
+				990C85152042C5AE00D36C9E /* SettingTab */,
+				990C85072042AFA500D36C9E /* StatusTab */,
 				990736A62016344C002EFEC5 /* Supporting Files */,
-				CE446F6620280A6D009320EC /* VersionController.h */,
-				CE446F6720280A78009320EC /* VersionController.m */,
-				CE446F5C20280713009320EC /* VideoDetailController.h */,
-				CE446F5A202806FE009320EC /* VideoDetailController.m */,
-				9920D219201785A600DA8D6D /* VideoListController.h */,
-				9920D2172017859900DA8D6D /* VideoListController.m */,
+				990C85172042C65400D36C9E /* VideoTab */,
 				CEBBACD12041215A00F6262D /* WBTabBarController.h */,
 				CEBBACCF2041214800F6262D /* WBTabBarController.m */,
 			);
@@ -233,7 +207,7 @@
 			path = alarmUITests;
 			sourceTree = "<group>";
 		};
-		990C85072042AFA500D36C9E /* Status */ = {
+		990C85072042AFA500D36C9E /* StatusTab */ = {
 			isa = PBXGroup;
 			children = (
 				990C850C2042B20C00D36C9E /* StatusFourController.h */,
@@ -247,7 +221,65 @@
 				990C85082042AFD700D36C9E /* StatusOneController.h */,
 				990C85092042AFE400D36C9E /* StatusOneController.m */,
 			);
-			name = Status;
+			name = StatusTab;
+			sourceTree = "<group>";
+		};
+		990C85152042C5AE00D36C9E /* SettingTab */ = {
+			isa = PBXGroup;
+			children = (
+				CE446F6520280A61009320EC /* AboutController.h */,
+				CE446F6320280A57009320EC /* AboutController.m */,
+				CE446F6020280A3E009320EC /* HelpController.h */,
+				CE446F6120280A4B009320EC /* HelpController.m */,
+				CE446F5F20280A2D009320EC /* PwdController.h */,
+				CE446F5D20280A1C009320EC /* PwdController.m */,
+				9920D21A201785FB00DA8D6D /* SettingController.h */,
+				9920D21B2017860D00DA8D6D /* SettingController.m */,
+			);
+			name = SettingTab;
+			sourceTree = "<group>";
+		};
+		990C85162042C62700D36C9E /* AlarmTab */ = {
+			isa = PBXGroup;
+			children = (
+				990736AC2016344C002EFEC5 /* AddAlarmController.h */,
+				990736AD2016344C002EFEC5 /* AddAlarmController.m */,
+				CEA01CEC202338020001DAF0 /* ListAlarmController.h */,
+				CEA01CEA202337A60001DAF0 /* ListAlarmController.m */,
+				9920D21420177C0900DA8D6D /* SelectMusicController.h */,
+				9920D21520177C2800DA8D6D /* SelectMusicController.m */,
+			);
+			name = AlarmTab;
+			sourceTree = "<group>";
+		};
+		990C85172042C65400D36C9E /* VideoTab */ = {
+			isa = PBXGroup;
+			children = (
+				CE446F5C20280713009320EC /* VideoDetailController.h */,
+				CE446F5A202806FE009320EC /* VideoDetailController.m */,
+				9920D219201785A600DA8D6D /* VideoListController.h */,
+				9920D2172017859900DA8D6D /* VideoListController.m */,
+			);
+			name = VideoTab;
+			sourceTree = "<group>";
+		};
+		990C85182042C68200D36C9E /* Unused */ = {
+			isa = PBXGroup;
+			children = (
+				CE01F3FB2023598500040FC4 /* MyCollectionViewCell.h */,
+				CE01F3FC202359A100040FC4 /* MyCollectionViewCell.m */,
+				CE1A4978201A01DD005CB860 /* HYBAnimationClock.h */,
+				CE1A4977201A01DC005CB860 /* HYBAnimationClock.m */,
+				CE1A497A201A0219005CB860 /* HYBClockView.h */,
+				CE1A497B201A0219005CB860 /* HYBClockView.m */,
+				990736DB20163584002EFEC5 /* IndexController.h */,
+				990736D920163578002EFEC5 /* IndexController.m */,
+				9920D21320177B0800DA8D6D /* SelectPhotoController.h */,
+				9920D21120177AED00DA8D6D /* SelectPhotoController.m */,
+				CE446F6620280A6D009320EC /* VersionController.h */,
+				CE446F6720280A78009320EC /* VersionController.m */,
+			);
+			name = Unused;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
