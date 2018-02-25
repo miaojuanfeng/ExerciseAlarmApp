@@ -15,6 +15,10 @@
 		990736C12016344C002EFEC5 /* alarmTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 990736C02016344C002EFEC5 /* alarmTests.m */; };
 		990736CC2016344C002EFEC5 /* alarmUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 990736CB2016344C002EFEC5 /* alarmUITests.m */; };
 		990736DA20163578002EFEC5 /* IndexController.m in Sources */ = {isa = PBXBuildFile; fileRef = 990736D920163578002EFEC5 /* IndexController.m */; };
+		990C850A2042AFE400D36C9E /* StatusOneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 990C85092042AFE400D36C9E /* StatusOneController.m */; };
+		990C85122042B20C00D36C9E /* StatusFourController.m in Sources */ = {isa = PBXBuildFile; fileRef = 990C850D2042B20C00D36C9E /* StatusFourController.m */; };
+		990C85132042B20C00D36C9E /* StatusThreeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 990C850F2042B20C00D36C9E /* StatusThreeController.m */; };
+		990C85142042B20C00D36C9E /* StatusTwoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 990C85112042B20C00D36C9E /* StatusTwoController.m */; };
 		9920D21220177AED00DA8D6D /* SelectPhotoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9920D21120177AED00DA8D6D /* SelectPhotoController.m */; };
 		9920D21620177C2800DA8D6D /* SelectMusicController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9920D21520177C2800DA8D6D /* SelectMusicController.m */; };
 		9920D2182017859900DA8D6D /* VideoListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9920D2172017859900DA8D6D /* VideoListController.m */; };
@@ -68,6 +72,14 @@
 		990736CD2016344C002EFEC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		990736D920163578002EFEC5 /* IndexController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndexController.m; sourceTree = "<group>"; };
 		990736DB20163584002EFEC5 /* IndexController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndexController.h; sourceTree = "<group>"; };
+		990C85082042AFD700D36C9E /* StatusOneController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StatusOneController.h; sourceTree = "<group>"; };
+		990C85092042AFE400D36C9E /* StatusOneController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusOneController.m; sourceTree = "<group>"; };
+		990C850C2042B20C00D36C9E /* StatusFourController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusFourController.h; sourceTree = "<group>"; };
+		990C850D2042B20C00D36C9E /* StatusFourController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusFourController.m; sourceTree = "<group>"; };
+		990C850E2042B20C00D36C9E /* StatusThreeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusThreeController.h; sourceTree = "<group>"; };
+		990C850F2042B20C00D36C9E /* StatusThreeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusThreeController.m; sourceTree = "<group>"; };
+		990C85102042B20C00D36C9E /* StatusTwoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusTwoController.h; sourceTree = "<group>"; };
+		990C85112042B20C00D36C9E /* StatusTwoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusTwoController.m; sourceTree = "<group>"; };
 		9920D21120177AED00DA8D6D /* SelectPhotoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectPhotoController.m; sourceTree = "<group>"; };
 		9920D21320177B0800DA8D6D /* SelectPhotoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectPhotoController.h; sourceTree = "<group>"; };
 		9920D21420177C0900DA8D6D /* SelectMusicController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectMusicController.h; sourceTree = "<group>"; };
@@ -150,48 +162,47 @@
 		990736A52016344C002EFEC5 /* alarm */ = {
 			isa = PBXGroup;
 			children = (
-				CE1A497A201A0219005CB860 /* HYBClockView.h */,
-				CE1A497B201A0219005CB860 /* HYBClockView.m */,
-				CE1A4978201A01DD005CB860 /* HYBAnimationClock.h */,
-				CE1A4977201A01DC005CB860 /* HYBAnimationClock.m */,
-				990736A92016344C002EFEC5 /* AppDelegate.h */,
-				990736AA2016344C002EFEC5 /* AppDelegate.m */,
-				998F36D5202757D300676226 /* NoiseController.m */,
-				998F36D7202757E400676226 /* NoiseController.h */,
+				CE446F6520280A61009320EC /* AboutController.h */,
+				CE446F6320280A57009320EC /* AboutController.m */,
 				990736AC2016344C002EFEC5 /* AddAlarmController.h */,
 				990736AD2016344C002EFEC5 /* AddAlarmController.m */,
-				CE446F5D20280A1C009320EC /* PwdController.m */,
-				CE446F5F20280A2D009320EC /* PwdController.h */,
+				990736A92016344C002EFEC5 /* AppDelegate.h */,
+				990736AA2016344C002EFEC5 /* AppDelegate.m */,
+				990736B22016344C002EFEC5 /* Assets.xcassets */,
 				CE446F6020280A3E009320EC /* HelpController.h */,
 				CE446F6120280A4B009320EC /* HelpController.m */,
-				CE446F6320280A57009320EC /* AboutController.m */,
-				CE446F6520280A61009320EC /* AboutController.h */,
+				CE1A4978201A01DD005CB860 /* HYBAnimationClock.h */,
+				CE1A4977201A01DC005CB860 /* HYBAnimationClock.m */,
+				CE1A497A201A0219005CB860 /* HYBClockView.h */,
+				CE1A497B201A0219005CB860 /* HYBClockView.m */,
+				990736DB20163584002EFEC5 /* IndexController.h */,
+				990736D920163578002EFEC5 /* IndexController.m */,
+				990736B72016344C002EFEC5 /* Info.plist */,
+				CEA01CEC202338020001DAF0 /* ListAlarmController.h */,
+				CEA01CEA202337A60001DAF0 /* ListAlarmController.m */,
+				990736AF2016344C002EFEC5 /* Main.storyboard */,
+				CE01F3FB2023598500040FC4 /* MyCollectionViewCell.h */,
+				CE01F3FC202359A100040FC4 /* MyCollectionViewCell.m */,
+				998F36D7202757E400676226 /* NoiseController.h */,
+				998F36D5202757D300676226 /* NoiseController.m */,
+				CE446F5F20280A2D009320EC /* PwdController.h */,
+				CE446F5D20280A1C009320EC /* PwdController.m */,
+				9920D21420177C0900DA8D6D /* SelectMusicController.h */,
+				9920D21520177C2800DA8D6D /* SelectMusicController.m */,
+				9920D21320177B0800DA8D6D /* SelectPhotoController.h */,
+				9920D21120177AED00DA8D6D /* SelectPhotoController.m */,
+				9920D21A201785FB00DA8D6D /* SettingController.h */,
+				9920D21B2017860D00DA8D6D /* SettingController.m */,
+				990C85072042AFA500D36C9E /* Status */,
+				990736A62016344C002EFEC5 /* Supporting Files */,
 				CE446F6620280A6D009320EC /* VersionController.h */,
 				CE446F6720280A78009320EC /* VersionController.m */,
 				CE446F5C20280713009320EC /* VideoDetailController.h */,
 				CE446F5A202806FE009320EC /* VideoDetailController.m */,
-				990736AF2016344C002EFEC5 /* Main.storyboard */,
-				9920D2172017859900DA8D6D /* VideoListController.m */,
 				9920D219201785A600DA8D6D /* VideoListController.h */,
-				9920D21A201785FB00DA8D6D /* SettingController.h */,
-				9920D21B2017860D00DA8D6D /* SettingController.m */,
-				9920D21120177AED00DA8D6D /* SelectPhotoController.m */,
-				CE01F3FB2023598500040FC4 /* MyCollectionViewCell.h */,
-				CE01F3FC202359A100040FC4 /* MyCollectionViewCell.m */,
-				CEBBACCF2041214800F6262D /* WBTabBarController.m */,
+				9920D2172017859900DA8D6D /* VideoListController.m */,
 				CEBBACD12041215A00F6262D /* WBTabBarController.h */,
-				9920D21420177C0900DA8D6D /* SelectMusicController.h */,
-				9920D21520177C2800DA8D6D /* SelectMusicController.m */,
-				9920D21320177B0800DA8D6D /* SelectPhotoController.h */,
-				CEA01CEA202337A60001DAF0 /* ListAlarmController.m */,
-				CEA01CEC202338020001DAF0 /* ListAlarmController.h */,
-				990736DB20163584002EFEC5 /* IndexController.h */,
-				990736D920163578002EFEC5 /* IndexController.m */,
-				CEBBACD22041608D00F6262D /* StatusController.h */,
-				CEBBACD32041609B00F6262D /* StatusController.m */,
-				990736B22016344C002EFEC5 /* Assets.xcassets */,
-				990736B72016344C002EFEC5 /* Info.plist */,
-				990736A62016344C002EFEC5 /* Supporting Files */,
+				CEBBACCF2041214800F6262D /* WBTabBarController.m */,
 			);
 			path = alarm;
 			sourceTree = "<group>";
@@ -220,6 +231,23 @@
 				990736CD2016344C002EFEC5 /* Info.plist */,
 			);
 			path = alarmUITests;
+			sourceTree = "<group>";
+		};
+		990C85072042AFA500D36C9E /* Status */ = {
+			isa = PBXGroup;
+			children = (
+				990C850C2042B20C00D36C9E /* StatusFourController.h */,
+				990C850D2042B20C00D36C9E /* StatusFourController.m */,
+				990C850E2042B20C00D36C9E /* StatusThreeController.h */,
+				990C850F2042B20C00D36C9E /* StatusThreeController.m */,
+				990C85102042B20C00D36C9E /* StatusTwoController.h */,
+				990C85112042B20C00D36C9E /* StatusTwoController.m */,
+				CEBBACD22041608D00F6262D /* StatusController.h */,
+				CEBBACD32041609B00F6262D /* StatusController.m */,
+				990C85082042AFD700D36C9E /* StatusOneController.h */,
+				990C85092042AFE400D36C9E /* StatusOneController.m */,
+			);
+			name = Status;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -355,9 +383,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				990C85132042B20C00D36C9E /* StatusThreeController.m in Sources */,
 				9920D21C2017860D00DA8D6D /* SettingController.m in Sources */,
 				CEBBACD42041609B00F6262D /* StatusController.m in Sources */,
 				CEA01CEB202337A60001DAF0 /* ListAlarmController.m in Sources */,
+				990C85122042B20C00D36C9E /* StatusFourController.m in Sources */,
 				CE446F6420280A57009320EC /* AboutController.m in Sources */,
 				CE01F3FD202359A100040FC4 /* MyCollectionViewCell.m in Sources */,
 				9920D21220177AED00DA8D6D /* SelectPhotoController.m in Sources */,
@@ -371,6 +401,8 @@
 				9920D2182017859900DA8D6D /* VideoListController.m in Sources */,
 				CE1A497C201A0219005CB860 /* HYBClockView.m in Sources */,
 				CE446F6820280A78009320EC /* VersionController.m in Sources */,
+				990C85142042B20C00D36C9E /* StatusTwoController.m in Sources */,
+				990C850A2042AFE400D36C9E /* StatusOneController.m in Sources */,
 				990736AB2016344C002EFEC5 /* AppDelegate.m in Sources */,
 				990736A82016344C002EFEC5 /* main.m in Sources */,
 				CEBBACD02041214800F6262D /* WBTabBarController.m in Sources */,

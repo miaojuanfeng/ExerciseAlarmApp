@@ -9,6 +9,10 @@
 #import <Foundation/Foundation.h>
 
 #import "StatusController.h"
+#import "StatusOneController.h"
+#import "StatusTwoController.h"
+#import "StatusThreeController.h"
+#import "StatusFourController.h"
 
 @interface StatusController ()
 
@@ -162,19 +166,23 @@
 }
 
 - (void)clickButton1 {
-    NSLog(@"asd1");
+    StatusOneController *statusOneController = [[StatusOneController alloc] init];
+    [self.navigationController pushViewController:statusOneController animated:YES];
 }
 
 - (void)clickButton2 {
-    NSLog(@"asd2");
+    StatusTwoController *statusTwoController = [[StatusTwoController alloc] init];
+    [self.navigationController pushViewController:statusTwoController animated:YES];
 }
 
 - (void)clickButton3 {
-    NSLog(@"asd3");
+    StatusThreeController *statusThreeController = [[StatusThreeController alloc] init];
+    [self.navigationController pushViewController:statusThreeController animated:YES];
 }
 
 - (void)clickButton4 {
-    NSLog(@"asd4");
+    StatusFourController *statusFourController = [[StatusFourController alloc] init];
+    [self.navigationController pushViewController:statusFourController animated:YES];
 }
 
 @end
