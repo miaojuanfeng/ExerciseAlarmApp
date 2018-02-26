@@ -33,7 +33,6 @@
     
     self.automaticallyAdjustsScrollViewInsets = false;
     
-    
     self.soundArr = [[NSMutableArray alloc] init];
     NSMutableDictionary *soundDic;
     
@@ -415,6 +414,9 @@
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
     NSMutableDictionary *soundDic = [self.soundArr objectAtIndex:indexPath.row];
     cell.textLabel.text = [NSString stringWithFormat:@"%@", [soundDic objectForKey:@"name"]];
+    if( [[soundDic objectForKey:@"id"] intValue] == self.soundId ){
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }
     return cell;
 }
 
@@ -427,14 +429,19 @@
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
     //
+    AudioServicesDisposeSystemSoundID(self.soundId);
     NSMutableDictionary *soundDic = [self.soundArr objectAtIndex:indexPath.row];
-    SystemSoundID sound = [[soundDic objectForKey:@"id"] intValue];
-    AudioServicesPlaySystemSound(sound);
-    NSLog(@"%d", sound);
+    self.soundId = [[soundDic objectForKey:@"id"] intValue];
+    AudioServicesPlaySystemSound(self.soundId);
+    NSLog(@"%d", self.soundId);
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)clickSaveButton {
+    AudioServicesDisposeSystemSoundID(self.soundId);
+    if(self.delegate && [self.delegate respondsToSelector:@selector(getSoundId:)]){
+        [self.delegate getSoundId:self.soundId];
+    }
     [self.navigationController popViewControllerAnimated:YES];
 }
 @end

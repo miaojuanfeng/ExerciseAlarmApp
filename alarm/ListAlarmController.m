@@ -9,7 +9,7 @@
 #import "ListAlarmController.h"
 #import "AddAlarmController.h"
 
-@interface ListAlarmController () <UITableViewDataSource,UINavigationControllerDelegate>
+@interface ListAlarmController () <UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate>
 @property UIBarButtonItem *myButton;
 @property UITableView *tableView;
 @property NSMutableArray *alarmList;
@@ -29,7 +29,7 @@
     [self.view addSubview:self.tableView];
     self.automaticallyAdjustsScrollViewInsets = false;
     
-    self.myButton = [[UIBarButtonItem alloc] initWithTitle:@"添加" style:UIBarButtonItemStyleBordered target:self action:@selector(clickEvent)];
+    self.myButton = [[UIBarButtonItem alloc] initWithTitle:@"添加" style:UIBarButtonItemStylePlain target:self action:@selector(clickEvent)];
     self.navigationItem.rightBarButtonItem = self.myButton;
     
     self.navigationController.delegate = self;

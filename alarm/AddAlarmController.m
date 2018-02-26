@@ -11,7 +11,7 @@
 #import "SelectPhotoController.h"
 #import "SelectMusicController.h"
 
-@interface AddAlarmController () <UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate,UIImagePickerControllerDelegate>
+@interface AddAlarmController () <UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate,UIImagePickerControllerDelegate, SelectMusicControllerDelegate>
 
 @property UIBarButtonItem *myButton;
 @property UITableView *tableView;
@@ -19,7 +19,7 @@
 
 //@property UIImageView *imageView;
 @property NSString *photoName;
-
+@property unsigned int soundId;
 @end
 
 @implementation AddAlarmController
@@ -45,7 +45,9 @@
     
     
     self.photoName = @"";
-    
+    if( self.soundId == nil ){
+        self.soundId = 1000;
+    }
     
     
 //    self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 280, self.view.frame.size.width, self.view.frame.size.height-280)];
@@ -102,6 +104,8 @@
             break;
         case 1:
             selectMusicController = [[SelectMusicController alloc] init];
+            selectMusicController.soundId = self.soundId;
+            selectMusicController.delegate = self;
             [self.navigationController pushViewController:selectMusicController animated:YES];
             break;
     }
@@ -163,6 +167,7 @@
     [newsDict setObject:mm forKey:@"minute"];
     [newsDict setObject:@"鍛煉提醒" forKey:@"title"];
     [newsDict setObject:self.photoName forKey:@"photo"];
+    [newsDict setObject:[NSString stringWithFormat:@"%d", self.soundId] forKey:@"sound"];
     [newsDict setObject:@"1" forKey:@"status"];
     
     //  > 使用 UNUserNotificationCenter 来管理通知-- 单例
@@ -176,7 +181,7 @@
     // > 通知的要通知内容
     content.body = [NSString localizedUserNotificationStringForKey:[NSString stringWithFormat:@"瑜伽運動 %@:%@", hh, mm] arguments:nil];
     // > 通知的提示声音
-//    content.sound = [UNNotificationSound defaultSound];
+    content.sound = [UNNotificationSound defaultSound];
 //    content.sound = [UNNotificationSound soundNamed:@"ring.wav"];
     content.sound = nil;
     
@@ -222,6 +227,11 @@
     }];
     
 //    [self.navigationController popViewControllerAnimated:true];
+}
+
+- (void)getSoundId:(unsigned int)soundId {
+    self.soundId = soundId;
+    NSLog(@"Delegate: %d", soundId);
 }
 
 @end

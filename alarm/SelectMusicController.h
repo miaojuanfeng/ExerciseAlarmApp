@@ -8,7 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol SelectMusicControllerDelegate <NSObject>
+- (void)getSoundId:(unsigned int)soundId;
+@end
+
 @interface SelectMusicController : UIViewController
 
+@property (nonatomic, weak) id<SelectMusicControllerDelegate> delegate;
+
+@property unsigned int soundId;
 
 @end

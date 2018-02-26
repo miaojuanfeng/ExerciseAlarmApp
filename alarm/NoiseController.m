@@ -20,7 +20,10 @@
     // Do any additional setup after loading the view, typically from a nib.
     self.view.backgroundColor = [UIColor blackColor];
     
+    self.soudId = 1000;
+    
     NSString *photoName = [self.userInfo objectForKey:@"photo"];
+    self.soudId = [[self.userInfo objectForKey:@"sound"] intValue];
     NSString *hh = [self.userInfo objectForKey:@"hour"];
     NSString *mm = [self.userInfo objectForKey:@"minute"];
     NSString *title = [self.userInfo objectForKey:@"title"];
@@ -57,8 +60,6 @@
     closeButton.frame = CGRectMake(self.view.frame.size.width/2 - 50, self.view.frame.size.height - 100, 100, 50);
     [imageView addSubview:closeButton];
     
-    
-    self.soudId = 1020;
     AudioServicesAddSystemSoundCompletion(self.soudId, NULL, NULL, soundCompleteCallback, NULL);
     AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
     AudioServicesPlaySystemSound(self.soudId);
@@ -81,6 +82,8 @@ void soundCompleteCallback(SystemSoundID sound,void * clientData) {
 }
 
 - (void)clickEvent {
+    AudioServicesDisposeSystemSoundID(kSystemSoundID_Vibrate);
+    AudioServicesDisposeSystemSoundID(self.soudId);
     AudioServicesRemoveSystemSoundCompletion(self.soudId);
     [self dismissViewControllerAnimated:YES completion:nil];
 }
