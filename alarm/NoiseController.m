@@ -17,15 +17,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    NSString *photoName = [self.userInfo objectForKey:@"photo"];
+    NSString *hh = [self.userInfo objectForKey:@"hour"];
+    NSString *mm = [self.userInfo objectForKey:@"minute"];
+    NSString *title = [self.userInfo objectForKey:@"title"];
+    // 读取沙盒路径图片
+    NSString *photoPath = [NSString stringWithFormat:@"%@/Documents/%@",NSHomeDirectory(),photoName];
+    // 拿到沙盒路径图片
+    UIImage *imgFromUrl = [[UIImage alloc]initWithContentsOfFile:photoPath];
+    
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-//    view.backgroundColor = [UIColor redColor];
-    imageView.image = [UIImage imageNamed:@"bg"];
+    imageView.image = imgFromUrl;
     imageView.userInteractionEnabled = YES;
     [self.view addSubview:imageView];
     
     UILabel *alarmTime = [[UILabel alloc] init];
     alarmTime.frame = CGRectMake(self.view.frame.size.width/2 - 150, 50, 300, 100);
-    alarmTime.text = @"22:00";
+    alarmTime.text = [NSString stringWithFormat:@"%@:%@", hh, mm];
     alarmTime.textColor = [UIColor whiteColor];
     alarmTime.font = [UIFont fontWithName:@"AppleGothic" size:48.0];
     alarmTime.textAlignment = NSTextAlignmentCenter;
@@ -33,7 +41,7 @@
     
     UILabel *alarmTitle = [[UILabel alloc] init];
     alarmTitle.frame = CGRectMake(self.view.frame.size.width/2 - 100, 110, 200, 80);
-    alarmTitle.text = @"瑜伽運動";
+    alarmTitle.text = title;
     alarmTitle.textColor = [UIColor whiteColor];
     alarmTitle.font = [UIFont fontWithName:@"AppleGothic" size:20.0];
     alarmTitle.textAlignment = NSTextAlignmentCenter;

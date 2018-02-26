@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface NoiseController : UIViewController
-
+@property(nonatomic,copy)NSDictionary *userInfo;
 
 @end

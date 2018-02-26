@@ -12,9 +12,13 @@
 #import "SelectMusicController.h"
 
 @interface AddAlarmController () <UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate,UIImagePickerControllerDelegate>
+
 @property UIBarButtonItem *myButton;
 @property UITableView *tableView;
 @property UIDatePicker *datePicker;
+
+//@property UIImageView *imageView;
+@property NSString *photoName;
 
 @end
 
@@ -38,6 +42,15 @@
     
     self.myButton = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(clickEvent)];
     self.navigationItem.rightBarButtonItem = self.myButton;
+    
+    
+    
+    
+    
+    
+//    self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 280, self.view.frame.size.width, self.view.frame.size.height-280)];
+//    [self.view addSubview:self.imageView];
+    
 }
 
 
@@ -83,6 +96,7 @@
             // [self.navigationController pushViewController:selectPhotoController animated:YES];
             pickerController = [[UIImagePickerController alloc] init];
             pickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+//            pickerController.allowsEditing = YES;
             pickerController.delegate = self;
             [self presentViewController:pickerController animated:YES completion:nil];
             break;
@@ -97,9 +111,32 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     
     NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
-    NSLog(@"123331213");
+    NSLog(@"%@", info);
     if ([type isEqualToString:@"public.image"]) {
+        
+//        NSURL *videoUrl=(NSURL*) [info objectForKey:UIImagePickerControllerReferenceURL];
+        
+        NSDate* date = [NSDate dateWithTimeIntervalSinceNow:0];
+        NSTimeInterval timeStamp = [date timeIntervalSince1970];
+        NSString *timeStampString = [NSString stringWithFormat:@"%d", (int)floor(timeStamp)];
+        
+        NSLog(@"%@", timeStampString);
+        
+        //拿到图片
         UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+        //设置一个图片的存储路径
+        NSString *imagePath = [NSString stringWithFormat:@"%@/Documents/%@",NSHomeDirectory(),timeStampString];
+        //把图片直接保存到指定的路径（同时应该把图片的路径imagePath存起来，下次就可以直接用来取）
+        [UIImagePNGRepresentation(image) writeToFile:imagePath atomically:YES];
+        self.photoName = timeStampString;
+        
+        
+//        // 读取沙盒路径图片
+//        NSString *aPath3=[NSString stringWithFormat:@"%@/Documents/%@",NSHomeDirectory(),timeStampString];
+//        // 拿到沙盒路径图片
+//        UIImage *imgFromUrl3=[[UIImage alloc]initWithContentsOfFile:aPath3];
+//        self.imageView.image = imgFromUrl3;
+        
         //process image
         [picker dismissViewControllerAnimated:YES completion:nil];
     }
@@ -119,6 +156,15 @@
     [dateFormatter setDateFormat:@"mm"];
     NSString *mm = [dateFormatter stringFromDate:date];
     
+    //创建数据
+    NSMutableDictionary *newsDict = [NSMutableDictionary dictionary];
+    //赋值
+    [newsDict setObject:hh forKey:@"hour"];
+    [newsDict setObject:mm forKey:@"minute"];
+    [newsDict setObject:@"鍛煉提醒" forKey:@"title"];
+    [newsDict setObject:self.photoName forKey:@"photo"];
+    [newsDict setObject:@"1" forKey:@"status"];
+    
     //  > 使用 UNUserNotificationCenter 来管理通知-- 单例
     UNUserNotificationCenter* center = [UNUserNotificationCenter currentNotificationCenter];
     
@@ -134,6 +180,8 @@
 //    content.sound = [UNNotificationSound soundNamed:@"ring.wav"];
     content.sound = nil;
     
+    content.userInfo = newsDict;
+    
 //    UNTimeIntervalNotificationTrigger* trigger = [UNTimeIntervalNotificationTrigger
 //                                                  triggerWithTimeInterval:60 repeats:YES];
     components.hour = [hh intValue];
@@ -142,7 +190,6 @@
     
     UNNotificationRequest* request = [UNNotificationRequest requestWithIdentifier:@"FiveSecond"
                                                                           content:content trigger:trigger];
-    
     //添加推送通知，等待通知即可！
     [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
         
@@ -157,13 +204,6 @@
         NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *documentsPath = [path objectAtIndex:0];
         NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"alarmList.plist"];
-        //创建数据
-        NSMutableDictionary *newsDict = [NSMutableDictionary dictionary];
-        //赋值
-        [newsDict setObject:hh forKey:@"hour"];
-        [newsDict setObject:mm forKey:@"minute"];
-        [newsDict setObject:@"鍛煉提醒" forKey:@"title"];
-        [newsDict setObject:@"1" forKey:@"status"];
         
         NSFileManager *fileManager = [NSFileManager defaultManager];
         NSMutableArray *newsArr = nil;

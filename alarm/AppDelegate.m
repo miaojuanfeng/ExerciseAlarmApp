@@ -99,13 +99,14 @@
         // 判断为本地通知
         NSLog(@"iOS10 前台收到本地通知:{\\\\nbody:%@，\\\\ntitle:%@,\\\\nsubtitle:%@,\\\\nbadge：%@，\\\\nsound：%@，\\\\nuserInfo：%@\\\\n}",body,title,subtitle,badge,sound,userInfo);
         
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"ring" ofType:@"wav"];
-        SystemSoundID soundID;
-        AudioServicesCreateSystemSoundID ((__bridge CFURLRef)[NSURL fileURLWithPath:path], &soundID);
-        AudioServicesPlaySystemSound (soundID);
+//        NSString *path = [[NSBundle mainBundle] pathForResource:@"ring" ofType:@"wav"];
+//        SystemSoundID soundID;
+//        AudioServicesCreateSystemSoundID ((__bridge CFURLRef)[NSURL fileURLWithPath:path], &soundID);
+//        AudioServicesPlaySystemSound (soundID);
     }
     
     NoiseController *noiseController = [[NoiseController alloc] init];
+    noiseController.userInfo = userInfo;
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:noiseController];
     [self.window.rootViewController presentViewController:nav animated:YES completion:nil];
     
