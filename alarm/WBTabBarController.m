@@ -48,18 +48,20 @@
     navOne.tabBarItem.selectedImage = [[UIImage imageNamed:@"icon_home_bottom_statist_hl"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     navTwo.tabBarItem.image = [[UIImage imageNamed:@"icon_home_bottom_search"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     navTwo.tabBarItem.selectedImage = [[UIImage imageNamed:@"icon_home_bottom_search_hl"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    navThree.tabBarItem.image = [[UIImage imageNamed:@"icon_home_bottom_search"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    navThree.tabBarItem.image = [[UIImage imageNamed:@"1"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     navThree.tabBarItem.selectedImage = [[UIImage imageNamed:@"icon_home_bottom_search_hl"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     navFour.tabBarItem.image = [[UIImage imageNamed:@"icon_home_bottom_search"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     navFour.tabBarItem.selectedImage = [[UIImage imageNamed:@"icon_home_bottom_search_hl"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    navFive.tabBarItem.image = [[UIImage imageNamed:@"icon_home_bottom_search"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    navFive.tabBarItem.image = [[UIImage imageNamed:@"19-gear"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     navFive.tabBarItem.selectedImage = [[UIImage imageNamed:@"icon_home_bottom_search_hl"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
     //改变tabbarController 文字选中颜色(默认渲染为蓝色)
-//    [[UITabBar appearance] setBarTintColor:[UIColor colorWithRed:0.0/255.0 green:100.0/255.0 blue:246.0/255.0 alpha:1.0]];
-//    [UITabBar appearance].translucent = NO;
-    [[UITabBarItem appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName:[UIColor lightGrayColor]} forState:UIControlStateNormal];
+    [[UITabBar appearance] setBarTintColor:[UIColor colorWithRed:49.0/255.0 green:132.0/255.0 blue:255.0/255.0 alpha:1.0]];
+    [UITabBar appearance].translucent = NO;
+    [[UITabBarItem appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
     [[UITabBarItem appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName:[UIColor redColor]} forState:UIControlStateSelected];
+    
+    self.tabBar.tintColor = [UIColor blueColor];
     
     //创建一个数组包含四个导航栏控制器
     NSArray *vcArry = [NSArray arrayWithObjects:navOne,navTwo,navThree,navFour,navFive,nil];

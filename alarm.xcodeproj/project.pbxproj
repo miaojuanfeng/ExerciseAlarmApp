@@ -19,7 +19,6 @@
 		990C85122042B20C00D36C9E /* StatusFourController.m in Sources */ = {isa = PBXBuildFile; fileRef = 990C850D2042B20C00D36C9E /* StatusFourController.m */; };
 		990C85132042B20C00D36C9E /* StatusThreeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 990C850F2042B20C00D36C9E /* StatusThreeController.m */; };
 		990C85142042B20C00D36C9E /* StatusTwoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 990C85112042B20C00D36C9E /* StatusTwoController.m */; };
-		990C851A2042C7BD00D36C9E /* DiscussController.m in Sources */ = {isa = PBXBuildFile; fileRef = 990C85192042C7BD00D36C9E /* DiscussController.m */; };
 		990C85202042CF9600D36C9E /* NewQuestionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 990C851F2042CF9600D36C9E /* NewQuestionController.m */; };
 		990C85222042D95D00D36C9E /* MyMsgController.m in Sources */ = {isa = PBXBuildFile; fileRef = 990C85212042D95D00D36C9E /* MyMsgController.m */; };
 		990C85262042DCBD00D36C9E /* MsgDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 990C85252042DCBD00D36C9E /* MsgDetailController.m */; };
@@ -51,6 +50,7 @@
 		CEA01CEB202337A60001DAF0 /* ListAlarmController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA01CEA202337A60001DAF0 /* ListAlarmController.m */; };
 		CEBBACD02041214800F6262D /* WBTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBBACCF2041214800F6262D /* WBTabBarController.m */; };
 		CEBBACD42041609B00F6262D /* StatusController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBBACD32041609B00F6262D /* StatusController.m */; };
+		CEBEC2A22043B85D00540DBB /* DiscussController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBEC2A12043B85D00540DBB /* DiscussController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,7 +96,6 @@
 		990C850F2042B20C00D36C9E /* StatusThreeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusThreeController.m; sourceTree = "<group>"; };
 		990C85102042B20C00D36C9E /* StatusTwoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusTwoController.h; sourceTree = "<group>"; };
 		990C85112042B20C00D36C9E /* StatusTwoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusTwoController.m; sourceTree = "<group>"; };
-		990C85192042C7BD00D36C9E /* DiscussController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DiscussController.m; path = ../DiscussController.m; sourceTree = "<group>"; };
 		990C851C2042C87D00D36C9E /* DiscussController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiscussController.h; sourceTree = "<group>"; };
 		990C851E2042CF8400D36C9E /* NewQuestionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewQuestionController.h; sourceTree = "<group>"; };
 		990C851F2042CF9600D36C9E /* NewQuestionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewQuestionController.m; sourceTree = "<group>"; };
@@ -159,6 +158,7 @@
 		CEBBACD12041215A00F6262D /* WBTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WBTabBarController.h; sourceTree = "<group>"; };
 		CEBBACD22041608D00F6262D /* StatusController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StatusController.h; sourceTree = "<group>"; };
 		CEBBACD32041609B00F6262D /* StatusController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StatusController.m; sourceTree = "<group>"; };
+		CEBEC2A12043B85D00540DBB /* DiscussController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiscussController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -337,7 +337,7 @@
 			isa = PBXGroup;
 			children = (
 				990C851C2042C87D00D36C9E /* DiscussController.h */,
-				990C85192042C7BD00D36C9E /* DiscussController.m */,
+				CEBEC2A12043B85D00540DBB /* DiscussController.m */,
 				990C851E2042CF8400D36C9E /* NewQuestionController.h */,
 				990C851F2042CF9600D36C9E /* NewQuestionController.m */,
 				990C85212042D95D00D36C9E /* MyMsgController.m */,
@@ -573,7 +573,6 @@
 				990736AB2016344C002EFEC5 /* AppDelegate.m in Sources */,
 				990736A82016344C002EFEC5 /* main.m in Sources */,
 				CEBBACD02041214800F6262D /* WBTabBarController.m in Sources */,
-				990C851A2042C7BD00D36C9E /* DiscussController.m in Sources */,
 				990C85202042CF9600D36C9E /* NewQuestionController.m in Sources */,
 				990C85332042EECE00D36C9E /* YXCalendarView.m in Sources */,
 				CE446F5E20280A1C009320EC /* PwdController.m in Sources */,
@@ -583,6 +582,7 @@
 				990C85412042EFA900D36C9E /* PGIndexBannerSubiew.m in Sources */,
 				990C85282042EA8C00D36C9E /* NewCommentController.m in Sources */,
 				990C854B2042F3BF00D36C9E /* PTHistogramView.m in Sources */,
+				CEBEC2A22043B85D00540DBB /* DiscussController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

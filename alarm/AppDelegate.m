@@ -12,7 +12,7 @@
 #import "WBTabBarController.h"
 #import <AudioToolbox/AudioToolbox.h>
 
-@interface AppDelegate ()
+@interface AppDelegate () <UNUserNotificationCenterDelegate>
 
 @end
 
@@ -28,6 +28,10 @@
     self.window.rootViewController = tabBarController;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+    [UINavigationBar appearance].barTintColor = [UIColor colorWithRed:49.0/255.0 green:132.0/255.0 blue:255.0/255.0 alpha:1.0];
+    [UINavigationBar appearance].tintColor = [UIColor whiteColor];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     
     
     // 使用 UNUserNotificationCenter 来管理通知
