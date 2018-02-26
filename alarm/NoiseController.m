@@ -7,9 +7,10 @@
 //
 
 #import "NoiseController.h"
+#import <AudioToolbox/AudioToolbox.h>
 
 @interface NoiseController ()
-
+@property SystemSoundID soudId;
 @end
 
 @implementation NoiseController
@@ -17,6 +18,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    self.view.backgroundColor = [UIColor blackColor];
+    
     NSString *photoName = [self.userInfo objectForKey:@"photo"];
     NSString *hh = [self.userInfo objectForKey:@"hour"];
     NSString *mm = [self.userInfo objectForKey:@"minute"];
@@ -53,8 +56,18 @@
     [closeButton addTarget:self action:@selector(clickEvent) forControlEvents:UIControlEventTouchUpInside];
     closeButton.frame = CGRectMake(self.view.frame.size.width/2 - 50, self.view.frame.size.height - 100, 100, 50);
     [imageView addSubview:closeButton];
+    
+    
+    self.soudId = 1020;
+    AudioServicesAddSystemSoundCompletion(self.soudId, NULL, NULL, soundCompleteCallback, NULL);
+    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+    AudioServicesPlaySystemSound(self.soudId);
 }
 
+void soundCompleteCallback(SystemSoundID sound,void * clientData) {
+    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);  //震动
+    AudioServicesPlaySystemSound(sound);  // 播放系统声音 这里的sound是我自定义的，不要copy哈，没有的
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -68,6 +81,7 @@
 }
 
 - (void)clickEvent {
+    AudioServicesRemoveSystemSoundCompletion(self.soudId);
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

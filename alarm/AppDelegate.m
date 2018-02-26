@@ -103,6 +103,12 @@
 //        SystemSoundID soundID;
 //        AudioServicesCreateSystemSoundID ((__bridge CFURLRef)[NSURL fileURLWithPath:path], &soundID);
 //        AudioServicesPlaySystemSound (soundID);
+
+        
+//        SystemSoundID sound = 1006;
+//        AudioServicesAddSystemSoundCompletion(sound, NULL, NULL, soundCompleteCallback, NULL);
+//        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+//        AudioServicesPlaySystemSound(sound);
     }
     
     NoiseController *noiseController = [[NoiseController alloc] init];
@@ -112,6 +118,11 @@
     
     completionHandler(UNNotificationPresentationOptionBadge|UNNotificationPresentationOptionSound|UNNotificationPresentationOptionAlert); // 需要执行这个方法，选择是否提醒用户，有Badge、Sound、Alert三种类型可以设置
 }
+
+//void soundCompleteCallback(SystemSoundID sound,void * clientData) {
+//    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);  //震动
+//    AudioServicesPlaySystemSound(sound);  // 播放系统声音 这里的sound是我自定义的，不要copy哈，没有的
+//}
 
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void(^)())completionHandler{
     
@@ -132,10 +143,11 @@
         NSLog(@"iOS10 收到本地通知:{\\\\nbody:%@，\\\\ntitle:%@,\\\\nsubtitle:%@,\\\\nbadge：%@，\\\\nsound：%@，\\\\nuserInfo：%@\\\\n}",body,title,subtitle,badge,sound,userInfo);
     }
     
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"ring" ofType:@"wav"];
-    SystemSoundID soundID;
-    AudioServicesCreateSystemSoundID ((__bridge CFURLRef)[NSURL fileURLWithPath:path], &soundID);
-    AudioServicesPlaySystemSound (soundID);
+//    NSString *path = [[NSBundle mainBundle] pathForResource:@"ring" ofType:@"wav"];
+//    SystemSoundID soundID;
+//    AudioServicesCreateSystemSoundID ((__bridge CFURLRef)[NSURL fileURLWithPath:path], &soundID);
+//    AudioServicesPlaySystemSound (soundID);
+    AudioServicesPlaySystemSound (1000);
     
     NoiseController *noiseController = [[NoiseController alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:noiseController];

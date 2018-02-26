@@ -44,7 +44,7 @@
     self.navigationItem.rightBarButtonItem = self.myButton;
     
     
-    
+    self.photoName = @"";
     
     
     
@@ -101,7 +101,7 @@
             [self presentViewController:pickerController animated:YES completion:nil];
             break;
         case 1:
-            selectMusicController = [self.storyboard instantiateViewControllerWithIdentifier:@"SelectMusicController"];
+            selectMusicController = [[SelectMusicController alloc] init];
             [self.navigationController pushViewController:selectMusicController animated:YES];
             break;
     }
