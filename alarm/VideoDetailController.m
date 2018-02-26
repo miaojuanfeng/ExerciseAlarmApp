@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #import "VideoDetailController.h"
+#import "PlayVideoController.h"
 
 @interface VideoDetailController ()
 
@@ -22,28 +23,41 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.title = @"視頻詳情";
     
-    /*UILabel *alarmTime = [[UILabel alloc] init];
-    alarmTime.frame = CGRectMake(self.view.frame.size.width/2 - 150, 50, 300, 100);
-    alarmTime.text = @"視頻詳細頁";
-    alarmTime.textAlignment = NSTextAlignmentCenter;
-    [self.view addSubview:alarmTime];*/
+    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(20, 74, self.view.frame.size.width-40, 50)];
+    title.text = @"動作說明";
+    title.font = [UIFont fontWithName:@"AppleGothic" size:16.0];
+    [self.view addSubview:title];
     
-    UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-    /*NSURL *url = [NSURL URLWithString:@"http://www.baidu.com"];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    [webView loadRequest:request];*/
-    CGFloat videoWidth = self.view.frame.size.width - 15;
-    CGFloat videoHeight = 498 * ( videoWidth / 810 );
-    NSString *htmlString = [NSString stringWithFormat:@"%@%d%@%d%@", @"<iframe height=", (int)floor(videoHeight), @" width=", (int)floor(videoWidth), @" src='http://player.youku.com/embed/XMzQxMzkzOTYzNg==' frameborder=0 'allowfullscreen'></iframe>"];
-    NSLog(htmlString);
-    [webView loadHTMLString:htmlString baseURL:nil];
-    [self.view addSubview:webView];
+    UIImage *image1 = [UIImage imageNamed:@"action1.png"];
+    int imageWidth = ( self.view.frame.size.width - 60 ) / 2;
+    int imageHeight = image1.size.height / ( imageWidth / image1.size.width );
+    
+    UIImageView *imageView1 = [[UIImageView alloc] initWithFrame:CGRectMake(20, 134, imageWidth, imageHeight)];
+    imageView1.image = image1;
+    [self.view addSubview:imageView1];
+    
+    UIImageView *imageView2 = [[UIImageView alloc] initWithFrame:CGRectMake(imageWidth+40, 134, imageWidth, imageHeight)];
+    imageView2.image = [UIImage imageNamed:@"action2.png"];
+    [self.view addSubview:imageView2];
+    
+    UIButton *showVideoButton = [[UIButton alloc] initWithFrame:CGRectMake((self.view.frame.size.width-100)/2, 150+imageHeight, 100, 44)];
+    [showVideoButton setTitle:@"影片示範" forState:UIControlStateNormal];
+    showVideoButton.titleLabel.font = [UIFont fontWithName:@"AppleGothic" size:16.0];
+    [showVideoButton addTarget:self action:@selector(clickShowVideo) forControlEvents:UIControlEventTouchUpInside];
+    [showVideoButton setBackgroundColor:[UIColor blueColor]];
+    [self.view addSubview:showVideoButton];
 }
 
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)clickShowVideo {
+    PlayVideoController *playVideoController = [[PlayVideoController alloc] init];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:playVideoController];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 @end

@@ -51,6 +51,7 @@
 		CEBBACD02041214800F6262D /* WBTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBBACCF2041214800F6262D /* WBTabBarController.m */; };
 		CEBBACD42041609B00F6262D /* StatusController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBBACD32041609B00F6262D /* StatusController.m */; };
 		CEBEC2A22043B85D00540DBB /* DiscussController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBEC2A12043B85D00540DBB /* DiscussController.m */; };
+		CEBEC2A42043C7BE00540DBB /* PlayVideoController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBEC2A32043C7BE00540DBB /* PlayVideoController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -159,6 +160,8 @@
 		CEBBACD22041608D00F6262D /* StatusController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StatusController.h; sourceTree = "<group>"; };
 		CEBBACD32041609B00F6262D /* StatusController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StatusController.m; sourceTree = "<group>"; };
 		CEBEC2A12043B85D00540DBB /* DiscussController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiscussController.m; sourceTree = "<group>"; };
+		CEBEC2A32043C7BE00540DBB /* PlayVideoController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlayVideoController.m; sourceTree = "<group>"; };
+		CEBEC2A52043C7CD00540DBB /* PlayVideoController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayVideoController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -310,6 +313,8 @@
 				CE446F5A202806FE009320EC /* VideoDetailController.m */,
 				9920D219201785A600DA8D6D /* VideoListController.h */,
 				9920D2172017859900DA8D6D /* VideoListController.m */,
+				CEBEC2A32043C7BE00540DBB /* PlayVideoController.m */,
+				CEBEC2A52043C7CD00540DBB /* PlayVideoController.h */,
 			);
 			name = VideoTab;
 			sourceTree = "<group>";
@@ -561,6 +566,7 @@
 				CE1A4979201A01DD005CB860 /* HYBAnimationClock.m in Sources */,
 				990736AE2016344C002EFEC5 /* AddAlarmController.m in Sources */,
 				9920D21620177C2800DA8D6D /* SelectMusicController.m in Sources */,
+				CEBEC2A42043C7BE00540DBB /* PlayVideoController.m in Sources */,
 				CE446F6220280A4B009320EC /* HelpController.m in Sources */,
 				CE446F5B202806FE009320EC /* VideoDetailController.m in Sources */,
 				998F36D6202757D300676226 /* NoiseController.m in Sources */,
