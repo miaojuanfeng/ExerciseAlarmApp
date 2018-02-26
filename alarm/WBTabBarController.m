@@ -44,16 +44,16 @@
     navFive.title = @"設置";
     
     //设置控制器图片(使用imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal,不被系统渲染成蓝色)
-    navOne.tabBarItem.image = [[UIImage imageNamed:@"icon_home_bottom_statist"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    navOne.tabBarItem.selectedImage = [[UIImage imageNamed:@"icon_home_bottom_statist_hl"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    navTwo.tabBarItem.image = [[UIImage imageNamed:@"icon_home_bottom_search"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    navTwo.tabBarItem.selectedImage = [[UIImage imageNamed:@"icon_home_bottom_search_hl"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    navThree.tabBarItem.image = [[UIImage imageNamed:@"1"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    navThree.tabBarItem.selectedImage = [[UIImage imageNamed:@"icon_home_bottom_search_hl"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    navFour.tabBarItem.image = [[UIImage imageNamed:@"icon_home_bottom_search"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    navFour.tabBarItem.selectedImage = [[UIImage imageNamed:@"icon_home_bottom_search_hl"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    navFive.tabBarItem.image = [[UIImage imageNamed:@"19-gear"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    navFive.tabBarItem.selectedImage = [[UIImage imageNamed:@"icon_home_bottom_search_hl"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    navOne.tabBarItem.image = [[UIImage imageNamed:@"runner"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    navOne.tabBarItem.selectedImage = [[UIImage imageNamed:@"runner2"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    navTwo.tabBarItem.image = [[UIImage imageNamed:@"clock"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    navTwo.tabBarItem.selectedImage = [[UIImage imageNamed:@"clock2"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    navThree.tabBarItem.image = [[UIImage imageNamed:@"tv"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    navThree.tabBarItem.selectedImage = [[UIImage imageNamed:@"tv2"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    navFour.tabBarItem.image = [[UIImage imageNamed:@"chat"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    navFour.tabBarItem.selectedImage = [[UIImage imageNamed:@"chat2"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    navFive.tabBarItem.image = [[UIImage imageNamed:@"gear"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    navFive.tabBarItem.selectedImage = [[UIImage imageNamed:@"gear2"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
     //改变tabbarController 文字选中颜色(默认渲染为蓝色)
     [[UITabBar appearance] setBarTintColor:[UIColor colorWithRed:49.0/255.0 green:132.0/255.0 blue:255.0/255.0 alpha:1.0]];

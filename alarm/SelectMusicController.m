@@ -8,7 +8,7 @@
 
 #import "SelectMusicController.h"
 
-@interface SelectMusicController () <UITableViewDataSource>
+@interface SelectMusicController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end

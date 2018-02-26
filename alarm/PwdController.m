@@ -26,33 +26,33 @@
     oldPwdLabel.text = @"輸入原密碼：";
     [self.view addSubview:oldPwdLabel];
     
-    UITextField *oldPwdField = [[UITextField alloc] initWithFrame:CGRectMake(10, 110, self.view.frame.size.width-20, 44)];
-    oldPwdField.backgroundColor = [UIColor lightGrayColor];
+    UITextField *oldPwdField = [[UITextField alloc] initWithFrame:CGRectMake(10, 110, self.view.frame.size.width-20, 34)];
+    oldPwdField.borderStyle = UITextBorderStyleRoundedRect;
     oldPwdField.clearButtonMode = UITextFieldViewModeWhileEditing;
     [oldPwdField setSecureTextEntry:YES];
     [self.view addSubview:oldPwdField];
     
-    UILabel *newPwdLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 150, self.view.frame.size.width-10, 64)];
+    UILabel *newPwdLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 140, self.view.frame.size.width-10, 64)];
     newPwdLabel.text = @"輸入新密碼：";
     [self.view addSubview:newPwdLabel];
     
-    UITextField *newPwdField = [[UITextField alloc] initWithFrame:CGRectMake(10, 198, self.view.frame.size.width-20, 44)];
-    newPwdField.backgroundColor = [UIColor lightGrayColor];
+    UITextField *newPwdField = [[UITextField alloc] initWithFrame:CGRectMake(10, 188, self.view.frame.size.width-20, 34)];
+    newPwdField.borderStyle = UITextBorderStyleRoundedRect;
     newPwdField.clearButtonMode = UITextFieldViewModeWhileEditing;
     [newPwdField setSecureTextEntry:YES];
     [self.view addSubview:newPwdField];
     
-    UILabel *cnfPwdLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 235, self.view.frame.size.width-10, 64)];
+    UILabel *cnfPwdLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 220, self.view.frame.size.width-10, 64)];
     cnfPwdLabel.text = @"確認新密碼：";
     [self.view addSubview:cnfPwdLabel];
     
-    UITextField *cnfPwdField = [[UITextField alloc] initWithFrame:CGRectMake(10, 283, self.view.frame.size.width-20, 44)];
-    cnfPwdField.backgroundColor = [UIColor lightGrayColor];
+    UITextField *cnfPwdField = [[UITextField alloc] initWithFrame:CGRectMake(10, 268, self.view.frame.size.width-20, 34)];
+    cnfPwdField.borderStyle = UITextBorderStyleRoundedRect;
     cnfPwdField.clearButtonMode = UITextFieldViewModeWhileEditing;
     [cnfPwdField setSecureTextEntry:YES];
     [self.view addSubview:cnfPwdField];
     
-    UIButton *submitButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 370, self.view.frame.size.width-20, 44)];
+    UIButton *submitButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 350, self.view.frame.size.width-20, 44)];
     submitButton.backgroundColor = [UIColor blueColor];
     [submitButton setTitle:@"提交" forState:UIControlStateNormal];
     [submitButton addTarget:self action:@selector(submitForm) forControlEvents:UIControlEventTouchUpInside];

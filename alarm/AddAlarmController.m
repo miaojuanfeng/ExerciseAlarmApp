@@ -11,7 +11,7 @@
 #import "SelectPhotoController.h"
 #import "SelectMusicController.h"
 
-@interface AddAlarmController () <UITableViewDataSource, UIImagePickerControllerDelegate>
+@interface AddAlarmController () <UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 @property UIBarButtonItem *myButton;
 @property UITableView *tableView;
 @property UIDatePicker *datePicker;
@@ -36,7 +36,7 @@
     [self.view addSubview:self.tableView];
     self.automaticallyAdjustsScrollViewInsets = false;
     
-    self.myButton = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStyleBordered target:self action:@selector(clickEvent)];
+    self.myButton = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(clickEvent)];
     self.navigationItem.rightBarButtonItem = self.myButton;
 }
 
@@ -75,7 +75,6 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    SelectPhotoController *selectPhotoController = nil;
     SelectMusicController *selectMusicController = nil;
     UIImagePickerController *pickerController = nil;
     switch (indexPath.row) {

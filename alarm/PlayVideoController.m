@@ -20,7 +20,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.]
     self.view.backgroundColor = [UIColor whiteColor];
-    self.navigationItem.title = @"視頻詳情";
+    self.navigationItem.title = @"影片示範";
     
     UIBarButtonItem *myButton = [[UIBarButtonItem alloc] initWithTitle:@"關閉" style:UIBarButtonItemStyleBordered target:self action:@selector(clickCloseButton)];
     self.navigationItem.leftBarButtonItem = myButton;
