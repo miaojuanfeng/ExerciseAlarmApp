@@ -31,6 +31,9 @@
     NSString *photoPath = [NSString stringWithFormat:@"%@/Documents/%@",NSHomeDirectory(),photoName];
     // 拿到沙盒路径图片
     UIImage *imgFromUrl = [[UIImage alloc]initWithContentsOfFile:photoPath];
+    if( imgFromUrl == nil ){
+        imgFromUrl = [UIImage imageNamed:@"bg"];
+    }
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     imageView.image = imgFromUrl;
