@@ -11,7 +11,6 @@
 		990736AB2016344C002EFEC5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 990736AA2016344C002EFEC5 /* AppDelegate.m */; };
 		990736AE2016344C002EFEC5 /* AddAlarmController.m in Sources */ = {isa = PBXBuildFile; fileRef = 990736AD2016344C002EFEC5 /* AddAlarmController.m */; };
 		990736B12016344C002EFEC5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 990736AF2016344C002EFEC5 /* Main.storyboard */; };
-		990736B32016344C002EFEC5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 990736B22016344C002EFEC5 /* Assets.xcassets */; };
 		990736C12016344C002EFEC5 /* alarmTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 990736C02016344C002EFEC5 /* alarmTests.m */; };
 		990736CC2016344C002EFEC5 /* alarmUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 990736CB2016344C002EFEC5 /* alarmUITests.m */; };
 		990736DA20163578002EFEC5 /* IndexController.m in Sources */ = {isa = PBXBuildFile; fileRef = 990736D920163578002EFEC5 /* IndexController.m */; };
@@ -49,6 +48,7 @@
 		CE446F6820280A78009320EC /* VersionController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE446F6720280A78009320EC /* VersionController.m */; };
 		CEA01CEB202337A60001DAF0 /* ListAlarmController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA01CEA202337A60001DAF0 /* ListAlarmController.m */; };
 		CEA7ECCC2045161C006A9D7F /* ShowPhotoController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA7ECCB2045161C006A9D7F /* ShowPhotoController.m */; };
+		CEA7ECCE20453CE7006A9D7F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEA7ECCD20453CE6006A9D7F /* Assets.xcassets */; };
 		CEBBACD02041214800F6262D /* WBTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBBACCF2041214800F6262D /* WBTabBarController.m */; };
 		CEBBACD42041609B00F6262D /* StatusController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBBACD32041609B00F6262D /* StatusController.m */; };
 		CEBEC2A22043B85D00540DBB /* DiscussController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBEC2A12043B85D00540DBB /* DiscussController.m */; };
@@ -80,7 +80,6 @@
 		990736AC2016344C002EFEC5 /* AddAlarmController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddAlarmController.h; sourceTree = "<group>"; };
 		990736AD2016344C002EFEC5 /* AddAlarmController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddAlarmController.m; sourceTree = "<group>"; };
 		990736B02016344C002EFEC5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		990736B22016344C002EFEC5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		990736B72016344C002EFEC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		990736BC2016344C002EFEC5 /* alarmTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = alarmTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		990736C02016344C002EFEC5 /* alarmTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = alarmTests.m; sourceTree = "<group>"; };
@@ -158,6 +157,7 @@
 		CEA01CEC202338020001DAF0 /* ListAlarmController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListAlarmController.h; sourceTree = "<group>"; };
 		CEA7ECCA2045160A006A9D7F /* ShowPhotoController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowPhotoController.h; sourceTree = "<group>"; };
 		CEA7ECCB2045161C006A9D7F /* ShowPhotoController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowPhotoController.m; sourceTree = "<group>"; };
+		CEA7ECCD20453CE6006A9D7F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = alarm/Assets.xcassets; sourceTree = "<group>"; };
 		CEBBACCF2041214800F6262D /* WBTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WBTabBarController.m; sourceTree = "<group>"; };
 		CEBBACD12041215A00F6262D /* WBTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WBTabBarController.h; sourceTree = "<group>"; };
 		CEBBACD22041608D00F6262D /* StatusController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StatusController.h; sourceTree = "<group>"; };
@@ -195,6 +195,7 @@
 		9907369A2016344C002EFEC5 = {
 			isa = PBXGroup;
 			children = (
+				CEA7ECCD20453CE6006A9D7F /* Assets.xcassets */,
 				990C854E2042F3C600D36C9E /* PTView */,
 				990C85442042EFB200D36C9E /* Classes */,
 				990C85382042EED800D36C9E /* YXCalendar */,
@@ -222,7 +223,6 @@
 				990C85162042C62700D36C9E /* AlarmTab */,
 				990736A92016344C002EFEC5 /* AppDelegate.h */,
 				990736AA2016344C002EFEC5 /* AppDelegate.m */,
-				990736B22016344C002EFEC5 /* Assets.xcassets */,
 				990736B72016344C002EFEC5 /* Info.plist */,
 				990736AF2016344C002EFEC5 /* Main.storyboard */,
 				998F36D7202757E400676226 /* NoiseController.h */,
@@ -527,8 +527,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				990736B32016344C002EFEC5 /* Assets.xcassets in Resources */,
 				990736B12016344C002EFEC5 /* Main.storyboard in Resources */,
+				CEA7ECCE20453CE7006A9D7F /* Assets.xcassets in Resources */,
 				990C85362042EECE00D36C9E /* YXDayCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
