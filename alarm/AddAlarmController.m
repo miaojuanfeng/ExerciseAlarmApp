@@ -16,10 +16,11 @@
 @property UIBarButtonItem *myButton;
 @property UITableView *tableView;
 @property UIDatePicker *datePicker;
-
+@property UIAlertController *actionSheet;
 //@property UIImageView *imageView;
 @property NSString *photoName;
 @property unsigned int soundId;
+@property UIActivityIndicatorView *activityIndicator;
 @end
 
 @implementation AddAlarmController
@@ -45,7 +46,7 @@
     
     
     self.photoName = @"";
-    if( self.soundId == nil ){
+    if( self.soundId == 0 ){
         self.soundId = 1000;
     }
     
@@ -53,6 +54,13 @@
 //    self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 280, self.view.frame.size.width, self.view.frame.size.height-280)];
 //    [self.view addSubview:self.imageView];
     
+    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:(UIActivityIndicatorViewStyleGray)];
+    self.activityIndicator.frame= CGRectMake((self.view.frame.size.width/2)-30, (self.view.frame.size.height/2)-30, 60, 60);
+    self.activityIndicator.color = [UIColor whiteColor];
+    UIColor *blackColor = [UIColor blackColor];
+    self.activityIndicator.backgroundColor = [blackColor colorWithAlphaComponent:0.6];
+//    self.activityIndicator.hidesWhenStopped = NO;
+    [self.view addSubview:self.activityIndicator];
 }
 
 
@@ -91,29 +99,60 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     SelectMusicController *selectMusicController = nil;
-    UIImagePickerController *pickerController = nil;
-    switch (indexPath.row) {
-        case 0:
+    if (indexPath.row == 0) {
             // selectPhotoController = [self.storyboard instantiateViewControllerWithIdentifier:@"SelectPhotoController"];
             // [self.navigationController pushViewController:selectPhotoController animated:YES];
-            pickerController = [[UIImagePickerController alloc] init];
-            pickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-//            pickerController.allowsEditing = YES;
-            pickerController.delegate = self;
-            [self presentViewController:pickerController animated:YES completion:nil];
-            break;
-        case 1:
+//            pickerController = [[UIImagePickerController alloc] init];
+//            pickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+////            pickerController.allowsEditing = YES;
+//            pickerController.delegate = self;
+//            [self presentViewController:pickerController animated:YES completion:nil];
+            self.actionSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+            UIAlertAction *cameraAction = [UIAlertAction actionWithTitle:@"拍攝" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                if( [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera] ){
+                    [self.activityIndicator startAnimating];
+                    UIImagePickerController *pickerController = [[UIImagePickerController alloc] init];
+                    pickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+                    //            pickerController.allowsEditing = YES;
+                    pickerController.delegate = self;
+                    [self presentViewController:pickerController animated:YES completion:nil];
+                }else{
+                    NSLog(@"不支持相机");
+                }
+            }];
+            UIAlertAction *photoLibraryAction = [UIAlertAction actionWithTitle:@"從手機相冊選擇" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                if( [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary] ){
+                    [self.activityIndicator startAnimating];
+                    UIImagePickerController *pickerController = [[UIImagePickerController alloc] init];
+                    pickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+                    //            pickerController.allowsEditing = YES;
+                    pickerController.delegate = self;
+                    [self presentViewController:pickerController animated:YES completion:nil];
+                }else{
+                    NSLog(@"不支持图库");
+                }
+            }];
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+
+            }];
+            [cancelAction setValue:[UIColor redColor] forKey:@"_titleTextColor"];
+            [self.actionSheet addAction:cameraAction];
+            [self.actionSheet addAction:photoLibraryAction];
+            [self.actionSheet addAction:cancelAction];
+            [self presentViewController:self.actionSheet animated:YES completion:^{
+                
+            }];
+    }else if(indexPath.row == 1){
             selectMusicController = [[SelectMusicController alloc] init];
             selectMusicController.soundId = self.soundId;
             selectMusicController.delegate = self;
             [self.navigationController pushViewController:selectMusicController animated:YES];
-            break;
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
-    
+    [self.activityIndicator startAnimating];
     NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
     NSLog(@"%@", info);
     if ([type isEqualToString:@"public.image"]) {
@@ -144,9 +183,11 @@
         //process image
         [picker dismissViewControllerAnimated:YES completion:nil];
     }
+    [self.activityIndicator stopAnimating];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [self.activityIndicator stopAnimating];
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
