@@ -48,6 +48,7 @@
 		CE446F6420280A57009320EC /* AboutController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE446F6320280A57009320EC /* AboutController.m */; };
 		CE446F6820280A78009320EC /* VersionController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE446F6720280A78009320EC /* VersionController.m */; };
 		CEA01CEB202337A60001DAF0 /* ListAlarmController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA01CEA202337A60001DAF0 /* ListAlarmController.m */; };
+		CEA7ECCC2045161C006A9D7F /* ShowPhotoController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA7ECCB2045161C006A9D7F /* ShowPhotoController.m */; };
 		CEBBACD02041214800F6262D /* WBTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBBACCF2041214800F6262D /* WBTabBarController.m */; };
 		CEBBACD42041609B00F6262D /* StatusController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBBACD32041609B00F6262D /* StatusController.m */; };
 		CEBEC2A22043B85D00540DBB /* DiscussController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBEC2A12043B85D00540DBB /* DiscussController.m */; };
@@ -155,6 +156,8 @@
 		CE446F6720280A78009320EC /* VersionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VersionController.m; sourceTree = "<group>"; };
 		CEA01CEA202337A60001DAF0 /* ListAlarmController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListAlarmController.m; sourceTree = "<group>"; };
 		CEA01CEC202338020001DAF0 /* ListAlarmController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListAlarmController.h; sourceTree = "<group>"; };
+		CEA7ECCA2045160A006A9D7F /* ShowPhotoController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowPhotoController.h; sourceTree = "<group>"; };
+		CEA7ECCB2045161C006A9D7F /* ShowPhotoController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowPhotoController.m; sourceTree = "<group>"; };
 		CEBBACCF2041214800F6262D /* WBTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WBTabBarController.m; sourceTree = "<group>"; };
 		CEBBACD12041215A00F6262D /* WBTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WBTabBarController.h; sourceTree = "<group>"; };
 		CEBBACD22041608D00F6262D /* StatusController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StatusController.h; sourceTree = "<group>"; };
@@ -302,6 +305,8 @@
 				990736AD2016344C002EFEC5 /* AddAlarmController.m */,
 				CEA01CEA202337A60001DAF0 /* ListAlarmController.m */,
 				9920D21520177C2800DA8D6D /* SelectMusicController.m */,
+				CEA7ECCA2045160A006A9D7F /* ShowPhotoController.h */,
+				CEA7ECCB2045161C006A9D7F /* ShowPhotoController.m */,
 			);
 			name = AlarmTab;
 			sourceTree = "<group>";
@@ -576,6 +581,7 @@
 				990C85352042EECE00D36C9E /* YXDayCell.m in Sources */,
 				990C85142042B20C00D36C9E /* StatusTwoController.m in Sources */,
 				990C850A2042AFE400D36C9E /* StatusOneController.m in Sources */,
+				CEA7ECCC2045161C006A9D7F /* ShowPhotoController.m in Sources */,
 				990736AB2016344C002EFEC5 /* AppDelegate.m in Sources */,
 				990736A82016344C002EFEC5 /* main.m in Sources */,
 				CEBBACD02041214800F6262D /* WBTabBarController.m in Sources */,

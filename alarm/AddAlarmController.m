@@ -7,9 +7,11 @@
 //
 
 #import <UserNotifications/UserNotifications.h>
+#import <AudioToolbox/AudioToolbox.h>
 #import "AddAlarmController.h"
 #import "SelectPhotoController.h"
 #import "SelectMusicController.h"
+#import "ShowPhotoController.h"
 
 @interface AddAlarmController () <UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate,UIImagePickerControllerDelegate, SelectMusicControllerDelegate>
 
@@ -21,6 +23,8 @@
 @property NSString *photoName;
 @property unsigned int soundId;
 @property UIActivityIndicatorView *activityIndicator;
+@property UIButton *photoButton;
+@property UIButton *soundButton;
 @end
 
 @implementation AddAlarmController
@@ -54,13 +58,23 @@
 //    self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 280, self.view.frame.size.width, self.view.frame.size.height-280)];
 //    [self.view addSubview:self.imageView];
     
-    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:(UIActivityIndicatorViewStyleGray)];
+    self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:(UIActivityIndicatorViewStyleWhiteLarge)];
     self.activityIndicator.frame= CGRectMake((self.view.frame.size.width/2)-30, (self.view.frame.size.height/2)-30, 60, 60);
     self.activityIndicator.color = [UIColor whiteColor];
     UIColor *blackColor = [UIColor blackColor];
     self.activityIndicator.backgroundColor = [blackColor colorWithAlphaComponent:0.6];
 //    self.activityIndicator.hidesWhenStopped = NO;
     [self.view addSubview:self.activityIndicator];
+    
+    self.photoButton = [[UIButton alloc] init];
+    [self.photoButton setTitle:@"查看" forState:UIControlStateNormal];
+    [self.photoButton addTarget:self action:@selector(clickShowPhotoButton) forControlEvents:UIControlEventTouchUpInside];
+    [self.photoButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+    
+    self.soundButton = [[UIButton alloc] init];
+    [self.soundButton setTitle:@"試聽" forState:UIControlStateNormal];
+    [self.soundButton addTarget:self action:@selector(clickShowSoundButton) forControlEvents:UIControlEventTouchUpInside];
+    [self.soundButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
 }
 
 
@@ -78,7 +92,7 @@
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return @"更多設置";
+    return @"基本設置";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -88,10 +102,12 @@
         case 0:
             cell.textLabel.text = @"圖片";
             cell.imageView.image = [UIImage imageNamed:@"gallery"];
+            self.photoButton.frame = CGRectMake(cell.frame.size.width - 20, 0, 40, cell.frame.size.height);
             break;
         case 1:
             cell.textLabel.text = @"鈴聲";
             cell.imageView.image = [UIImage imageNamed:@"music"];
+            self.soundButton.frame = CGRectMake(cell.frame.size.width - 20, 0, 40, cell.frame.size.height);
             break;
     }
     return cell;
@@ -184,6 +200,10 @@
         [picker dismissViewControllerAnimated:YES completion:nil];
     }
     [self.activityIndicator stopAnimating];
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    [cell.contentView addSubview:self.photoButton];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
@@ -273,6 +293,21 @@
 - (void)getSoundId:(unsigned int)soundId {
     self.soundId = soundId;
     NSLog(@"Delegate: %d", soundId);
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:0];
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    [cell.contentView addSubview:self.soundButton];
+}
+
+- (void)clickShowPhotoButton {
+    ShowPhotoController *showPhotoController = [[ShowPhotoController alloc] init];
+    showPhotoController.photoName = self.photoName;
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:showPhotoController];
+    [self presentViewController:nav animated:YES completion:nil];
+}
+
+- (void)clickShowSoundButton {
+    AudioServicesPlaySystemSound(self.soundId);
 }
 
 @end
