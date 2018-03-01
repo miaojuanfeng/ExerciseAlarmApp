@@ -12,6 +12,7 @@
 #import "SelectPhotoController.h"
 #import "SelectMusicController.h"
 #import "ShowPhotoController.h"
+#import "AlarmWeekController.h"
 
 @interface AddAlarmController () <UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate,UIImagePickerControllerDelegate, SelectMusicControllerDelegate>
 
@@ -98,15 +99,15 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    switch (section) {
-        case 0:
-            return 2;
-            break;
-        case 1:
-            return 1;
-            break;
-    }
-    return 0;
+//    switch (section) {
+//        case 0:
+//            return 2;
+//            break;
+//        case 1:
+//            return 1;
+//            break;
+//    }
+    return 2;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -143,6 +144,10 @@
                 cell.textLabel.text = @"標題";
                 cell.imageView.image = [UIImage imageNamed:@"settings"];
                 self.titleLabel.frame = CGRectMake(cell.frame.size.width - 83, 0, 100, cell.frame.size.height);
+                break;
+            case 1:
+                cell.textLabel.text = @"重複";
+                cell.imageView.image = [UIImage imageNamed:@"deskclock"];
                 break;
         }
     }
@@ -216,6 +221,10 @@
                 [self presentViewController:self.actionSheet animated:YES completion:^{
                     
                 }];
+        }else if( indexPath.row == 1 ){
+            AlarmWeekController *alarmWeekController = [[AlarmWeekController alloc] init];
+            alarmWeekController.alarmWeek = [NSMutableArray arrayWithObjects:@1,@1,@1,@1,@1,@1,@1,nil];
+            [self.navigationController pushViewController:alarmWeekController animated:YES];
         }
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
