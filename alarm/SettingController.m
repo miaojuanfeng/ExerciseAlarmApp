@@ -12,7 +12,7 @@
 #import "AboutController.h"
 #import "VersionController.h"
 
-@interface SettingController () <UITableViewDataSource>
+@interface SettingController () <UITableViewDelegate, UITableViewDataSource>
 @property UITableView *tableView;
 
 @end
@@ -24,7 +24,10 @@
     // Do any additional setup after loading the view, typically from a nib.
     self.navigationItem.title = @"設置";
     
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height - 64) style:UITableViewStyleGrouped];
+    CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
+    float marginTop = rectStatus.size.height + self.navigationController.navigationBar.frame.size.height;
+    
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, marginTop, self.view.frame.size.width, self.view.frame.size.height-marginTop-self.tabBarController.tabBar.frame.size.height) style:UITableViewStyleGrouped];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     self.automaticallyAdjustsScrollViewInsets = false;

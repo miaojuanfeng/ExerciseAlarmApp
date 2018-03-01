@@ -26,17 +26,20 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.title = @"我的狀態";
     
+    CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
+    float marginTop = rectStatus.size.height + self.navigationController.navigationBar.frame.size.height;
+    
     UIImage *logoPic = [UIImage imageNamed:@"logo"];
     int logoWidth = self.view.frame.size.width - 100;
     int logoHeight = logoPic.size.height / (logoPic.size.width / logoWidth);
-    UIImageView *logoImage = [[UIImageView alloc] initWithFrame:CGRectMake(50, 84, logoWidth, logoHeight)];
+    UIImageView *logoImage = [[UIImageView alloc] initWithFrame:CGRectMake(50, marginTop+20, logoWidth, logoHeight)];
     logoImage.image = logoPic;
     [self.view addSubview:logoImage];
     
     UIImage *statusBg = [UIImage imageNamed:@"statusbg"];
     int statusWidth = self.view.frame.size.width - 40;
     int statusHeight = statusBg.size.height / (statusBg.size.width / statusWidth);
-    UIImageView *statusImage = [[UIImageView alloc] initWithFrame:CGRectMake(20, logoHeight+114, statusWidth, statusHeight)];
+    UIImageView *statusImage = [[UIImageView alloc] initWithFrame:CGRectMake(20, logoHeight+marginTop+20+30, statusWidth, statusHeight)];
     statusImage.image = statusBg;
     [self.view addSubview:statusImage];
     
@@ -44,7 +47,7 @@
     /*
      * view1
      */
-    UIView *view1 = [[UIView alloc] initWithFrame:CGRectMake(50, 220, viewWidth, 140)];
+    UIView *view1 = [[UIView alloc] initWithFrame:CGRectMake(50, marginTop+20+136, viewWidth, 140)];
     UIColor *color1 = [UIColor redColor];
     view1.backgroundColor = [color1 colorWithAlphaComponent:0.9];
     //
@@ -73,7 +76,7 @@
     /*
      * view2
      */
-    UIView *view2 = [[UIView alloc] initWithFrame:CGRectMake(100+viewWidth, 220, viewWidth, 140)];
+    UIView *view2 = [[UIView alloc] initWithFrame:CGRectMake(100+viewWidth, marginTop+20+136, viewWidth, 140)];
     UIColor *color2 = [UIColor lightGrayColor];
     view2.backgroundColor = [color2 colorWithAlphaComponent:0.9];
     //
@@ -102,7 +105,7 @@
     /*
      * view3
      */
-    UIView *view3 = [[UIView alloc] initWithFrame:CGRectMake(50, 400, viewWidth, 140)];
+    UIView *view3 = [[UIView alloc] initWithFrame:CGRectMake(50, marginTop+20+316, viewWidth, 140)];
     UIColor *color3 = [UIColor orangeColor];
     view3.backgroundColor = [color3 colorWithAlphaComponent:0.9];
     //
@@ -131,7 +134,7 @@
     /*
      * view4
      */
-    UIView *view4 = [[UIView alloc] initWithFrame:CGRectMake(100+viewWidth, 400, viewWidth, 140)];
+    UIView *view4 = [[UIView alloc] initWithFrame:CGRectMake(100+viewWidth, marginTop+20+316, viewWidth, 140)];
     UIColor *color4 = [UIColor grayColor];
     view4.backgroundColor = [color4 colorWithAlphaComponent:0.9];
     //

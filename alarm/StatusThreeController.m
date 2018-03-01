@@ -33,12 +33,15 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.title = @"累計天數";
     
-    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(20, 74, self.view.frame.size.width-40, 50)];
+    CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
+    float marginTop = rectStatus.size.height + self.navigationController.navigationBar.frame.size.height;
+    
+    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(20, marginTop+10, self.view.frame.size.width-40, 50)];
     title.text = @"累計天數";
     title.font = [UIFont fontWithName:@"AppleGothic" size:16.0];
     [self.view addSubview:title];
     
-    UILabel *num = [[UILabel alloc] initWithFrame:CGRectMake(20, 134, self.view.frame.size.width-40, 50)];
+    UILabel *num = [[UILabel alloc] initWithFrame:CGRectMake(20, marginTop+10+60, self.view.frame.size.width-40, 50)];
     num.textAlignment = NSTextAlignmentCenter;
     
     NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:@"63 天"];
@@ -47,7 +50,7 @@
     
     [self.view addSubview:num];
     
-    UIView *calendarView = [[UIView alloc] initWithFrame:CGRectMake(0, 140, self.view.frame.size.width, self.view.frame.size.height-140)];
+    UIView *calendarView = [[UIView alloc] initWithFrame:CGRectMake(0, marginTop+10+66, self.view.frame.size.width, self.view.frame.size.height-140)];
     //加载投资日历
     [calendarView addSubview:self.calendar];
     [self.view addSubview:calendarView];

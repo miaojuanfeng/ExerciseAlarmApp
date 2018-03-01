@@ -22,12 +22,15 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.title = @"累積星星";
     
-    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(20, 74, self.view.frame.size.width-40, 50)];
+    CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
+    float marginTop = rectStatus.size.height + self.navigationController.navigationBar.frame.size.height;
+    
+    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(20, marginTop+10, self.view.frame.size.width-40, 50)];
     title.text = @"總共獲得";
     title.font = [UIFont fontWithName:@"AppleGothic" size:16.0];
     [self.view addSubview:title];
     
-    UILabel *num = [[UILabel alloc] initWithFrame:CGRectMake(20, 134, self.view.frame.size.width-40, 50)];
+    UILabel *num = [[UILabel alloc] initWithFrame:CGRectMake(20, marginTop+10+60, self.view.frame.size.width-40, 50)];
     num.textAlignment = NSTextAlignmentCenter;
     
     NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:@"23 星"];
@@ -36,7 +39,7 @@
     
     [self.view addSubview:num];
     
-    UIView *tableTitle = [[UIView alloc] initWithFrame:CGRectMake(0, 200, self.view.frame.size.width, 44)];
+    UIView *tableTitle = [[UIView alloc] initWithFrame:CGRectMake(0, marginTop+10+126, self.view.frame.size.width, 44)];
     tableTitle.backgroundColor = [UIColor orangeColor];
     UILabel *titleLeft = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 100, tableTitle.frame.size.height)];
     titleLeft.text = @"本週排名";
@@ -50,7 +53,7 @@
     [self.view addSubview:tableTitle];
     
     
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 244, self.view.frame.size.width, 300)];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, marginTop+10+170, self.view.frame.size.width, 300)];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [self.view addSubview:self.tableView];

@@ -26,8 +26,11 @@
     self.myButton = [[UIBarButtonItem alloc] initWithTitle:@"發佈" style:UIBarButtonItemStyleBordered target:self action:@selector(clickSave)];
     self.navigationItem.rightBarButtonItem = self.myButton;
     
+    CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
+    float marginTop = rectStatus.size.height + self.navigationController.navigationBar.frame.size.height;
+    
     //
-    self.content = [[UITextView alloc] initWithFrame:CGRectMake(5, 0, self.view.frame.size.width-10, self.view.frame.size.height-49)];
+    self.content = [[UITextView alloc] initWithFrame:CGRectMake(5, marginTop, self.view.frame.size.width-10, self.view.frame.size.height-marginTop-self.tabBarController.tabBar.frame.size.height)];
     self.content.text = @"輸入內容";
     self.content.font = [UIFont fontWithName:@"AppleGothic" size:18.0];
     self.content.textColor = [UIColor lightGrayColor];

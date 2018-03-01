@@ -37,11 +37,14 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.title = @"添加提醒";
     
-    self.datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, 216)];
+    CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
+    float marginTop = rectStatus.size.height + self.navigationController.navigationBar.frame.size.height;
+    
+    self.datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, marginTop, self.view.frame.size.width, 216)];
     self.datePicker.datePickerMode = UIDatePickerModeTime;
     [self.view addSubview:self.datePicker];
     
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 280, self.view.frame.size.width, self.view.frame.size.height-280) style:UITableViewStyleGrouped];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, marginTop+216, self.view.frame.size.width, self.view.frame.size.height-marginTop-216-self.tabBarController.tabBar.frame.size.height) style:UITableViewStyleGrouped];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [self.view addSubview:self.tableView];

@@ -9,7 +9,7 @@
 #import "VideoListController.h"
 #import "VideoDetailController.h"
 
-@interface VideoListController () <UITableViewDataSource>
+@interface VideoListController () <UITableViewDataSource, UITableViewDelegate>
 @property UITableView *tableView;
 
 @end
@@ -21,7 +21,11 @@
     // Do any additional setup after loading the view, typically from a nib.
     self.navigationItem.title = @"視頻";
     
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height-64-49)];
+    CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
+    float marginTop = rectStatus.size.height + self.navigationController.navigationBar.frame.size.height;
+    
+    NSLog(@"%f", self.navigationController.navigationBar.frame.size.height);
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, marginTop, self.view.frame.size.width, self.view.frame.size.height-marginTop-self.tabBarController.tabBar.frame.size.height)];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [self.view addSubview:self.tableView];

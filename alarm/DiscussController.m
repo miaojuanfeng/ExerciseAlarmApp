@@ -25,7 +25,10 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.title = @"討論";
     
-    UIView *topButton = [[UIView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, 44)];
+    CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
+    float marginTop = rectStatus.size.height + self.navigationController.navigationBar.frame.size.height;
+    
+    UIView *topButton = [[UIView alloc] initWithFrame:CGRectMake(0, marginTop, self.view.frame.size.width, 44)];
     topButton.backgroundColor = [UIColor orangeColor];
     UIButton *topButtonLeft = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, topButton.frame.size.width/2, topButton.frame.size.height)];
     [topButtonLeft setTitle:@"我要提問" forState:UIControlStateNormal];
@@ -39,7 +42,7 @@
     //
     [self.view addSubview:topButton];
     
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64+44, self.view.frame.size.width, self.view.frame.size.height-64-44-49)];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, marginTop+topButton.frame.size.height, self.view.frame.size.width, self.view.frame.size.height-marginTop-topButton.frame.size.height-self.tabBarController.tabBar.frame.size.height)];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [self.view addSubview:self.tableView];

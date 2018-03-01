@@ -23,12 +23,15 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.title = @"累積鍛煉";
     
-    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(20, 74, self.view.frame.size.width-40, 50)];
+    CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
+    float marginTop = rectStatus.size.height + self.navigationController.navigationBar.frame.size.height;
+    
+    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(20, marginTop+10, self.view.frame.size.width-40, 50)];
     title.text = @"累積鍛煉";
     title.font = [UIFont fontWithName:@"AppleGothic" size:16.0];
     [self.view addSubview:title];
     
-    UILabel *num = [[UILabel alloc] initWithFrame:CGRectMake(20, 134, self.view.frame.size.width-40, 50)];
+    UILabel *num = [[UILabel alloc] initWithFrame:CGRectMake(20, marginTop+10+60, self.view.frame.size.width-40, 50)];
     num.textAlignment = NSTextAlignmentCenter;
     
     NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:@"123 分鐘"];
@@ -38,7 +41,7 @@
     [self.view addSubview:num];
     
     
-    UIView *calendarView = [[UIView alloc] initWithFrame:CGRectMake(0, 120, self.view.frame.size.width, self.view.frame.size.height-120)];
+    UIView *calendarView = [[UIView alloc] initWithFrame:CGRectMake(0, marginTop+56, self.view.frame.size.width, self.view.frame.size.height-120)];
     _ptView = [[PTHistogramView alloc] initWithFrame:CGRectMake(30, 100, [UIScreen mainScreen].bounds.size.width - 60, 200)
                                            nameArray:@[@"2/1",@"2/2",@"2/3",@"2/4",@"2/5"]
                                           countArray:@[@"4",@"12",@"7",@"15",@"19"]];

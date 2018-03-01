@@ -23,7 +23,10 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.title = @"視頻詳情";
     
-    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(20, 74, self.view.frame.size.width-40, 50)];
+    CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
+    float marginTop = rectStatus.size.height + self.navigationController.navigationBar.frame.size.height;
+    
+    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(20, marginTop+10, self.view.frame.size.width-40, 50)];
     title.text = @"動作說明";
     title.font = [UIFont fontWithName:@"AppleGothic" size:16.0];
     [self.view addSubview:title];
@@ -32,15 +35,15 @@
     int imageWidth = ( self.view.frame.size.width - 60 ) / 2;
     int imageHeight = image1.size.height / ( imageWidth / image1.size.width );
     
-    UIImageView *imageView1 = [[UIImageView alloc] initWithFrame:CGRectMake(20, 134, imageWidth, imageHeight)];
+    UIImageView *imageView1 = [[UIImageView alloc] initWithFrame:CGRectMake(20, marginTop+10+60, imageWidth, imageHeight)];
     imageView1.image = image1;
     [self.view addSubview:imageView1];
     
-    UIImageView *imageView2 = [[UIImageView alloc] initWithFrame:CGRectMake(imageWidth+40, 134, imageWidth, imageHeight)];
+    UIImageView *imageView2 = [[UIImageView alloc] initWithFrame:CGRectMake(imageWidth+40, marginTop+10+60, imageWidth, imageHeight)];
     imageView2.image = [UIImage imageNamed:@"action2.png"];
     [self.view addSubview:imageView2];
     
-    UIButton *showVideoButton = [[UIButton alloc] initWithFrame:CGRectMake((self.view.frame.size.width-100)/2, 150+imageHeight, 100, 44)];
+    UIButton *showVideoButton = [[UIButton alloc] initWithFrame:CGRectMake((self.view.frame.size.width-100)/2, marginTop+10+76+imageHeight, 100, 44)];
     [showVideoButton setTitle:@"影片示範" forState:UIControlStateNormal];
     showVideoButton.titleLabel.font = [UIFont fontWithName:@"AppleGothic" size:16.0];
     [showVideoButton addTarget:self action:@selector(clickShowVideo) forControlEvents:UIControlEventTouchUpInside];

@@ -23,18 +23,21 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.title = @"我要提問";
     
-    self.myButton = [[UIBarButtonItem alloc] initWithTitle:@"發佈" style:UIBarButtonItemStyleBordered target:self action:@selector(clickSave)];
+    CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
+    float marginTop = rectStatus.size.height + self.navigationController.navigationBar.frame.size.height;
+    
+    self.myButton = [[UIBarButtonItem alloc] initWithTitle:@"發佈" style:UIBarButtonItemStylePlain target:self action:@selector(clickSave)];
     self.navigationItem.rightBarButtonItem = self.myButton;
     
-    UITextField *title = [[UITextField alloc] initWithFrame:CGRectMake(10, 64, self.view.frame.size.width-20, 44)];
+    UITextField *title = [[UITextField alloc] initWithFrame:CGRectMake(10, marginTop, self.view.frame.size.width-20, 44)];
     title.placeholder = @"輸入標題";
     [self.view addSubview:title];
     //
-    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 110, self.view.frame.size.width, 1)];
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, marginTop+46, self.view.frame.size.width, 1)];
     line.backgroundColor = [UIColor lightGrayColor];
     [self.view addSubview:line];
     //
-    self.content = [[UITextView alloc] initWithFrame:CGRectMake(5, 111, self.view.frame.size.width-10, self.view.frame.size.height-64-111)];
+    self.content = [[UITextView alloc] initWithFrame:CGRectMake(5, marginTop+title.frame.size.height+line.frame.size.height+2, self.view.frame.size.width-10, self.view.frame.size.height-marginTop-title.frame.size.height-line.frame.size.height-2-self.tabBarController.tabBar.frame.size.height)];
     self.content.text = @"輸入內容";
     self.content.font = [UIFont fontWithName:@"AppleGothic" size:18.0];
     self.content.textColor = [UIColor lightGrayColor];
