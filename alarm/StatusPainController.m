@@ -31,22 +31,32 @@
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"提交" style:UIBarButtonItemStylePlain target:self action:@selector(clickSubmitButton)];
     self.navigationItem.rightBarButtonItem = rightButton;
     
-    UILabel *textLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, marginTop+20, self.view.frame.size.width-40, 80)];
+    UILabel *textLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, marginTop+60, self.view.frame.size.width-40, 80)];
     textLabel.backgroundColor = [UIColor clearColor];
     textLabel.numberOfLines = 0;
     textLabel.font =  [UIFont fontWithName:@"AppleGothic" size:16.0];
     textLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    textLabel.text = @"請在以下空格輸入一個0-10的數字，表示您的痛感程度：0代表完全無痛，10代表極度劇痛，由0至10痛感依次遞增。";
+    
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    paragraphStyle.lineSpacing = 10;// 字体的行间距
+    
+    NSDictionary *attributes = @{
+                                 NSFontAttributeName:[UIFont systemFontOfSize:16],
+                                 NSParagraphStyleAttributeName:paragraphStyle
+                                 };
+    textLabel.attributedText = [[NSAttributedString alloc] initWithString:@"請在以下空格輸入一個0-10的數字，表示您的痛感程度：0代表完全無痛，10代表極度劇痛，由0至10痛感依次遞增。" attributes:attributes];
+    
+    
     [self.view addSubview:textLabel];
     
-    UIButton *showPainButton = [[UIButton alloc] initWithFrame:CGRectMake(20, textLabel.frame.origin.y+textLabel.frame.size.height, 140, 24)];
+    UIButton *showPainButton = [[UIButton alloc] initWithFrame:CGRectMake(20, textLabel.frame.origin.y+textLabel.frame.size.height+10, 140, 24)];
     [showPainButton setTitle:@"查看詳細痛感說明" forState:UIControlStateNormal];
     showPainButton.titleLabel.font = [UIFont fontWithName:@"AppleGothic" size:16.0];
-    showPainButton.backgroundColor = [UIColor redColor];
+    showPainButton.backgroundColor = RGBA_COLOR(253, 159, 81, 1);
     [showPainButton addTarget:self action:@selector(clickShowPainButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:showPainButton];
     
-    UITextField *numberField = [[UITextField alloc] initWithFrame:CGRectMake(20, showPainButton.frame.origin.y+showPainButton.frame.size.height+15, self.view.frame.size.width-40, 34)];
+    UITextField *numberField = [[UITextField alloc] initWithFrame:CGRectMake(80, showPainButton.frame.origin.y+showPainButton.frame.size.height+15, self.view.frame.size.width-160, 34)];
     numberField.borderStyle = UITextBorderStyleRoundedRect;
     numberField.clearButtonMode = UITextFieldViewModeWhileEditing;
     numberField.keyboardType = UIKeyboardTypeNumberPad;

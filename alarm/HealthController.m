@@ -53,22 +53,22 @@
     switch( indexPath.row ){
         case 0:
             cell.textLabel.text = @"體重管理";
-            cell.detailTextLabel.text = @"這是一個簡單說明\n這是一個簡單說明\n這是一個簡單說明";
+            cell.detailTextLabel.text = @"\n\n這是一個簡單說明";
             [cell.detailTextLabel setNumberOfLines:3];
             break;
         case 1:
             cell.textLabel.text = @"膳食";
-            cell.detailTextLabel.text = @"這是一個簡單說明\n這是一個簡單說明\n這是一個簡單說明";
+            cell.detailTextLabel.text = @"\n\n這是一個簡單說明";
             [cell.detailTextLabel setNumberOfLines:3];
             break;
         case 2:
             cell.textLabel.text = @"關節保護";
-            cell.detailTextLabel.text = @"這是一個簡單說明\n這是一個簡單說明\n這是一個簡單說明";
+            cell.detailTextLabel.text = @"\n\n這是一個簡單說明";
             [cell.detailTextLabel setNumberOfLines:3];
             break;
         default:
-            cell.textLabel.text = @"其他常識";
-            cell.detailTextLabel.text = @"這是一個簡單說明\n這是一個簡單說明\n這是一個簡單說明";
+            cell.textLabel.text = @"conservation of energy";
+            cell.detailTextLabel.text = @"\n\n這是一個簡單說明";
             [cell.detailTextLabel setNumberOfLines:3];
             break;
     }

@@ -43,7 +43,7 @@
     UIButton *showPainButton = [[UIButton alloc] initWithFrame:CGRectMake((self.view.frame.size.width-140)/2, textLabel.frame.origin.y+textLabel.frame.size.height, 140, 24)];
     [showPainButton setTitle:@"查看詳細痛感說明" forState:UIControlStateNormal];
     showPainButton.titleLabel.font = [UIFont fontWithName:@"AppleGothic" size:16.0];
-    showPainButton.backgroundColor = [UIColor redColor];
+    showPainButton.backgroundColor = RGBA_COLOR(253, 159, 81, 1);
     [showPainButton addTarget:self action:@selector(clickShowPainButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:showPainButton];
 }

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "MacroDefine.h"
 #import "MsgDetailController.h"
 #import "NewCommentController.h"
 
@@ -33,8 +33,8 @@
     [self.view addSubview:description];
     
     UIView *topReplyView = [[UIView alloc] initWithFrame:CGRectMake(0, marginTop+100, self.view.frame.size.width, 44)];
-    topReplyView.backgroundColor = [UIColor orangeColor];
-    UILabel *topReplyLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 0, self.view.frame.size.width-10, topReplyView.frame.size.height)];
+    topReplyView.backgroundColor = RGBA_COLOR(242, 134, 45, 1);
+    UILabel *topReplyLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, self.view.frame.size.width-10, topReplyView.frame.size.height)];
     topReplyLabel.font = [UIFont fontWithName:@"AppleGothic" size:16.0];
     topReplyLabel.text = @"專家回復";
     topReplyLabel.textColor = [UIColor whiteColor];
@@ -58,8 +58,8 @@
     
     
     UIView *commentView = [[UIView alloc] initWithFrame:CGRectMake(0, marginTop+284, self.view.frame.size.width, 44)];
-    commentView.backgroundColor = [UIColor lightGrayColor];
-    UILabel *commentLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 0, 100, commentView.frame.size.height)];
+    commentView.backgroundColor = RGBA_COLOR(40, 122, 72, 1);
+    UILabel *commentLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, 100, commentView.frame.size.height)];
     commentLabel.font = [UIFont fontWithName:@"AppleGothic" size:16.0];
     commentLabel.text = @"評論";
     commentLabel.textColor = [UIColor whiteColor];
@@ -86,7 +86,7 @@
     commentLabelTime.text = @"2018/02/06";
     [commentContentTime addSubview:commentLabelTime];
     
-    UIButton *commentReplyButton = [[UIButton alloc] initWithFrame:CGRectMake(commentContentTime.frame.size.width-100, 0, 100, commentContentTime.frame.size.height)];
+    UIButton *commentReplyButton = [[UIButton alloc] initWithFrame:CGRectMake(commentContentTime.frame.size.width-80, 0, 100, commentContentTime.frame.size.height)];
     [commentReplyButton setTitle:@"回復" forState:UIControlStateNormal];
     commentReplyButton.titleLabel.font = [UIFont fontWithName:@"AppleGothic" size:12.0];
     [commentReplyButton addTarget:self action:@selector(clickReplyComment) forControlEvents:UIControlEventTouchUpInside];

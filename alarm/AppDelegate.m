@@ -7,6 +7,7 @@
 //
 
 #import <UserNotifications/UserNotifications.h>
+#import "MacroDefine.h"
 #import "AppDelegate.h"
 #import "NoiseController.h"
 #import "WBTabBarController.h"
@@ -31,7 +32,7 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    [UINavigationBar appearance].barTintColor = [UIColor colorWithRed:49.0/255.0 green:132.0/255.0 blue:255.0/255.0 alpha:1.0];
+    [UINavigationBar appearance].barTintColor = RGBA_COLOR(125, 174, 227, 1);
     [UINavigationBar appearance].tintColor = [UIColor whiteColor];
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     
