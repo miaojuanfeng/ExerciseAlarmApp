@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+#import "MacroDefine.h"
 #import "StatusTwoController.h"
 
 @interface StatusTwoController () <UITableViewDataSource, UITableViewDelegate>
@@ -40,7 +41,7 @@
     [self.view addSubview:num];
     
     UIView *tableTitle = [[UIView alloc] initWithFrame:CGRectMake(0, marginTop+10+126, self.view.frame.size.width, 44)];
-    tableTitle.backgroundColor = [UIColor orangeColor];
+    tableTitle.backgroundColor = RGBA_COLOR(166, 213, 75, 1);
     UILabel *titleLeft = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 100, tableTitle.frame.size.height)];
     titleLeft.text = @"本週排名";
     titleLeft.font = [UIFont fontWithName:@"AppleGothic" size:16.0];
@@ -89,7 +90,7 @@
             [cell addSubview:num];
             name.text = @"參與者";
             [cell addSubview:name];
-            star.text = @"179星";
+            star.text = @"179 星";
             [cell addSubview:star];
             break;
         case 1:
@@ -97,7 +98,7 @@
             [cell addSubview:num];
             name.text = @"參與者";
             [cell addSubview:name];
-            star.text = @"175星";
+            star.text = @"175 星";
             [cell addSubview:star];
             break;
         case 2:
@@ -105,7 +106,7 @@
             [cell addSubview:num];
             name.text = @"參與者";
             [cell addSubview:name];
-            star.text = @"169星";
+            star.text = @"169 星";
             [cell addSubview:star];
             break;
         case 3:
@@ -113,7 +114,7 @@
             [cell addSubview:num];
             name.text = @"參與者";
             [cell addSubview:name];
-            star.text = @"139星";
+            star.text = @"139 星";
             [cell addSubview:star];
             break;
         case 4:
@@ -121,7 +122,7 @@
             [cell addSubview:num];
             name.text = @"參與者";
             [cell addSubview:name];
-            star.text = @"120星";
+            star.text = @"120 星";
             [cell addSubview:star];
             break;
         case 5:
@@ -129,7 +130,7 @@
             [cell addSubview:num];
             name.text = @"參與者";
             [cell addSubview:name];
-            star.text = @"99星";
+            star.text = @"99 星";
             [cell addSubview:star];
             break;
     }

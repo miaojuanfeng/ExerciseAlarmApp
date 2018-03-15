@@ -23,7 +23,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.title = @"添加評論";
     
-    self.myButton = [[UIBarButtonItem alloc] initWithTitle:@"發佈" style:UIBarButtonItemStyleBordered target:self action:@selector(clickSave)];
+    self.myButton = [[UIBarButtonItem alloc] initWithTitle:@"發佈" style:UIBarButtonItemStylePlain target:self action:@selector(clickSave)];
     self.navigationItem.rightBarButtonItem = self.myButton;
     
     CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];

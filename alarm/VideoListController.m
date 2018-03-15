@@ -71,7 +71,7 @@
 //    }
     cell.textLabel.text = [NSString stringWithFormat:@"%@%ld", @"視頻", indexPath.row ];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@%ld", @"視頻介紹", indexPath.row ];
-    cell.imageView.image = [UIImage imageNamed:@"video"];
+    cell.imageView.image = [UIImage imageNamed:@"V"];
     return cell;
 }
 

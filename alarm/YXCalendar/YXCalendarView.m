@@ -148,9 +148,10 @@ static CGFloat const weeksH = 30;       //周高度
 
 - (void)settingHeadLabel {
     
-    _yearMonthL = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, ViewW, yearMonthH)];
+    _yearMonthL = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, ViewW-10, yearMonthH)];
     _yearMonthL.text = [[YXDateHelpObject manager] getStrFromDateFormat:@"yyyy年MM月" Date:_currentDate];
-    _yearMonthL.textAlignment = NSTextAlignmentCenter;
+//    _yearMonthL.textAlignment = NSTextAlignmentCenter;
+    _yearMonthL.textAlignment = NSTextAlignmentLeft;
     _yearMonthL.font = [UIFont systemFontOfSize:15];
     [self addSubview:_yearMonthL];
     

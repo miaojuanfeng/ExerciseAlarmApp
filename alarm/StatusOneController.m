@@ -42,10 +42,18 @@
     
     
     UIView *calendarView = [[UIView alloc] initWithFrame:CGRectMake(0, marginTop+56, self.view.frame.size.width, self.view.frame.size.height-120)];
-    _ptView = [[PTHistogramView alloc] initWithFrame:CGRectMake(30, 100, [UIScreen mainScreen].bounds.size.width - 60, 200)
+    _ptView = [[PTHistogramView alloc] initWithFrame:CGRectMake(20, 120, [UIScreen mainScreen].bounds.size.width - 40, 200)
                                            nameArray:@[@"2/1",@"2/2",@"2/3",@"2/4",@"2/5"]
                                           countArray:@[@"4",@"12",@"7",@"15",@"19"]];
     [calendarView addSubview:_ptView];
+    UILabel *timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, marginTop+10, self.view.frame.size.width-40, 50)];
+    timeLabel.text = @"時間（分鐘）";
+    timeLabel.font = [UIFont fontWithName:@"AppleGothic" size:12.0];
+    [calendarView addSubview:timeLabel];
+    UILabel *dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(_ptView.frame.size.width-10, _ptView.frame.size.width-20, self.view.frame.size.width-40, 50)];
+    dateLabel.text = @"日期";
+    dateLabel.font = [UIFont fontWithName:@"AppleGothic" size:12.0];
+    [calendarView addSubview:dateLabel];
     [self.view addSubview:calendarView];
 }
 

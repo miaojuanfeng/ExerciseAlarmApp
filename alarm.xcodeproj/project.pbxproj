@@ -46,10 +46,12 @@
 		CE446F6220280A4B009320EC /* HelpController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE446F6120280A4B009320EC /* HelpController.m */; };
 		CE446F6420280A57009320EC /* AboutController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE446F6320280A57009320EC /* AboutController.m */; };
 		CE446F6820280A78009320EC /* VersionController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE446F6720280A78009320EC /* VersionController.m */; };
+		CE50102C205A598700467D5A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE50102B205A598700467D5A /* Assets.xcassets */; };
+		CE50102F205A5EDD00467D5A /* StatusPainController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE50102E205A5EDD00467D5A /* StatusPainController.m */; };
+		CE501032205A66C400467D5A /* ShowPainController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE501031205A66C400467D5A /* ShowPainController.m */; };
 		CE8B78A92047B78B00522F65 /* AlarmWeekController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8B78A82047B78B00522F65 /* AlarmWeekController.m */; };
 		CEA01CEB202337A60001DAF0 /* ListAlarmController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA01CEA202337A60001DAF0 /* ListAlarmController.m */; };
 		CEA7ECCC2045161C006A9D7F /* ShowPhotoController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA7ECCB2045161C006A9D7F /* ShowPhotoController.m */; };
-		CEA7ECCE20453CE7006A9D7F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEA7ECCD20453CE6006A9D7F /* Assets.xcassets */; };
 		CEBBACD02041214800F6262D /* WBTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBBACCF2041214800F6262D /* WBTabBarController.m */; };
 		CEBBACD42041609B00F6262D /* StatusController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBBACD32041609B00F6262D /* StatusController.m */; };
 		CEBEC2A22043B85D00540DBB /* DiscussController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBEC2A12043B85D00540DBB /* DiscussController.m */; };
@@ -155,13 +157,17 @@
 		CE446F6620280A6D009320EC /* VersionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VersionController.h; sourceTree = "<group>"; };
 		CE446F6720280A78009320EC /* VersionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VersionController.m; sourceTree = "<group>"; };
 		CE501028205A2F3800467D5A /* MacroDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MacroDefine.h; sourceTree = "<group>"; };
+		CE50102B205A598700467D5A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = alarm/Assets.xcassets; sourceTree = "<group>"; };
+		CE50102D205A5EDD00467D5A /* StatusPainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusPainController.h; sourceTree = "<group>"; };
+		CE50102E205A5EDD00467D5A /* StatusPainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusPainController.m; sourceTree = "<group>"; };
+		CE501030205A66C400467D5A /* ShowPainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowPainController.h; sourceTree = "<group>"; };
+		CE501031205A66C400467D5A /* ShowPainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowPainController.m; sourceTree = "<group>"; };
 		CE8B78A82047B78B00522F65 /* AlarmWeekController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlarmWeekController.m; sourceTree = "<group>"; };
 		CE8B78AA2047B79D00522F65 /* AlarmWeekController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlarmWeekController.h; sourceTree = "<group>"; };
 		CEA01CEA202337A60001DAF0 /* ListAlarmController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListAlarmController.m; sourceTree = "<group>"; };
 		CEA01CEC202338020001DAF0 /* ListAlarmController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListAlarmController.h; sourceTree = "<group>"; };
 		CEA7ECCA2045160A006A9D7F /* ShowPhotoController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowPhotoController.h; sourceTree = "<group>"; };
 		CEA7ECCB2045161C006A9D7F /* ShowPhotoController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowPhotoController.m; sourceTree = "<group>"; };
-		CEA7ECCD20453CE6006A9D7F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = alarm/Assets.xcassets; sourceTree = "<group>"; };
 		CEBBACCF2041214800F6262D /* WBTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WBTabBarController.m; sourceTree = "<group>"; };
 		CEBBACD12041215A00F6262D /* WBTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WBTabBarController.h; sourceTree = "<group>"; };
 		CEBBACD22041608D00F6262D /* StatusController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StatusController.h; sourceTree = "<group>"; };
@@ -199,7 +205,7 @@
 		9907369A2016344C002EFEC5 = {
 			isa = PBXGroup;
 			children = (
-				CEA7ECCD20453CE6006A9D7F /* Assets.xcassets */,
+				CE50102B205A598700467D5A /* Assets.xcassets */,
 				990C854E2042F3C600D36C9E /* PTView */,
 				990C85442042EFB200D36C9E /* Classes */,
 				990C85382042EED800D36C9E /* YXCalendar */,
@@ -272,6 +278,10 @@
 		990C85072042AFA500D36C9E /* StatusTab */ = {
 			isa = PBXGroup;
 			children = (
+				CE501030205A66C400467D5A /* ShowPainController.h */,
+				CE501031205A66C400467D5A /* ShowPainController.m */,
+				CE50102D205A5EDD00467D5A /* StatusPainController.h */,
+				CE50102E205A5EDD00467D5A /* StatusPainController.m */,
 				990C850C2042B20C00D36C9E /* StatusFourController.h */,
 				990C850D2042B20C00D36C9E /* StatusFourController.m */,
 				990C850E2042B20C00D36C9E /* StatusThreeController.h */,
@@ -535,7 +545,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				990736B12016344C002EFEC5 /* Main.storyboard in Resources */,
-				CEA7ECCE20453CE7006A9D7F /* Assets.xcassets in Resources */,
+				CE50102C205A598700467D5A /* Assets.xcassets in Resources */,
 				990C85362042EECE00D36C9E /* YXDayCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -562,12 +572,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				990C85132042B20C00D36C9E /* StatusThreeController.m in Sources */,
+				CE50102F205A5EDD00467D5A /* StatusPainController.m in Sources */,
 				9920D21C2017860D00DA8D6D /* SettingController.m in Sources */,
 				CEBBACD42041609B00F6262D /* StatusController.m in Sources */,
 				CEA01CEB202337A60001DAF0 /* ListAlarmController.m in Sources */,
 				990C85122042B20C00D36C9E /* StatusFourController.m in Sources */,
 				CE8B78A92047B78B00522F65 /* AlarmWeekController.m in Sources */,
 				990C854D2042F3BF00D36C9E /* UICountingLabel.m in Sources */,
+				CE501032205A66C400467D5A /* ShowPainController.m in Sources */,
 				990C85372042EECE00D36C9E /* YXMonthView.m in Sources */,
 				990C85222042D95D00D36C9E /* MyMsgController.m in Sources */,
 				990C85262042DCBD00D36C9E /* MsgDetailController.m in Sources */,

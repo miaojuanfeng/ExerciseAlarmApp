@@ -48,7 +48,7 @@
         {
             self.nameArray = nameArray;
             self.countArray = countArray;
-            self.backgroundColor = [UIColor greenColor];
+            self.backgroundColor = [UIColor whiteColor];
             
             self.leftSpace = 30;
             self.topSpace = 30;

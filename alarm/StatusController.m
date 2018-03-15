@@ -14,6 +14,8 @@
 #import "StatusTwoController.h"
 #import "StatusThreeController.h"
 #import "StatusFourController.h"
+#import "SettingController.h"
+#import "StatusPainController.h"
 
 @interface StatusController ()
 
@@ -26,6 +28,12 @@
     // Do any additional setup after loading the view, typically from a nib.]
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.title = @"我的狀態";
+    
+    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithTitle:@"痛感自評" style:UIBarButtonItemStylePlain target:self action:@selector(clickStatusPainButton)];
+    self.navigationItem.leftBarButtonItem = leftButton;
+    
+    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"設置" style:UIBarButtonItemStylePlain target:self action:@selector(clickSettingButton)];
+    self.navigationItem.rightBarButtonItem = rightButton;
     
     CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
     float marginTop = rectStatus.size.height + self.navigationController.navigationBar.frame.size.height;
@@ -51,6 +59,8 @@
      */
     UIView *view1 = [[UIView alloc] initWithFrame:CGRectMake(35, marginTop+20+100, viewWidth, viewHeight)];
     view1.backgroundColor = RGBA_COLOR(244, 178, 79, 1);
+    view1.layer.cornerRadius = 15;
+    view1.layer.masksToBounds = YES;
     //
     UILabel *titleTop1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, view1.frame.size.width, 30)];
     titleTop1.text = @"累積鍛煉";
@@ -79,6 +89,8 @@
      */
     UIView *view2 = [[UIView alloc] initWithFrame:CGRectMake(72+viewWidth, marginTop+20+100, viewWidth, viewHeight)];
     view2.backgroundColor = RGBA_COLOR(72, 213, 159, 1);
+    view2.layer.cornerRadius = 15;
+    view2.layer.masksToBounds = YES;
     //
     UILabel *titleTop2 = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, view2.frame.size.width, 30)];
     titleTop2.text = @"累積星星";
@@ -107,6 +119,8 @@
      */
     UIView *view3 = [[UIView alloc] initWithFrame:CGRectMake(35, marginTop+20+295, viewWidth, viewHeight)];
     view3.backgroundColor = RGBA_COLOR(32, 188, 175, 1);
+    view3.layer.cornerRadius = 15;
+    view3.layer.masksToBounds = YES;
     //
     UILabel *titleTop3 = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, view3.frame.size.width, 30)];
     titleTop3.text = @"累積天數";
@@ -135,9 +149,11 @@
      */
     UIView *view4 = [[UIView alloc] initWithFrame:CGRectMake(72+viewWidth, marginTop+20+295, viewWidth, viewHeight)];
     view4.backgroundColor = RGBA_COLOR(251, 134, 112, 1);
+    view4.layer.cornerRadius = 15;
+    view4.layer.masksToBounds = YES;
     //
     UILabel *titleTop4 = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, view4.frame.size.width, 30)];
-    titleTop4.text = @"綜合得分";
+    titleTop4.text = @"疼痛等級";
     titleTop4.font = [UIFont fontWithName:@"AppleGothic" size:26.0];
     titleTop4.textColor = [UIColor whiteColor];
     titleTop4.textAlignment = NSTextAlignmentCenter;
@@ -145,13 +161,13 @@
     //
     UIButton *numButton4 = [[UIButton alloc] initWithFrame:CGRectMake(0, 55, view4.frame.size.width, 60)];
     numButton4.titleLabel.font = [UIFont fontWithName:@"AppleGothic" size:46.0];
-    [numButton4 setTitle:@"83" forState:UIControlStateNormal];
+    [numButton4 setTitle:@"3" forState:UIControlStateNormal];
     [numButton4 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [numButton4 addTarget:self action:@selector(clickButton4) forControlEvents:UIControlEventTouchUpInside];
     [view4 addSubview:numButton4];
     //
     UILabel *titleBottom4 = [[UILabel alloc] initWithFrame:CGRectMake(0, 115, view4.frame.size.width, 30)];
-    titleBottom4.text = @"分";
+    titleBottom4.text = @"級";
     titleBottom4.font = [UIFont fontWithName:@"AppleGothic" size:26.0];
     titleBottom4.textColor = [UIColor whiteColor];
     titleBottom4.textAlignment = NSTextAlignmentCenter;
@@ -184,6 +200,16 @@
 - (void)clickButton4 {
     StatusFourController *statusFourController = [[StatusFourController alloc] init];
     [self.navigationController pushViewController:statusFourController animated:YES];
+}
+
+- (void)clickStatusPainButton {
+    StatusPainController *statusPainController = [[StatusPainController alloc] init];
+    [self.navigationController pushViewController:statusPainController animated:YES];
+}
+
+- (void)clickSettingButton {
+    SettingController *settingController = [[SettingController alloc] init];
+    [self.navigationController pushViewController:settingController animated:YES];
 }
 
 @end
