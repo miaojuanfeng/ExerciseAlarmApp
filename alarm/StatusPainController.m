@@ -11,6 +11,7 @@
 #import "MacroDefine.h"
 #import "StatusPainController.h"
 #import "ShowPainController.h"
+#import "StatusFourController.h"
 
 @interface StatusPainController ()
 @property UITableView *tableView;
@@ -68,7 +69,9 @@
     UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"確認痛感" message:@"您當前痛感等級為3，屬於中度疼痛。\n是否提交?" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"確認" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
         //响应事件
-        NSLog(@"action = %@", action);
+//        NSLog(@"action = %@", action);
+        StatusFourController *statusFourController = [[StatusFourController alloc] init];
+        [self.navigationController pushViewController:statusFourController animated:YES];
     }];
     UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"修改" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
         //响应事件

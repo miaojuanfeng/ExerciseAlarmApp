@@ -11,8 +11,8 @@
 #import "StatusController.h"
 #import "ListAlarmController.h"
 #import "VideoListController.h"
+#import "HealthController.h"
 #import "DiscussController.h"
-#import "SettingController.h"
 @interface WBTabBarController ()
 
 @end
@@ -27,7 +27,7 @@
     StatusController *oneVc = [[StatusController alloc]init];
     ListAlarmController *twoVc = [[ListAlarmController alloc]init];
     VideoListController *threeVc = [[VideoListController alloc]init];
-    DiscussController *fourVc = [[DiscussController alloc]init];
+    HealthController *fourVc = [[HealthController alloc]init];
     DiscussController *fiveVc = [[DiscussController alloc]init];
     
     //为两个视图控制器添加导航栏控制器

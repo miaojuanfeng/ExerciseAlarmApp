@@ -49,6 +49,10 @@
 		CE50102C205A598700467D5A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE50102B205A598700467D5A /* Assets.xcassets */; };
 		CE50102F205A5EDD00467D5A /* StatusPainController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE50102E205A5EDD00467D5A /* StatusPainController.m */; };
 		CE501032205A66C400467D5A /* ShowPainController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE501031205A66C400467D5A /* ShowPainController.m */; };
+		CE501040205A8B1400467D5A /* YASimpleGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE50103E205A8B1400467D5A /* YASimpleGraphView.m */; };
+		CE501045205A91DD00467D5A /* CurrentPainController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE501043205A91DC00467D5A /* CurrentPainController.m */; };
+		CE501046205A91DD00467D5A /* AveragePainController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE501044205A91DC00467D5A /* AveragePainController.m */; };
+		CE50104B205A997000467D5A /* HealthController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE50104A205A997000467D5A /* HealthController.m */; };
 		CE8B78A92047B78B00522F65 /* AlarmWeekController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8B78A82047B78B00522F65 /* AlarmWeekController.m */; };
 		CEA01CEB202337A60001DAF0 /* ListAlarmController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA01CEA202337A60001DAF0 /* ListAlarmController.m */; };
 		CEA7ECCC2045161C006A9D7F /* ShowPhotoController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA7ECCB2045161C006A9D7F /* ShowPhotoController.m */; };
@@ -162,6 +166,14 @@
 		CE50102E205A5EDD00467D5A /* StatusPainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusPainController.m; sourceTree = "<group>"; };
 		CE501030205A66C400467D5A /* ShowPainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowPainController.h; sourceTree = "<group>"; };
 		CE501031205A66C400467D5A /* ShowPainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowPainController.m; sourceTree = "<group>"; };
+		CE50103E205A8B1400467D5A /* YASimpleGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YASimpleGraphView.m; path = alarm/YASimpleGraph/YASimpleGraphView.m; sourceTree = "<group>"; };
+		CE50103F205A8B1400467D5A /* YASimpleGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YASimpleGraphView.h; path = alarm/YASimpleGraph/YASimpleGraphView.h; sourceTree = "<group>"; };
+		CE501041205A91DC00467D5A /* AveragePainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AveragePainController.h; sourceTree = "<group>"; };
+		CE501042205A91DC00467D5A /* CurrentPainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentPainController.h; sourceTree = "<group>"; };
+		CE501043205A91DC00467D5A /* CurrentPainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentPainController.m; sourceTree = "<group>"; };
+		CE501044205A91DC00467D5A /* AveragePainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AveragePainController.m; sourceTree = "<group>"; };
+		CE501048205A995700467D5A /* HealthController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HealthController.h; sourceTree = "<group>"; };
+		CE50104A205A997000467D5A /* HealthController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HealthController.m; sourceTree = "<group>"; };
 		CE8B78A82047B78B00522F65 /* AlarmWeekController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlarmWeekController.m; sourceTree = "<group>"; };
 		CE8B78AA2047B79D00522F65 /* AlarmWeekController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlarmWeekController.h; sourceTree = "<group>"; };
 		CEA01CEA202337A60001DAF0 /* ListAlarmController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListAlarmController.m; sourceTree = "<group>"; };
@@ -205,6 +217,8 @@
 		9907369A2016344C002EFEC5 = {
 			isa = PBXGroup;
 			children = (
+				CE50103F205A8B1400467D5A /* YASimpleGraphView.h */,
+				CE50103E205A8B1400467D5A /* YASimpleGraphView.m */,
 				CE50102B205A598700467D5A /* Assets.xcassets */,
 				990C854E2042F3C600D36C9E /* PTView */,
 				990C85442042EFB200D36C9E /* Classes */,
@@ -229,6 +243,7 @@
 		990736A52016344C002EFEC5 /* alarm */ = {
 			isa = PBXGroup;
 			children = (
+				CE501047205A993C00467D5A /* HealthTab */,
 				CE501028205A2F3800467D5A /* MacroDefine.h */,
 				990C851D2042C88F00D36C9E /* DiscussTab */,
 				990C85162042C62700D36C9E /* AlarmTab */,
@@ -278,6 +293,10 @@
 		990C85072042AFA500D36C9E /* StatusTab */ = {
 			isa = PBXGroup;
 			children = (
+				CE501041205A91DC00467D5A /* AveragePainController.h */,
+				CE501044205A91DC00467D5A /* AveragePainController.m */,
+				CE501042205A91DC00467D5A /* CurrentPainController.h */,
+				CE501043205A91DC00467D5A /* CurrentPainController.m */,
 				CE501030205A66C400467D5A /* ShowPainController.h */,
 				CE501031205A66C400467D5A /* ShowPainController.m */,
 				CE50102D205A5EDD00467D5A /* StatusPainController.h */,
@@ -437,6 +456,15 @@
 			name = PTView;
 			sourceTree = "<group>";
 		};
+		CE501047205A993C00467D5A /* HealthTab */ = {
+			isa = PBXGroup;
+			children = (
+				CE501048205A995700467D5A /* HealthController.h */,
+				CE50104A205A997000467D5A /* HealthController.m */,
+			);
+			name = HealthTab;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -574,6 +602,7 @@
 				990C85132042B20C00D36C9E /* StatusThreeController.m in Sources */,
 				CE50102F205A5EDD00467D5A /* StatusPainController.m in Sources */,
 				9920D21C2017860D00DA8D6D /* SettingController.m in Sources */,
+				CE501045205A91DD00467D5A /* CurrentPainController.m in Sources */,
 				CEBBACD42041609B00F6262D /* StatusController.m in Sources */,
 				CEA01CEB202337A60001DAF0 /* ListAlarmController.m in Sources */,
 				990C85122042B20C00D36C9E /* StatusFourController.m in Sources */,
@@ -590,6 +619,7 @@
 				990736DA20163578002EFEC5 /* IndexController.m in Sources */,
 				CE1A4979201A01DD005CB860 /* HYBAnimationClock.m in Sources */,
 				990736AE2016344C002EFEC5 /* AddAlarmController.m in Sources */,
+				CE501046205A91DD00467D5A /* AveragePainController.m in Sources */,
 				9920D21620177C2800DA8D6D /* SelectMusicController.m in Sources */,
 				CEBEC2A42043C7BE00540DBB /* PlayVideoController.m in Sources */,
 				CE446F6220280A4B009320EC /* HelpController.m in Sources */,
@@ -608,6 +638,7 @@
 				990C85202042CF9600D36C9E /* NewQuestionController.m in Sources */,
 				990C85332042EECE00D36C9E /* YXCalendarView.m in Sources */,
 				CE446F5E20280A1C009320EC /* PwdController.m in Sources */,
+				CE50104B205A997000467D5A /* HealthController.m in Sources */,
 				990C854C2042F3BF00D36C9E /* UIView+Extend.m in Sources */,
 				990C85432042EFA900D36C9E /* SXYCircle.m in Sources */,
 				990C85422042EFA900D36C9E /* NewPagedFlowView.m in Sources */,
@@ -615,6 +646,7 @@
 				990C85282042EA8C00D36C9E /* NewCommentController.m in Sources */,
 				990C854B2042F3BF00D36C9E /* PTHistogramView.m in Sources */,
 				CEBEC2A22043B85D00540DBB /* DiscussController.m in Sources */,
+				CE501040205A8B1400467D5A /* YASimpleGraphView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
