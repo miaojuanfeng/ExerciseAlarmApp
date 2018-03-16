@@ -81,57 +81,94 @@
     num.font = newFont;
     UILabel *name = [[UILabel alloc] initWithFrame:CGRectMake(30, 0, 150, cell.frame.size.height)];
     name.font = newFont;
-    UILabel *star = [[UILabel alloc] initWithFrame:CGRectMake(cell.frame.size.width-60, 0, 100, cell.frame.size.height)];
+    UILabel *star = [[UILabel alloc] initWithFrame:CGRectMake(cell.frame.size.width-100, 0, 100, cell.frame.size.height)];
     star.font = newFont;
     star.textAlignment = NSTextAlignmentRight;
+    
+    UIView *starLikeView = [[UIView alloc] initWithFrame:CGRectMake(cell.frame.size.width+15, 0, 25, cell.frame.size.height)];
+    UILabel *starLikeNum = [[UILabel alloc] initWithFrame:CGRectMake(0, 2, starLikeView.frame.size.width, 25)];
+    newFont = [UIFont fontWithName:@"AppleGothic" size:9.0];
+    starLikeNum.font = newFont;
+    starLikeNum.textAlignment = NSTextAlignmentCenter;
+    [starLikeView addSubview:starLikeNum];
+//    starLikeView.backgroundColor = [UIColor redColor];
+    UIImageView *starLikeImage = [[UIImageView alloc] initWithFrame:CGRectMake((starLikeView.frame.size.width-15)/2, 22, 15, 15)];
+    [starLikeView addSubview:starLikeImage];
+    [cell addSubview:starLikeView];
+
+    NSMutableAttributedString *str = nil;
     switch( indexPath.row ){
         case 0:
             num.text = @"1";
             [cell addSubview:num];
             name.text = @"參與者";
             [cell addSubview:name];
-            star.text = @"179 星";
+            str = [[NSMutableAttributedString alloc] initWithString:@"179 星"];
+            [str addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"AppleGothic" size:12.0] range:NSMakeRange(str.length-1, 1)];
+            star.attributedText = str;
             [cell addSubview:star];
+            starLikeNum.text = @"32";
+            starLikeImage.image = [UIImage imageNamed:@"like_fill"];
             break;
         case 1:
             num.text = @"2";
             [cell addSubview:num];
             name.text = @"參與者";
             [cell addSubview:name];
-            star.text = @"175 星";
+            str = [[NSMutableAttributedString alloc] initWithString:@"170 星"];
+            [str addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"AppleGothic" size:12.0] range:NSMakeRange(str.length-1, 1)];
+            star.attributedText = str;
             [cell addSubview:star];
+            starLikeNum.text = @"22";
+            starLikeImage.image = [UIImage imageNamed:@"like_fill"];
             break;
         case 2:
             num.text = @"3";
             [cell addSubview:num];
             name.text = @"參與者";
             [cell addSubview:name];
-            star.text = @"169 星";
+            str = [[NSMutableAttributedString alloc] initWithString:@"169 星"];
+            [str addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"AppleGothic" size:12.0] range:NSMakeRange(str.length-1, 1)];
+            star.attributedText = str;
             [cell addSubview:star];
+            starLikeNum.text = @"12";
+            starLikeImage.image = [UIImage imageNamed:@"like"];
             break;
         case 3:
             num.text = @"4";
             [cell addSubview:num];
             name.text = @"參與者";
             [cell addSubview:name];
-            star.text = @"139 星";
+            str = [[NSMutableAttributedString alloc] initWithString:@"139 星"];
+            [str addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"AppleGothic" size:12.0] range:NSMakeRange(str.length-1, 1)];
+            star.attributedText = str;
             [cell addSubview:star];
+            starLikeNum.text = @"8";
+            starLikeImage.image = [UIImage imageNamed:@"like"];
             break;
         case 4:
             num.text = @"5";
             [cell addSubview:num];
             name.text = @"參與者";
             [cell addSubview:name];
-            star.text = @"120 星";
+            str = [[NSMutableAttributedString alloc] initWithString:@"119 星"];
+            [str addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"AppleGothic" size:12.0] range:NSMakeRange(str.length-1, 1)];
+            star.attributedText = str;
             [cell addSubview:star];
+            starLikeNum.text = @"7";
+            starLikeImage.image = [UIImage imageNamed:@"like"];
             break;
         case 5:
             num.text = @"6";
             [cell addSubview:num];
             name.text = @"參與者";
             [cell addSubview:name];
-            star.text = @"99 星";
+            str = [[NSMutableAttributedString alloc] initWithString:@"99 星"];
+            [str addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"AppleGothic" size:12.0] range:NSMakeRange(str.length-1, 1)];
+            star.attributedText = str;
             [cell addSubview:star];
+            starLikeNum.text = @"2";
+            starLikeImage.image = [UIImage imageNamed:@"like"];
             break;
     }
     return cell;

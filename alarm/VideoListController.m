@@ -69,8 +69,8 @@
 //            cell.imageView.image = [UIImage imageNamed:@"video"];
 //            break;
 //    }
-    cell.textLabel.text = [NSString stringWithFormat:@"%@%ld", @"視頻", indexPath.row ];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@%ld", @"視頻介紹", indexPath.row ];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@%ld", @"運動", indexPath.row ];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@%ld", @"\n", indexPath.row ];
     cell.imageView.image = [UIImage imageNamed:@"V"];
     return cell;
 }
@@ -80,5 +80,15 @@
     [self.navigationController pushViewController:videoDetailController animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+        [cell setSeparatorInset:UIEdgeInsetsZero];
+    }
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+    }
+}
+
 
 @end

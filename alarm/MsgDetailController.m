@@ -65,10 +65,11 @@
     commentLabel.textColor = [UIColor whiteColor];
     [commentView addSubview:commentLabel];
     
-    UIButton *newCommentButton = [[UIButton alloc] initWithFrame:CGRectMake(commentView.frame.size.width-100, 0, 100, commentView.frame.size.height)];
+    UIButton *newCommentButton = [[UIButton alloc] initWithFrame:CGRectMake(commentView.frame.size.width-112, 0, 100, commentView.frame.size.height)];
     [newCommentButton setTitle:@"添加評論" forState:UIControlStateNormal];
     newCommentButton.titleLabel.font = [UIFont fontWithName:@"AppleGothic" size:16.0];
     [newCommentButton addTarget:self action:@selector(clickNewComment) forControlEvents:UIControlEventTouchUpInside];
+    [newCommentButton setImage:[UIImage imageNamed:@"addition"] forState:UIControlStateNormal];
     [commentView addSubview:newCommentButton];
     
     [self.view addSubview:commentView];
@@ -86,11 +87,12 @@
     commentLabelTime.text = @"2018/02/06";
     [commentContentTime addSubview:commentLabelTime];
     
-    UIButton *commentReplyButton = [[UIButton alloc] initWithFrame:CGRectMake(commentContentTime.frame.size.width-80, 0, 100, commentContentTime.frame.size.height)];
+    UIButton *commentReplyButton = [[UIButton alloc] initWithFrame:CGRectMake(commentContentTime.frame.size.width-85, 0, 100, commentContentTime.frame.size.height)];
     [commentReplyButton setTitle:@"回復" forState:UIControlStateNormal];
     commentReplyButton.titleLabel.font = [UIFont fontWithName:@"AppleGothic" size:12.0];
     [commentReplyButton addTarget:self action:@selector(clickReplyComment) forControlEvents:UIControlEventTouchUpInside];
     [commentReplyButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [commentReplyButton setImage:[UIImage imageNamed:@"message"] forState:UIControlStateNormal];
     [commentContentTime addSubview:commentReplyButton];
     
     

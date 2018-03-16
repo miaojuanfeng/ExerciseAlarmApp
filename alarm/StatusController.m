@@ -29,14 +29,62 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.title = @"我的狀態";
     
-    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithTitle:@"痛感自評" style:UIBarButtonItemStylePlain target:self action:@selector(clickStatusPainButton)];
-    self.navigationItem.leftBarButtonItem = leftButton;
-    
-    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"設置" style:UIBarButtonItemStylePlain target:self action:@selector(clickSettingButton)];
-    self.navigationItem.rightBarButtonItem = rightButton;
-    
     CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
     float marginTop = rectStatus.size.height + self.navigationController.navigationBar.frame.size.height;
+    
+//    UIView *leftButtonView = [[UIButton alloc] initWithFrame:CGRectMake(-10, 0, 100, 100)];
+//    UIImageView *brushImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
+//    brushImageView.image = [UIImage imageNamed:@"brush"];
+//    [leftButtonView addSubview:brushImageView];
+    
+    
+    UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [leftButton addTarget:self action:@selector(clickStatusPainButton) forControlEvents:UIControlEventTouchUpInside];
+//    button.backgroundColor = [UIColor grayColor]; //加上背景颜色，方便观察Button的大小
+    //设置图片
+    UIImage *imageForButton = [UIImage imageNamed:@"brush"];
+    [leftButton setImage:imageForButton forState:UIControlStateNormal];
+    //设置文字
+    NSString *buttonTitleStr = @"痛感自評";
+    [leftButton setTitle:buttonTitleStr forState:UIControlStateNormal];
+//    button.titleLabel.font = [UIFont systemFontOfSize:15];
+    [leftButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    leftButton.frame = CGRectMake(0, 0 , 100, 100);   //#1#硬编码设置UIButton位置、大小
+
+    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];
+    self.navigationItem.leftBarButtonItem = barButtonItem;
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [rightButton addTarget:self action:@selector(clickSettingButton) forControlEvents:UIControlEventTouchUpInside];
+    //    button.backgroundColor = [UIColor grayColor]; //加上背景颜色，方便观察Button的大小
+    //设置图片
+    UIImage *imageForRightButton = [UIImage imageNamed:@"setup"];
+    [rightButton setImage:imageForRightButton forState:UIControlStateNormal];
+    //设置文字
+    NSString *rightButtonTitleStr = @"設置";
+    [rightButton setTitle:rightButtonTitleStr forState:UIControlStateNormal];
+    //    button.titleLabel.font = [UIFont systemFontOfSize:15];
+    [rightButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    rightButton.frame = CGRectMake(0, 0 , 50, 100);   //#1#硬编码设置UIButton位置、大小
+    
+    UIBarButtonItem *barRightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
+    self.navigationItem.rightBarButtonItem = barRightButtonItem;
+    
+    
+//    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithTitle:@"痛感自評" style:UIBarButtonItemStylePlain target:self action:@selector(clickStatusPainButton)];
+//    self.navigationItem.leftBarButtonItem = leftButton;
+//
+//    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"設置" style:UIBarButtonItemStylePlain target:self action:@selector(clickSettingButton)];
+//    self.navigationItem.rightBarButtonItem = rightButton;
     
     UIImage *logoPic = [UIImage imageNamed:@"logo"];
     int logoWidth = self.view.frame.size.width - 100;

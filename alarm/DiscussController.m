@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "MacroDefine.h"
 #import "DiscussController.h"
 #import "NewQuestionController.h"
 #import "MyMsgController.h"
@@ -39,6 +39,11 @@
     [topButtonRight setTitle:@"我的訊息" forState:UIControlStateNormal];
     [topButtonRight addTarget:self action:@selector(clickButtonRight) forControlEvents:UIControlEventTouchUpInside];
     [topButton addSubview:topButtonRight];
+    
+    CALayer *topButtonBorder = [CALayer layer];
+    topButtonBorder.frame = CGRectMake(0, 0, 1, topButtonRight.frame.size.height);
+    topButtonBorder.backgroundColor = [UIColor whiteColor].CGColor;
+    [topButtonRight.layer addSublayer:topButtonBorder];
     //
     [self.view addSubview:topButton];
     
@@ -66,6 +71,7 @@
     UITableViewCell *cell = [[UITableViewCell alloc] init];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.textLabel.text = @"每天什麽時間鍛煉最合適？";
+    cell.imageView.image = [UIImage imageNamed:@"feedback"];
     return cell;
 }
 
@@ -83,5 +89,14 @@
 - (void)clickButtonRight {
     MyMsgController *myMsgController = [[MyMsgController alloc] init];
     [self.navigationController pushViewController:myMsgController animated:YES];
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+        [cell setSeparatorInset:UIEdgeInsetsZero];
+    }
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+    }
 }
 @end
