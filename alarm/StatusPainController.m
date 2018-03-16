@@ -31,17 +31,17 @@
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"提交" style:UIBarButtonItemStylePlain target:self action:@selector(clickSubmitButton)];
     self.navigationItem.rightBarButtonItem = rightButton;
     
-    UILabel *textLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, marginTop+60, self.view.frame.size.width-40, 80)];
+    UILabel *textLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, marginTop+60, self.view.frame.size.width-40, 95)];
     textLabel.backgroundColor = [UIColor clearColor];
     textLabel.numberOfLines = 0;
-    textLabel.font =  [UIFont fontWithName:@"AppleGothic" size:16.0];
+    textLabel.font =  [UIFont fontWithName:@"AppleGothic" size:18.0];
     textLabel.lineBreakMode = NSLineBreakByWordWrapping;
     
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     paragraphStyle.lineSpacing = 10;// 字体的行间距
     
     NSDictionary *attributes = @{
-                                 NSFontAttributeName:[UIFont systemFontOfSize:16],
+                                 NSFontAttributeName:[UIFont systemFontOfSize:18],
                                  NSParagraphStyleAttributeName:paragraphStyle
                                  };
     textLabel.attributedText = [[NSAttributedString alloc] initWithString:@"請在以下空格輸入一個0-10的數字，表示您的痛感程度：0代表完全無痛，10代表極度劇痛，由0至10痛感依次遞增。" attributes:attributes];
@@ -56,7 +56,7 @@
     [showPainButton addTarget:self action:@selector(clickShowPainButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:showPainButton];
     
-    UITextField *numberField = [[UITextField alloc] initWithFrame:CGRectMake(80, showPainButton.frame.origin.y+showPainButton.frame.size.height+15, self.view.frame.size.width-160, 34)];
+    UITextField *numberField = [[UITextField alloc] initWithFrame:CGRectMake(80, showPainButton.frame.origin.y+showPainButton.frame.size.height+20, self.view.frame.size.width-160, 34)];
     numberField.borderStyle = UITextBorderStyleRoundedRect;
     numberField.clearButtonMode = UITextFieldViewModeWhileEditing;
     numberField.keyboardType = UIKeyboardTypeNumberPad;
