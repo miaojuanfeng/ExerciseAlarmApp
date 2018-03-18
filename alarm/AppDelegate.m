@@ -55,13 +55,13 @@
     }];
     
     
-    NSMutableDictionary *user = [[NSMutableDictionary alloc] init];
-    [user setObject:@"24" forKey:@"id"];
-    [user setObject:@"miaojuanfeng" forKey:@"username"];
-    [user setObject:@"1659138950" forKey:@"number"];
-    [user setObject:@"mjf" forKey:@"nickname"];
-    [user setObject:@"ios" forKey:@"platform"];
-    [self saveUser:user];
+//    NSMutableDictionary *user = [[NSMutableDictionary alloc] init];
+//    [user setObject:@"24" forKey:@"id"];
+//    [user setObject:@"miaojuanfeng" forKey:@"username"];
+//    [user setObject:@"1659138950" forKey:@"number"];
+//    [user setObject:@"mjf" forKey:@"nickname"];
+//    [user setObject:@"ios" forKey:@"platform"];
+//    [self saveUser:user];
     
     [self loadUser];
     NSLog(@"%@", self.user);
@@ -173,6 +173,8 @@
     NSString *documentsPath = [path objectAtIndex:0];
     NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"user.plist"];
     
+    self.user = user;
+    
     [user writeToFile:plistPath atomically:YES];
 }
 
@@ -180,7 +182,18 @@
     NSArray *pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *path = [pathArray objectAtIndex:0];
     NSString *plistPath = [path stringByAppendingPathComponent:@"user.plist"];
-//    self.user = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
+    self.user = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
+}
+
+- (void)deleteUser {
+    NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsPath = [path objectAtIndex:0];
+    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"user.plist"];
+    
+    self.user = nil;
+    
+    NSFileManager *appFileManager = [NSFileManager defaultManager];
+    [appFileManager removeItemAtPath:plistPath error:nil];
 }
 
 @end

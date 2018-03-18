@@ -14,5 +14,7 @@
 
 @property NSMutableDictionary *user;
 
+- (void)saveUser:(NSMutableDictionary *) user;
+- (void)deleteUser;
 @end
 

@@ -40,6 +40,7 @@
 		9920D21C2017860D00DA8D6D /* SettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9920D21B2017860D00DA8D6D /* SettingController.m */; };
 		998F36D6202757D300676226 /* NoiseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 998F36D5202757D300676226 /* NoiseController.m */; };
 		99EDCC58205E53CF0063DA06 /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99EDCC57205E53CF0063DA06 /* LoginController.m */; };
+		99EDCC5B205E7DA90063DA06 /* ForgetPwdController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99EDCC5A205E7DA90063DA06 /* ForgetPwdController.m */; };
 		AA0B09616A843BFF7F371CB0 /* libPods-alarmUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66D176312CBDFB3308B59DD6 /* libPods-alarmUITests.a */; };
 		CE01F3FD202359A100040FC4 /* MyCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE01F3FC202359A100040FC4 /* MyCollectionViewCell.m */; };
 		CE1A4979201A01DD005CB860 /* HYBAnimationClock.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1A4977201A01DC005CB860 /* HYBAnimationClock.m */; };
@@ -156,6 +157,8 @@
 		998F36D7202757E400676226 /* NoiseController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoiseController.h; sourceTree = "<group>"; };
 		99EDCC56205E53CF0063DA06 /* LoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginController.h; sourceTree = "<group>"; };
 		99EDCC57205E53CF0063DA06 /* LoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginController.m; sourceTree = "<group>"; };
+		99EDCC5A205E7DA90063DA06 /* ForgetPwdController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPwdController.m; sourceTree = "<group>"; };
+		99EDCC5C205E7DB80063DA06 /* ForgetPwdController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ForgetPwdController.h; sourceTree = "<group>"; };
 		9C2A3C8A84FC0FA8F90F7D88 /* Pods-alarmTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-alarmTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-alarmTests/Pods-alarmTests.release.xcconfig"; sourceTree = "<group>"; };
 		C5067A34434CE1D7209C5350 /* libPods-alarm.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-alarm.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA5FDCF42E9364E1951359C9 /* Pods-alarmUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-alarmUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-alarmUITests/Pods-alarmUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -277,8 +280,6 @@
 			isa = PBXGroup;
 			children = (
 				99EDCC59205E5C620063DA06 /* UserTab */,
-				99EDCC56205E53CF0063DA06 /* LoginController.h */,
-				99EDCC57205E53CF0063DA06 /* LoginController.m */,
 				CE501047205A993C00467D5A /* HealthTab */,
 				CE501028205A2F3800467D5A /* MacroDefine.h */,
 				990C851D2042C88F00D36C9E /* DiscussTab */,
@@ -495,6 +496,10 @@
 		99EDCC59205E5C620063DA06 /* UserTab */ = {
 			isa = PBXGroup;
 			children = (
+				99EDCC56205E53CF0063DA06 /* LoginController.h */,
+				99EDCC57205E53CF0063DA06 /* LoginController.m */,
+				99EDCC5A205E7DA90063DA06 /* ForgetPwdController.m */,
+				99EDCC5C205E7DB80063DA06 /* ForgetPwdController.h */,
 			);
 			name = UserTab;
 			sourceTree = "<group>";
@@ -834,6 +839,7 @@
 				CE446F6220280A4B009320EC /* HelpController.m in Sources */,
 				CE446F5B202806FE009320EC /* VideoDetailController.m in Sources */,
 				998F36D6202757D300676226 /* NoiseController.m in Sources */,
+				99EDCC5B205E7DA90063DA06 /* ForgetPwdController.m in Sources */,
 				9920D2182017859900DA8D6D /* VideoListController.m in Sources */,
 				CE1A497C201A0219005CB860 /* HYBClockView.m in Sources */,
 				CE446F6820280A78009320EC /* VersionController.m in Sources */,

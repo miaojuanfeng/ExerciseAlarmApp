@@ -13,4 +13,6 @@
 #define BORDER_COLOR [UIColor colorWithWhite:0.8f alpha:1.0f].CGColor
 #define BORDER_WIDTH 1.0f
 
+#define BASE_URL(url) [NSString stringWithFormat:@"http://104.236.150.123:8080/ExerciseAlarmCMS/api/%@", url]
+
 #endif /* MacroDefine_h */

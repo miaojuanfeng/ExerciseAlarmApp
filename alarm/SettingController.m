@@ -11,10 +11,12 @@
 #import "HelpController.h"
 #import "AboutController.h"
 #import "VersionController.h"
+#import "AppDelegate.h"
+#import "LoginController.h"
 
 @interface SettingController () <UITableViewDelegate, UITableViewDataSource>
 @property UITableView *tableView;
-
+@property AppDelegate *appDelegate;
 @end
 
 @implementation SettingController
@@ -27,6 +29,8 @@
     CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
     float marginTop = rectStatus.size.height + self.navigationController.navigationBar.frame.size.height;
     
+    self.appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, marginTop, self.view.frame.size.width, self.view.frame.size.height-marginTop-self.tabBarController.tabBar.frame.size.height) style:UITableViewStyleGrouped];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
@@ -36,6 +40,7 @@
     UIButton *logoutButton = [[UIButton alloc] initWithFrame:CGRectMake(10, self.view.frame.size.height-200, self.view.frame.size.width-20, 44)];
     logoutButton.backgroundColor = [UIColor blueColor];
     [logoutButton setTitle:@"登出這個賬戶" forState:UIControlStateNormal];
+    [logoutButton addTarget:self action:@selector(clickLogoutButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:logoutButton];
 }
 
@@ -129,6 +134,13 @@
         }
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (void)clickLogoutButton {
+    [self.appDelegate deleteUser];
+    LoginController *loginController = [[LoginController alloc] init];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:loginController];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 @end
