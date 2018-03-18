@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		50C875E40AB46A87C3ED4203 /* libPods-alarmTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73149056AB35C29C283F3630 /* libPods-alarmTests.a */; };
 		990736A82016344C002EFEC5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 990736A72016344C002EFEC5 /* main.m */; };
 		990736AB2016344C002EFEC5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 990736AA2016344C002EFEC5 /* AppDelegate.m */; };
 		990736AE2016344C002EFEC5 /* AddAlarmController.m in Sources */ = {isa = PBXBuildFile; fileRef = 990736AD2016344C002EFEC5 /* AddAlarmController.m */; };
@@ -38,6 +39,8 @@
 		9920D2182017859900DA8D6D /* VideoListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9920D2172017859900DA8D6D /* VideoListController.m */; };
 		9920D21C2017860D00DA8D6D /* SettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9920D21B2017860D00DA8D6D /* SettingController.m */; };
 		998F36D6202757D300676226 /* NoiseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 998F36D5202757D300676226 /* NoiseController.m */; };
+		99EDCC58205E53CF0063DA06 /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99EDCC57205E53CF0063DA06 /* LoginController.m */; };
+		AA0B09616A843BFF7F371CB0 /* libPods-alarmUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66D176312CBDFB3308B59DD6 /* libPods-alarmUITests.a */; };
 		CE01F3FD202359A100040FC4 /* MyCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE01F3FC202359A100040FC4 /* MyCollectionViewCell.m */; };
 		CE1A4979201A01DD005CB860 /* HYBAnimationClock.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1A4977201A01DC005CB860 /* HYBAnimationClock.m */; };
 		CE1A497C201A0219005CB860 /* HYBClockView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1A497B201A0219005CB860 /* HYBClockView.m */; };
@@ -60,6 +63,7 @@
 		CEBBACD42041609B00F6262D /* StatusController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBBACD32041609B00F6262D /* StatusController.m */; };
 		CEBEC2A22043B85D00540DBB /* DiscussController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBEC2A12043B85D00540DBB /* DiscussController.m */; };
 		CEBEC2A42043C7BE00540DBB /* PlayVideoController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBEC2A32043C7BE00540DBB /* PlayVideoController.m */; };
+		D79CA1339D4EB20910D57034 /* libPods-alarm.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C5067A34434CE1D7209C5350 /* libPods-alarm.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +84,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0434F147FE52428CE43B0472 /* Pods-alarmUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-alarmUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-alarmUITests/Pods-alarmUITests.release.xcconfig"; sourceTree = "<group>"; };
+		3A985E661282E7DB202858FC /* Pods-alarm.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-alarm.debug.xcconfig"; path = "Pods/Target Support Files/Pods-alarm/Pods-alarm.debug.xcconfig"; sourceTree = "<group>"; };
+		515C1FE7D494194BE3523D31 /* Pods-alarm.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-alarm.release.xcconfig"; path = "Pods/Target Support Files/Pods-alarm/Pods-alarm.release.xcconfig"; sourceTree = "<group>"; };
+		5C409DCAA837D673A238D423 /* Pods-alarmTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-alarmTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-alarmTests/Pods-alarmTests.debug.xcconfig"; sourceTree = "<group>"; };
+		66D176312CBDFB3308B59DD6 /* libPods-alarmUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-alarmUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		73149056AB35C29C283F3630 /* libPods-alarmTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-alarmTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		990736A32016344C002EFEC5 /* alarm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = alarm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		990736A72016344C002EFEC5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		990736A92016344C002EFEC5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -144,6 +154,11 @@
 		9920D21B2017860D00DA8D6D /* SettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingController.m; sourceTree = "<group>"; };
 		998F36D5202757D300676226 /* NoiseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoiseController.m; sourceTree = "<group>"; };
 		998F36D7202757E400676226 /* NoiseController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoiseController.h; sourceTree = "<group>"; };
+		99EDCC56205E53CF0063DA06 /* LoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginController.h; sourceTree = "<group>"; };
+		99EDCC57205E53CF0063DA06 /* LoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginController.m; sourceTree = "<group>"; };
+		9C2A3C8A84FC0FA8F90F7D88 /* Pods-alarmTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-alarmTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-alarmTests/Pods-alarmTests.release.xcconfig"; sourceTree = "<group>"; };
+		C5067A34434CE1D7209C5350 /* libPods-alarm.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-alarm.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA5FDCF42E9364E1951359C9 /* Pods-alarmUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-alarmUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-alarmUITests/Pods-alarmUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		CE01F3FB2023598500040FC4 /* MyCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyCollectionViewCell.h; sourceTree = "<group>"; };
 		CE01F3FC202359A100040FC4 /* MyCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyCollectionViewCell.m; sourceTree = "<group>"; };
 		CE1A4977201A01DC005CB860 /* HYBAnimationClock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYBAnimationClock.m; sourceTree = "<group>"; };
@@ -194,6 +209,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D79CA1339D4EB20910D57034 /* libPods-alarm.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,6 +217,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50C875E40AB46A87C3ED4203 /* libPods-alarmTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,12 +225,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA0B09616A843BFF7F371CB0 /* libPods-alarmUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		44310FF834BB31553249649D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3A985E661282E7DB202858FC /* Pods-alarm.debug.xcconfig */,
+				515C1FE7D494194BE3523D31 /* Pods-alarm.release.xcconfig */,
+				5C409DCAA837D673A238D423 /* Pods-alarmTests.debug.xcconfig */,
+				9C2A3C8A84FC0FA8F90F7D88 /* Pods-alarmTests.release.xcconfig */,
+				CA5FDCF42E9364E1951359C9 /* Pods-alarmUITests.debug.xcconfig */,
+				0434F147FE52428CE43B0472 /* Pods-alarmUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		9907369A2016344C002EFEC5 = {
 			isa = PBXGroup;
 			children = (
@@ -227,6 +258,8 @@
 				990736BF2016344C002EFEC5 /* alarmTests */,
 				990736CA2016344C002EFEC5 /* alarmUITests */,
 				990736A42016344C002EFEC5 /* Products */,
+				44310FF834BB31553249649D /* Pods */,
+				B2953E6991D09441AA542BB9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -243,6 +276,9 @@
 		990736A52016344C002EFEC5 /* alarm */ = {
 			isa = PBXGroup;
 			children = (
+				99EDCC59205E5C620063DA06 /* UserTab */,
+				99EDCC56205E53CF0063DA06 /* LoginController.h */,
+				99EDCC57205E53CF0063DA06 /* LoginController.m */,
 				CE501047205A993C00467D5A /* HealthTab */,
 				CE501028205A2F3800467D5A /* MacroDefine.h */,
 				990C851D2042C88F00D36C9E /* DiscussTab */,
@@ -456,6 +492,23 @@
 			name = PTView;
 			sourceTree = "<group>";
 		};
+		99EDCC59205E5C620063DA06 /* UserTab */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = UserTab;
+			sourceTree = "<group>";
+		};
+		B2953E6991D09441AA542BB9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C5067A34434CE1D7209C5350 /* libPods-alarm.a */,
+				73149056AB35C29C283F3630 /* libPods-alarmTests.a */,
+				66D176312CBDFB3308B59DD6 /* libPods-alarmUITests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		CE501047205A993C00467D5A /* HealthTab */ = {
 			isa = PBXGroup;
 			children = (
@@ -472,9 +525,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 990736D02016344C002EFEC5 /* Build configuration list for PBXNativeTarget "alarm" */;
 			buildPhases = (
+				AEB5AFAF79374C6BDCA7A402 /* [CP] Check Pods Manifest.lock */,
 				9907369F2016344C002EFEC5 /* Sources */,
 				990736A02016344C002EFEC5 /* Frameworks */,
 				990736A12016344C002EFEC5 /* Resources */,
+				067F0A4907023DF8560DCEFB /* [CP] Embed Pods Frameworks */,
+				6402B1099BAB1E5953FC8860 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -489,9 +545,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 990736D32016344C002EFEC5 /* Build configuration list for PBXNativeTarget "alarmTests" */;
 			buildPhases = (
+				33B99CCE05DC16868C4C5B4B /* [CP] Check Pods Manifest.lock */,
 				990736B82016344C002EFEC5 /* Sources */,
 				990736B92016344C002EFEC5 /* Frameworks */,
 				990736BA2016344C002EFEC5 /* Resources */,
+				8F43539343F6D20337CB87F4 /* [CP] Embed Pods Frameworks */,
+				8943956B24DF54D5F04EDD97 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -507,9 +566,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 990736D62016344C002EFEC5 /* Build configuration list for PBXNativeTarget "alarmUITests" */;
 			buildPhases = (
+				87B47A01AAEE8D36551BB253 /* [CP] Check Pods Manifest.lock */,
 				990736C32016344C002EFEC5 /* Sources */,
 				990736C42016344C002EFEC5 /* Frameworks */,
 				990736C52016344C002EFEC5 /* Resources */,
+				E2F36DDFF8EF35EAB3FD017F /* [CP] Embed Pods Frameworks */,
+				A659A894BB1196DE241FAB1E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -594,6 +656,153 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		067F0A4907023DF8560DCEFB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-alarm/Pods-alarm-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		33B99CCE05DC16868C4C5B4B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-alarmTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6402B1099BAB1E5953FC8860 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-alarm/Pods-alarm-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		87B47A01AAEE8D36551BB253 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-alarmUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8943956B24DF54D5F04EDD97 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-alarmTests/Pods-alarmTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8F43539343F6D20337CB87F4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-alarmTests/Pods-alarmTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A659A894BB1196DE241FAB1E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-alarmUITests/Pods-alarmUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AEB5AFAF79374C6BDCA7A402 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-alarm-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E2F36DDFF8EF35EAB3FD017F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-alarmUITests/Pods-alarmUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		9907369F2016344C002EFEC5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -641,6 +850,7 @@
 				CE50104B205A997000467D5A /* HealthController.m in Sources */,
 				990C854C2042F3BF00D36C9E /* UIView+Extend.m in Sources */,
 				990C85432042EFA900D36C9E /* SXYCircle.m in Sources */,
+				99EDCC58205E53CF0063DA06 /* LoginController.m in Sources */,
 				990C85422042EFA900D36C9E /* NewPagedFlowView.m in Sources */,
 				990C85412042EFA900D36C9E /* PGIndexBannerSubiew.m in Sources */,
 				990C85282042EA8C00D36C9E /* NewCommentController.m in Sources */,
@@ -785,6 +995,7 @@
 		};
 		990736D12016344C002EFEC5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3A985E661282E7DB202858FC /* Pods-alarm.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -802,6 +1013,7 @@
 		};
 		990736D22016344C002EFEC5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 515C1FE7D494194BE3523D31 /* Pods-alarm.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -819,6 +1031,7 @@
 		};
 		990736D42016344C002EFEC5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5C409DCAA837D673A238D423 /* Pods-alarmTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = alarmTests/Info.plist;
@@ -831,6 +1044,7 @@
 		};
 		990736D52016344C002EFEC5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9C2A3C8A84FC0FA8F90F7D88 /* Pods-alarmTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = alarmTests/Info.plist;
@@ -843,6 +1057,7 @@
 		};
 		990736D72016344C002EFEC5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CA5FDCF42E9364E1951359C9 /* Pods-alarmUITests.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = alarmUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -854,6 +1069,7 @@
 		};
 		990736D82016344C002EFEC5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0434F147FE52428CE43B0472 /* Pods-alarmUITests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = alarmUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

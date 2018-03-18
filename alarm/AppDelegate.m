@@ -7,11 +7,12 @@
 //
 
 #import <UserNotifications/UserNotifications.h>
+#import <AudioToolbox/AudioToolbox.h>
 #import "MacroDefine.h"
 #import "AppDelegate.h"
 #import "NoiseController.h"
 #import "WBTabBarController.h"
-#import <AudioToolbox/AudioToolbox.h>
+#import "LoginController.h"
 
 @interface AppDelegate () <UNUserNotificationCenterDelegate>
 
@@ -53,6 +54,22 @@
         
     }];
     
+    
+    NSMutableDictionary *user = [[NSMutableDictionary alloc] init];
+    [user setObject:@"24" forKey:@"id"];
+    [user setObject:@"miaojuanfeng" forKey:@"username"];
+    [user setObject:@"1659138950" forKey:@"number"];
+    [user setObject:@"mjf" forKey:@"nickname"];
+    [user setObject:@"ios" forKey:@"platform"];
+    [self saveUser:user];
+    
+    [self loadUser];
+    NSLog(@"%@", self.user);
+    if( self.user == nil ){
+        LoginController *loginController = [[LoginController alloc] init];
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:loginController];
+        [self.window.rootViewController presentViewController:nav animated:YES completion:nil];
+    }
     
     return YES;
 }
@@ -150,5 +167,20 @@
     
 }
 
+
+- (void)saveUser:(NSMutableDictionary *) user {
+    NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsPath = [path objectAtIndex:0];
+    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"user.plist"];
+    
+    [user writeToFile:plistPath atomically:YES];
+}
+
+- (void)loadUser {
+    NSArray *pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *path = [pathArray objectAtIndex:0];
+    NSString *plistPath = [path stringByAppendingPathComponent:@"user.plist"];
+//    self.user = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
+}
 
 @end
