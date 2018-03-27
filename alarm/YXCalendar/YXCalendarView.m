@@ -315,11 +315,13 @@ static CGFloat const weeksH = 30;       //周高度
     //可以在这边进行网络请求获取事件日期数组等,记得取消上个未完成的网络请求
     NSMutableArray *array = [NSMutableArray array];
     for (int i = 0; i < 10; i++) {
-        NSString *dateStr = [NSString stringWithFormat:@"%@-%d",[[YXDateHelpObject manager] getStrFromDateFormat:@"MM" Date:_currentDate],1 + arc4random()%28];
+//        NSString *dateStr = [NSString stringWithFormat:@"%@-%d",[[YXDateHelpObject manager] getStrFromDateFormat:@"MM" Date:_currentDate],1 + arc4random()%28];
+        NSString *dateStr = @"03-20";
         [array addObject:dateStr];
     }
-    
     _middleView.eventArray = array;
+    NSLog(@"%@", _middleView.eventArray);
+    NSLog(@"%@", [[YXDateHelpObject manager] getStrFromDateFormat:@"yyyy" Date:_currentDate]);
 }
 
 @end

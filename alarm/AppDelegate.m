@@ -72,6 +72,10 @@
         [self.videoList addObject:t];
     }
     
+    [self loadCalendar];
+    [self saveCalendar];
+    NSLog(@"saveCalendar: %@", self.calendarList);
+    
     [self loadUser];
     NSLog(@"%@", self.user);
     if( self.user == nil ){
@@ -203,6 +207,46 @@
     
     NSFileManager *appFileManager = [NSFileManager defaultManager];
     [appFileManager removeItemAtPath:plistPath error:nil];
+}
+
+- (void)saveCalendar {
+    
+    NSDate *date = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy"];
+    NSString *year = [dateFormatter stringFromDate:date];
+    [dateFormatter setDateFormat:@"MM-dd"];
+    NSString *monthDay = [dateFormatter stringFromDate:date];
+    
+    NSMutableArray *dateArr = [self.calendarList objectForKey:year];
+    if( dateArr != nil ){
+        if( [dateArr containsObject:monthDay] ){
+            return;
+        }
+    }else{
+        dateArr = [[NSMutableArray alloc] init];
+    }
+    [dateArr addObject:monthDay];
+    [self.calendarList setValue:dateArr forKey:year];
+    
+    NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsPath = [path objectAtIndex:0];
+    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"calendar.plist"];
+    
+    NSFileManager *appFileManager = [NSFileManager defaultManager];
+    [appFileManager removeItemAtPath:plistPath error:nil];
+    
+    [self.calendarList writeToFile:plistPath atomically:YES];
+}
+
+- (void)loadCalendar {
+    NSArray *pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *path = [pathArray objectAtIndex:0];
+    NSString *plistPath = [path stringByAppendingPathComponent:@"calendar.plist"];
+    self.calendarList = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
+    if( self.calendarList == nil ){
+        self.calendarList = [[NSMutableDictionary alloc] init];
+    }
 }
 
 @end

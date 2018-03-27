@@ -16,6 +16,7 @@
 //
 @property NSMutableArray *videoList;
 @property NSMutableArray *selectVideoList;
+@property NSMutableDictionary *calendarList;
 
 - (void)saveUser:(NSMutableDictionary *) user;
 - (void)deleteUser;
