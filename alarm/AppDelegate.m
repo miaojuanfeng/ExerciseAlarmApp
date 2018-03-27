@@ -63,6 +63,15 @@
 //    [user setObject:@"ios" forKey:@"platform"];
 //    [self saveUser:user];
     
+    self.selectVideoList = [[NSMutableArray alloc] init];
+    self.videoList = [[NSMutableArray alloc] init];
+    for(int i=0;i<10;i++){
+        NSMutableDictionary *t = [[NSMutableDictionary alloc] init];
+        [t setObject:[NSString stringWithFormat:@"视频%d", i] forKey:@"title"];
+        [t setObject:[NSString stringWithFormat:@"%d", true] forKey:@"isShow"];
+        [self.videoList addObject:t];
+    }
+    
     [self loadUser];
     NSLog(@"%@", self.user);
     if( self.user == nil ){

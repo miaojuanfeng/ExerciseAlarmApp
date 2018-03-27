@@ -13,6 +13,9 @@
 @property (strong, nonatomic) UIWindow *window;
 
 @property NSMutableDictionary *user;
+//
+@property NSMutableArray *videoList;
+@property NSMutableArray *selectVideoList;
 
 - (void)saveUser:(NSMutableDictionary *) user;
 - (void)deleteUser;

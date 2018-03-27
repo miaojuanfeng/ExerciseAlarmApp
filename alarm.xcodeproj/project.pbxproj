@@ -45,6 +45,7 @@
 		CE01F3FD202359A100040FC4 /* MyCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE01F3FC202359A100040FC4 /* MyCollectionViewCell.m */; };
 		CE1A4979201A01DD005CB860 /* HYBAnimationClock.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1A4977201A01DC005CB860 /* HYBAnimationClock.m */; };
 		CE1A497C201A0219005CB860 /* HYBClockView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1A497B201A0219005CB860 /* HYBClockView.m */; };
+		CE1DBC33206A524100632D86 /* SelectVideoController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1DBC32206A524100632D86 /* SelectVideoController.m */; };
 		CE446F5B202806FE009320EC /* VideoDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE446F5A202806FE009320EC /* VideoDetailController.m */; };
 		CE446F5E20280A1C009320EC /* PwdController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE446F5D20280A1C009320EC /* PwdController.m */; };
 		CE446F6220280A4B009320EC /* HelpController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE446F6120280A4B009320EC /* HelpController.m */; };
@@ -168,6 +169,8 @@
 		CE1A4978201A01DD005CB860 /* HYBAnimationClock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYBAnimationClock.h; sourceTree = "<group>"; };
 		CE1A497A201A0219005CB860 /* HYBClockView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYBClockView.h; sourceTree = "<group>"; };
 		CE1A497B201A0219005CB860 /* HYBClockView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYBClockView.m; sourceTree = "<group>"; };
+		CE1DBC32206A524100632D86 /* SelectVideoController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectVideoController.m; sourceTree = "<group>"; };
+		CE1DBC35206A526200632D86 /* SelectVideoController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectVideoController.h; sourceTree = "<group>"; };
 		CE446F5A202806FE009320EC /* VideoDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoDetailController.m; sourceTree = "<group>"; };
 		CE446F5C20280713009320EC /* VideoDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoDetailController.h; sourceTree = "<group>"; };
 		CE446F5D20280A1C009320EC /* PwdController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PwdController.m; sourceTree = "<group>"; };
@@ -393,6 +396,8 @@
 				9920D2172017859900DA8D6D /* VideoListController.m */,
 				CEBEC2A32043C7BE00540DBB /* PlayVideoController.m */,
 				CEBEC2A52043C7CD00540DBB /* PlayVideoController.h */,
+				CE1DBC32206A524100632D86 /* SelectVideoController.m */,
+				CE1DBC35206A526200632D86 /* SelectVideoController.h */,
 			);
 			name = VideoTab;
 			sourceTree = "<group>";
@@ -831,6 +836,7 @@
 				CE01F3FD202359A100040FC4 /* MyCollectionViewCell.m in Sources */,
 				9920D21220177AED00DA8D6D /* SelectPhotoController.m in Sources */,
 				990736DA20163578002EFEC5 /* IndexController.m in Sources */,
+				CE1DBC33206A524100632D86 /* SelectVideoController.m in Sources */,
 				CE1A4979201A01DD005CB860 /* HYBAnimationClock.m in Sources */,
 				990736AE2016344C002EFEC5 /* AddAlarmController.m in Sources */,
 				CE501046205A91DD00467D5A /* AveragePainController.m in Sources */,
