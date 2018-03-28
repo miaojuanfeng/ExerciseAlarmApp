@@ -10,6 +10,7 @@
 
 #import "MacroDefine.h"
 #import "HealthController.h"
+#import "HealthDetailController.h"
 
 @interface HealthController () <UITableViewDelegate, UITableViewDataSource>
 @property UITableView *tableView;
@@ -49,11 +50,31 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     tableView.rowHeight = 88;
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
-//    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(10, 10, (self.tableView.frame.size.width-20)*0.7, 68)];
+//    titleView.backgroundColor = [UIColor redColor];
+    
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, titleView.frame.size.width, 20)];
+    [titleView addSubview:titleLabel];
+    
+    UILabel *descLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, titleView.frame.size.height-15, titleView.frame.size.width, 15)];
+    descLabel.font = [UIFont fontWithName:@"AppleGothic" size:12.0];
+    [titleView addSubview:descLabel];
+    
+    [cell.contentView addSubview:titleView];
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(titleView.frame.origin.x+titleView.frame.size.width, 10, (self.tableView.frame.size.width-20)*0.3, 68)];
+    imageView.backgroundColor = [UIColor blueColor];
+    imageView.image = [UIImage imageNamed:@"bg"];
+    imageView.contentMode = UIViewContentModeScaleAspectFill;
+    imageView.clipsToBounds = YES;
+    
+    [cell.contentView addSubview:imageView];
+
     switch( indexPath.row ){
         case 0:
-            cell.textLabel.text = @"體重管理";
-            cell.detailTextLabel.text = @"\n\n這是一個簡單說明";
+            titleLabel.text = @"體重管理";
+            descLabel.text = @"這是一個簡單說明";
             [cell.detailTextLabel setNumberOfLines:3];
             break;
         case 1:
@@ -76,6 +97,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    HealthDetailController *healthDetailController = [[HealthDetailController alloc] init];
+    [self.navigationController pushViewController:healthDetailController animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

@@ -38,6 +38,7 @@
 		9920D21620177C2800DA8D6D /* SelectMusicController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9920D21520177C2800DA8D6D /* SelectMusicController.m */; };
 		9920D2182017859900DA8D6D /* VideoListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9920D2172017859900DA8D6D /* VideoListController.m */; };
 		9920D21C2017860D00DA8D6D /* SettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9920D21B2017860D00DA8D6D /* SettingController.m */; };
+		994F56EE206BE4B700F4333A /* HealthDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 994F56ED206BE4B700F4333A /* HealthDetailController.m */; };
 		998F36D6202757D300676226 /* NoiseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 998F36D5202757D300676226 /* NoiseController.m */; };
 		99EDCC58205E53CF0063DA06 /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99EDCC57205E53CF0063DA06 /* LoginController.m */; };
 		99EDCC5B205E7DA90063DA06 /* ForgetPwdController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99EDCC5A205E7DA90063DA06 /* ForgetPwdController.m */; };
@@ -154,6 +155,8 @@
 		9920D219201785A600DA8D6D /* VideoListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoListController.h; sourceTree = "<group>"; };
 		9920D21A201785FB00DA8D6D /* SettingController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingController.h; sourceTree = "<group>"; };
 		9920D21B2017860D00DA8D6D /* SettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingController.m; sourceTree = "<group>"; };
+		994F56ED206BE4B700F4333A /* HealthDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HealthDetailController.m; sourceTree = "<group>"; };
+		994F56EF206BE4C800F4333A /* HealthDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HealthDetailController.h; sourceTree = "<group>"; };
 		998F36D5202757D300676226 /* NoiseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoiseController.m; sourceTree = "<group>"; };
 		998F36D7202757E400676226 /* NoiseController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoiseController.h; sourceTree = "<group>"; };
 		99EDCC56205E53CF0063DA06 /* LoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginController.h; sourceTree = "<group>"; };
@@ -524,6 +527,8 @@
 			children = (
 				CE501048205A995700467D5A /* HealthController.h */,
 				CE50104A205A997000467D5A /* HealthController.m */,
+				994F56ED206BE4B700F4333A /* HealthDetailController.m */,
+				994F56EF206BE4C800F4333A /* HealthDetailController.h */,
 			);
 			name = HealthTab;
 			sourceTree = "<group>";
@@ -854,6 +859,7 @@
 				990C850A2042AFE400D36C9E /* StatusOneController.m in Sources */,
 				CEA7ECCC2045161C006A9D7F /* ShowPhotoController.m in Sources */,
 				990736AB2016344C002EFEC5 /* AppDelegate.m in Sources */,
+				994F56EE206BE4B700F4333A /* HealthDetailController.m in Sources */,
 				990736A82016344C002EFEC5 /* main.m in Sources */,
 				CEBBACD02041214800F6262D /* WBTabBarController.m in Sources */,
 				990C85202042CF9600D36C9E /* NewQuestionController.m in Sources */,

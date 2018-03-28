@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "AppDelegate.h"
 #import "StatusThreeController.h"
 #import "YXCalendarView.h"
 
@@ -23,6 +23,8 @@
 //每次用户拖动tableView的时候，只能发送一次让tableView的header收起和展开的通知
 @property (nonatomic, assign) BOOL isAllowPostNoti;
 
+@property AppDelegate *appDelegate;
+
 @end
 
 @implementation StatusThreeController
@@ -36,6 +38,8 @@
     CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
     float marginTop = rectStatus.size.height + self.navigationController.navigationBar.frame.size.height;
     
+    self.appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
     UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(20, marginTop+10, self.view.frame.size.width-40, 50)];
     title.text = @"累計天數";
     title.font = [UIFont fontWithName:@"AppleGothic" size:16.0];
@@ -44,7 +48,7 @@
     UILabel *num = [[UILabel alloc] initWithFrame:CGRectMake(20, marginTop+10+60, self.view.frame.size.width-40, 50)];
     num.textAlignment = NSTextAlignmentCenter;
     
-    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:@"63 天"];
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%ld 天", self.appDelegate.calendarCount]];
     [str addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"AppleGothic" size:36.0] range:NSMakeRange(0,str.length-1)];
     num.attributedText = str;
     

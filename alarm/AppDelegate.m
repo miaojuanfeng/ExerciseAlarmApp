@@ -63,14 +63,14 @@
 //    [user setObject:@"ios" forKey:@"platform"];
 //    [self saveUser:user];
     
-    self.selectVideoList = [[NSMutableArray alloc] init];
-    self.videoList = [[NSMutableArray alloc] init];
-    for(int i=0;i<10;i++){
-        NSMutableDictionary *t = [[NSMutableDictionary alloc] init];
-        [t setObject:[NSString stringWithFormat:@"视频%d", i] forKey:@"title"];
-        [t setObject:[NSString stringWithFormat:@"%d", true] forKey:@"isShow"];
-        [self.videoList addObject:t];
-    }
+    [self loadSelectVideoList];
+//    self.videoList = [[NSMutableArray alloc] init];
+//    for(int i=0;i<10;i++){
+//        NSMutableDictionary *t = [[NSMutableDictionary alloc] init];
+//        [t setObject:[NSString stringWithFormat:@"视频%d", i] forKey:@"title"];
+//        [t setObject:[NSString stringWithFormat:@"%d", true] forKey:@"isShow"];
+//        [self.videoList addObject:t];
+//    }
     
     [self loadCalendar];
     [self saveCalendar];
@@ -227,6 +227,7 @@
         dateArr = [[NSMutableArray alloc] init];
     }
     [dateArr addObject:monthDay];
+    self.calendarCount++;
     [self.calendarList setValue:dateArr forKey:year];
     
     NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -246,6 +247,41 @@
     self.calendarList = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
     if( self.calendarList == nil ){
         self.calendarList = [[NSMutableDictionary alloc] init];
+    }
+    self.calendarCount = 0;
+    for (NSString *y in self.calendarList) {
+        NSMutableArray *dateArr = [self.calendarList objectForKey:y];
+        self.calendarCount += dateArr.count;
+    }
+}
+
+- (void)saveSelectVideoList {
+    NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsPath = [path objectAtIndex:0];
+    NSString *plistPath = nil;
+    
+    plistPath = [documentsPath stringByAppendingPathComponent:@"videoList.plist"];
+    [self.videoList writeToFile:plistPath atomically:YES];
+    
+    plistPath = [documentsPath stringByAppendingPathComponent:@"selectVideoList.plist"];
+    [self.selectVideoList writeToFile:plistPath atomically:YES];
+}
+
+- (void)loadSelectVideoList {
+    NSArray *pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *path = [pathArray objectAtIndex:0];
+    NSString *plistPath = nil;
+    
+    plistPath = [path stringByAppendingPathComponent:@"videoList.plist"];
+    self.videoList = [[NSMutableArray alloc] initWithContentsOfFile:plistPath];
+    if( self.videoList == nil ){
+        self.videoList = [[NSMutableArray alloc] init];
+    }
+    
+    plistPath = [path stringByAppendingPathComponent:@"selectVideoList.plist"];
+    self.selectVideoList = [[NSMutableArray alloc] initWithContentsOfFile:plistPath];
+    if( self.selectVideoList == nil ){
+        self.selectVideoList = [[NSMutableArray alloc] init];
     }
 }
 

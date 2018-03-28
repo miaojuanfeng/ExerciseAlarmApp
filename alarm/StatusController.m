@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #import "MacroDefine.h"
+#import "AppDelegate.h"
 #import "StatusController.h"
 #import "StatusOneController.h"
 #import "StatusTwoController.h"
@@ -18,7 +19,7 @@
 #import "StatusPainController.h"
 
 @interface StatusController ()
-
+@property AppDelegate *appDelegate;
 @end
 
 @implementation StatusController
@@ -31,6 +32,8 @@
     
     CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
     float marginTop = rectStatus.size.height + self.navigationController.navigationBar.frame.size.height;
+    
+    self.appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
 //    UIView *leftButtonView = [[UIButton alloc] initWithFrame:CGRectMake(-10, 0, 100, 100)];
 //    UIImageView *brushImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
@@ -179,7 +182,7 @@
     //
     UIButton *numButton3 = [[UIButton alloc] initWithFrame:CGRectMake(0, 55, view3.frame.size.width, 60)];
     numButton3.titleLabel.font = [UIFont fontWithName:@"AppleGothic" size:46.0];
-    [numButton3 setTitle:@"63" forState:UIControlStateNormal];
+    [numButton3 setTitle:[NSString stringWithFormat:@"%ld", self.appDelegate.calendarCount] forState:UIControlStateNormal];
     [numButton3 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [numButton3 addTarget:self action:@selector(clickButton3) forControlEvents:UIControlEventTouchUpInside];
     [view3 addSubview:numButton3];

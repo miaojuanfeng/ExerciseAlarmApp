@@ -7,6 +7,7 @@
 //
 
 #import "YXCalendarView.h"
+#import "AppDelegate.h"
 
 static CGFloat const yearMonthH = 30;   //年月高度
 static CGFloat const weeksH = 30;       //周高度
@@ -25,6 +26,8 @@ static CGFloat const weeksH = 30;       //周高度
 @property (nonatomic, strong) YXMonthView *leftView;    //左侧日历
 @property (nonatomic, strong) YXMonthView *middleView;  //中间日历
 @property (nonatomic, strong) YXMonthView *rightView;   //右侧日历
+
+@property AppDelegate *appDelegate;
 
 @end
 
@@ -312,16 +315,24 @@ static CGFloat const weeksH = 30;       //周高度
 - (void)scrollToCenter {
     _scrollV.contentOffset = CGPointMake(ViewW, 0);
     
+    self.appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
     //可以在这边进行网络请求获取事件日期数组等,记得取消上个未完成的网络请求
-    NSMutableArray *array = [NSMutableArray array];
-    for (int i = 0; i < 10; i++) {
-//        NSString *dateStr = [NSString stringWithFormat:@"%@-%d",[[YXDateHelpObject manager] getStrFromDateFormat:@"MM" Date:_currentDate],1 + arc4random()%28];
-        NSString *dateStr = @"03-20";
-        [array addObject:dateStr];
-    }
+//    NSMutableArray *array = [NSMutableArray array];
+//    for (int i = 0; i < 10; i++) {
+////        NSString *dateStr = [NSString stringWithFormat:@"%@-%d",[[YXDateHelpObject manager] getStrFromDateFormat:@"MM" Date:_currentDate],1 + arc4random()%28];
+//        NSString *dateStr = @"03-20";
+//        [array addObject:dateStr];
+//    }
+    
+    NSString *currentYear = [[YXDateHelpObject manager] getStrFromDateFormat:@"yyyy" Date:_currentDate];
+    NSMutableArray *array = [self.appDelegate.calendarList objectForKey:currentYear];
+    
     _middleView.eventArray = array;
-    NSLog(@"%@", _middleView.eventArray);
-    NSLog(@"%@", [[YXDateHelpObject manager] getStrFromDateFormat:@"yyyy" Date:_currentDate]);
+//    NSLog(@"%@", _middleView.eventArray);
+//    NSLog(@"%@", [[YXDateHelpObject manager] getStrFromDateFormat:@"yyyy" Date:_currentDate]);
+    
+
 }
 
 @end
