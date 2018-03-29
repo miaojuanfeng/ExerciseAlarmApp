@@ -63,6 +63,13 @@
 //    [user setObject:@"ios" forKey:@"platform"];
 //    [self saveUser:user];
     
+//    self.hudWaiting = [MBProgressHUD showHUDAddedTo:self.window.rootViewController.view animated:YES];
+//    self.hudWaiting.mode = MBProgressHUDModeIndeterminate;
+//    self.hudWaiting.removeFromSuperViewOnHide = NO;
+//    self.hudWaiting.bezelView.backgroundColor = [UIColor blackColor];
+//    self.hudWaiting.contentColor = [UIColor whiteColor];
+//    [self.hudWaiting hideAnimated:NO];
+    
     [self loadSelectVideoList];
 //    self.videoList = [[NSMutableArray alloc] init];
     if( self.videoList.count == 0 ){

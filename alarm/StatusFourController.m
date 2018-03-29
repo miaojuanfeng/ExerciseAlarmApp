@@ -255,21 +255,20 @@
     long total = 0;
     long count = self.appDelegate.userPain.count;
     NSString *date = nil;
+    int lastPain = 0;
     for (date in self.appDelegate.userPain) {
-       total += [[self.appDelegate.userPain objectForKey:date] intValue];
+        lastPain = [[self.appDelegate.userPain objectForKey:date] intValue];
+        total += lastPain;
     }
     int average = 0;
-    int current = 0;
     if( count > 0 ){
         average = (int)(total/count);
-        current = [[self.appDelegate.userPain objectForKey:date] intValue];
-        NSLog(@"%@", date);
     }
     NSMutableAttributedString *averageStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%d 級", average]];
     [averageStr addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"AppleGothic" size:36.0] range:NSMakeRange(0,averageStr.length-1)];
     self.averageNum.attributedText = averageStr;
     
-    NSMutableAttributedString *currentStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%d 級", current]];
+    NSMutableAttributedString *currentStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%d 級", lastPain]];
     [currentStr addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"AppleGothic" size:36.0] range:NSMakeRange(0,currentStr.length-1)];
     self.currentNum.attributedText = currentStr;
 }

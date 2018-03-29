@@ -86,7 +86,6 @@
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(fingerTapped:)];
     singleTap.delegate = self;
     [self.view addGestureRecognizer:singleTap];
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -105,8 +104,9 @@
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     manager.requestSerializer.timeoutInterval = 30.0f;
     NSDictionary *parameters=@{@"user_username":self.userField.text,@"user_password":self.passwordField.text};
+    HUD_WAITING_SHOW(@"Loading");
     [manager POST:BASE_URL(@"user/signin") parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
-        
+    
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSLog(@"成功.%@",responseObject);
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:NULL];
@@ -114,6 +114,7 @@
         
         int status = [[dic objectForKey:@"status"] intValue];
         
+        HUD_WAITING_HIDE;
         if( status == 1 ){
 //            NSDictionary *data = [dic objectForKey:@"data"];
 //            NSString *device_id = [data objectForKey:@"device_id"];
@@ -129,10 +130,16 @@
 //
             [self.appDelegate saveUser:[dic objectForKey:@"data"]];
             [self dismissViewControllerAnimated:YES completion:nil];
+        }else{
+            NSString *msg = [dic objectForKey:@"msg"];
+            HUD_TOAST_SHOW(msg);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"失败.%@",error);
         NSLog(@"%@",[[NSString alloc] initWithData:error.userInfo[@"com.alamofire.serialization.response.error.data"] encoding:NSUTF8StringEncoding]);
+        
+        HUD_WAITING_HIDE;
+        HUD_TOAST_SHOW(@"Network Error");
     }];
 }
 

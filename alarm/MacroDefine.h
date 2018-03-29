@@ -15,6 +15,20 @@
 
 #define BASE_URL(url) [NSString stringWithFormat:@"http://104.236.150.123:8080/ExerciseAlarmCMS/api/%@", url]
 
+#define HUD_WAITING_SHOW(t) do{ \
+                                [MBProgressHUD hideAllHUDsForView:self.view animated:YES]; \
+self.appDelegate.hudWaiting = [MBProgressHUD showHUDAddedTo:self.view animated:YES]; \
+self.appDelegate.hudWaiting.mode = MBProgressHUDModeIndeterminate;\
+self.appDelegate.hudWaiting.removeFromSuperViewOnHide = YES;\
+self.appDelegate.hudWaiting.bezelView.backgroundColor = [UIColor blackColor];\
+self.appDelegate.hudWaiting.contentColor = [UIColor whiteColor];\
+                                self.appDelegate.hudWaiting.label.text = t; \
+                                [self.appDelegate.hudWaiting showAnimated:YES]; \
+                            }while(0)
+#define HUD_WAITING_HIDE    do{ \
+                                [self.appDelegate.hudWaiting hideAnimated:YES]; \
+                            }while(0)
+
 #define HUD_TOAST_SHOW(t) do{ \
                             [MBProgressHUD hideAllHUDsForView:self.view animated:YES]; \
                             self.appDelegate.hudToast = [MBProgressHUD showHUDAddedTo:self.view animated:YES]; \

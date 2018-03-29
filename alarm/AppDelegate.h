@@ -26,7 +26,7 @@
  */
 //@property MBProgressHUD *hudLoading;
 @property MBProgressHUD *hudToast;
-//@property MBProgressHUD *hudWaiting;
+@property MBProgressHUD *hudWaiting;
 
 - (void)saveUser:(NSMutableDictionary *) user;
 - (void)deleteUser;

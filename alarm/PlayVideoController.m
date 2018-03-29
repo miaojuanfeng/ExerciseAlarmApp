@@ -28,7 +28,7 @@
     CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
     float marginTop = rectStatus.size.height + self.navigationController.navigationBar.frame.size.height;
     
-    UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, marginTop, self.view.frame.size.width, self.view.frame.size.height)];
+    UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     /*NSURL *url = [NSURL URLWithString:@"http://www.baidu.com"];
      NSURLRequest *request = [NSURLRequest requestWithURL:url];
      [webView loadRequest:request];*/

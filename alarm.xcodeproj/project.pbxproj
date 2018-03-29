@@ -40,6 +40,7 @@
 		9920D21C2017860D00DA8D6D /* SettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9920D21B2017860D00DA8D6D /* SettingController.m */; };
 		994F56EE206BE4B700F4333A /* HealthDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 994F56ED206BE4B700F4333A /* HealthDetailController.m */; };
 		998F36D6202757D300676226 /* NoiseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 998F36D5202757D300676226 /* NoiseController.m */; };
+		99B664C1206D35CC00D0F112 /* MsgListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99B664C0206D35CC00D0F112 /* MsgListController.m */; };
 		99EDCC58205E53CF0063DA06 /* LoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99EDCC57205E53CF0063DA06 /* LoginController.m */; };
 		99EDCC5B205E7DA90063DA06 /* ForgetPwdController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99EDCC5A205E7DA90063DA06 /* ForgetPwdController.m */; };
 		AA0B09616A843BFF7F371CB0 /* libPods-alarmUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66D176312CBDFB3308B59DD6 /* libPods-alarmUITests.a */; };
@@ -159,6 +160,8 @@
 		994F56EF206BE4C800F4333A /* HealthDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HealthDetailController.h; sourceTree = "<group>"; };
 		998F36D5202757D300676226 /* NoiseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoiseController.m; sourceTree = "<group>"; };
 		998F36D7202757E400676226 /* NoiseController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoiseController.h; sourceTree = "<group>"; };
+		99B664C0206D35CC00D0F112 /* MsgListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MsgListController.m; sourceTree = "<group>"; };
+		99B664C2206D35DC00D0F112 /* MsgListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MsgListController.h; sourceTree = "<group>"; };
 		99EDCC56205E53CF0063DA06 /* LoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginController.h; sourceTree = "<group>"; };
 		99EDCC57205E53CF0063DA06 /* LoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginController.m; sourceTree = "<group>"; };
 		99EDCC5A205E7DA90063DA06 /* ForgetPwdController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPwdController.m; sourceTree = "<group>"; };
@@ -437,6 +440,8 @@
 				990C85252042DCBD00D36C9E /* MsgDetailController.m */,
 				990C85272042EA8C00D36C9E /* NewCommentController.m */,
 				990C85292042EA9D00D36C9E /* NewCommentController.h */,
+				99B664C0206D35CC00D0F112 /* MsgListController.m */,
+				99B664C2206D35DC00D0F112 /* MsgListController.h */,
 			);
 			name = DiscussTab;
 			sourceTree = "<group>";
@@ -844,6 +849,7 @@
 				CE1DBC33206A524100632D86 /* SelectVideoController.m in Sources */,
 				CE1A4979201A01DD005CB860 /* HYBAnimationClock.m in Sources */,
 				990736AE2016344C002EFEC5 /* AddAlarmController.m in Sources */,
+				99B664C1206D35CC00D0F112 /* MsgListController.m in Sources */,
 				CE501046205A91DD00467D5A /* AveragePainController.m in Sources */,
 				9920D21620177C2800DA8D6D /* SelectMusicController.m in Sources */,
 				CEBEC2A42043C7BE00540DBB /* PlayVideoController.m in Sources */,
