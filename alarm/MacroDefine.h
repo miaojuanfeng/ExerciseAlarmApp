@@ -15,4 +15,22 @@
 
 #define BASE_URL(url) [NSString stringWithFormat:@"http://104.236.150.123:8080/ExerciseAlarmCMS/api/%@", url]
 
+#define HUD_TOAST_SHOW(t) do{ \
+                            [MBProgressHUD hideAllHUDsForView:self.view animated:YES]; \
+                            self.appDelegate.hudToast = [MBProgressHUD showHUDAddedTo:self.view animated:YES]; \
+                            self.appDelegate.hudToast.mode = MBProgressHUDModeText; \
+                            self.appDelegate.hudToast.removeFromSuperViewOnHide = YES; \
+                            self.appDelegate.hudToast.label.text = t; \
+                            self.appDelegate.hudToast.bezelView.backgroundColor = [UIColor blackColor]; \
+                            self.appDelegate.hudToast.contentColor = [UIColor whiteColor]; \
+                            [self.appDelegate.hudToast showAnimated:YES whileExecutingBlock:^{ \
+                                sleep(2); \
+                            } \
+                            completionBlock:^{ \
+                                [self.appDelegate.hudToast removeFromSuperview]; \
+                                self.appDelegate.hudToast = nil; \
+                            }]; \
+                        }while(0)
+
+
 #endif /* MacroDefine_h */

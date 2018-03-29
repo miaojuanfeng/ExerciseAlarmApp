@@ -287,7 +287,6 @@
 			children = (
 				99EDCC59205E5C620063DA06 /* UserTab */,
 				CE501047205A993C00467D5A /* HealthTab */,
-				CE501028205A2F3800467D5A /* MacroDefine.h */,
 				990C851D2042C88F00D36C9E /* DiscussTab */,
 				990C85162042C62700D36C9E /* AlarmTab */,
 				990736A92016344C002EFEC5 /* AppDelegate.h */,
@@ -303,6 +302,7 @@
 				990C85172042C65400D36C9E /* VideoTab */,
 				CEBBACD12041215A00F6262D /* WBTabBarController.h */,
 				CEBBACCF2041214800F6262D /* WBTabBarController.m */,
+				CE501028205A2F3800467D5A /* MacroDefine.h */,
 			);
 			path = alarm;
 			sourceTree = "<group>";

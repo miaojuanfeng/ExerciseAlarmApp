@@ -9,12 +9,17 @@
 #import <Foundation/Foundation.h>
 
 #import "MacroDefine.h"
+#import "AppDelegate.h"
 #import "StatusPainController.h"
 #import "ShowPainController.h"
 #import "StatusFourController.h"
 
-@interface StatusPainController ()
+@interface StatusPainController () <UIGestureRecognizerDelegate>
 @property UITableView *tableView;
+
+@property UITextField *numberField;
+
+@property AppDelegate *appDelegate;
 @end
 
 @implementation StatusPainController
@@ -22,16 +27,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.]
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = RGBA_COLOR(240, 240, 245, 1);
     self.navigationItem.title = @"痛感自我評分";
     
     CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
     float marginTop = rectStatus.size.height + self.navigationController.navigationBar.frame.size.height;
     
-    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"提交" style:UIBarButtonItemStylePlain target:self action:@selector(clickSubmitButton)];
-    self.navigationItem.rightBarButtonItem = rightButton;
+    self.appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
-    UILabel *textLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, marginTop+60, self.view.frame.size.width-40, 95)];
+//    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"提交" style:UIBarButtonItemStylePlain target:self action:@selector(clickSubmitButton)];
+//    self.navigationItem.rightBarButtonItem = rightButton;
+    
+    UIView *boxView = [[UIView alloc] initWithFrame:CGRectMake(20, marginTop+20, self.view.frame.size.width-40, 280)];
+    boxView.backgroundColor = [UIColor whiteColor];
+    
+    UILabel *textLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 20, boxView.frame.size.width-40, 140)];
     textLabel.backgroundColor = [UIColor clearColor];
     textLabel.numberOfLines = 0;
     textLabel.font =  [UIFont fontWithName:@"AppleGothic" size:18.0];
@@ -47,20 +57,36 @@
     textLabel.attributedText = [[NSAttributedString alloc] initWithString:@"請在以下空格輸入一個0-10的數字，表示您的痛感程度：0代表完全無痛，10代表極度劇痛，由0至10痛感依次遞增。" attributes:attributes];
     
     
-    [self.view addSubview:textLabel];
+    [boxView addSubview:textLabel];
     
     UIButton *showPainButton = [[UIButton alloc] initWithFrame:CGRectMake(20, textLabel.frame.origin.y+textLabel.frame.size.height+10, 140, 24)];
     [showPainButton setTitle:@"查看詳細痛感說明" forState:UIControlStateNormal];
     showPainButton.titleLabel.font = [UIFont fontWithName:@"AppleGothic" size:16.0];
     showPainButton.backgroundColor = RGBA_COLOR(253, 159, 81, 1);
     [showPainButton addTarget:self action:@selector(clickShowPainButton) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:showPainButton];
+    [boxView addSubview:showPainButton];
     
-    UITextField *numberField = [[UITextField alloc] initWithFrame:CGRectMake(80, showPainButton.frame.origin.y+showPainButton.frame.size.height+20, self.view.frame.size.width-160, 34)];
-    numberField.borderStyle = UITextBorderStyleRoundedRect;
-    numberField.clearButtonMode = UITextFieldViewModeWhileEditing;
-    numberField.keyboardType = UIKeyboardTypeNumberPad;
-    [self.view addSubview:numberField];
+    self.numberField = [[UITextField alloc] initWithFrame:CGRectMake(80, showPainButton.frame.origin.y+showPainButton.frame.size.height+20, self.view.frame.size.width-160, 34)];
+    self.numberField.placeholder = @"輸入一個0-10的整数";
+    self.numberField.borderStyle = UITextBorderStyleRoundedRect;
+    self.numberField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    self.numberField.keyboardType = UIKeyboardTypeNumberPad;
+    [boxView addSubview:self.numberField];
+    
+    [self.view addSubview:boxView];
+    
+    UIButton *submitButton = [[UIButton alloc] initWithFrame:CGRectMake(250/2, boxView.frame.origin.y+boxView.frame.size.height+30, self.view.frame.size.width-250, 44)];
+    submitButton.backgroundColor = RGBA_COLOR(49, 132, 225, 1);
+    submitButton.layer.cornerRadius = 15;
+    submitButton.layer.masksToBounds = YES;
+    [submitButton setTitle:@"提交" forState:UIControlStateNormal];
+    [submitButton addTarget:self action:@selector(clickSubmitButton) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:submitButton];
+    
+    self.view.userInteractionEnabled = YES;
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(fingerTapped:)];
+    singleTap.delegate = self;
+    [self.view addGestureRecognizer:singleTap];
 }
 
 
@@ -76,10 +102,17 @@
 }
 
 - (void)clickSubmitButton {
-    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"確認痛感" message:@"您當前痛感等級為3，屬於中度疼痛。\n是否提交?" preferredStyle:UIAlertControllerStyleAlert];
+    int level = [self.numberField.text intValue];
+    if( [self.numberField.text isEqualToString:@""] || level < 0 || level > 10 ){
+        HUD_TOAST_SHOW(@"痛感等級不正確");
+        return;
+    }
+    
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"確認痛感" message:[NSString stringWithFormat:@"您當前痛感等級為%d，屬於%@。\n是否提交?", level, [self.appDelegate.painList objectAtIndex:level]]  preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"確認" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
         //响应事件
-//        NSLog(@"action = %@", action);
+        [self.appDelegate saveUserPain:level];
+        
         StatusFourController *statusFourController = [[StatusFourController alloc] init];
         [self.navigationController pushViewController:statusFourController animated:YES];
     }];
@@ -90,6 +123,10 @@
     [alert addAction:defaultAction];
     [alert addAction:cancelAction];
     [self presentViewController:alert animated:YES completion:nil];
+}
+
+-(void)fingerTapped:(UITapGestureRecognizer *)gestureRecognizer {
+    [self.view endEditing:YES];
 }
 
 @end

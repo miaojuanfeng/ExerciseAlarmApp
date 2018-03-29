@@ -65,16 +65,33 @@
     
     [self loadSelectVideoList];
 //    self.videoList = [[NSMutableArray alloc] init];
-//    for(int i=0;i<10;i++){
-//        NSMutableDictionary *t = [[NSMutableDictionary alloc] init];
-//        [t setObject:[NSString stringWithFormat:@"视频%d", i] forKey:@"title"];
-//        [t setObject:[NSString stringWithFormat:@"%d", true] forKey:@"isShow"];
-//        [self.videoList addObject:t];
-//    }
+    if( self.videoList.count == 0 ){
+        for(int i=0;i<10;i++){
+            NSMutableDictionary *t = [[NSMutableDictionary alloc] init];
+            [t setObject:[NSString stringWithFormat:@"视频%d", i] forKey:@"title"];
+            [t setObject:[NSString stringWithFormat:@"%d", true] forKey:@"isShow"];
+            [self.videoList addObject:t];
+        }
+    }
     
     [self loadCalendar];
     [self saveCalendar];
     NSLog(@"saveCalendar: %@", self.calendarList);
+    
+    self.painList = [[NSMutableArray alloc] init];
+    [self.painList addObject:@"完全無痛"];
+    [self.painList addObject:@"完全無痛"];
+    [self.painList addObject:@"輕微疼痛"];
+    [self.painList addObject:@"輕微疼痛"];
+    [self.painList addObject:@"中度疼痛"];
+    [self.painList addObject:@"中度疼痛"];
+    [self.painList addObject:@"重度疼痛"];
+    [self.painList addObject:@"重度疼痛"];
+    [self.painList addObject:@"劇烈疼痛"];
+    [self.painList addObject:@"劇烈疼痛"];
+    [self.painList addObject:@"極度疼痛"];
+    
+    [self loadUserPain];
     
     [self loadUser];
     NSLog(@"%@", self.user);
@@ -282,6 +299,31 @@
     self.selectVideoList = [[NSMutableArray alloc] initWithContentsOfFile:plistPath];
     if( self.selectVideoList == nil ){
         self.selectVideoList = [[NSMutableArray alloc] init];
+    }
+}
+
+- (void)saveUserPain:(int) pain {
+    NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsPath = [path objectAtIndex:0];
+    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"userPain.plist"];
+    
+    NSDate *time = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *date = [dateFormatter stringFromDate:time];
+    
+    [self.userPain setObject:[NSString stringWithFormat:@"%d", pain] forKey:date];
+    
+    [self.userPain writeToFile:plistPath atomically:YES];
+}
+
+- (void)loadUserPain {
+    NSArray *pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *path = [pathArray objectAtIndex:0];
+    NSString *plistPath = [path stringByAppendingPathComponent:@"userPain.plist"];
+    self.userPain = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
+    if( self.userPain == nil ){
+        self.userPain = [[NSMutableDictionary alloc] init];
     }
 }
 

@@ -81,6 +81,12 @@
     [forgetPwdButton addTarget:self action:@selector(clickForgetPwdButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:forgetPwdButton];
     
+    
+    self.view.userInteractionEnabled = YES;
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(fingerTapped:)];
+    singleTap.delegate = self;
+    [self.view addGestureRecognizer:singleTap];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -133,6 +139,11 @@
 - (void)clickForgetPwdButton {
     ForgetPwdController *forgetPwdController = [[ForgetPwdController alloc] init];
     [self.navigationController pushViewController:forgetPwdController animated:YES];
+}
+
+
+-(void)fingerTapped:(UITapGestureRecognizer *)gestureRecognizer {
+    [self.view endEditing:YES];
 }
 
 

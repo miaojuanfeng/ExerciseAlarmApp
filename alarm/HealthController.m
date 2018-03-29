@@ -30,6 +30,7 @@
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, marginTop, self.view.frame.size.width, self.view.frame.size.height-marginTop-self.tabBarController.tabBar.frame.size.height)];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    self.tableView.rowHeight = 108;
     self.automaticallyAdjustsScrollViewInsets = false;
     [self.view addSubview:self.tableView];
 }
@@ -48,22 +49,21 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    tableView.rowHeight = 88;
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
     
-    UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(10, 10, (self.tableView.frame.size.width-20)*0.7, 68)];
+    UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(10, 10, (self.tableView.frame.size.width-20)*0.6, 88)];
 //    titleView.backgroundColor = [UIColor redColor];
     
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, titleView.frame.size.width, 20)];
     [titleView addSubview:titleLabel];
     
     UILabel *descLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, titleView.frame.size.height-15, titleView.frame.size.width, 15)];
-    descLabel.font = [UIFont fontWithName:@"AppleGothic" size:12.0];
+    descLabel.font = [UIFont fontWithName:@"AppleGothic" size:14.0];
     [titleView addSubview:descLabel];
     
     [cell.contentView addSubview:titleView];
     
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(titleView.frame.origin.x+titleView.frame.size.width, 10, (self.tableView.frame.size.width-20)*0.3, 68)];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(titleView.frame.origin.x+titleView.frame.size.width, 10, (self.tableView.frame.size.width-20)*0.4, 88)];
     imageView.backgroundColor = [UIColor blueColor];
     imageView.image = [UIImage imageNamed:@"bg"];
     imageView.contentMode = UIViewContentModeScaleAspectFill;
@@ -75,22 +75,18 @@
         case 0:
             titleLabel.text = @"體重管理";
             descLabel.text = @"這是一個簡單說明";
-            [cell.detailTextLabel setNumberOfLines:3];
             break;
         case 1:
-            cell.textLabel.text = @"膳食";
-            cell.detailTextLabel.text = @"\n\n這是一個簡單說明";
-            [cell.detailTextLabel setNumberOfLines:3];
+            titleLabel.text = @"膳食管理";
+            descLabel.text = @"這是一個簡單說明";
             break;
         case 2:
-            cell.textLabel.text = @"關節保護";
-            cell.detailTextLabel.text = @"\n\n這是一個簡單說明";
-            [cell.detailTextLabel setNumberOfLines:3];
+            titleLabel.text = @"關節保護";
+            descLabel.text = @"這是一個簡單說明";
             break;
         default:
-            cell.textLabel.text = @"conservation of energy";
-            cell.detailTextLabel.text = @"\n\n這是一個簡單說明";
-            [cell.detailTextLabel setNumberOfLines:3];
+            titleLabel.text = @"conservation of energy";
+            descLabel.text = @"這是一個簡單說明";
             break;
     }
     return cell;

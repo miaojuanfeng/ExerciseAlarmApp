@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "YASimpleGraphView.h"
 #import "MacroDefine.h"
+#import "AppDelegate.h"
 #import "StatusFourController.h"
 #import "AveragePainController.h"
 #import "CurrentPainController.h"
@@ -17,6 +18,11 @@
 @property NSArray *allValues;
 @property NSArray *allDates;
 @property int graphButtonIndex;
+
+@property AppDelegate *appDelegate;
+
+@property UILabel *averageNum;
+@property UILabel *currentNum;
 @end
 
 @implementation StatusFourController
@@ -29,6 +35,8 @@
     
     CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
     float marginTop = rectStatus.size.height + self.navigationController.navigationBar.frame.size.height;
+    
+    self.appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
     UIView *averagePainView = [[UIView alloc] initWithFrame:CGRectMake(0, marginTop, self.view.frame.size.width, 120)];
 //    averagePainView.backgroundColor = [UIColor blueColor];
@@ -50,12 +58,9 @@
     [averageMoreButton addTarget:self action:@selector(clickShowAveragePainButton) forControlEvents:UIControlEventTouchUpInside];
     [averagePainView addSubview:averageMoreButton];
     
-    UILabel *averageNum = [[UILabel alloc] initWithFrame:CGRectMake(0, 60, averagePainView.frame.size.width/2, 50)];
-    averageNum.textAlignment = NSTextAlignmentRight;
-    NSMutableAttributedString *averageStr = [[NSMutableAttributedString alloc] initWithString:@"2 級"];
-    [averageStr addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"AppleGothic" size:36.0] range:NSMakeRange(0,averageStr.length-1)];
-    averageNum.attributedText = averageStr;
-    [averagePainView addSubview:averageNum];
+    self.averageNum = [[UILabel alloc] initWithFrame:CGRectMake(0, 60, averagePainView.frame.size.width/2, 50)];
+    self.averageNum.textAlignment = NSTextAlignmentRight;
+    [averagePainView addSubview:self.averageNum];
     
     UIImageView *averagePainImage = [[UIImageView alloc] initWithFrame:CGRectMake(averagePainView.frame.size.width/2+10, 65, 32, 32)];
     averagePainImage.image = [UIImage imageNamed:@"Pain2"];
@@ -83,12 +88,9 @@
     [currentMoreButton addTarget:self action:@selector(clickShowCurrentPainButton) forControlEvents:UIControlEventTouchUpInside];
     [currentPainView addSubview:currentMoreButton];
     
-    UILabel *currentNum = [[UILabel alloc] initWithFrame:CGRectMake(0, 60, currentPainView.frame.size.width/2, 50)];
-    currentNum.textAlignment = NSTextAlignmentRight;
-    NSMutableAttributedString *currentStr = [[NSMutableAttributedString alloc] initWithString:@"3 級"];
-    [currentStr addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"AppleGothic" size:36.0] range:NSMakeRange(0,currentStr.length-1)];
-    currentNum.attributedText = currentStr;
-    [currentPainView addSubview:currentNum];
+    self.currentNum = [[UILabel alloc] initWithFrame:CGRectMake(0, 60, currentPainView.frame.size.width/2, 50)];
+    self.currentNum.textAlignment = NSTextAlignmentRight;
+    [currentPainView addSubview:self.currentNum];
     
     UIImageView *currentPainImage = [[UIImageView alloc] initWithFrame:CGRectMake(currentPainView.frame.size.width/2+5, 57, 40, 50)];
     currentPainImage.image = [UIImage imageNamed:@"PainUp"];
@@ -163,6 +165,8 @@
     [graphButtonView addSubview:graphMonthButton];
     
     [self.view addSubview:graphButtonView];
+    
+    [self calcUserPain];
     
     
     
@@ -245,6 +249,29 @@
 
 - (void)clickGraphButton:(int) index{
     self.graphButtonIndex = index;
+}
+
+- (void)calcUserPain {
+    long total = 0;
+    long count = self.appDelegate.userPain.count;
+    NSString *date = nil;
+    for (date in self.appDelegate.userPain) {
+       total += [[self.appDelegate.userPain objectForKey:date] intValue];
+    }
+    int average = 0;
+    int current = 0;
+    if( count > 0 ){
+        average = (int)(total/count);
+        current = [[self.appDelegate.userPain objectForKey:date] intValue];
+        NSLog(@"%@", date);
+    }
+    NSMutableAttributedString *averageStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%d 級", average]];
+    [averageStr addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"AppleGothic" size:36.0] range:NSMakeRange(0,averageStr.length-1)];
+    self.averageNum.attributedText = averageStr;
+    
+    NSMutableAttributedString *currentStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%d 級", current]];
+    [currentStr addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"AppleGothic" size:36.0] range:NSMakeRange(0,currentStr.length-1)];
+    self.currentNum.attributedText = currentStr;
 }
 
 @end
