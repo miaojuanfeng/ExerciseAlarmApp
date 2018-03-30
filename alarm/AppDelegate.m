@@ -102,11 +102,11 @@
     
     [self loadUser];
     NSLog(@"%@", self.user);
-    if( self.user == nil ){
-        LoginController *loginController = [[LoginController alloc] init];
-        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:loginController];
-        [self.window.rootViewController presentViewController:nav animated:YES completion:nil];
-    }
+//    if( self.user == nil ){
+//        LoginController *loginController = [[LoginController alloc] init];
+//        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:loginController];
+//        [self.window.rootViewController presentViewController:nav animated:YES completion:nil];
+//    }
     
     return YES;
 }

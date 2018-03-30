@@ -50,6 +50,7 @@
     UITableViewCell *cell = [[UITableViewCell alloc] init];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.textLabel.text = @"每天什麽時間鍛煉最合適？";
+    cell.imageView.image = [UIImage imageNamed:@"feedback"];
     return cell;
 }
 
