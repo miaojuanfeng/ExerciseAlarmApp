@@ -48,8 +48,8 @@
     //
     self.contentView = [[UITextView alloc] initWithFrame:CGRectMake(0, line.frame.origin.y+line.frame.size.height, contentView.frame.size.width, 200)];
     self.contentView.text = @"輸入內容";
-    self.contentView.font = [UIFont fontWithName:@"AppleGothic" size:18.0];
-    self.contentView.textColor = [UIColor lightGrayColor];
+    self.contentView.font = [UIFont systemFontOfSize:17.0f];
+    self.contentView.textColor = RGBA_COLOR(199, 199, 205, 1);
     self.contentView.delegate = self;
     [contentView addSubview:self.contentView];
     
@@ -69,7 +69,6 @@
     [self.view addGestureRecognizer:singleTap];
 }
 
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -79,7 +78,7 @@
 {
     if(textView.text.length < 1){
         textView.text = @"輸入內容";
-        textView.textColor = [UIColor lightGrayColor];
+        textView.textColor = RGBA_COLOR(199, 199, 205, 1);
     }
 }
 
@@ -87,7 +86,7 @@
 {
     if([textView.text isEqualToString:@"輸入內容"]){
         textView.text=@"";
-        textView.textColor=[UIColor blackColor];
+        textView.textColor = [UIColor blackColor];
     }
 }
 
@@ -95,7 +94,7 @@
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     manager.requestSerializer.timeoutInterval = 30.0f;
-    NSDictionary *parameters=@{@"user_username":self.titleField.text,@"user_password":self.contentView.text};
+    NSDictionary *parameters=@{@"discuss_title":self.titleField.text,@"discuss_content":self.contentView.text,@"discuss_user_id":[self.appDelegate.user objectForKey:@"user_id"]};
     HUD_WAITING_SHOW(@"Loading");
     [manager POST:BASE_URL(@"discuss/insert") parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
         
@@ -108,19 +107,6 @@
         
         HUD_WAITING_HIDE;
         if( status == 1 ){
-            //            NSDictionary *data = [dic objectForKey:@"data"];
-            //            NSString *device_id = [data objectForKey:@"device_id"];
-            //
-            //            NSMutableDictionary *device = [[NSMutableDictionary alloc] init];
-            //            [device setObject:device_id forKey:@"device_id"];
-            //            [device setObject:self.deviceTokenField.text forKey:@"device_token"];
-            //            [device setObject:self.deviceNameField.text forKey:@"device_name"];
-            //            [self.appDelegate.deviceList addObject:device];
-            //
-            //            NSLog(@"%@", self.appDelegate.deviceList);
-            //            [self.appDelegate saveDeviceList:device];
-            //
-            
             [self.navigationController popViewControllerAnimated:true];
         }else{
             NSString *msg = [dic objectForKey:@"msg"];

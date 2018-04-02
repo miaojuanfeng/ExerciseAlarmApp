@@ -7,12 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "MacroDefine.h"
+#import "AppDelegate.h"
 #import "MyMsgController.h"
 #import "MsgDetailController.h"
+#import <AFNetworking/AFNetworking.h>
 
 @interface MyMsgController () <UITableViewDataSource, UITableViewDelegate>
 @property UITableView *tableView;
+@property AppDelegate *appDelegate;
+@property NSMutableArray *discussList;
 @end
 
 @implementation MyMsgController
@@ -26,10 +30,16 @@
     CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
     float marginTop = rectStatus.size.height + self.navigationController.navigationBar.frame.size.height;
     
+    self.appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    self.discussList = [[NSMutableArray alloc] init];
+    
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-self.tabBarController.tabBar.frame.size.height)];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [self.view addSubview:self.tableView];
+    
+    [self loadData];
 }
 
 
@@ -43,13 +53,13 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 20;
+    return self.discussList.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [[UITableViewCell alloc] init];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.textLabel.text = @"每天什麽時間鍛煉最合適？";
+    cell.textLabel.text = [[self.discussList objectAtIndex:indexPath.row] objectForKey:@"title"];
     cell.imageView.image = [UIImage imageNamed:@"feedback"];
     return cell;
 }
@@ -58,6 +68,38 @@
     MsgDetailController *msgDetailController = [[MsgDetailController alloc] init];
     [self.navigationController pushViewController:msgDetailController animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (void)loadData{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.requestSerializer.timeoutInterval = 30.0f;
+    NSDictionary *parameters=@{@"discuss_offset":@0,@"discuss_page_size":@20};
+    HUD_WAITING_SHOW(@"Loading");
+    [manager POST:[NSString stringWithFormat:@"%@%@", BASE_URL(@"discuss/select/user/"), [self.appDelegate.user objectForKey:@"user_id"]] parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"成功.%@",responseObject);
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:NULL];
+        NSLog(@"results: %@", dic);
+        
+        int status = [[dic objectForKey:@"status"] intValue];
+        
+        HUD_WAITING_HIDE;
+        if( status == 1 ){
+            self.discussList = [dic objectForKey:@"data"];
+            [self.tableView reloadData];
+        }else{
+            NSString *msg = [dic objectForKey:@"msg"];
+            HUD_TOAST_SHOW(msg);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"失败.%@",error);
+        NSLog(@"%@",[[NSString alloc] initWithData:error.userInfo[@"com.alamofire.serialization.response.error.data"] encoding:NSUTF8StringEncoding]);
+        
+        HUD_WAITING_HIDE;
+        HUD_TOAST_SHOW(@"Network Error");
+    }];
 }
 
 @end

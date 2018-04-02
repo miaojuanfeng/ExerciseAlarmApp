@@ -12,7 +12,7 @@
 #import "NewCommentController.h"
 #import <AFNetworking/AFNetworking.h>
 
-@interface NewCommentController () <UITextViewDelegate>
+@interface NewCommentController () <UITextViewDelegate, UIGestureRecognizerDelegate>
 @property UITextView *contentView;
 @property AppDelegate *appDelegate;
 @end
@@ -37,8 +37,8 @@
     
     self.contentView = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, contentView.frame.size.width, 200)];
     self.contentView.text = @"輸入內容";
-    self.contentView.font = [UIFont fontWithName:@"AppleGothic" size:18.0];
-    self.contentView.textColor = [UIColor lightGrayColor];
+    self.contentView.font = [UIFont systemFontOfSize:17.0f];
+    self.contentView.textColor = RGBA_COLOR(199, 199, 205, 1);
     self.contentView.delegate = self;
     [contentView addSubview:self.contentView];
     
@@ -51,6 +51,11 @@
     [contentView addSubview:submitButton];
     
     [self.view addSubview:contentView];
+    
+    self.view.userInteractionEnabled = YES;
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(fingerTapped:)];
+    singleTap.delegate = self;
+    [self.view addGestureRecognizer:singleTap];
 }
 
 
@@ -63,7 +68,7 @@
 {
     if(textView.text.length < 1){
         textView.text = @"輸入內容";
-        textView.textColor = [UIColor lightGrayColor];
+        textView.textColor = RGBA_COLOR(199, 199, 205, 1);
     }
 }
 
@@ -71,7 +76,7 @@
 {
     if([textView.text isEqualToString:@"輸入內容"]){
         textView.text=@"";
-        textView.textColor=[UIColor blackColor];
+        textView.textColor = [UIColor blackColor];
     }
 }
 
@@ -105,6 +110,10 @@
         HUD_WAITING_HIDE;
         HUD_TOAST_SHOW(@"Network Error");
     }];
+}
+
+-(void)fingerTapped:(UITapGestureRecognizer *)gestureRecognizer {
+    [self.view endEditing:YES];
 }
 
 @end
