@@ -76,7 +76,7 @@
         for(int i=0;i<10;i++){
             NSMutableDictionary *t = [[NSMutableDictionary alloc] init];
             [t setObject:[NSString stringWithFormat:@"视频%d", i] forKey:@"title"];
-            [t setObject:[NSString stringWithFormat:@"%d", true] forKey:@"isShow"];
+            [t setObject:[NSString stringWithFormat:@"%d", false] forKey:@"isShow"];
             [self.videoList addObject:t];
         }
     }

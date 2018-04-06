@@ -25,6 +25,8 @@
     self.view.backgroundColor = RGBA_COLOR(240, 240, 245, 1);
     self.navigationItem.title = @"添加評論";
     
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
 //    self.myButton = [[UIBarButtonItem alloc] initWithTitle:@"發佈" style:UIBarButtonItemStylePlain target:self action:@selector(clickSave)];
 //    self.navigationItem.rightBarButtonItem = self.myButton;
     

@@ -67,11 +67,16 @@
 
 - (void)showPain {
     int total = 0;
+    long count = self.appDelegate.userPain.count;
     for (NSString *date in self.appDelegate.userPain) {
         int pain = [[self.appDelegate.userPain objectForKey:date] intValue];
         total += pain;
     }
-    self.textLabel.text = [NSString stringWithFormat:@"您的平均疼痛等級為 %d 級，屬於 輕微疼痛", total];
+    int average = 0;
+    if( count > 0 ){
+        average = (int)(total/count);
+    }
+    self.textLabel.text = [NSString stringWithFormat:@"您的平均疼痛等級為 %d 級，屬於 輕微疼痛", average];
 }
 
 @end

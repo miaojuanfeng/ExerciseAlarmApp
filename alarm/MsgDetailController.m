@@ -23,6 +23,8 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationItem.title = @"每天什麽時間鍛煉最合適？";
     
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
     CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
     float marginTop = rectStatus.size.height + self.navigationController.navigationBar.frame.size.height;
     

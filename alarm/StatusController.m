@@ -20,6 +20,9 @@
 
 @interface StatusController ()
 @property AppDelegate *appDelegate;
+
+@property UIButton *numButton3;
+@property UIButton *numButton4;
 @end
 
 @implementation StatusController
@@ -180,12 +183,12 @@
     titleTop3.textAlignment = NSTextAlignmentCenter;
     [view3 addSubview:titleTop3];
     //
-    UIButton *numButton3 = [[UIButton alloc] initWithFrame:CGRectMake(0, 55, view3.frame.size.width, 60)];
-    numButton3.titleLabel.font = [UIFont fontWithName:@"AppleGothic" size:46.0];
-    [numButton3 setTitle:[NSString stringWithFormat:@"%ld", self.appDelegate.calendarCount] forState:UIControlStateNormal];
-    [numButton3 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [numButton3 addTarget:self action:@selector(clickButton3) forControlEvents:UIControlEventTouchUpInside];
-    [view3 addSubview:numButton3];
+    self.numButton3 = [[UIButton alloc] initWithFrame:CGRectMake(0, 55, view3.frame.size.width, 60)];
+    self.numButton3.titleLabel.font = [UIFont fontWithName:@"AppleGothic" size:46.0];
+    
+    [self.numButton3 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.numButton3 addTarget:self action:@selector(clickButton3) forControlEvents:UIControlEventTouchUpInside];
+    [view3 addSubview:self.numButton3];
     //
     UILabel *titleBottom3 = [[UILabel alloc] initWithFrame:CGRectMake(0, 115, view3.frame.size.width, 30)];
     titleBottom3.text = @"天";
@@ -210,12 +213,12 @@
     titleTop4.textAlignment = NSTextAlignmentCenter;
     [view4 addSubview:titleTop4];
     //
-    UIButton *numButton4 = [[UIButton alloc] initWithFrame:CGRectMake(0, 55, view4.frame.size.width, 60)];
-    numButton4.titleLabel.font = [UIFont fontWithName:@"AppleGothic" size:46.0];
-    [numButton4 setTitle:@"3" forState:UIControlStateNormal];
-    [numButton4 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [numButton4 addTarget:self action:@selector(clickButton4) forControlEvents:UIControlEventTouchUpInside];
-    [view4 addSubview:numButton4];
+    self.numButton4 = [[UIButton alloc] initWithFrame:CGRectMake(0, 55, view4.frame.size.width, 60)];
+    self.numButton4.titleLabel.font = [UIFont fontWithName:@"AppleGothic" size:46.0];
+    
+    [self.numButton4 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.numButton4 addTarget:self action:@selector(clickButton4) forControlEvents:UIControlEventTouchUpInside];
+    [view4 addSubview:self.numButton4];
     //
     UILabel *titleBottom4 = [[UILabel alloc] initWithFrame:CGRectMake(0, 115, view4.frame.size.width, 30)];
     titleBottom4.text = @"級";
@@ -261,6 +264,21 @@
 - (void)clickSettingButton {
     SettingController *settingController = [[SettingController alloc] init];
     [self.navigationController pushViewController:settingController animated:YES];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    /*
+     *  button3
+     */
+    [self.numButton3 setTitle:[NSString stringWithFormat:@"%ld", self.appDelegate.calendarCount] forState:UIControlStateNormal];
+    /*
+     *  button4
+     */
+    int lastPain = 0;
+    for (NSString *date in self.appDelegate.userPain) {
+        lastPain = [[self.appDelegate.userPain objectForKey:date] intValue];
+    }
+    [self.numButton4 setTitle:[NSString stringWithFormat:@"%d", lastPain] forState:UIControlStateNormal];
 }
 
 @end
