@@ -13,6 +13,7 @@
 #import "NoiseController.h"
 #import "WBTabBarController.h"
 #import "LoginController.h"
+#import "TBCityIconFont.h"
 
 @interface AppDelegate () <UNUserNotificationCenterDelegate>
 
@@ -107,6 +108,8 @@
         UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:loginController];
         [self.window.rootViewController presentViewController:nav animated:YES completion:nil];
     }
+    
+    [TBCityIconFont setFontName:@"iconfont"];
     
     return YES;
 }

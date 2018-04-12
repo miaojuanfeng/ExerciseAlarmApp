@@ -48,6 +48,10 @@
 		CE1A4979201A01DD005CB860 /* HYBAnimationClock.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1A4977201A01DC005CB860 /* HYBAnimationClock.m */; };
 		CE1A497C201A0219005CB860 /* HYBClockView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1A497B201A0219005CB860 /* HYBClockView.m */; };
 		CE1DBC33206A524100632D86 /* SelectVideoController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1DBC32206A524100632D86 /* SelectVideoController.m */; };
+		CE357869207F1306009049E2 /* iconfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE357868207F1306009049E2 /* iconfont.ttf */; };
+		CE35786C207F14B1009049E2 /* TBCityIconFont.m in Sources */ = {isa = PBXBuildFile; fileRef = CE35786B207F14B1009049E2 /* TBCityIconFont.m */; };
+		CE357870207F14E6009049E2 /* TBCityIconInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CE35786F207F14E6009049E2 /* TBCityIconInfo.m */; };
+		CE357872207F14FF009049E2 /* UIImage+TBCityIconFont.m in Sources */ = {isa = PBXBuildFile; fileRef = CE357871207F14FF009049E2 /* UIImage+TBCityIconFont.m */; };
 		CE446F5B202806FE009320EC /* VideoDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE446F5A202806FE009320EC /* VideoDetailController.m */; };
 		CE446F5E20280A1C009320EC /* PwdController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE446F5D20280A1C009320EC /* PwdController.m */; };
 		CE446F6220280A4B009320EC /* HelpController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE446F6120280A4B009320EC /* HelpController.m */; };
@@ -177,6 +181,13 @@
 		CE1A497B201A0219005CB860 /* HYBClockView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYBClockView.m; sourceTree = "<group>"; };
 		CE1DBC32206A524100632D86 /* SelectVideoController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectVideoController.m; sourceTree = "<group>"; };
 		CE1DBC35206A526200632D86 /* SelectVideoController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectVideoController.h; sourceTree = "<group>"; };
+		CE357868207F1306009049E2 /* iconfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = iconfont.ttf; sourceTree = "<group>"; };
+		CE35786B207F14B1009049E2 /* TBCityIconFont.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TBCityIconFont.m; sourceTree = "<group>"; };
+		CE35786D207F14C2009049E2 /* TBCityIconFont.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TBCityIconFont.h; sourceTree = "<group>"; };
+		CE35786E207F14D4009049E2 /* TBCityIconInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TBCityIconInfo.h; sourceTree = "<group>"; };
+		CE35786F207F14E6009049E2 /* TBCityIconInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TBCityIconInfo.m; sourceTree = "<group>"; };
+		CE357871207F14FF009049E2 /* UIImage+TBCityIconFont.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+TBCityIconFont.m"; sourceTree = "<group>"; };
+		CE357873207F150B009049E2 /* UIImage+TBCityIconFont.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+TBCityIconFont.h"; sourceTree = "<group>"; };
 		CE446F5A202806FE009320EC /* VideoDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoDetailController.m; sourceTree = "<group>"; };
 		CE446F5C20280713009320EC /* VideoDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoDetailController.h; sourceTree = "<group>"; };
 		CE446F5D20280A1C009320EC /* PwdController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PwdController.m; sourceTree = "<group>"; };
@@ -193,8 +204,8 @@
 		CE50102E205A5EDD00467D5A /* StatusPainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusPainController.m; sourceTree = "<group>"; };
 		CE501030205A66C400467D5A /* ShowPainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowPainController.h; sourceTree = "<group>"; };
 		CE501031205A66C400467D5A /* ShowPainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowPainController.m; sourceTree = "<group>"; };
-		CE50103E205A8B1400467D5A /* YASimpleGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YASimpleGraphView.m; path = alarm/YASimpleGraph/YASimpleGraphView.m; sourceTree = "<group>"; };
-		CE50103F205A8B1400467D5A /* YASimpleGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YASimpleGraphView.h; path = alarm/YASimpleGraph/YASimpleGraphView.h; sourceTree = "<group>"; };
+		CE50103E205A8B1400467D5A /* YASimpleGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YASimpleGraphView.m; sourceTree = "<group>"; };
+		CE50103F205A8B1400467D5A /* YASimpleGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YASimpleGraphView.h; sourceTree = "<group>"; };
 		CE501041205A91DC00467D5A /* AveragePainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AveragePainController.h; sourceTree = "<group>"; };
 		CE501042205A91DC00467D5A /* CurrentPainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentPainController.h; sourceTree = "<group>"; };
 		CE501043205A91DC00467D5A /* CurrentPainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentPainController.m; sourceTree = "<group>"; };
@@ -260,9 +271,9 @@
 		9907369A2016344C002EFEC5 = {
 			isa = PBXGroup;
 			children = (
-				CE50103F205A8B1400467D5A /* YASimpleGraphView.h */,
-				CE50103E205A8B1400467D5A /* YASimpleGraphView.m */,
+				CE35786A207F148C009049E2 /* TBCityIcon */,
 				CE50102B205A598700467D5A /* Assets.xcassets */,
+				CE357867207F129C009049E2 /* YASimpleGraphView */,
 				990C854E2042F3C600D36C9E /* PTView */,
 				990C85442042EFB200D36C9E /* Classes */,
 				990C85382042EED800D36C9E /* YXCalendar */,
@@ -292,12 +303,6 @@
 				CE501047205A993C00467D5A /* HealthTab */,
 				990C851D2042C88F00D36C9E /* DiscussTab */,
 				990C85162042C62700D36C9E /* AlarmTab */,
-				990736A92016344C002EFEC5 /* AppDelegate.h */,
-				990736AA2016344C002EFEC5 /* AppDelegate.m */,
-				990736B72016344C002EFEC5 /* Info.plist */,
-				990736AF2016344C002EFEC5 /* Main.storyboard */,
-				998F36D7202757E400676226 /* NoiseController.h */,
-				998F36D5202757D300676226 /* NoiseController.m */,
 				990C85152042C5AE00D36C9E /* SettingTab */,
 				990C85072042AFA500D36C9E /* StatusTab */,
 				990736A62016344C002EFEC5 /* Supporting Files */,
@@ -306,6 +311,13 @@
 				CEBBACD12041215A00F6262D /* WBTabBarController.h */,
 				CEBBACCF2041214800F6262D /* WBTabBarController.m */,
 				CE501028205A2F3800467D5A /* MacroDefine.h */,
+				990736A92016344C002EFEC5 /* AppDelegate.h */,
+				990736AA2016344C002EFEC5 /* AppDelegate.m */,
+				990736B72016344C002EFEC5 /* Info.plist */,
+				CE357868207F1306009049E2 /* iconfont.ttf */,
+				990736AF2016344C002EFEC5 /* Main.storyboard */,
+				998F36D7202757E400676226 /* NoiseController.h */,
+				998F36D5202757D300676226 /* NoiseController.m */,
 			);
 			path = alarm;
 			sourceTree = "<group>";
@@ -527,6 +539,28 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CE357867207F129C009049E2 /* YASimpleGraphView */ = {
+			isa = PBXGroup;
+			children = (
+				CE50103F205A8B1400467D5A /* YASimpleGraphView.h */,
+				CE50103E205A8B1400467D5A /* YASimpleGraphView.m */,
+			);
+			path = YASimpleGraphView;
+			sourceTree = "<group>";
+		};
+		CE35786A207F148C009049E2 /* TBCityIcon */ = {
+			isa = PBXGroup;
+			children = (
+				CE35786D207F14C2009049E2 /* TBCityIconFont.h */,
+				CE35786B207F14B1009049E2 /* TBCityIconFont.m */,
+				CE35786E207F14D4009049E2 /* TBCityIconInfo.h */,
+				CE35786F207F14E6009049E2 /* TBCityIconInfo.m */,
+				CE357871207F14FF009049E2 /* UIImage+TBCityIconFont.m */,
+				CE357873207F150B009049E2 /* UIImage+TBCityIconFont.h */,
+			);
+			path = TBCityIcon;
+			sourceTree = "<group>";
+		};
 		CE501047205A993C00467D5A /* HealthTab */ = {
 			isa = PBXGroup;
 			children = (
@@ -654,6 +688,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE357869207F1306009049E2 /* iconfont.ttf in Resources */,
 				990736B12016344C002EFEC5 /* Main.storyboard in Resources */,
 				CE50102C205A598700467D5A /* Assets.xcassets in Resources */,
 				990C85362042EECE00D36C9E /* YXDayCell.xib in Resources */,
@@ -853,6 +888,7 @@
 				CE501046205A91DD00467D5A /* AveragePainController.m in Sources */,
 				9920D21620177C2800DA8D6D /* SelectMusicController.m in Sources */,
 				CEBEC2A42043C7BE00540DBB /* PlayVideoController.m in Sources */,
+				CE357870207F14E6009049E2 /* TBCityIconInfo.m in Sources */,
 				CE446F6220280A4B009320EC /* HelpController.m in Sources */,
 				CE446F5B202806FE009320EC /* VideoDetailController.m in Sources */,
 				998F36D6202757D300676226 /* NoiseController.m in Sources */,
@@ -866,6 +902,7 @@
 				CEA7ECCC2045161C006A9D7F /* ShowPhotoController.m in Sources */,
 				990736AB2016344C002EFEC5 /* AppDelegate.m in Sources */,
 				994F56EE206BE4B700F4333A /* HealthDetailController.m in Sources */,
+				CE35786C207F14B1009049E2 /* TBCityIconFont.m in Sources */,
 				990736A82016344C002EFEC5 /* main.m in Sources */,
 				CEBBACD02041214800F6262D /* WBTabBarController.m in Sources */,
 				990C85202042CF9600D36C9E /* NewQuestionController.m in Sources */,
@@ -880,6 +917,7 @@
 				990C85282042EA8C00D36C9E /* NewCommentController.m in Sources */,
 				990C854B2042F3BF00D36C9E /* PTHistogramView.m in Sources */,
 				CEBEC2A22043B85D00540DBB /* DiscussController.m in Sources */,
+				CE357872207F14FF009049E2 /* UIImage+TBCityIconFont.m in Sources */,
 				CE501040205A8B1400467D5A /* YASimpleGraphView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1024,7 +1062,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = R4M5UMCGE9;
 				INFOPLIST_FILE = alarm/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1043,14 +1081,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = R4M5UMCGE9;
 				INFOPLIST_FILE = alarm/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dreamover.alarm;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "436c6dae-fd41-44e4-a904-30f37916c2b6";
+				PROVISIONING_PROFILE = "c54828a5-5d4a-49b9-9412-ec1594f2de8c";
 				PROVISIONING_PROFILE_SPECIFIER = ExerciseAlarm_Dis;
 			};
 			name = Release;

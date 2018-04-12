@@ -13,6 +13,9 @@
 #import "VideoListController.h"
 #import "HealthController.h"
 #import "DiscussController.h"
+#import "TBCityIconFont.h"
+#import "UIImage+TBCityIconFont.h"
+
 @interface WBTabBarController ()
 
 @end
@@ -45,22 +48,30 @@
     navFive.title = @"討論";
     
     //设置控制器图片(使用imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal,不被系统渲染成蓝色)
-    navOne.tabBarItem.image = [[UIImage imageNamed:@"Status"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    navOne.tabBarItem.selectedImage = [[UIImage imageNamed:@"Status2"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    navTwo.tabBarItem.image = [[UIImage imageNamed:@"Alarm"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    navTwo.tabBarItem.selectedImage = [[UIImage imageNamed:@"Alarm2"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    navThree.tabBarItem.image = [[UIImage imageNamed:@"Video"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    navThree.tabBarItem.selectedImage = [[UIImage imageNamed:@"Video2"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    navFour.tabBarItem.image = [[UIImage imageNamed:@"Health"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    navFour.tabBarItem.selectedImage = [[UIImage imageNamed:@"Health2"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    navFive.tabBarItem.image = [[UIImage imageNamed:@"Discuss"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    navFive.tabBarItem.selectedImage = [[UIImage imageNamed:@"Discuss2"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIColor *normalColor = [UIColor whiteColor];
+    UIColor *selectedColor = RGBA_COLOR(207, 235, 122, 1);
+    int iconFontSize = 30;
+    //我的状态
+    navOne.tabBarItem.image = [[UIImage iconWithInfo:TBCityIconInfoMake(@"\U0000e6f5", iconFontSize, normalColor)]  imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    navOne.tabBarItem.selectedImage = [[UIImage iconWithInfo:TBCityIconInfoMake(@"\U0000e6f4", iconFontSize, selectedColor)] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    //提醒
+    navTwo.tabBarItem.image = [[UIImage iconWithInfo:TBCityIconInfoMake(@"\U0000e6e9", iconFontSize, normalColor)] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    navTwo.tabBarItem.selectedImage = [[UIImage iconWithInfo:TBCityIconInfoMake(@"\U0000e6e8", iconFontSize, selectedColor)] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    //视频
+    navThree.tabBarItem.image = [[UIImage iconWithInfo:TBCityIconInfoMake(@"\U0000e719", iconFontSize, normalColor)] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    navThree.tabBarItem.selectedImage = [[UIImage iconWithInfo:TBCityIconInfoMake(@"\U0000e718", iconFontSize, selectedColor)] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    //健康常识
+    navFour.tabBarItem.image = [[UIImage iconWithInfo:TBCityIconInfoMake(@"\U0000e6de", iconFontSize, normalColor)] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    navFour.tabBarItem.selectedImage = [[UIImage iconWithInfo:TBCityIconInfoMake(@"\U0000e6df", iconFontSize, selectedColor)] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    //讨论
+    navFive.tabBarItem.image = [[UIImage iconWithInfo:TBCityIconInfoMake(@"\U0000e705", iconFontSize, normalColor)] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    navFive.tabBarItem.selectedImage = [[UIImage iconWithInfo:TBCityIconInfoMake(@"\U0000e704", iconFontSize, selectedColor)] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
     //改变tabbarController 文字选中颜色(默认渲染为蓝色)
-    [[UITabBar appearance] setBarTintColor:[UIColor colorWithRed:49.0/255.0 green:132.0/255.0 blue:255.0/255.0 alpha:1.0]];
+    [[UITabBar appearance] setBarTintColor:RGBA_COLOR(49, 132, 255, 1)];
     [UITabBar appearance].translucent = NO;
-    [[UITabBarItem appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
-    [[UITabBarItem appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName:RGBA_COLOR(207, 235, 122, 1)} forState:UIControlStateSelected];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName:normalColor} forState:UIControlStateNormal];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName:selectedColor} forState:UIControlStateSelected];
     
     self.tabBar.tintColor = [UIColor blueColor];
     
