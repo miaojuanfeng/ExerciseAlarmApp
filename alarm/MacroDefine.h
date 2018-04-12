@@ -48,5 +48,6 @@
                         }while(0)
 
 #define DEFAULT_FONT(s) [UIFont fontWithName:@"AppleGothic" size:[self.appDelegate getScreenPercent]*s]
+#define ICON_FONT(s) [UIFont fontWithName:@"iconfont" size:[self.appDelegate getScreenPercent]*s]
 
 #endif /* MacroDefine_h */
