@@ -34,5 +34,6 @@
 - (void)saveSelectVideoList;
 - (void)saveUserPain:(int) pain;
 - (void)loadUserPain;
+- (float)getScreenPercent;
 @end
 

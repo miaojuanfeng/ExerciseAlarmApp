@@ -337,4 +337,11 @@
     }
 }
 
+- (float)getScreenPercent{
+    CGRect rect = [[UIScreen mainScreen] bounds];
+    CGSize size = rect.size;
+    CGFloat width = size.width;
+    return width/375.0f;
+}
+
 @end

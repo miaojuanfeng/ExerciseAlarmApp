@@ -17,14 +17,15 @@
 
 #define HUD_WAITING_SHOW(t) do{ \
                                 [MBProgressHUD hideAllHUDsForView:self.view animated:YES]; \
-self.appDelegate.hudWaiting = [MBProgressHUD showHUDAddedTo:self.view animated:YES]; \
-self.appDelegate.hudWaiting.mode = MBProgressHUDModeIndeterminate;\
-self.appDelegate.hudWaiting.removeFromSuperViewOnHide = YES;\
-self.appDelegate.hudWaiting.bezelView.backgroundColor = [UIColor blackColor];\
-self.appDelegate.hudWaiting.contentColor = [UIColor whiteColor];\
+                                self.appDelegate.hudWaiting = [MBProgressHUD showHUDAddedTo:self.view animated:YES]; \
+                                self.appDelegate.hudWaiting.mode = MBProgressHUDModeIndeterminate;\
+                                self.appDelegate.hudWaiting.removeFromSuperViewOnHide = YES;\
+                                self.appDelegate.hudWaiting.bezelView.backgroundColor = [UIColor blackColor];\
+                                self.appDelegate.hudWaiting.contentColor = [UIColor whiteColor];\
                                 self.appDelegate.hudWaiting.label.text = t; \
                                 [self.appDelegate.hudWaiting showAnimated:YES]; \
                             }while(0)
+
 #define HUD_WAITING_HIDE    do{ \
                                 [self.appDelegate.hudWaiting hideAnimated:YES]; \
                             }while(0)
@@ -46,5 +47,6 @@ self.appDelegate.hudWaiting.contentColor = [UIColor whiteColor];\
                             }]; \
                         }while(0)
 
+#define DEFAULT_FONT(s) [UIFont fontWithName:@"AppleGothic" size:[self.appDelegate getScreenPercent]*s]
 
 #endif /* MacroDefine_h */

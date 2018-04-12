@@ -43,7 +43,6 @@
 //    brushImageView.image = [UIImage imageNamed:@"brush"];
 //    [leftButtonView addSubview:brushImageView];
     
-    
     UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [leftButton addTarget:self action:@selector(clickStatusPainButton) forControlEvents:UIControlEventTouchUpInside];
 //    button.backgroundColor = [UIColor grayColor]; //加上背景颜色，方便观察Button的大小
@@ -95,7 +94,7 @@
     UIImage *logoPic = [UIImage imageNamed:@"logo"];
     int logoWidth = self.view.frame.size.width - 100;
     int logoHeight = logoPic.size.height / (logoPic.size.width / logoWidth);
-    UIImageView *logoImage = [[UIImageView alloc] initWithFrame:CGRectMake(50, marginTop+30, logoWidth, logoHeight)];
+    UIImageView *logoImage = [[UIImageView alloc] initWithFrame:CGRectMake(50, marginTop+10, logoWidth, logoHeight)];
     logoImage.image = logoPic;
     [self.view addSubview:logoImage];
     
@@ -106,33 +105,34 @@
 //    statusImage.image = statusBg;
 //    [self.view addSubview:statusImage];
     
-    int viewWidth = ( self.view.frame.size.width -110 )/2;
-    int viewHeight = 160;
+    int gapSize = self.view.frame.size.width / 10;
+    int viewWidth = ( self.view.frame.size.width - gapSize * 3 ) / 2;
+    int viewHeight = ( self.view.frame.size.height - marginTop - self.tabBarController.tabBar.frame.size.height - logoImage.frame.size.height - 20 - gapSize * 3 ) / 3;
     /*
      * view1
      */
-    UIView *view1 = [[UIView alloc] initWithFrame:CGRectMake(35, marginTop+20+100, viewWidth, viewHeight)];
+    UIView *view1 = [[UIView alloc] initWithFrame:CGRectMake(gapSize, logoImage.frame.origin.y+logoImage.frame.size.height+10, viewWidth, viewHeight)];
     view1.backgroundColor = RGBA_COLOR(244, 178, 79, 1);
     view1.layer.cornerRadius = 15;
     view1.layer.masksToBounds = YES;
     //
-    UILabel *titleTop1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, view1.frame.size.width, 30)];
+    UILabel *titleTop1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, view1.frame.size.width, 30)];
     titleTop1.text = @"累積鍛煉";
-    titleTop1.font = [UIFont fontWithName:@"AppleGothic" size:26.0];
+    titleTop1.font = DEFAULT_FONT(26.0);
     titleTop1.textColor = [UIColor whiteColor];
     titleTop1.textAlignment = NSTextAlignmentCenter;
     [view1 addSubview:titleTop1];
     //
-    UIButton *numButton1 = [[UIButton alloc] initWithFrame:CGRectMake(0, 55, view1.frame.size.width, 60)];
-    numButton1.titleLabel.font = [UIFont fontWithName:@"AppleGothic" size:46.0];
+    UIButton *numButton1 = [[UIButton alloc] initWithFrame:CGRectMake(0, 50, view1.frame.size.width, 40)];
+    numButton1.titleLabel.font = DEFAULT_FONT(36.0);
     [numButton1 setTitle:@"123" forState:UIControlStateNormal];
     [numButton1 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [numButton1 addTarget:self action:@selector(clickButton1) forControlEvents:UIControlEventTouchUpInside];
     [view1 addSubview:numButton1];
     //
-    UILabel *titleBottom1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 115, view1.frame.size.width, 30)];
+    UILabel *titleBottom1 = [[UILabel alloc] initWithFrame:CGRectMake(0, 95, view1.frame.size.width, 30)];
     titleBottom1.text = @"分鐘";
-    titleBottom1.font = [UIFont fontWithName:@"AppleGothic" size:26.0];
+    titleBottom1.font = DEFAULT_FONT(26.0);
     titleBottom1.textColor = [UIColor whiteColor];
     titleBottom1.textAlignment = NSTextAlignmentCenter;
     [view1 addSubview:titleBottom1];
@@ -141,28 +141,28 @@
     /*
      * view2
      */
-    UIView *view2 = [[UIView alloc] initWithFrame:CGRectMake(72+viewWidth, marginTop+20+100, viewWidth, viewHeight)];
+    UIView *view2 = [[UIView alloc] initWithFrame:CGRectMake(gapSize*2+viewWidth, logoImage.frame.origin.y+logoImage.frame.size.height+10, viewWidth, viewHeight)];
     view2.backgroundColor = RGBA_COLOR(72, 213, 159, 1);
     view2.layer.cornerRadius = 15;
     view2.layer.masksToBounds = YES;
     //
-    UILabel *titleTop2 = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, view2.frame.size.width, 30)];
+    UILabel *titleTop2 = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, view2.frame.size.width, 30)];
     titleTop2.text = @"累積星星";
-    titleTop2.font = [UIFont fontWithName:@"AppleGothic" size:26.0];
+    titleTop2.font = DEFAULT_FONT(26.0);
     titleTop2.textColor = [UIColor whiteColor];
     titleTop2.textAlignment = NSTextAlignmentCenter;
     [view2 addSubview:titleTop2];
     //
-    UIButton *numButton2 = [[UIButton alloc] initWithFrame:CGRectMake(0, 55, view2.frame.size.width, 60)];
-    numButton2.titleLabel.font = [UIFont fontWithName:@"AppleGothic" size:46.0];
+    UIButton *numButton2 = [[UIButton alloc] initWithFrame:CGRectMake(0, 50, view2.frame.size.width, 40)];
+    numButton2.titleLabel.font = DEFAULT_FONT(36.0);
     [numButton2 setTitle:@"23" forState:UIControlStateNormal];
     [numButton2 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [numButton2 addTarget:self action:@selector(clickButton2) forControlEvents:UIControlEventTouchUpInside];
     [view2 addSubview:numButton2];
     //
-    UILabel *titleBottom2 = [[UILabel alloc] initWithFrame:CGRectMake(0, 115, view2.frame.size.width, 30)];
+    UILabel *titleBottom2 = [[UILabel alloc] initWithFrame:CGRectMake(0, 95, view2.frame.size.width, 30)];
     titleBottom2.text = @"星";
-    titleBottom2.font = [UIFont fontWithName:@"AppleGothic" size:26.0];
+    titleBottom2.font = DEFAULT_FONT(26.0);
     titleBottom2.textColor = [UIColor whiteColor];
     titleBottom2.textAlignment = NSTextAlignmentCenter;
     [view2 addSubview:titleBottom2];
@@ -171,28 +171,28 @@
     /*
      * view3
      */
-    UIView *view3 = [[UIView alloc] initWithFrame:CGRectMake(35, marginTop+20+295, viewWidth, viewHeight)];
+    UIView *view3 = [[UIView alloc] initWithFrame:CGRectMake(gapSize, view1.self.frame.origin.y+view1.frame.size.height+gapSize, viewWidth, viewHeight)];
     view3.backgroundColor = RGBA_COLOR(32, 188, 175, 1);
     view3.layer.cornerRadius = 15;
     view3.layer.masksToBounds = YES;
     //
-    UILabel *titleTop3 = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, view3.frame.size.width, 30)];
+    UILabel *titleTop3 = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, view3.frame.size.width, 30)];
     titleTop3.text = @"累積天數";
-    titleTop3.font = [UIFont fontWithName:@"AppleGothic" size:26.0];
+    titleTop3.font = DEFAULT_FONT(26.0);
     titleTop3.textColor = [UIColor whiteColor];
     titleTop3.textAlignment = NSTextAlignmentCenter;
     [view3 addSubview:titleTop3];
     //
-    self.numButton3 = [[UIButton alloc] initWithFrame:CGRectMake(0, 55, view3.frame.size.width, 60)];
-    self.numButton3.titleLabel.font = [UIFont fontWithName:@"AppleGothic" size:46.0];
+    self.numButton3 = [[UIButton alloc] initWithFrame:CGRectMake(0, 50, view3.frame.size.width, 40)];
+    self.numButton3.titleLabel.font = DEFAULT_FONT(36.0);
     
     [self.numButton3 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.numButton3 addTarget:self action:@selector(clickButton3) forControlEvents:UIControlEventTouchUpInside];
     [view3 addSubview:self.numButton3];
     //
-    UILabel *titleBottom3 = [[UILabel alloc] initWithFrame:CGRectMake(0, 115, view3.frame.size.width, 30)];
+    UILabel *titleBottom3 = [[UILabel alloc] initWithFrame:CGRectMake(0, 95, view3.frame.size.width, 30)];
     titleBottom3.text = @"天";
-    titleBottom3.font = [UIFont fontWithName:@"AppleGothic" size:26.0];
+    titleBottom3.font = DEFAULT_FONT(26.0);
     titleBottom3.textColor = [UIColor whiteColor];
     titleBottom3.textAlignment = NSTextAlignmentCenter;
     [view3 addSubview:titleBottom3];
@@ -201,33 +201,56 @@
     /*
      * view4
      */
-    UIView *view4 = [[UIView alloc] initWithFrame:CGRectMake(72+viewWidth, marginTop+20+295, viewWidth, viewHeight)];
+    UIView *view4 = [[UIView alloc] initWithFrame:CGRectMake(gapSize*2+viewWidth, view2.self.frame.origin.y+view2.frame.size.height+gapSize, viewWidth, viewHeight)];
     view4.backgroundColor = RGBA_COLOR(251, 134, 112, 1);
     view4.layer.cornerRadius = 15;
     view4.layer.masksToBounds = YES;
     //
-    UILabel *titleTop4 = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, view4.frame.size.width, 30)];
+    UILabel *titleTop4 = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, view4.frame.size.width, 30)];
     titleTop4.text = @"疼痛等級";
-    titleTop4.font = [UIFont fontWithName:@"AppleGothic" size:26.0];
+    titleTop4.font = DEFAULT_FONT(26.0);
     titleTop4.textColor = [UIColor whiteColor];
     titleTop4.textAlignment = NSTextAlignmentCenter;
     [view4 addSubview:titleTop4];
     //
-    self.numButton4 = [[UIButton alloc] initWithFrame:CGRectMake(0, 55, view4.frame.size.width, 60)];
-    self.numButton4.titleLabel.font = [UIFont fontWithName:@"AppleGothic" size:46.0];
+    self.numButton4 = [[UIButton alloc] initWithFrame:CGRectMake(0, 50, view4.frame.size.width, 40)];
+    self.numButton4.titleLabel.font = DEFAULT_FONT(36.0);
     
     [self.numButton4 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.numButton4 addTarget:self action:@selector(clickButton4) forControlEvents:UIControlEventTouchUpInside];
     [view4 addSubview:self.numButton4];
     //
-    UILabel *titleBottom4 = [[UILabel alloc] initWithFrame:CGRectMake(0, 115, view4.frame.size.width, 30)];
+    UILabel *titleBottom4 = [[UILabel alloc] initWithFrame:CGRectMake(0, 95, view4.frame.size.width, 30)];
     titleBottom4.text = @"級";
-    titleBottom4.font = [UIFont fontWithName:@"AppleGothic" size:26.0];
+    titleBottom4.font = DEFAULT_FONT(26.0);
     titleBottom4.textColor = [UIColor whiteColor];
     titleBottom4.textAlignment = NSTextAlignmentCenter;
     [view4 addSubview:titleBottom4];
     //
     [self.view addSubview:view4];
+    /*
+     * view5
+     */
+    UIView *view5 = [[UIView alloc] initWithFrame:CGRectMake(gapSize, view3.self.frame.origin.y+view3.frame.size.height+gapSize, viewWidth, viewWidth)];
+    view5.backgroundColor = RGBA_COLOR(251, 134, 112, 1);
+    view5.layer.cornerRadius = viewWidth/2;
+    view5.layer.masksToBounds = YES;
+    //
+    UILabel *titleTop5 = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, view5.frame.size.width, 30)];
+    titleTop5.text = @"痛感自評";
+    titleTop5.font = DEFAULT_FONT(26.0);
+    titleTop5.textColor = [UIColor whiteColor];
+    titleTop5.textAlignment = NSTextAlignmentCenter;
+    [view5 addSubview:titleTop5];
+    //
+    UILabel *titleBottom5 = [[UILabel alloc] initWithFrame:CGRectMake(0, 95, view5.frame.size.width, 30)];
+    titleBottom5.text = @"痛感自評";
+    titleBottom5.font = DEFAULT_FONT(20.0);
+    titleBottom5.textColor = [UIColor whiteColor];
+    titleBottom5.textAlignment = NSTextAlignmentCenter;
+    [view5 addSubview:titleBottom5];
+    //
+    [self.view addSubview:view5];
 }
 
 
