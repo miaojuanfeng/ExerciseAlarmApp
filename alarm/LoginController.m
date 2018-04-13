@@ -7,10 +7,13 @@
 //
 
 #import "MacroDefine.h"
-#import "LoginController.h"
-#import "ForgetPwdController.h"
 #import "AppDelegate.h"
+#import "LoginController.h"
+#import "RegisterController.h"
+#import "ForgetPwdController.h"
 #import <AFNetworking/AFNetworking.h>
+
+#import "PasswordController.h"
 
 @interface LoginController ()
 @property UITextField *userField;
@@ -31,12 +34,12 @@
     
     self.appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
-//    UIButton *registButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width-40-25, 44, 40, 24)];
-//    [registButton setTitle:@"註冊" forState:UIControlStateNormal];
-//    registButton.titleLabel.font = [UIFont fontWithName:@"AppleGothic" size:16.0];
-//    [registButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//    [registButton addTarget:self action:@selector(clickForgetPwdButton) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:registButton];
+    UIButton *registButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width-40-25, 44, 40, 24)];
+    [registButton setTitle:@"註冊" forState:UIControlStateNormal];
+    registButton.titleLabel.font = [UIFont fontWithName:@"AppleGothic" size:16.0];
+    [registButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [registButton addTarget:self action:@selector(clickRegisterButton) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:registButton];
     
     UIView *userView = [[UIView alloc] initWithFrame:CGRectMake(50/2, (self.view.frame.size.height-100)/2-100, self.view.frame.size.width-50, 100)];
     userView.backgroundColor = [UIColor whiteColor];
@@ -141,6 +144,13 @@
         HUD_WAITING_HIDE;
         HUD_TOAST_SHOW(@"Network Error");
     }];
+}
+
+- (void)clickRegisterButton {
+    RegisterController *registerController = [[RegisterController alloc] init];
+    [self.navigationController pushViewController:registerController animated:YES];
+//    PasswordController *passwordController = [[PasswordController alloc] init];
+//    [self.navigationController pushViewController:passwordController animated:YES];
 }
 
 - (void)clickForgetPwdButton {

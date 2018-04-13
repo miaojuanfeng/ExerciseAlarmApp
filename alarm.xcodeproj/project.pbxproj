@@ -67,6 +67,9 @@
 		CE8B78A92047B78B00522F65 /* AlarmWeekController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8B78A82047B78B00522F65 /* AlarmWeekController.m */; };
 		CEA01CEB202337A60001DAF0 /* ListAlarmController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA01CEA202337A60001DAF0 /* ListAlarmController.m */; };
 		CEA7ECCC2045161C006A9D7F /* ShowPhotoController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA7ECCB2045161C006A9D7F /* ShowPhotoController.m */; };
+		CEB2526F2080C26900F334A8 /* RegisterController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB2526E2080C26900F334A8 /* RegisterController.m */; };
+		CEB252732080CA0400F334A8 /* ValidateController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB252722080CA0400F334A8 /* ValidateController.m */; };
+		CEB252752080CC3800F334A8 /* PasswordController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB252742080CC3800F334A8 /* PasswordController.m */; };
 		CEBBACD02041214800F6262D /* WBTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBBACCF2041214800F6262D /* WBTabBarController.m */; };
 		CEBBACD42041609B00F6262D /* StatusController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBBACD32041609B00F6262D /* StatusController.m */; };
 		CEBEC2A22043B85D00540DBB /* DiscussController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBEC2A12043B85D00540DBB /* DiscussController.m */; };
@@ -218,6 +221,12 @@
 		CEA01CEC202338020001DAF0 /* ListAlarmController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListAlarmController.h; sourceTree = "<group>"; };
 		CEA7ECCA2045160A006A9D7F /* ShowPhotoController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowPhotoController.h; sourceTree = "<group>"; };
 		CEA7ECCB2045161C006A9D7F /* ShowPhotoController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowPhotoController.m; sourceTree = "<group>"; };
+		CEB2526E2080C26900F334A8 /* RegisterController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterController.m; sourceTree = "<group>"; };
+		CEB252702080C27100F334A8 /* RegisterController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterController.h; sourceTree = "<group>"; };
+		CEB252712080C9FB00F334A8 /* ValidateController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ValidateController.h; sourceTree = "<group>"; };
+		CEB252722080CA0400F334A8 /* ValidateController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ValidateController.m; sourceTree = "<group>"; };
+		CEB252742080CC3800F334A8 /* PasswordController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PasswordController.m; sourceTree = "<group>"; };
+		CEB252762080CC4400F334A8 /* PasswordController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PasswordController.h; sourceTree = "<group>"; };
 		CEBBACCF2041214800F6262D /* WBTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WBTabBarController.m; sourceTree = "<group>"; };
 		CEBBACD12041215A00F6262D /* WBTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WBTabBarController.h; sourceTree = "<group>"; };
 		CEBBACD22041608D00F6262D /* StatusController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StatusController.h; sourceTree = "<group>"; };
@@ -521,6 +530,7 @@
 		99EDCC59205E5C620063DA06 /* UserTab */ = {
 			isa = PBXGroup;
 			children = (
+				CEB2526D2080C23D00F334A8 /* RegisterTab */,
 				99EDCC56205E53CF0063DA06 /* LoginController.h */,
 				99EDCC57205E53CF0063DA06 /* LoginController.m */,
 				99EDCC5A205E7DA90063DA06 /* ForgetPwdController.m */,
@@ -570,6 +580,19 @@
 				994F56EF206BE4C800F4333A /* HealthDetailController.h */,
 			);
 			name = HealthTab;
+			sourceTree = "<group>";
+		};
+		CEB2526D2080C23D00F334A8 /* RegisterTab */ = {
+			isa = PBXGroup;
+			children = (
+				CEB2526E2080C26900F334A8 /* RegisterController.m */,
+				CEB252702080C27100F334A8 /* RegisterController.h */,
+				CEB252712080C9FB00F334A8 /* ValidateController.h */,
+				CEB252722080CA0400F334A8 /* ValidateController.m */,
+				CEB252742080CC3800F334A8 /* PasswordController.m */,
+				CEB252762080CC4400F334A8 /* PasswordController.h */,
+			);
+			name = RegisterTab;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -890,6 +913,7 @@
 				CEBEC2A42043C7BE00540DBB /* PlayVideoController.m in Sources */,
 				CE357870207F14E6009049E2 /* TBCityIconInfo.m in Sources */,
 				CE446F6220280A4B009320EC /* HelpController.m in Sources */,
+				CEB252752080CC3800F334A8 /* PasswordController.m in Sources */,
 				CE446F5B202806FE009320EC /* VideoDetailController.m in Sources */,
 				998F36D6202757D300676226 /* NoiseController.m in Sources */,
 				99EDCC5B205E7DA90063DA06 /* ForgetPwdController.m in Sources */,
@@ -901,12 +925,14 @@
 				990C850A2042AFE400D36C9E /* StatusOneController.m in Sources */,
 				CEA7ECCC2045161C006A9D7F /* ShowPhotoController.m in Sources */,
 				990736AB2016344C002EFEC5 /* AppDelegate.m in Sources */,
+				CEB2526F2080C26900F334A8 /* RegisterController.m in Sources */,
 				994F56EE206BE4B700F4333A /* HealthDetailController.m in Sources */,
 				CE35786C207F14B1009049E2 /* TBCityIconFont.m in Sources */,
 				990736A82016344C002EFEC5 /* main.m in Sources */,
 				CEBBACD02041214800F6262D /* WBTabBarController.m in Sources */,
 				990C85202042CF9600D36C9E /* NewQuestionController.m in Sources */,
 				990C85332042EECE00D36C9E /* YXCalendarView.m in Sources */,
+				CEB252732080CA0400F334A8 /* ValidateController.m in Sources */,
 				CE446F5E20280A1C009320EC /* PwdController.m in Sources */,
 				CE50104B205A997000467D5A /* HealthController.m in Sources */,
 				990C854C2042F3BF00D36C9E /* UIView+Extend.m in Sources */,
