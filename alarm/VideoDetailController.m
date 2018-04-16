@@ -7,12 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import <MediaPlayer/MediaPlayer.h>
 #import "VideoDetailController.h"
 #import "PlayVideoController.h"
 
 @interface VideoDetailController ()
-
+@property MPMoviePlayerViewController *playerVC;
 @end
 
 @implementation VideoDetailController
@@ -58,9 +58,40 @@
 }
 
 - (void)clickShowVideo {
-    PlayVideoController *playVideoController = [[PlayVideoController alloc] init];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:playVideoController];
-    [self presentViewController:nav animated:YES completion:nil];
+//    PlayVideoController *playVideoController = [[PlayVideoController alloc] init];
+//    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:playVideoController];
+//    [self presentViewController:nav animated:YES completion:nil];
+    NSURL *remoteURL = [NSURL URLWithString:@"http://104.236.150.123:8080/exercise-video.mp4"];
+    self.playerVC = [[MPMoviePlayerViewController alloc] initWithContentURL:remoteURL];
+    
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self.playerVC name:MPMoviePlayerPlaybackDidFinishNotification object:self.playerVC.moviePlayer];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(videoFinished:) name:MPMoviePlayerPlaybackDidFinishNotification object:self.playerVC.moviePlayer];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(movieStateChangeCallback:) name:MPMoviePlayerPlaybackStateDidChangeNotification object:self.playerVC.moviePlayer];
+    
+    [self presentViewController:self.playerVC animated:YES completion:^{
+        [self.playerVC.moviePlayer play];
+    }];
+//    [self presentMoviePlayerViewControllerAnimated:self.playerVC];
+}
+
+-(void)movieStateChangeCallback:(NSNotification*)notify  {
+    
+    //点击播放器中的播放/ 暂停按钮响应的通知
+    NSLog(@"pause");
+    
+    
+    
+}
+
+-(void)videoFinished:(NSNotification*)notification{
+     NSLog(@"pause");
+    int value = [[notification.userInfo valueForKey:MPMoviePlayerPlaybackDidFinishReasonUserInfoKey] intValue];
+    if (value == MPMovieFinishReasonUserExited) {
+//        [self dismissMoviePlayerViewControllerAnimated];
+        [self dismissViewControllerAnimated:self.playerVC completion:nil];
+    }
 }
 
 @end
