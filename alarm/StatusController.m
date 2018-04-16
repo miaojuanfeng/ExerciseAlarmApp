@@ -17,6 +17,7 @@
 #import "StatusFourController.h"
 #import "SettingController.h"
 #import "StatusPainController.h"
+#import "ExerciseTimeController.h"
 
 @interface StatusController ()
 @property AppDelegate *appDelegate;
@@ -262,7 +263,7 @@
     [titleTop6 setTitle:@"\U0000e6df" forState:UIControlStateNormal];
     titleTop6.titleLabel.font = ICON_FONT(60.0);
     [titleTop6 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [titleTop6 addTarget:self action:@selector(clickStatusPainButton) forControlEvents:UIControlEventTouchUpInside];
+    [titleTop6 addTarget:self action:@selector(clickExerciseTimeButton) forControlEvents:UIControlEventTouchUpInside];
     [view6 addSubview:titleTop6];
     //
     UILabel *titleBottom6 = [[UILabel alloc] initWithFrame:CGRectMake(0, titleTop6.frame.origin.y+titleTop6.frame.size.height, view6.frame.size.width, viewHeight/2-10)];
@@ -304,6 +305,12 @@
 - (void)clickStatusPainButton {
     StatusPainController *statusPainController = [[StatusPainController alloc] init];
     [self.navigationController pushViewController:statusPainController animated:YES];
+}
+
+- (void)clickExerciseTimeButton {
+    ExerciseTimeController *exerciseTimeController = [[ExerciseTimeController alloc] init];
+    exerciseTimeController.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:exerciseTimeController animated:YES];
 }
 
 - (void)clickSettingButton {

@@ -52,6 +52,7 @@
 		CE35786C207F14B1009049E2 /* TBCityIconFont.m in Sources */ = {isa = PBXBuildFile; fileRef = CE35786B207F14B1009049E2 /* TBCityIconFont.m */; };
 		CE357870207F14E6009049E2 /* TBCityIconInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CE35786F207F14E6009049E2 /* TBCityIconInfo.m */; };
 		CE357872207F14FF009049E2 /* UIImage+TBCityIconFont.m in Sources */ = {isa = PBXBuildFile; fileRef = CE357871207F14FF009049E2 /* UIImage+TBCityIconFont.m */; };
+		CE399C082084447B00B7D98A /* ExerciseTimeController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE399C072084447B00B7D98A /* ExerciseTimeController.m */; };
 		CE446F5B202806FE009320EC /* VideoDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE446F5A202806FE009320EC /* VideoDetailController.m */; };
 		CE446F5E20280A1C009320EC /* PwdController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE446F5D20280A1C009320EC /* PwdController.m */; };
 		CE446F6220280A4B009320EC /* HelpController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE446F6120280A4B009320EC /* HelpController.m */; };
@@ -191,6 +192,8 @@
 		CE35786F207F14E6009049E2 /* TBCityIconInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TBCityIconInfo.m; sourceTree = "<group>"; };
 		CE357871207F14FF009049E2 /* UIImage+TBCityIconFont.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+TBCityIconFont.m"; sourceTree = "<group>"; };
 		CE357873207F150B009049E2 /* UIImage+TBCityIconFont.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+TBCityIconFont.h"; sourceTree = "<group>"; };
+		CE399C062084447000B7D98A /* ExerciseTimeController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExerciseTimeController.h; sourceTree = "<group>"; };
+		CE399C072084447B00B7D98A /* ExerciseTimeController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExerciseTimeController.m; sourceTree = "<group>"; };
 		CE446F5A202806FE009320EC /* VideoDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoDetailController.m; sourceTree = "<group>"; };
 		CE446F5C20280713009320EC /* VideoDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoDetailController.h; sourceTree = "<group>"; };
 		CE446F5D20280A1C009320EC /* PwdController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PwdController.m; sourceTree = "<group>"; };
@@ -378,6 +381,8 @@
 				CEBBACD32041609B00F6262D /* StatusController.m */,
 				990C85082042AFD700D36C9E /* StatusOneController.h */,
 				990C85092042AFE400D36C9E /* StatusOneController.m */,
+				CE399C062084447000B7D98A /* ExerciseTimeController.h */,
+				CE399C072084447B00B7D98A /* ExerciseTimeController.m */,
 			);
 			name = StatusTab;
 			sourceTree = "<group>";
@@ -908,6 +913,7 @@
 				CE1A4979201A01DD005CB860 /* HYBAnimationClock.m in Sources */,
 				990736AE2016344C002EFEC5 /* AddAlarmController.m in Sources */,
 				99B664C1206D35CC00D0F112 /* MsgListController.m in Sources */,
+				CE399C082084447B00B7D98A /* ExerciseTimeController.m in Sources */,
 				CE501046205A91DD00467D5A /* AveragePainController.m in Sources */,
 				9920D21620177C2800DA8D6D /* SelectMusicController.m in Sources */,
 				CEBEC2A42043C7BE00540DBB /* PlayVideoController.m in Sources */,
