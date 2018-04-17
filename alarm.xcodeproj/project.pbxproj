@@ -422,6 +422,8 @@
 		990C85172042C65400D36C9E /* VideoTab */ = {
 			isa = PBXGroup;
 			children = (
+				CEBEC2A32043C7BE00540DBB /* PlayVideoController.m */,
+				CEBEC2A52043C7CD00540DBB /* PlayVideoController.h */,
 				CE446F5C20280713009320EC /* VideoDetailController.h */,
 				CE446F5A202806FE009320EC /* VideoDetailController.m */,
 				9920D219201785A600DA8D6D /* VideoListController.h */,
@@ -447,8 +449,6 @@
 				9920D21120177AED00DA8D6D /* SelectPhotoController.m */,
 				CE446F6620280A6D009320EC /* VersionController.h */,
 				CE446F6720280A78009320EC /* VersionController.m */,
-				CEBEC2A32043C7BE00540DBB /* PlayVideoController.m */,
-				CEBEC2A52043C7CD00540DBB /* PlayVideoController.h */,
 			);
 			name = Unused;
 			sourceTree = "<group>";

@@ -58,10 +58,10 @@
 }
 
 - (void)clickShowVideo {
-//    PlayVideoController *playVideoController = [[PlayVideoController alloc] init];
-//    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:playVideoController];
-//    [self presentViewController:nav animated:YES completion:nil];
-    NSURL *remoteURL = [NSURL URLWithString:@"http://104.236.150.123:8080/exercise-video.mp4"];
+    PlayVideoController *playVideoController = [[PlayVideoController alloc] init];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:playVideoController];
+    [self presentViewController:nav animated:YES completion:nil];
+/*    NSURL *remoteURL = [NSURL URLWithString:@"http://104.236.150.123:8080/exercise-video.mp4"];
     self.playerVC = [[MPMoviePlayerViewController alloc] initWithContentURL:remoteURL];
     
     
@@ -72,7 +72,7 @@
     
     [self presentViewController:self.playerVC animated:YES completion:^{
         [self.playerVC.moviePlayer play];
-    }];
+    }];*/
 //    [self presentMoviePlayerViewControllerAnimated:self.playerVC];
 }
 
