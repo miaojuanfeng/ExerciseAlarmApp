@@ -10,9 +10,10 @@
 #import "MacroDefine.h"
 #import "MsgDetailController.h"
 #import "NewCommentController.h"
+#import "UITableView+FDTemplateLayoutCell.h"
 
-@interface MsgDetailController ()
-
+@interface MsgDetailController () <UITableViewDelegate, UITableViewDataSource>
+@property UITableView *tableView;
 @end
 
 @implementation MsgDetailController
@@ -99,12 +100,102 @@
     
     
     [self.view addSubview:commentContentTime];
+    
+    
+    
+    
+    
+    
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-self.tabBarController.tabBar.frame.size.height)];
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    [self.view addSubview:self.tableView];
 }
 
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+    
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 3;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return [tableView fd_heightForCellWithIdentifier:kYLLayoutTableViewCell cacheByIndexPath:indexPath configuration:^(YLLayoutTableViewCell *cell) {
+        [cell setFeed:[self.viewModel.feedArray objectAtIndex:indexPath.row]];
+    }];
+}
+    
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return [tableView fd_heightForCellWithIdentifier:@"reuse identifer" cacheByIndexPath:indexPath configuration:^(UITableViewCell *cell) {
+//        // Configure this cell with data, same as what you've done in "-tableView:cellForRowAtIndexPath:"
+//        // Like:
+//        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+//        switch (indexPath.row) {
+//            case 0:
+//            cell.textLabel.text = @"我的問題";
+//            cell.imageView.image = [UIImage imageNamed:@"feedback"];
+//            break;
+//            case 1:
+//            cell.textLabel.text = @"常見問題";
+//            cell.imageView.image = [UIImage imageNamed:@"feedback"];
+//            break;
+//            case 2:
+//            cell.textLabel.text = @"我要提問";
+//            cell.imageView.image = [UIImage imageNamed:@"feedback"];
+//            break;
+//            default:
+//            break;
+//        }
+//    }];
+//}
+    
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    UITableViewCell *cell = [tableView fd_templateCellForReuseIdentifier:@"reuse identifer"];
+//    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+//    switch (indexPath.row) {
+//        case 0:
+//        cell.textLabel.text = @"我的問題";
+//        cell.imageView.image = [UIImage imageNamed:@"feedback"];
+//        break;
+//        case 1:
+//        cell.textLabel.text = @"常見問題";
+//        cell.imageView.image = [UIImage imageNamed:@"feedback"];
+//        break;
+//        case 2:
+//        cell.textLabel.text = @"我要提問";
+//        cell.imageView.image = [UIImage imageNamed:@"feedback"];
+//        break;
+//        default:
+//        break;
+//    }
+//    return cell;
+//}
+    
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+    
+    //- (void)clickButtonLeft {
+    //    NewQuestionController *newQuestionController = [[NewQuestionController alloc] init];
+    //    [self.navigationController pushViewController:newQuestionController animated:YES];
+    //}
+    //
+    //- (void)clickButtonRight {
+    //    MyMsgController *myMsgController = [[MyMsgController alloc] init];
+    //    [self.navigationController pushViewController:myMsgController animated:YES];
+    //}
+    
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+        [cell setSeparatorInset:UIEdgeInsetsZero];
+    }
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+    }
 }
 
 - (void)clickNewComment {
