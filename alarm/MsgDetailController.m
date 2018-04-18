@@ -11,6 +11,7 @@
 #import "MsgDetailController.h"
 #import "NewCommentController.h"
 #import "UITableView+FDTemplateLayoutCell.h"
+#import "FDFeedCell.h"
 
 @interface MsgDetailController () <UITableViewDelegate, UITableViewDataSource>
 @property UITableView *tableView;
@@ -119,13 +120,35 @@
 }
     
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return 1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [tableView fd_heightForCellWithIdentifier:kYLLayoutTableViewCell cacheByIndexPath:indexPath configuration:^(YLLayoutTableViewCell *cell) {
-        [cell setFeed:[self.viewModel.feedArray objectAtIndex:indexPath.row]];
+    return [tableView fd_heightForCellWithIdentifier:@"FDFeedCell" cacheByIndexPath:indexPath configuration:^(FDFeedCell *cell) {
+        [self configureCell:cell atIndexPath:indexPath];
     }];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    FDFeedCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FDFeedCell"];
+    [self configureCell:cell atIndexPath:indexPath];
+    return cell;
+}
+
+- (void)configureCell:(FDFeedCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    cell.fd_enforceFrameLayout = NO; // Enable to use "-sizeThatFits:"
+    if (indexPath.row % 2 == 0) {
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    } else {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }
+    NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
+    [data setObject:@"William Shakespeare" forKey:@"title"];
+    [data setObject:@"To be, or not to be —that is the question, Whether'tis nobler in the mind to suffer. The slings and arrows of outrageous fortune Or to take arms against a sea of troubles, And by opposing end them. To die —to sleep" forKey:@"content"];
+    [data setObject:@"sunnyxx" forKey:@"username"];
+    [data setObject:@"2015.04.16" forKey:@"time"];
+    [data setObject:@"" forKey:@"imageName"];
+    cell.entity = data;
 }
     
 //- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

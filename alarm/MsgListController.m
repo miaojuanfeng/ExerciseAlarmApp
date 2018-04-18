@@ -14,6 +14,7 @@
 #import "NewQuestionController.h"
 #import "MyMsgController.h"
 #import "MsgDetailController.h"
+#import "FDFeedViewController.h"
 
 @interface MsgListController () <UITableViewDataSource, UITableViewDelegate>
 @property UITableView *tableView;
@@ -88,8 +89,10 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    MsgDetailController *msgDetailController = [[MsgDetailController alloc] init];
-    [self.navigationController pushViewController:msgDetailController animated:YES];
+//    MsgDetailController *msgDetailController = [[MsgDetailController alloc] init];
+//    [self.navigationController pushViewController:msgDetailController animated:YES];
+    FDFeedViewController *fDFeedViewController = [[FDFeedViewController alloc] init];
+    [self.navigationController pushViewController:fDFeedViewController animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
