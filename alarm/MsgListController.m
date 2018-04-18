@@ -14,7 +14,6 @@
 #import "NewQuestionController.h"
 #import "MyMsgController.h"
 #import "MsgDetailController.h"
-#import "FDFeedViewController.h"
 
 @interface MsgListController () <UITableViewDataSource, UITableViewDelegate>
 @property UITableView *tableView;
@@ -66,14 +65,9 @@
     [self loadData];
 }
 
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -89,10 +83,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-//    MsgDetailController *msgDetailController = [[MsgDetailController alloc] init];
-//    [self.navigationController pushViewController:msgDetailController animated:YES];
-    FDFeedViewController *fDFeedViewController = [[FDFeedViewController alloc] init];
-    [self.navigationController pushViewController:fDFeedViewController animated:YES];
+    MsgDetailController *msgDetailController = [[MsgDetailController alloc] init];
+    [self.navigationController pushViewController:msgDetailController animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

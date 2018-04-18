@@ -8,13 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "MacroDefine.h"
+#import "AppDelegate.h"
 #import "MsgDetailController.h"
 #import "NewCommentController.h"
-#import "UITableView+FDTemplateLayoutCell.h"
-#import "FDFeedCell.h"
 
-@interface MsgDetailController () <UITableViewDelegate, UITableViewDataSource>
-@property UITableView *tableView;
+@interface MsgDetailController ()
+@property AppDelegate *appDelegate;
 @end
 
 @implementation MsgDetailController
@@ -30,176 +29,129 @@
     CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
     float marginTop = rectStatus.size.height + self.navigationController.navigationBar.frame.size.height;
     
-    UITextView *description = [[UITextView alloc] initWithFrame:CGRectMake(0, marginTop, self.view.frame.size.width, 200)];
-    description.text = @"問題詳述：\n我經常傍晚鍛煉，不知道什麽時間鍛煉效果最好呢？";
-    description.editable = NO;
-    description.font = [UIFont fontWithName:@"AppleGothic" size:16.0];
-    [self.view addSubview:description];
+    self.appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
-    UIView *topReplyView = [[UIView alloc] initWithFrame:CGRectMake(0, marginTop+100, self.view.frame.size.width, 44)];
-    topReplyView.backgroundColor = RGBA_COLOR(242, 134, 45, 1);
-    UILabel *topReplyLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, self.view.frame.size.width-10, topReplyView.frame.size.height)];
-    topReplyLabel.font = [UIFont fontWithName:@"AppleGothic" size:16.0];
-    topReplyLabel.text = @"專家回復";
-    topReplyLabel.textColor = [UIColor whiteColor];
-    [topReplyView addSubview:topReplyLabel];
+    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, marginTop, self.view.frame.size.width, self.view.frame.size.height-marginTop-self.tabBarController.tabBar.frame.size.height)];
+//    scrollView.backgroundColor = [UIColor orangeColor];
+    scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height);
+    [self.view addSubview:scrollView];
     
-    [self.view addSubview:topReplyView];
+        int contentSize = 0;
+        int textMargin = 5;
+        int lineHeight = 20;
+        int titlePadding = 20;
+        /*
+         *  問題詳述
+         */
+            UILabel *descTitle= [[UILabel alloc] initWithFrame:CGRectMake(textMargin, textMargin, self.view.frame.size.width-textMargin*2, lineHeight)];
+            descTitle.text = @"問題詳述：";
+            descTitle.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     
-    UITextView *topReplyContent = [[UITextView alloc] initWithFrame:CGRectMake(0, marginTop+140, self.view.frame.size.width, 100)];
-    topReplyContent.editable = NO;
-    topReplyContent.font = [UIFont fontWithName:@"AppleGothic" size:16.0];
-    topReplyContent.text = @"健康界人士比較支持早上運動，研究表明，早上運動可以最好地抑制血糖血脂的過度上升。但也有人認爲下午4點至6點之間運動較好。其實，選擇自己最為方便、并且能堅持下去的時間就是最合適的。";
-    [self.view addSubview:topReplyContent];
+            UILabel *desc = [[UILabel alloc] initWithFrame:CGRectMake(textMargin, descTitle.frame.size.height+descTitle.frame.origin.y, self.view.frame.size.width-textMargin*2, lineHeight)];
+            desc.text = @"我經常傍晚鍛煉，不知道什麽時間鍛煉效果最好呢？知道什麽時間鍛煉效果最好呢知道什麽時間鍛煉效果最好呢我經常傍晚鍛煉，不知道什麽時間鍛煉效果最好呢？知道什麽時間鍛煉效果最好呢知道什麽時間鍛煉效果最好呢我經常v傍晚鍛煉，不知道什麽時間鍛煉效果最好呢？g知道什d麽時間鍛煉效果最好呢知道什麽時間鍛煉效果最好呢我經常傍晚鍛煉，不知道什麽時間鍛煉效果最好呢？知道什麽時間鍛煉效果最.好呢知道什麽時間鍛煉,效果最好呢我經常傍v晚鍛煉，不知道什麽時間鍛煉效果最好呢？知道什麽時間鍛煉效果最好呢知道什麽時間鍛煉效果最好呢我經常傍晚鍛煉，不知道什麽時間鍛煉效果最好呢？知道什麽時間鍛煉效果最好呢知道什麽時間鍛煉效果最間鍛煉效果最好呢知道什麽時間鍛煉效果最間鍛煉效果最好呢知道什麽時間鍛煉效果最間鍛煉效果最好呢知道什麽時間鍛煉效果最好呢";
+            desc.numberOfLines = 0;
+            [desc sizeToFit];
+//    desc.backgroundColor = [UIColor yellowColor];
+            desc.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     
-    UIView *topReplyContentTime = [[UIView alloc] initWithFrame:CGRectMake(0, marginTop+240, self.view.frame.size.width, 44)];
-    UILabel *topReplyLabelTime = [[UILabel alloc] initWithFrame:CGRectMake(5, 0, self.view.frame.size.width-10, topReplyContentTime.frame.size.height)];
-    topReplyLabelTime.font = [UIFont fontWithName:@"AppleGothic" size:12.0];
-    topReplyLabelTime.text = @"2018/02/06";
-    [topReplyContentTime addSubview:topReplyLabelTime];
+        UIView *descView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, scrollView.frame.size.width, descTitle.frame.size.height+desc.frame.size.height+textMargin*1.2)];
+//        descView.backgroundColor = [UIColor blueColor];
+        [descView addSubview:descTitle];
+        [descView addSubview:desc];
     
-    [self.view addSubview:topReplyContentTime];
+        [scrollView addSubview:descView];
+        /*
+         *  專家回復
+         */
+            UILabel *expertTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(textMargin, titlePadding/2, self.view.frame.size.width-textMargin*2, lineHeight)];
+            expertTitleLabel.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
+            expertTitleLabel.text = @"專家回復";
+            expertTitleLabel.textColor = [UIColor whiteColor];
     
+        UIView *expertView = [[UIView alloc] initWithFrame:CGRectMake(0, descView.frame.size.height+descView.frame.origin.y, self.view.frame.size.width, expertTitleLabel.frame.size.height+titlePadding)];
+        expertView.backgroundColor = RGBA_COLOR(242, 134, 45, 1);
+        [expertView addSubview:expertTitleLabel];
     
-    UIView *commentView = [[UIView alloc] initWithFrame:CGRectMake(0, marginTop+284, self.view.frame.size.width, 44)];
-    commentView.backgroundColor = RGBA_COLOR(40, 122, 72, 1);
-    UILabel *commentLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, 100, commentView.frame.size.height)];
-    commentLabel.font = [UIFont fontWithName:@"AppleGothic" size:16.0];
-    commentLabel.text = @"評論";
-    commentLabel.textColor = [UIColor whiteColor];
-    [commentView addSubview:commentLabel];
+        [scrollView addSubview:expertView];
     
-    UIButton *newCommentButton = [[UIButton alloc] initWithFrame:CGRectMake(commentView.frame.size.width-112, 0, 100, commentView.frame.size.height)];
-    [newCommentButton setTitle:@"添加評論" forState:UIControlStateNormal];
-    newCommentButton.titleLabel.font = [UIFont fontWithName:@"AppleGothic" size:16.0];
-    [newCommentButton addTarget:self action:@selector(clickNewComment) forControlEvents:UIControlEventTouchUpInside];
-    [newCommentButton setImage:[UIImage imageNamed:@"addition"] forState:UIControlStateNormal];
-    [commentView addSubview:newCommentButton];
+        UILabel *expertContentLabel = [[UILabel alloc] initWithFrame:CGRectMake(textMargin, expertView.frame.size.height+expertView.frame.origin.y+textMargin, self.view.frame.size.width-textMargin*2, lineHeight)];
+        expertContentLabel.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
+        expertContentLabel.text = @"健康界人士比較支持早上運動，研究表明，早上運動可以最好地抑制血糖血脂的過度上升。但也有人認爲下午4點至6點之間運動較好。其實，選擇自己最為方便、并且能堅持下去的時間就是最合適的。健康界人士比較支持早上運動，研究表明，早上運動可以最好地抑制血糖血脂的過度上升。但也有人認爲下午4點至6點之間運動較好。其實，選擇自己最為方便、并且能堅持下去的時間就是最合適的。健康界人士比較支持早上運動，研究表明，早上運動可以最好地抑制血糖血脂的過度上升。但也有人認爲下午4點至6點之間運動較好。其實，選擇自己最為方便、并且能堅持下去的時間就是最合適的。健康界人士比較支持早上運動，研究表明，早上運動可以最好地抑制血糖血脂的過度上升。但也有人認爲下午4點至6點之間運動較好。其實，選擇自己最為方便、并且能堅持下去的時間就是最合適的。健康界人士比較支持早上運動，研究表明，早上運動可以最好地抑制血糖血脂的過度上升。但也有人認爲下午4點至6點之間運動較好。其實，選擇自己最為方便、并且能堅持下去的時間就是最合適的。健康界人士比較支持早上運動，研究表明，早上運動可以最好地抑制血糖血脂的過度上升。但也有人認爲下午4點至6點之間運動較好。其實，選擇自己最為方便、并且能堅持下去的時間就是最合適的。健康界人士比較支持早上運動，研究表明，早上運動可以最好地抑制血糖血脂的過度上升。但也有人認爲下午4點至6點之間運動較好。其實，選擇自己最為方便、并且能堅持下去的時間就是最合適的。健康界人士比較支持早上運動，研究表明，早上運動可以最好地抑制血糖血脂的過度上升。但也有人認爲下午4點至6點之間運動較好。其實，選擇自己最為方便、并且能堅持下去的時間就是最合適的。";
+        expertContentLabel.numberOfLines = 0;
+        [expertContentLabel sizeToFit];
+        [scrollView addSubview:expertContentLabel];
+
+        UILabel *expertContentLabelTime = [[UILabel alloc] initWithFrame:CGRectMake(textMargin, expertContentLabel.frame.size.height+expertContentLabel.frame.origin.y+textMargin, self.view.frame.size.width-textMargin*2, lineHeight)];
+        expertContentLabelTime.font = DEFAULT_FONT(12.0f);
+        expertContentLabelTime.text = @"2018/02/06";
+        [scrollView addSubview:expertContentLabelTime];
+        /*
+         *  添加评论
+         */
+            UIButton *newCommentButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width-112, titlePadding/2, 100, lineHeight)];
+            [newCommentButton setTitle:@"添加評論" forState:UIControlStateNormal];
+            newCommentButton.titleLabel.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
+            [newCommentButton addTarget:self action:@selector(clickNewComment) forControlEvents:UIControlEventTouchUpInside];
+            [newCommentButton setImage:[UIImage imageNamed:@"addition"] forState:UIControlStateNormal];
     
-    [self.view addSubview:commentView];
+            UILabel *commentLabel = [[UILabel alloc] initWithFrame:CGRectMake(textMargin, titlePadding/2, 100, lineHeight)];
+            commentLabel.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
+            commentLabel.text = @"評論";
+            commentLabel.textColor = [UIColor whiteColor];
     
-    
-    UITextView *commentContent = [[UITextView alloc] initWithFrame:CGRectMake(0, marginTop+336, self.view.frame.size.width, 50)];
-    commentContent.editable = NO;
-    commentContent.font = [UIFont fontWithName:@"AppleGothic" size:16.0];
-    commentContent.text = @"匿名用戶：\n我最喜歡早晨鍛煉一刻鐘！";
-    [self.view addSubview:commentContent];
-    
-    UIView *commentContentTime = [[UIView alloc] initWithFrame:CGRectMake(0, marginTop+386, self.view.frame.size.width, 44)];
-    UILabel *commentLabelTime = [[UILabel alloc] initWithFrame:CGRectMake(5, 0, self.view.frame.size.width-10, commentContentTime.frame.size.height)];
-    commentLabelTime.font = [UIFont fontWithName:@"AppleGothic" size:12.0];
-    commentLabelTime.text = @"2018/02/06";
-    [commentContentTime addSubview:commentLabelTime];
-    
-    UIButton *commentReplyButton = [[UIButton alloc] initWithFrame:CGRectMake(commentContentTime.frame.size.width-85, 0, 100, commentContentTime.frame.size.height)];
-    [commentReplyButton setTitle:@"回復" forState:UIControlStateNormal];
-    commentReplyButton.titleLabel.font = [UIFont fontWithName:@"AppleGothic" size:12.0];
-    [commentReplyButton addTarget:self action:@selector(clickReplyComment) forControlEvents:UIControlEventTouchUpInside];
-    [commentReplyButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [commentReplyButton setImage:[UIImage imageNamed:@"message"] forState:UIControlStateNormal];
-    [commentContentTime addSubview:commentReplyButton];
-    
-    
-    [self.view addSubview:commentContentTime];
-    
-    
-    
-    
-    
-    
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-self.tabBarController.tabBar.frame.size.height)];
-    self.tableView.dataSource = self;
-    self.tableView.delegate = self;
-    [self.view addSubview:self.tableView];
+        UIView *commentView = [[UIView alloc] initWithFrame:CGRectMake(0, expertContentLabelTime.frame.size.height+expertContentLabelTime.frame.origin.y+textMargin, self.view.frame.size.width, commentLabel.frame.size.height+titlePadding)];
+        commentView.backgroundColor = RGBA_COLOR(40, 122, 72, 1);
+        [commentView addSubview:commentLabel];
+        [commentView addSubview:newCommentButton];
+        [scrollView addSubview:commentView];
+        /*
+         *  评论列表
+         */
+        int lastY = commentView.frame.size.height+commentView.frame.origin.y+textMargin;
+        for(int i=0;i<3;i++){
+            UILabel *commentUser = [[UILabel alloc] initWithFrame:CGRectMake(textMargin, 0, self.view.frame.size.width, lineHeight)];
+            commentUser.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
+            commentUser.text = @"匿名用戶：";
+            
+            UILabel *commentContent = [[UILabel alloc] initWithFrame:CGRectMake(textMargin, commentUser.frame.size.height+commentUser.frame.origin.y+textMargin, self.view.frame.size.width-textMargin*2, lineHeight)];
+            commentContent.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
+            commentContent.text = @"我最喜歡早晨鍛煉一刻鐘！我最喜歡早晨鍛煉一刻鐘！我最喜歡早晨鍛煉一刻鐘！我最喜歡早晨鍛煉一刻鐘！我最喜歡早晨鍛煉一刻鐘！我最喜歡早晨鍛煉一刻鐘！我最喜歡早晨鍛煉一刻鐘！我最喜歡早晨鍛煉一刻鐘！我ae最喜歡早晨鍛煉一刻鐘！s我最喜歡早晨鍛煉一刻鐘cd！我最喜歡早晨鍛煉d,一d刻鐘！我最喜歡早晨dc鍛煉一刻鐘！我最喜歡早晨鍛煉一刻鐘！我最喜歡早晨鍛煉一刻鐘！我最喜歡早晨鍛煉一刻鐘！我最喜歡dss最喜歡早晨鍛歡早晨鍛煉一刻鐘！";
+            commentContent.numberOfLines = 0;
+            [commentContent sizeToFit];
+
+            UILabel *commentLabelTime = [[UILabel alloc] initWithFrame:CGRectMake(textMargin, commentContent.frame.size.height+commentContent.frame.origin.y+textMargin, self.view.frame.size.width-textMargin*2, lineHeight)];
+            commentLabelTime.font = DEFAULT_FONT(12.0f);
+            commentLabelTime.text = @"2018/02/06";
+
+            UIButton *commentReplyButton = [[UIButton alloc] initWithFrame:CGRectMake(commentLabelTime.frame.size.width-85, commentContent.frame.size.height+commentContent.frame.origin.y+textMargin, 100, lineHeight)];
+            [commentReplyButton setTitle:@"回復" forState:UIControlStateNormal];
+            commentReplyButton.titleLabel.font = DEFAULT_FONT(12.0f);
+            [commentReplyButton addTarget:self action:@selector(clickReplyComment) forControlEvents:UIControlEventTouchUpInside];
+            [commentReplyButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            [commentReplyButton setImage:[UIImage imageNamed:@"message"] forState:UIControlStateNormal];
+        
+            UIView *commentListView = [[UIView alloc] initWithFrame:CGRectMake(0, lastY, self.view.frame.size.width, commentContent.frame.size.height+commentLabelTime.frame.size.height+titlePadding*2)];
+            CALayer *commentListBorder = [CALayer layer];
+            commentListBorder.frame = CGRectMake(0.0f, commentListView.frame.size.height-1, commentListView.frame.size.width, BORDER_WIDTH);
+            commentListBorder.backgroundColor = BORDER_COLOR;
+            [commentListView.layer addSublayer:commentListBorder];
+            [commentListView addSubview:commentContent];
+            [commentListView addSubview:commentLabelTime];
+            [commentListView addSubview:commentReplyButton];
+            [commentListView addSubview:commentUser];
+            
+            [scrollView addSubview:commentListView];
+            
+            lastY = commentListView.frame.size.height+commentListView.frame.origin.y+textMargin*2;
+            contentSize = commentListView.frame.size.height+commentListView.frame.origin.y;
+        }
+    scrollView.contentSize = CGSizeMake(self.view.frame.size.width, contentSize);
 }
 
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-    
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [tableView fd_heightForCellWithIdentifier:@"FDFeedCell" cacheByIndexPath:indexPath configuration:^(FDFeedCell *cell) {
-        [self configureCell:cell atIndexPath:indexPath];
-    }];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    FDFeedCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FDFeedCell"];
-    [self configureCell:cell atIndexPath:indexPath];
-    return cell;
-}
-
-- (void)configureCell:(FDFeedCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-    cell.fd_enforceFrameLayout = NO; // Enable to use "-sizeThatFits:"
-    if (indexPath.row % 2 == 0) {
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    } else {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    }
-    NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
-    [data setObject:@"William Shakespeare" forKey:@"title"];
-    [data setObject:@"To be, or not to be —that is the question, Whether'tis nobler in the mind to suffer. The slings and arrows of outrageous fortune Or to take arms against a sea of troubles, And by opposing end them. To die —to sleep" forKey:@"content"];
-    [data setObject:@"sunnyxx" forKey:@"username"];
-    [data setObject:@"2015.04.16" forKey:@"time"];
-    [data setObject:@"" forKey:@"imageName"];
-    cell.entity = data;
-}
-    
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    return [tableView fd_heightForCellWithIdentifier:@"reuse identifer" cacheByIndexPath:indexPath configuration:^(UITableViewCell *cell) {
-//        // Configure this cell with data, same as what you've done in "-tableView:cellForRowAtIndexPath:"
-//        // Like:
-//        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-//        switch (indexPath.row) {
-//            case 0:
-//            cell.textLabel.text = @"我的問題";
-//            cell.imageView.image = [UIImage imageNamed:@"feedback"];
-//            break;
-//            case 1:
-//            cell.textLabel.text = @"常見問題";
-//            cell.imageView.image = [UIImage imageNamed:@"feedback"];
-//            break;
-//            case 2:
-//            cell.textLabel.text = @"我要提問";
-//            cell.imageView.image = [UIImage imageNamed:@"feedback"];
-//            break;
-//            default:
-//            break;
-//        }
-//    }];
-//}
-    
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    UITableViewCell *cell = [tableView fd_templateCellForReuseIdentifier:@"reuse identifer"];
-//    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-//    switch (indexPath.row) {
-//        case 0:
-//        cell.textLabel.text = @"我的問題";
-//        cell.imageView.image = [UIImage imageNamed:@"feedback"];
-//        break;
-//        case 1:
-//        cell.textLabel.text = @"常見問題";
-//        cell.imageView.image = [UIImage imageNamed:@"feedback"];
-//        break;
-//        case 2:
-//        cell.textLabel.text = @"我要提問";
-//        cell.imageView.image = [UIImage imageNamed:@"feedback"];
-//        break;
-//        default:
-//        break;
-//    }
-//    return cell;
-//}
-    
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
     
     //- (void)clickButtonLeft {

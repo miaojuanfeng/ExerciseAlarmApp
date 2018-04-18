@@ -611,6 +611,8 @@
 				9907369F2016344C002EFEC5 /* Sources */,
 				990736A02016344C002EFEC5 /* Frameworks */,
 				990736A12016344C002EFEC5 /* Resources */,
+				21BCAE4CFB0A103FF9CD61A7 /* [CP] Embed Pods Frameworks */,
+				CC3217BE573A128D4D0030DE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -629,6 +631,8 @@
 				990736B82016344C002EFEC5 /* Sources */,
 				990736B92016344C002EFEC5 /* Frameworks */,
 				990736BA2016344C002EFEC5 /* Resources */,
+				AAA20602E99411B20C0D058C /* [CP] Embed Pods Frameworks */,
+				CC30505DEFBA17F462A93528 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -648,6 +652,8 @@
 				990736C32016344C002EFEC5 /* Sources */,
 				990736C42016344C002EFEC5 /* Frameworks */,
 				990736C52016344C002EFEC5 /* Resources */,
+				A8FCC700BD70BEF370B288E8 /* [CP] Embed Pods Frameworks */,
+				271B373EEB2BADD451DC014D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -734,6 +740,36 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		21BCAE4CFB0A103FF9CD61A7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-alarm/Pods-alarm-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		271B373EEB2BADD451DC014D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-alarmUITests/Pods-alarmUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		33B99CCE05DC16868C4C5B4B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -770,6 +806,36 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		A8FCC700BD70BEF370B288E8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-alarmUITests/Pods-alarmUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AAA20602E99411B20C0D058C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-alarmTests/Pods-alarmTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		AEB5AFAF79374C6BDCA7A402 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -786,6 +852,36 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CC30505DEFBA17F462A93528 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-alarmTests/Pods-alarmTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CC3217BE573A128D4D0030DE /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-alarm/Pods-alarm-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
