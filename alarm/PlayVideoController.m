@@ -6,11 +6,16 @@
 //  Copyright © 2018 Dreamover Studio. All rights reserved.
 //
 
+#import "MacroDefine.h"
+#import "AppDelegate.h"
 #import <Foundation/Foundation.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import "PlayVideoController.h"
 
 @interface PlayVideoController ()
+@property AppDelegate *appDelegate;
+
+@property UIView *starView;
 
 @property MPMoviePlayerController *moviePlayer;
 @property (nonatomic,strong) MPMoviePlayerViewController *moviePlayerViewController;
@@ -31,6 +36,8 @@
     CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
     float marginTop = rectStatus.size.height + self.navigationController.navigationBar.frame.size.height;
     
+    self.appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
 //    UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
 //    /*NSURL *url = [NSURL URLWithString:@"http://www.baidu.com"];
 //     NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -49,9 +56,38 @@
     self.videoUrl = [NSURL URLWithString:@"http://104.236.150.123:8080/exercise-video.mp4"];
     [self.moviePlayer play];
     
-    UIView *v = [[UIView alloc] initWithFrame:CGRectMake(50, 50, 50, 50)];
-    v.backgroundColor = [UIColor redColor];
-    [self.view addSubview:v];
+    self.starView = [[UIView alloc] initWithFrame:CGRectMake((self.view.frame.size.width-250)/2, (self.view.frame.size.height-marginTop-250)/2, 250, 250)];
+    self.starView.layer.masksToBounds = YES;
+    self.starView.backgroundColor = [UIColor whiteColor];
+    self.starView.hidden = YES;
+    
+    UILabel *starTitle = [[UILabel alloc] initWithFrame:CGRectMake(20, 20, self.starView.frame.size.width-40, 30)];
+    starTitle.text = @"恭喜你完成鍛煉！";
+    starTitle.font = DEFAULT_FONT(22.0f);
+    [self.starView addSubview:starTitle];
+    
+    UILabel *starDesc = [[UILabel alloc] initWithFrame:CGRectMake(20, starTitle.frame.origin.y+starTitle.frame.size.height+20, self.starView.frame.size.width-40, 30)];
+    starDesc.text = @"給自己的表現一個分數吧！";
+    starDesc.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
+    [self.starView addSubview:starDesc];
+    
+    UIButton *leftButton = [[UIButton alloc] initWithFrame:CGRectMake(-1, self.starView.frame.size.height-44+1, self.starView.frame.size.width/2+1, 44)];
+    [leftButton setTitle:@"確認" forState:UIControlStateNormal];
+    [leftButton setTitleColor:RGBA_COLOR(85, 172, 243, 1) forState:UIControlStateNormal];
+    [leftButton addTarget:self action:@selector(clickLeftButton) forControlEvents:UIControlEventTouchUpInside];
+    [leftButton.layer setBorderColor:BORDER_COLOR];
+    [leftButton.layer setBorderWidth:BORDER_WIDTH];
+    [self.starView addSubview:leftButton];
+    
+    UIButton *rightButton = [[UIButton alloc] initWithFrame:CGRectMake(self.starView.frame.size.width/2-1, self.starView.frame.size.height-44+1, self.starView.frame.size.width/2+2, 44)];
+    [rightButton setTitle:@"不用了" forState:UIControlStateNormal];
+    [rightButton setTitleColor:RGBA_COLOR(85, 172, 243, 1) forState:UIControlStateNormal];
+    [rightButton addTarget:self action:@selector(clickRightButton) forControlEvents:UIControlEventTouchUpInside];
+    [rightButton.layer setBorderColor:BORDER_COLOR];
+    [rightButton.layer setBorderWidth:BORDER_WIDTH];
+    [self.starView addSubview:rightButton];
+    
+    [self.view addSubview:self.starView];
 }
 
 
@@ -138,10 +174,17 @@
  *  @param notification 通知对象
  */
 -(void)mediaPlayerPlaybackFinished:(NSNotification *)notification{
+    self.starView.hidden = NO;
     NSLog(@"播放完成.%li",self.moviePlayer.playbackState);
 }
 
+- (void)clickLeftButton {
+    
+}
 
+- (void)clickRightButton {
+    self.starView.hidden = YES;
+}
 
 
 
