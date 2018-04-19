@@ -261,7 +261,7 @@
     view6.layer.masksToBounds = YES;
     //
     UIButton *titleTop6 = [[UIButton alloc] initWithFrame:CGRectMake(0, 20, view6.frame.size.width, viewHeight/2-10)];
-    [titleTop6 setTitle:@"\U0000e6df" forState:UIControlStateNormal];
+    [titleTop6 setTitle:@"\U0000e735" forState:UIControlStateNormal];
     titleTop6.titleLabel.font = ICON_FONT(60.0);
     [titleTop6 setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [titleTop6 addTarget:self action:@selector(clickExerciseTimeButton) forControlEvents:UIControlEventTouchUpInside];

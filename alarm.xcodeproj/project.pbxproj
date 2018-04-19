@@ -47,7 +47,6 @@
 		CE01F3FD202359A100040FC4 /* MyCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE01F3FC202359A100040FC4 /* MyCollectionViewCell.m */; };
 		CE1A4979201A01DD005CB860 /* HYBAnimationClock.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1A4977201A01DC005CB860 /* HYBAnimationClock.m */; };
 		CE1A497C201A0219005CB860 /* HYBClockView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1A497B201A0219005CB860 /* HYBClockView.m */; };
-		CE1C8F5B208840F600305415 /* iconfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE1C8F5A208840E300305415 /* iconfont.ttf */; };
 		CE1DBC33206A524100632D86 /* SelectVideoController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1DBC32206A524100632D86 /* SelectVideoController.m */; };
 		CE35786C207F14B1009049E2 /* TBCityIconFont.m in Sources */ = {isa = PBXBuildFile; fileRef = CE35786B207F14B1009049E2 /* TBCityIconFont.m */; };
 		CE357870207F14E6009049E2 /* TBCityIconInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = CE35786F207F14E6009049E2 /* TBCityIconInfo.m */; };
@@ -65,6 +64,7 @@
 		CE501045205A91DD00467D5A /* CurrentPainController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE501043205A91DC00467D5A /* CurrentPainController.m */; };
 		CE501046205A91DD00467D5A /* AveragePainController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE501044205A91DC00467D5A /* AveragePainController.m */; };
 		CE50104B205A997000467D5A /* HealthController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE50104A205A997000467D5A /* HealthController.m */; };
+		CE5CA0222088838A008C810E /* iconfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE5CA0212088836C008C810E /* iconfont.ttf */; };
 		CE8B78A92047B78B00522F65 /* AlarmWeekController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8B78A82047B78B00522F65 /* AlarmWeekController.m */; };
 		CEA01CEB202337A60001DAF0 /* ListAlarmController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA01CEA202337A60001DAF0 /* ListAlarmController.m */; };
 		CEA7ECCC2045161C006A9D7F /* ShowPhotoController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA7ECCB2045161C006A9D7F /* ShowPhotoController.m */; };
@@ -183,7 +183,6 @@
 		CE1A4978201A01DD005CB860 /* HYBAnimationClock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYBAnimationClock.h; sourceTree = "<group>"; };
 		CE1A497A201A0219005CB860 /* HYBClockView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYBClockView.h; sourceTree = "<group>"; };
 		CE1A497B201A0219005CB860 /* HYBClockView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYBClockView.m; sourceTree = "<group>"; };
-		CE1C8F5A208840E300305415 /* iconfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = iconfont.ttf; sourceTree = "<group>"; };
 		CE1DBC32206A524100632D86 /* SelectVideoController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectVideoController.m; sourceTree = "<group>"; };
 		CE1DBC35206A526200632D86 /* SelectVideoController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectVideoController.h; sourceTree = "<group>"; };
 		CE35786B207F14B1009049E2 /* TBCityIconFont.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TBCityIconFont.m; sourceTree = "<group>"; };
@@ -218,6 +217,7 @@
 		CE501044205A91DC00467D5A /* AveragePainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AveragePainController.m; sourceTree = "<group>"; };
 		CE501048205A995700467D5A /* HealthController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HealthController.h; sourceTree = "<group>"; };
 		CE50104A205A997000467D5A /* HealthController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HealthController.m; sourceTree = "<group>"; };
+		CE5CA0212088836C008C810E /* iconfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = iconfont.ttf; sourceTree = "<group>"; };
 		CE8B78A82047B78B00522F65 /* AlarmWeekController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlarmWeekController.m; sourceTree = "<group>"; };
 		CE8B78AA2047B79D00522F65 /* AlarmWeekController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlarmWeekController.h; sourceTree = "<group>"; };
 		CEA01CEA202337A60001DAF0 /* ListAlarmController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListAlarmController.m; sourceTree = "<group>"; };
@@ -326,7 +326,7 @@
 				990736A92016344C002EFEC5 /* AppDelegate.h */,
 				990736AA2016344C002EFEC5 /* AppDelegate.m */,
 				990736B72016344C002EFEC5 /* Info.plist */,
-				CE1C8F5A208840E300305415 /* iconfont.ttf */,
+				CE5CA0212088836C008C810E /* iconfont.ttf */,
 				990736AF2016344C002EFEC5 /* Main.storyboard */,
 				998F36D7202757E400676226 /* NoiseController.h */,
 				998F36D5202757D300676226 /* NoiseController.m */,
@@ -716,7 +716,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE1C8F5B208840F600305415 /* iconfont.ttf in Resources */,
+				CE5CA0222088838A008C810E /* iconfont.ttf in Resources */,
 				990736B12016344C002EFEC5 /* Main.storyboard in Resources */,
 				CE50102C205A598700467D5A /* Assets.xcassets in Resources */,
 				990C85362042EECE00D36C9E /* YXDayCell.xib in Resources */,
