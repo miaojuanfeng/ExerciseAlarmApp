@@ -78,7 +78,7 @@
     UITableViewCell *cell = [[UITableViewCell alloc] init];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.textLabel.text = [[self.discussList objectAtIndex:indexPath.row] objectForKey:@"title"];
-    cell.imageView.image = [UIImage imageNamed:@"feedback"];
+    cell.imageView.image = [UIImage iconWithInfo:TBCityIconInfoMake(@"\U0000e6fa", 34, [UIColor lightGrayColor])];
     return cell;
 }
 

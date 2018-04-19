@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "RegisterController.h"
 #import "ValidateController.h"
+#import <AFNetworking/AFNetworking.h>
 
 @interface RegisterController () <UIPickerViewDelegate>
 
@@ -18,6 +19,7 @@
 @property UIPickerView *codePicker;
 @property UITextField *phoneField;
 @property NSString *codeField;
+@property NSArray *codeArr;
 
 @end
 
@@ -44,14 +46,14 @@
     UIView *textView = [[UIView alloc] initWithFrame:CGRectMake(80/2, phoneLabel.frame.origin.y+phoneLabel.frame.size.height+50, self.view.frame.size.width-80, 40)];
 //    textView.backgroundColor = RGBA_COLOR(44, 106, 81, 1);
     
-    self.codePicker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, 50, 100)];
-    self.codePicker.backgroundColor = [UIColor redColor];
+    self.codePicker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, -23, 50, 85)];
+//    self.codePicker.backgroundColor = [UIColor redColor];
     self.codePicker.delegate = self;
     self.codePicker.tintAdjustmentMode = NSTextAlignmentLeft;
-    CALayer *codeFieldBorder = [CALayer layer];
-    codeFieldBorder.frame = CGRectMake(0, self.codePicker.frame.size.height-1, self.codePicker.frame.size.width, BORDER_WIDTH);
-    codeFieldBorder.backgroundColor = BORDER_COLOR;
-    [self.codePicker.layer addSublayer:codeFieldBorder];
+//    CALayer *codeFieldBorder = [CALayer layer];
+//    codeFieldBorder.frame = CGRectMake(0, self.codePicker.frame.size.height-1, self.codePicker.frame.size.width, BORDER_WIDTH);
+//    codeFieldBorder.backgroundColor = BORDER_COLOR;
+//    [self.codePicker.layer addSublayer:codeFieldBorder];
     [textView addSubview:self.codePicker];
 
     self.phoneField = [[UITextField alloc] initWithFrame:CGRectMake(self.codePicker.frame.origin.x+self.codePicker.frame.size.width+10, 0, textView.frame.size.width-self.codePicker.frame.size.width-10, textView.frame.size.height)];
@@ -75,6 +77,9 @@
     [submitButton setTitle:@"下一步" forState:UIControlStateNormal];
     [submitButton addTarget:self action:@selector(clickNextButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:submitButton];
+    
+    self.codeArr = [NSArray arrayWithObjects:@"+852", @"+86", nil];
+    self.codeField = self.codeArr[0];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -98,20 +103,11 @@
     return 2;
 }
 
--(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
-    switch (row) {
-        case 0:
-            return @"+852";
-            break;
-        case 1:
-            return @"+86";
-            break;
-    }
-    return @"";
+-(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    return self.codeArr[row];
 }
 
-- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view{
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view {
     UILabel* pickerLabel = (UILabel*)view;
     if (!pickerLabel){
         pickerLabel = [[UILabel alloc] init];
@@ -127,18 +123,52 @@
     return pickerLabel;
 }
 
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+    self.codeField = self.codeArr[row];
+}
+
 - (void)clickNextButton {
     [self.view endEditing:YES];
     
-    if( [self.phoneField.text isEqualToString:@""] || self.phoneField.text.length != 11 ){
+    if( ( [self.codeField isEqualToString:@"+852"] && ( [self.phoneField.text isEqualToString:@""] || self.phoneField.text.length != 8 )) ||
+        ( [self.codeField isEqualToString:@"+86"] && ( [self.phoneField.text isEqualToString:@""] || self.phoneField.text.length != 11 )) ){
         HUD_TOAST_SHOW(@"手機號碼不正確");
         return;
     }
     
     UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"即將發送驗證碼到以下手機號：" message:[NSString stringWithFormat:@"%@ %@", self.codeField, self.phoneField.text]  preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"確認" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-        ValidateController *validateController = [[ValidateController alloc] init];
-        [self.navigationController pushViewController:validateController animated:YES];
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+        manager.requestSerializer.timeoutInterval = 30.0f;
+        NSDictionary *parameters=@{@"user_username":[NSString stringWithFormat:@"%@%@", self.codeField, self.phoneField.text], @"user_platform":@"ios"};
+        HUD_WAITING_SHOW(@"Loading");
+        [manager POST:BASE_URL(@"user/verify") parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+            
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            NSLog(@"成功.%@",responseObject);
+            NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:NULL];
+            NSLog(@"results: %@", dic);
+            
+            int status = [[dic objectForKey:@"status"] intValue];
+            
+            HUD_WAITING_HIDE;
+            if( status == 1 ){
+                ValidateController *validateController = [[ValidateController alloc] init];
+                validateController.phoneCode = self.codeField;
+                validateController.phoneNumber = self.phoneField.text;
+                validateController.verifyCode = [[dic objectForKey:@"data"] objectForKey:@"verify_code"];
+                [self.navigationController pushViewController:validateController animated:YES];
+            }else{
+                HUD_TOAST_SHOW(@"Network Error");
+            }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            NSLog(@"失败.%@",error);
+            NSLog(@"%@",[[NSString alloc] initWithData:error.userInfo[@"com.alamofire.serialization.response.error.data"] encoding:NSUTF8StringEncoding]);
+            
+            HUD_WAITING_HIDE;
+            HUD_TOAST_SHOW(@"Network Error");
+        }];
     }];
     UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
         

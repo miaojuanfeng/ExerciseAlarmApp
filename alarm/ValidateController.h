@@ -10,4 +10,8 @@
 
 @interface ValidateController : UIViewController
 
+@property NSString *phoneCode;
+@property NSString *phoneNumber;
+@property NSString *verifyCode;
+
 @end

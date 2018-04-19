@@ -46,7 +46,7 @@
     
     self.userField = [[UITextField alloc] initWithFrame:CGRectMake(10, 10, userView.frame.size.width-20, 34)];
     self.userField.clearButtonMode = UITextFieldViewModeWhileEditing;
-    self.userField.placeholder = @"用戶名";
+    self.userField.placeholder = @"手機號";
     CALayer *userFieldBorder = [CALayer layer];
     userFieldBorder.frame = CGRectMake(0.0f, self.userField.frame.size.height-1, self.userField.frame.size.width, BORDER_WIDTH);
     userFieldBorder.backgroundColor = BORDER_COLOR;
@@ -74,7 +74,7 @@
     [submitButton addTarget:self action:@selector(clickLoginButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:submitButton];
     
-    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:@"忘記用戶名或密碼請點擊"];
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:@"忘記手機號或密碼請點擊"];
     NSRange strRange = {0, [str length]};
     [str addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:strRange];
     

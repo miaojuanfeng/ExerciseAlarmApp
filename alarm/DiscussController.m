@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "MacroDefine.h"
+#import "AppDelegate.h"
 #import "DiscussController.h"
 #import "NewQuestionController.h"
 #import "MyMsgController.h"
@@ -15,6 +16,7 @@
 
 @interface DiscussController () <UITableViewDataSource, UITableViewDelegate>
 @property UITableView *tableView;
+@property AppDelegate *appDelegate;
 @end
 
 @implementation DiscussController
@@ -27,6 +29,8 @@
     
     CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
     float marginTop = rectStatus.size.height + self.navigationController.navigationBar.frame.size.height;
+    
+    self.appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
 //    UIView *topButton = [[UIView alloc] initWithFrame:CGRectMake(0, marginTop, self.view.frame.size.width, 44)];
 //    topButton.backgroundColor = [UIColor orangeColor];
@@ -86,15 +90,15 @@
     switch (indexPath.row) {
         case 0:
             cell.textLabel.text = @"我的問題";
-            cell.imageView.image = [UIImage imageNamed:@"feedback"];
+            cell.imageView.image = [UIImage iconWithInfo:TBCityIconInfoMake(@"\U0000e6fa", 34, [UIColor lightGrayColor])];
             break;
         case 1:
             cell.textLabel.text = @"常見問題";
-            cell.imageView.image = [UIImage imageNamed:@"feedback"];
+            cell.imageView.image = [UIImage iconWithInfo:TBCityIconInfoMake(@"\U0000e6fa", 34, [UIColor lightGrayColor])];
             break;
         case 2:
             cell.textLabel.text = @"我要提問";
-            cell.imageView.image = [UIImage imageNamed:@"feedback"];
+            cell.imageView.image = [UIImage iconWithInfo:TBCityIconInfoMake(@"\U0000e6fa", 34, [UIColor lightGrayColor])];
             break;
         default:
             break;

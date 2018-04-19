@@ -23,6 +23,8 @@
 
 @property NSTimer *timer;
 @property int scd;
+
+@property UIView *starButtonView;
 @end
 
 @implementation PlayVideoController
@@ -73,6 +75,20 @@
     starDesc.text = @"給自己的表現一個分數吧！";
     starDesc.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     [self.starView addSubview:starDesc];
+    
+    self.starButtonView = [[UIView alloc] initWithFrame:CGRectMake(20, starDesc.frame.origin.y+starDesc.frame.size.height+20, self.starView.frame.size.width-40, 40)];
+//    starButtonView.backgroundColor = [UIColor blueColor];
+    for (int i=1; i<=5; i++) {
+        UIButton *starButton = [[UIButton alloc] initWithFrame:CGRectMake((i-1)*(2+40), 0, 40, 40)];
+//        starButton.backgroundColor = [UIColor redColor];
+        [starButton setTitle:@"\U0000e6eb" forState:UIControlStateNormal];
+        [starButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+        starButton.titleLabel.font = ICON_FONT(34);
+        starButton.tag = i;
+        [starButton addTarget:self action:@selector(clickStarButton:) forControlEvents:UIControlEventTouchUpInside];
+        [self.starButtonView addSubview:starButton];
+    }
+    [self.starView addSubview:self.starButtonView];
     
     UIButton *leftButton = [[UIButton alloc] initWithFrame:CGRectMake(-1, self.starView.frame.size.height-44+1, self.starView.frame.size.width/2+1, 44)];
     [leftButton setTitle:@"確認" forState:UIControlStateNormal];
@@ -187,6 +203,18 @@
 - (void)invalidateTimer {
     [self.timer invalidate];
     self.timer = nil;
+}
+
+- (void)clickStarButton:(UIButton*)btn {
+    for(UIButton *starButton in self.starButtonView.subviews){
+        if(starButton.tag <= btn.tag ){
+            [starButton setTitle:@"\U0000e6ea" forState:UIControlStateNormal];
+            [starButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+        }else{
+            [starButton setTitle:@"\U0000e6eb" forState:UIControlStateNormal];
+            [starButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+        }
+    }
 }
 
 - (void)clickLeftButton {

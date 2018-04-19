@@ -37,7 +37,7 @@
     textView.backgroundColor = RGBA_COLOR(158, 218, 182, 1);
     textView.editable = NO;
     textView.font = [UIFont fontWithName:@"AppleGothic" size:16.0];
-    textView.text = @"請通過下述方式聯絡我們，以找回用戶名或密碼。\n\n電話：1122-3344\n電郵：imse@hku.hk";
+    textView.text = @"請通過下述方式聯絡我們，以找回手機號或密碼。\n\n電話：1122-3344\n電郵：imse@hku.hk";
     
     [self.view addSubview:textView];
     

@@ -79,7 +79,9 @@
 - (void)clickNextButton {
     [self.view endEditing:YES];
     
-    if( [self.codeField.text isEqualToString:@""] || self.codeField.text.length != 4 ){
+    NSString *code = [[self.appDelegate md5:[NSString stringWithFormat:@"ios!mM$*9%@%@Rd#s&D2%@", self.phoneCode, self.phoneNumber, self.codeField.text]] lowercaseString];
+    
+    if( [self.codeField.text isEqualToString:@""] || self.codeField.text.length != 4 || ![code isEqualToString:self.verifyCode] ){
         HUD_TOAST_SHOW(@"驗證碼不正確");
         return;
     }

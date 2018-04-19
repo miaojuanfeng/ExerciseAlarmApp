@@ -41,5 +41,6 @@
 - (float)getScreenPercent;
 - (void)loadExerciseTime;
 - (void)saveExerciseTime:(long)timeSec;
+- (NSString *)md5:(NSString *)string;
 @end
 
