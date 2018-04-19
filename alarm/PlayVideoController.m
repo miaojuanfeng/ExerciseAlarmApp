@@ -20,6 +20,9 @@
 @property MPMoviePlayerController *moviePlayer;
 @property (nonatomic,strong) MPMoviePlayerViewController *moviePlayerViewController;
 @property NSURL *videoUrl;
+
+@property NSTimer *timer;
+@property int scd;
 @end
 
 @implementation PlayVideoController
@@ -97,6 +100,7 @@
 }
 
 - (void)clickCloseButton {
+    [self invalidateTimer];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -152,19 +156,20 @@
  *  @param notification 通知对象
  */
 -(void)mediaPlayerPlaybackStateChange:(NSNotification *)notification{
-    switch (self.moviePlayer.playbackState) {
-        case MPMoviePlaybackStatePlaying:
-            NSLog(@"正在播放...");
-            break;
-        case MPMoviePlaybackStatePaused:
-            NSLog(@"暂停播放.");
-            break;
-        case MPMoviePlaybackStateStopped:
-            NSLog(@"停止播放.");
-            break;
-        default:
-            NSLog(@"播放状态:%li",self.moviePlayer.playbackState);
-            break;
+    if ( self.moviePlayer.playbackState == MPMoviePlaybackStatePlaying ) {
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 repeats:YES block:^(NSTimer * _Nonnull timer) {
+            self.scd++;
+            NSLog(@"%d", self.scd);
+        }];
+        NSLog(@"正在播放...");
+    }else if( self.moviePlayer.playbackState == MPMoviePlaybackStatePaused ){
+        [self invalidateTimer];
+        NSLog(@"暂停播放.");
+    }else if( self.moviePlayer.playbackState == MPMoviePlaybackStateStopped ){
+        [self invalidateTimer];
+        NSLog(@"停止播放.");
+    }else{
+        NSLog(@"播放状态:%li",self.moviePlayer.playbackState);
     }
 }
 
@@ -175,7 +180,13 @@
  */
 -(void)mediaPlayerPlaybackFinished:(NSNotification *)notification{
     self.starView.hidden = NO;
+    [self invalidateTimer];
     NSLog(@"播放完成.%li",self.moviePlayer.playbackState);
+}
+
+- (void)invalidateTimer {
+    [self.timer invalidate];
+    self.timer = nil;
 }
 
 - (void)clickLeftButton {

@@ -11,12 +11,13 @@
 #import "RegisterController.h"
 #import "ValidateController.h"
 
-@interface RegisterController ()
+@interface RegisterController () <UIPickerViewDelegate>
 
 @property AppDelegate *appDelegate;
 
-@property UITextField *codeField;
+@property UIPickerView *codePicker;
 @property UITextField *phoneField;
+@property NSString *codeField;
 
 @end
 
@@ -43,18 +44,17 @@
     UIView *textView = [[UIView alloc] initWithFrame:CGRectMake(80/2, phoneLabel.frame.origin.y+phoneLabel.frame.size.height+50, self.view.frame.size.width-80, 40)];
 //    textView.backgroundColor = RGBA_COLOR(44, 106, 81, 1);
     
-    self.codeField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, 50, textView.frame.size.height)];
-    self.codeField.backgroundColor = [UIColor whiteColor];
-    self.codeField.keyboardType = UIKeyboardTypePhonePad;
-    self.codeField.text = @"+852";
-    self.codeField.enabled = NO;
+    self.codePicker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, 50, 100)];
+    self.codePicker.backgroundColor = [UIColor redColor];
+    self.codePicker.delegate = self;
+    self.codePicker.tintAdjustmentMode = NSTextAlignmentLeft;
     CALayer *codeFieldBorder = [CALayer layer];
-    codeFieldBorder.frame = CGRectMake(0.0f, self.codeField.frame.size.height-1, self.codeField.frame.size.width, BORDER_WIDTH);
+    codeFieldBorder.frame = CGRectMake(0, self.codePicker.frame.size.height-1, self.codePicker.frame.size.width, BORDER_WIDTH);
     codeFieldBorder.backgroundColor = BORDER_COLOR;
-    [self.codeField.layer addSublayer:codeFieldBorder];
-    [textView addSubview:self.codeField];
+    [self.codePicker.layer addSublayer:codeFieldBorder];
+    [textView addSubview:self.codePicker];
 
-    self.phoneField = [[UITextField alloc] initWithFrame:CGRectMake(self.codeField.frame.origin.x+self.codeField.frame.size.width+10, 0, textView.frame.size.width-self.codeField.frame.size.width-10, textView.frame.size.height)];
+    self.phoneField = [[UITextField alloc] initWithFrame:CGRectMake(self.codePicker.frame.origin.x+self.codePicker.frame.size.width+10, 0, textView.frame.size.width-self.codePicker.frame.size.width-10, textView.frame.size.height)];
     self.phoneField.backgroundColor = [UIColor whiteColor];
     self.phoneField.keyboardType = UIKeyboardTypePhonePad;
     self.phoneField.placeholder = @"請輸入您的手機號";
@@ -88,6 +88,45 @@
     [self.navigationController setNavigationBarHidden:NO animated:NO];
 }
 
+// 返回多少列
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
+    return 1;
+}
+
+// 返回每列的行数
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    return 2;
+}
+
+-(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    switch (row) {
+        case 0:
+            return @"+852";
+            break;
+        case 1:
+            return @"+86";
+            break;
+    }
+    return @"";
+}
+
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view{
+    UILabel* pickerLabel = (UILabel*)view;
+    if (!pickerLabel){
+        pickerLabel = [[UILabel alloc] init];
+        // Setup label properties - frame, font, colors etc
+        //adjustsFontSizeToFitWidth property to YES
+        pickerLabel.adjustsFontSizeToFitWidth = YES;
+        [pickerLabel setTextAlignment:NSTextAlignmentLeft];
+        [pickerLabel setBackgroundColor:[UIColor clearColor]];
+        [pickerLabel setFont:[UIFont systemFontOfSize:18]];
+    }
+    // Fill the label text here
+    pickerLabel.text=[self pickerView:pickerView titleForRow:row forComponent:component];
+    return pickerLabel;
+}
+
 - (void)clickNextButton {
     [self.view endEditing:YES];
     
@@ -96,7 +135,7 @@
         return;
     }
     
-    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"即將發送驗證碼到以下手機號：" message:[NSString stringWithFormat:@"%@ %@", self.codeField.text, self.phoneField.text]  preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"即將發送驗證碼到以下手機號：" message:[NSString stringWithFormat:@"%@ %@", self.codeField, self.phoneField.text]  preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"確認" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
         ValidateController *validateController = [[ValidateController alloc] init];
         [self.navigationController pushViewController:validateController animated:YES];
