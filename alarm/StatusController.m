@@ -70,18 +70,18 @@
     
     
     
-    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [rightButton addTarget:self action:@selector(clickSettingButton) forControlEvents:UIControlEventTouchUpInside];
     //    button.backgroundColor = [UIColor grayColor]; //加上背景颜色，方便观察Button的大小
     //设置图片
-    UIImage *imageForRightButton = [UIImage imageNamed:@"setup"];
+    UIImage *imageForRightButton = [UIImage iconWithInfo:TBCityIconInfoMake(@"\U0000e728", 24, [UIColor whiteColor])];
     [rightButton setImage:imageForRightButton forState:UIControlStateNormal];
     //设置文字
     NSString *rightButtonTitleStr = @"設置";
     [rightButton setTitle:rightButtonTitleStr forState:UIControlStateNormal];
-    //    button.titleLabel.font = [UIFont systemFontOfSize:15];
+    rightButton.titleLabel.font = [UIFont systemFontOfSize:18];
     [rightButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    rightButton.frame = CGRectMake(0, 0 , 50, 100);   //#1#硬编码设置UIButton位置、大小
+    rightButton.frame = CGRectMake(0, 0 , 70, 100);   //#1#硬编码设置UIButton位置、大小
     
     UIBarButtonItem *barRightButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightButton];
     self.navigationItem.rightBarButtonItem = barRightButtonItem;

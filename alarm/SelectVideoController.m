@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "SelectVideoController.h"
 
+
 @interface SelectVideoController () <UITableViewDataSource, UITableViewDelegate>
 @property UITableView *tableView;
 @property AppDelegate *appDelegate;
@@ -82,11 +83,11 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     UIButton *checkbox = [UIButton buttonWithType:UIButtonTypeCustom];
-    CGRect checkboxRect = CGRectMake(cell.frame.size.width, (cell.frame.size.height-30)/2+8, 30, 30);
+    CGRect checkboxRect = CGRectMake(cell.frame.size.width, (cell.frame.size.height-35)/2+8, 35, 35);
     [checkbox setFrame:checkboxRect];
 
-    [checkbox setImage:[UIImage imageNamed:@"select"] forState:UIControlStateNormal];
-    [checkbox setImage:[UIImage imageNamed:@"select-fill"] forState:UIControlStateSelected];
+    [checkbox setImage:[UIImage iconWithInfo:TBCityIconInfoMake(@"\U0000e72e", 44, [UIColor lightGrayColor])] forState:UIControlStateNormal];
+    [checkbox setImage:[UIImage iconWithInfo:TBCityIconInfoMake(@"\U0000e72d", 44, [UIColor redColor])] forState:UIControlStateSelected];
     if( [[[self.appDelegate.videoList objectAtIndex:indexPath.row] objectForKey:@"isShow"] boolValue] ){
         checkbox.selected = YES;
     }

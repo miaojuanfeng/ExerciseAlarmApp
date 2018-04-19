@@ -76,22 +76,22 @@
 //    [self presentMoviePlayerViewControllerAnimated:self.playerVC];
 }
 
--(void)movieStateChangeCallback:(NSNotification*)notify  {
-    
-    //点击播放器中的播放/ 暂停按钮响应的通知
-    NSLog(@"pause");
-    
-    
-    
-}
-
--(void)videoFinished:(NSNotification*)notification{
-     NSLog(@"pause");
-    int value = [[notification.userInfo valueForKey:MPMoviePlayerPlaybackDidFinishReasonUserInfoKey] intValue];
-    if (value == MPMovieFinishReasonUserExited) {
-//        [self dismissMoviePlayerViewControllerAnimated];
-        [self dismissViewControllerAnimated:self.playerVC completion:nil];
-    }
-}
+//-(void)movieStateChangeCallback:(NSNotification*)notify  {
+//
+//    //点击播放器中的播放/ 暂停按钮响应的通知
+//    NSLog(@"pause");
+//
+//
+//
+//}
+//
+//-(void)videoFinished:(NSNotification*)notification{
+//     NSLog(@"pause");
+//    int value = [[notification.userInfo valueForKey:MPMoviePlayerPlaybackDidFinishReasonUserInfoKey] intValue];
+//    if (value == MPMovieFinishReasonUserExited) {
+////        [self dismissMoviePlayerViewControllerAnimated];
+//        [self dismissViewControllerAnimated:self.playerVC completion:nil];
+//    }
+//}
 
 @end

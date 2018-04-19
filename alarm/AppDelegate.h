@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <MBProgressHUD.h>
+#import "TBCityIconFont.h"
+#import "UIImage+TBCityIconFont.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

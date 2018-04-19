@@ -9,10 +9,13 @@
 #import <Foundation/Foundation.h>
 
 #import "MacroDefine.h"
+#import "AppDelegate.h"
 #import "StatusTwoController.h"
 
 @interface StatusTwoController () <UITableViewDataSource, UITableViewDelegate>
 @property UITableView *tableView;
+
+@property AppDelegate *appDelegate;
 @end
 
 @implementation StatusTwoController
@@ -25,6 +28,8 @@
     
     CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
     float marginTop = rectStatus.size.height + self.navigationController.navigationBar.frame.size.height;
+    
+    self.appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
     UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(20, marginTop+10, self.view.frame.size.width-40, 50)];
     title.text = @"總共獲得";
@@ -92,7 +97,10 @@
     starLikeNum.textAlignment = NSTextAlignmentCenter;
     [starLikeView addSubview:starLikeNum];
 //    starLikeView.backgroundColor = [UIColor redColor];
-    UIImageView *starLikeImage = [[UIImageView alloc] initWithFrame:CGRectMake((starLikeView.frame.size.width-15)/2, 22, 15, 15)];
+    UIButton *starLikeImage = [[UIButton alloc] initWithFrame:CGRectMake((starLikeView.frame.size.width-15)/2, 22, 15, 15)];
+    starLikeImage.titleLabel.font = ICON_FONT(14.0);
+    starLikeImage.tag = indexPath.row;
+//    [starLikeImage addTarget:self action:@selector(clickLikeButton:) forControlEvents:UIControlEventTouchUpInside];
     [starLikeView addSubview:starLikeImage];
     [cell addSubview:starLikeView];
 
@@ -108,7 +116,8 @@
             star.attributedText = str;
             [cell addSubview:star];
             starLikeNum.text = @"32";
-            starLikeImage.image = [UIImage imageNamed:@"like_fill"];
+            [starLikeImage setTitle:@"\U0000e707" forState:UIControlStateNormal];
+            [starLikeImage setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
             break;
         case 1:
             num.text = @"2";
@@ -120,7 +129,8 @@
             star.attributedText = str;
             [cell addSubview:star];
             starLikeNum.text = @"22";
-            starLikeImage.image = [UIImage imageNamed:@"like_fill"];
+            [starLikeImage setTitle:@"\U0000e708" forState:UIControlStateNormal];
+            [starLikeImage setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
             break;
         case 2:
             num.text = @"3";
@@ -132,7 +142,8 @@
             star.attributedText = str;
             [cell addSubview:star];
             starLikeNum.text = @"12";
-            starLikeImage.image = [UIImage imageNamed:@"like"];
+            [starLikeImage setTitle:@"\U0000e707" forState:UIControlStateNormal];
+            [starLikeImage setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
             break;
         case 3:
             num.text = @"4";
@@ -144,7 +155,8 @@
             star.attributedText = str;
             [cell addSubview:star];
             starLikeNum.text = @"8";
-            starLikeImage.image = [UIImage imageNamed:@"like"];
+            [starLikeImage setTitle:@"\U0000e708" forState:UIControlStateNormal];
+            [starLikeImage setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
             break;
         case 4:
             num.text = @"5";
@@ -156,7 +168,8 @@
             star.attributedText = str;
             [cell addSubview:star];
             starLikeNum.text = @"7";
-            starLikeImage.image = [UIImage imageNamed:@"like"];
+            [starLikeImage setTitle:@"\U0000e707" forState:UIControlStateNormal];
+            [starLikeImage setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
             break;
         case 5:
             num.text = @"6";
@@ -168,7 +181,8 @@
             star.attributedText = str;
             [cell addSubview:star];
             starLikeNum.text = @"2";
-            starLikeImage.image = [UIImage imageNamed:@"like"];
+            [starLikeImage setTitle:@"\U0000e708" forState:UIControlStateNormal];
+            [starLikeImage setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
             break;
     }
     return cell;
@@ -178,4 +192,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+//- (void)clickLikeButton:(UIButton *) btn{
+//    NSLog(@"%ld", btn.tag);
+//}
 @end
