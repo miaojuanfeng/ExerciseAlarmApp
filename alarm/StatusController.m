@@ -22,6 +22,7 @@
 @interface StatusController ()
 @property AppDelegate *appDelegate;
 
+@property UIButton *numButton1;
 @property UIButton *numButton3;
 @property UIButton *numButton4;
 @end
@@ -124,14 +125,14 @@
     titleTop1.textAlignment = NSTextAlignmentCenter;
     [view1 addSubview:titleTop1];
     //
-    UIButton *numButton1 = [[UIButton alloc] initWithFrame:CGRectMake(0, titleTop1.frame.origin.y+titleTop1.frame.size.height, view1.frame.size.width, viewHeight/3)];
-    numButton1.titleLabel.font = DEFAULT_FONT(30.0);
-    [numButton1 setTitle:@"123" forState:UIControlStateNormal];
-    [numButton1 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [numButton1 addTarget:self action:@selector(clickButton1) forControlEvents:UIControlEventTouchUpInside];
-    [view1 addSubview:numButton1];
+    self.numButton1 = [[UIButton alloc] initWithFrame:CGRectMake(0, titleTop1.frame.origin.y+titleTop1.frame.size.height, view1.frame.size.width, viewHeight/3)];
+    self.numButton1.titleLabel.font = DEFAULT_FONT(30.0);
+    [self.numButton1 setTitle:@"123" forState:UIControlStateNormal];
+    [self.numButton1 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.numButton1 addTarget:self action:@selector(clickButton1) forControlEvents:UIControlEventTouchUpInside];
+    [view1 addSubview:self.numButton1];
     //
-    UILabel *titleBottom1 = [[UILabel alloc] initWithFrame:CGRectMake(0, numButton1.frame.origin.y+numButton1.frame.size.height, view1.frame.size.width, viewHeight/3)];
+    UILabel *titleBottom1 = [[UILabel alloc] initWithFrame:CGRectMake(0, self.numButton1.frame.origin.y+self.numButton1.frame.size.height, view1.frame.size.width, viewHeight/3)];
     titleBottom1.text = @"分鐘";
     titleBottom1.font = DEFAULT_FONT(26.0);
     titleBottom1.textColor = [UIColor whiteColor];
@@ -319,6 +320,10 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
+    /*
+     *  button1
+     */
+    [self.numButton1 setTitle:[NSString stringWithFormat:@"%ld", ( self.appDelegate.exerciseTimeCount % 3600 ) / 60] forState:UIControlStateNormal];
     /*
      *  button3
      */

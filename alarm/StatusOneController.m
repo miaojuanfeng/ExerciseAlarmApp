@@ -7,12 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "AppDelegate.h"
 #import "StatusOneController.h"
 #import "PTHistogramView.h"
 
 @interface StatusOneController ()
 @property (nonatomic, strong) PTHistogramView *ptView;
+
+@property AppDelegate *appDelegate;
 @end
 
 @implementation StatusOneController
@@ -26,6 +28,8 @@
     CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
     float marginTop = rectStatus.size.height + self.navigationController.navigationBar.frame.size.height;
     
+    self.appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
     UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(20, marginTop+10, self.view.frame.size.width-40, 50)];
     title.text = @"累積鍛煉";
     title.font = [UIFont fontWithName:@"AppleGothic" size:16.0];
@@ -34,7 +38,7 @@
     UILabel *num = [[UILabel alloc] initWithFrame:CGRectMake(20, marginTop+10+60, self.view.frame.size.width-40, 50)];
     num.textAlignment = NSTextAlignmentCenter;
     
-    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:@"123 分鐘"];
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%ld 分鐘", ( self.appDelegate.exerciseTimeCount % 3600 ) / 60]];
     [str addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"AppleGothic" size:36.0] range:NSMakeRange(0,str.length-2)];
     num.attributedText = str;
     

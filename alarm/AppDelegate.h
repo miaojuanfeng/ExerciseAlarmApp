@@ -21,6 +21,8 @@
 @property long calendarCount;
 @property NSMutableArray *painList;
 @property NSMutableDictionary *userPain;
+@property NSMutableDictionary *exerciseTime;
+@property long exerciseTimeCount;
 /*
  *  For Common UI
  */
@@ -35,5 +37,7 @@
 - (void)saveUserPain:(int) pain;
 - (void)loadUserPain;
 - (float)getScreenPercent;
+- (void)loadExerciseTime;
+- (void)saveExerciseTime:(long)timeSec;
 @end
 

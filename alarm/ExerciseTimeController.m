@@ -159,6 +159,7 @@
         
         UIAlertController* alert = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"您已經鍛煉%@", countTimeLabel] message:@"確認提交嗎？" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"確認" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+            [self.appDelegate saveExerciseTime:self.scd];
             self.startButton.hidden = NO;
             self.pauseButton.hidden = YES;
             self.stopButton.hidden = YES;

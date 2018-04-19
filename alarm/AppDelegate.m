@@ -82,9 +82,18 @@
         }
     }
     
+    /*
+     *  加载日历数组
+     */
     [self loadCalendar];
+    /*
+     *  App启动时，记录下日期，累积天数
+     */
     [self saveCalendar];
     NSLog(@"saveCalendar: %@", self.calendarList);
+    
+    [self loadExerciseTime];
+    NSLog(@"loadExerciseTime: %@", self.exerciseTime);
     
     self.painList = [[NSMutableArray alloc] init];
     [self.painList addObject:@"完全無痛"];
@@ -279,6 +288,43 @@
     for (NSString *y in self.calendarList) {
         NSMutableArray *dateArr = [self.calendarList objectForKey:y];
         self.calendarCount += dateArr.count;
+    }
+}
+
+- (void)saveExerciseTime:(long)timeSec {
+    
+    NSDate *date = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *YearMonthDay = [dateFormatter stringFromDate:date];
+    
+    long dayCount = [self.exerciseTime objectForKey:YearMonthDay] != nil ? [[self.exerciseTime objectForKey:YearMonthDay] integerValue] : 0L;
+    dayCount += timeSec;
+    self.exerciseTimeCount+=timeSec;
+    [self.exerciseTime setValue:[NSString stringWithFormat:@"%ld", dayCount] forKey:YearMonthDay];
+    
+    NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsPath = [path objectAtIndex:0];
+    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"exerciseTime.plist"];
+    
+    NSFileManager *appFileManager = [NSFileManager defaultManager];
+    [appFileManager removeItemAtPath:plistPath error:nil];
+    
+    [self.exerciseTime writeToFile:plistPath atomically:YES];
+}
+
+- (void)loadExerciseTime {
+    NSArray *pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *path = [pathArray objectAtIndex:0];
+    NSString *plistPath = [path stringByAppendingPathComponent:@"exerciseTime.plist"];
+    self.exerciseTime = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
+    if( self.exerciseTime == nil ){
+        self.exerciseTime = [[NSMutableDictionary alloc] init];
+    }
+    self.exerciseTimeCount = 0;
+    for (NSString *y in self.exerciseTime) {
+        long count = [[self.exerciseTime objectForKey:y] integerValue];
+        self.exerciseTimeCount += count;
     }
 }
 
