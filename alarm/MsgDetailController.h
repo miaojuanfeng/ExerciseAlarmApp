@@ -10,5 +10,6 @@
 
 @interface MsgDetailController : UIViewController
 
+@property int discussId;
 
 @end

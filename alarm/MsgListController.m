@@ -84,6 +84,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     MsgDetailController *msgDetailController = [[MsgDetailController alloc] init];
+    msgDetailController.discussId = [[[self.discussList objectAtIndex:indexPath.row] objectForKey:@"id"] intValue];
     [self.navigationController pushViewController:msgDetailController animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
