@@ -174,8 +174,8 @@
 //    graphContainer.backgroundColor = [UIColor redColor];
     
     //初始化数据源
-    self.allValues = @[@"2",@"1",@"5",@"8",@"6",@"4"];
-    self.allDates = @[@"06/01",@"06/02",@"06/03",@"06/04",@"06/05",@"06/06"];
+    self.allValues = @[@"2",@"1",@"5",@"8",@"6",@"4",@"10"];
+    self.allDates = @[@"06/01",@"06/02",@"06/03",@"06/04",@"06/05",@"06/06",@"06/07"];
     
     //初始化折线图并设置相应属性
     YASimpleGraphView *graphView = [[YASimpleGraphView alloc]init];
@@ -205,7 +205,7 @@
 
 //自定义X轴 显示标签索引
 - (NSArray *)incrementPositionsForXAxisOnLineGraph:(YASimpleGraphView *)graph {
-    return @[@0,@1,@2,@3,@4,@5];
+    return @[@0,@1,@2,@3,@4,@5,@6];
 }
 
 //Y轴坐标点数

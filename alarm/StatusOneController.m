@@ -56,7 +56,8 @@
             continue;
         }
         [nameArray insertObject:[date substringFromIndex:5] atIndex:0];
-        [countArray insertObject:[self.appDelegate.exerciseTime objectForKey:date] atIndex:0];
+        int m = (([[self.appDelegate.exerciseTime objectForKey:date] intValue] % 3600 ) / 60);
+        [countArray insertObject:[NSString stringWithFormat:@"%d", m] atIndex:0];
     }
     
     UIView *calendarView = [[UIView alloc] initWithFrame:CGRectMake(0, marginTop+56, self.view.frame.size.width, self.view.frame.size.height-120)];

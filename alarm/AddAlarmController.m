@@ -308,7 +308,7 @@
     // > 通知的提示声音
     content.sound = [UNNotificationSound defaultSound];
 //    content.sound = [UNNotificationSound soundNamed:@"ring.wav"];
-    content.sound = nil;
+//    content.sound = nil;
     
     content.userInfo = newsDict;
     

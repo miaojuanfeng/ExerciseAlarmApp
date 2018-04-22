@@ -76,7 +76,7 @@
     if( count > 0 ){
         average = (int)(total/count);
     }
-    self.textLabel.text = [NSString stringWithFormat:@"您的平均疼痛等級為 %d 級，屬於 輕微疼痛", average];
+    self.textLabel.text = [NSString stringWithFormat:@"您的平均疼痛等級為 %d 級，屬於 %@", average, [self.appDelegate.painList objectAtIndex:average]];
 }
 
 @end

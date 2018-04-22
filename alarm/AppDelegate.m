@@ -272,7 +272,7 @@
     
     NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsPath = [path objectAtIndex:0];
-    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"calendar.plist"];
+    NSString *plistPath = [documentsPath stringByAppendingPathComponent:[NSString stringWithFormat:@"calendar_%@.plist", [self.user objectForKey:@"id"]]];
     
     NSFileManager *appFileManager = [NSFileManager defaultManager];
     [appFileManager removeItemAtPath:plistPath error:nil];
@@ -283,7 +283,7 @@
 - (void)loadCalendar {
     NSArray *pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *path = [pathArray objectAtIndex:0];
-    NSString *plistPath = [path stringByAppendingPathComponent:@"calendar.plist"];
+    NSString *plistPath = [path stringByAppendingPathComponent:[NSString stringWithFormat:@"calendar_%@.plist", [self.user objectForKey:@"id"]]];
     self.calendarList = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
     if( self.calendarList == nil ){
         self.calendarList = [[NSMutableDictionary alloc] init];
@@ -309,7 +309,7 @@
     
     NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsPath = [path objectAtIndex:0];
-    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"exerciseTime.plist"];
+    NSString *plistPath = [documentsPath stringByAppendingPathComponent:[NSString stringWithFormat:@"exerciseTime_%@.plist", [self.user objectForKey:@"id"]]];
     
     NSFileManager *appFileManager = [NSFileManager defaultManager];
     [appFileManager removeItemAtPath:plistPath error:nil];
@@ -320,7 +320,7 @@
 - (void)loadExerciseTime {
     NSArray *pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *path = [pathArray objectAtIndex:0];
-    NSString *plistPath = [path stringByAppendingPathComponent:@"exerciseTime.plist"];
+    NSString *plistPath = [path stringByAppendingPathComponent:[NSString stringWithFormat:@"exerciseTime_%@.plist", [self.user objectForKey:@"id"]]];
     self.exerciseTime = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
     if( self.exerciseTime == nil ){
         self.exerciseTime = [[NSMutableDictionary alloc] init];
@@ -347,7 +347,7 @@
     
     NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsPath = [path objectAtIndex:0];
-    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"weekStar.plist"];
+    NSString *plistPath = [documentsPath stringByAppendingPathComponent:[NSString stringWithFormat:@"weekStar_%@.plist", [self.user objectForKey:@"id"]]];
     
     NSFileManager *appFileManager = [NSFileManager defaultManager];
     [appFileManager removeItemAtPath:plistPath error:nil];
@@ -358,7 +358,7 @@
 - (void)loadWeekStar {
     NSArray *pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *path = [pathArray objectAtIndex:0];
-    NSString *plistPath = [path stringByAppendingPathComponent:@"weekStar.plist"];
+    NSString *plistPath = [path stringByAppendingPathComponent:[NSString stringWithFormat:@"weekStar_%@.plist", [self.user objectForKey:@"id"]]];
     self.weekStar = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
     if( self.weekStar == nil ){
         self.weekStar = [[NSMutableDictionary alloc] init];
@@ -375,10 +375,10 @@
     NSString *documentsPath = [path objectAtIndex:0];
     NSString *plistPath = nil;
     
-    plistPath = [documentsPath stringByAppendingPathComponent:@"videoList.plist"];
+    plistPath = [documentsPath stringByAppendingPathComponent:[NSString stringWithFormat:@"videoList_%@.plist", [self.user objectForKey:@"id"]]];
     [self.videoList writeToFile:plistPath atomically:YES];
     
-    plistPath = [documentsPath stringByAppendingPathComponent:@"selectVideoList.plist"];
+    plistPath = [documentsPath stringByAppendingPathComponent:[NSString stringWithFormat:@"selectVideoList_%@.plist", [self.user objectForKey:@"id"]]];
     [self.selectVideoList writeToFile:plistPath atomically:YES];
 }
 
@@ -387,13 +387,13 @@
     NSString *path = [pathArray objectAtIndex:0];
     NSString *plistPath = nil;
     
-    plistPath = [path stringByAppendingPathComponent:@"videoList.plist"];
+    plistPath = [path stringByAppendingPathComponent:[NSString stringWithFormat:@"videoList_%@.plist", [self.user objectForKey:@"id"]]];
     self.videoList = [[NSMutableArray alloc] initWithContentsOfFile:plistPath];
     if( self.videoList == nil ){
         self.videoList = [[NSMutableArray alloc] init];
     }
     
-    plistPath = [path stringByAppendingPathComponent:@"selectVideoList.plist"];
+    plistPath = [path stringByAppendingPathComponent:[NSString stringWithFormat:@"selectVideoList_%@.plist", [self.user objectForKey:@"id"]]];
     self.selectVideoList = [[NSMutableArray alloc] initWithContentsOfFile:plistPath];
     if( self.selectVideoList == nil ){
         self.selectVideoList = [[NSMutableArray alloc] init];
@@ -403,7 +403,7 @@
 - (void)saveUserPain:(int) pain {
     NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsPath = [path objectAtIndex:0];
-    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"userPain.plist"];
+    NSString *plistPath = [documentsPath stringByAppendingPathComponent:[NSString stringWithFormat:@"userPain_%@.plist", [self.user objectForKey:@"id"]]];
     
     NSDate *time = [NSDate dateWithTimeIntervalSinceNow:0];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -418,7 +418,7 @@
 - (void)loadUserPain {
     NSArray *pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *path = [pathArray objectAtIndex:0];
-    NSString *plistPath = [path stringByAppendingPathComponent:@"userPain.plist"];
+    NSString *plistPath = [path stringByAppendingPathComponent:[NSString stringWithFormat:@"userPain_%@.plist", [self.user objectForKey:@"id"]]];
     self.userPain = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
     if( self.userPain == nil ){
         self.userPain = [[NSMutableDictionary alloc] init];
