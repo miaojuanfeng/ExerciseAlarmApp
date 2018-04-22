@@ -87,6 +87,7 @@
     }
     
     PasswordController *passwordController = [[PasswordController alloc] init];
+    passwordController.phoneField.text = self.phoneNumber;
     [self.navigationController pushViewController:passwordController animated:YES];
 }
 

@@ -47,6 +47,7 @@
     self.userField = [[UITextField alloc] initWithFrame:CGRectMake(10, 10, userView.frame.size.width-20, 34)];
     self.userField.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.userField.placeholder = @"手機號";
+    self.userField.keyboardType = UIKeyboardTypePhonePad;
     CALayer *userFieldBorder = [CALayer layer];
     userFieldBorder.frame = CGRectMake(0.0f, self.userField.frame.size.height-1, self.userField.frame.size.width, BORDER_WIDTH);
     userFieldBorder.backgroundColor = BORDER_COLOR;

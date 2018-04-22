@@ -45,10 +45,24 @@
     [self.view addSubview:num];
     
     
+    
+    long t = ( self.appDelegate.exerciseTime.count - 7 );
+    long c = 0;
+    NSMutableArray *nameArray = [[NSMutableArray alloc] init];
+    NSMutableArray *countArray = [[NSMutableArray alloc] init];
+    for (NSString *date in self.appDelegate.exerciseTime) {
+        c++;
+        if( c <= t ){
+            continue;
+        }
+        [nameArray insertObject:[date substringFromIndex:5] atIndex:0];
+        [countArray insertObject:[self.appDelegate.exerciseTime objectForKey:date] atIndex:0];
+    }
+    
     UIView *calendarView = [[UIView alloc] initWithFrame:CGRectMake(0, marginTop+56, self.view.frame.size.width, self.view.frame.size.height-120)];
     _ptView = [[PTHistogramView alloc] initWithFrame:CGRectMake(20, 120, [UIScreen mainScreen].bounds.size.width - 40, 200)
-                                           nameArray:@[@"2/1",@"2/2",@"2/3",@"2/4",@"2/5"]
-                                          countArray:@[@"4",@"12",@"7",@"15",@"19"]];
+                                           nameArray:[nameArray copy]
+                                          countArray:[countArray copy]];
     [calendarView addSubview:_ptView];
     UILabel *timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, marginTop+10, self.view.frame.size.width-40, 50)];
     timeLabel.text = @"時間（分鐘）";

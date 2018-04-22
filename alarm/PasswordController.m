@@ -9,12 +9,12 @@
 #import "MacroDefine.h"
 #import "AppDelegate.h"
 #import "PasswordController.h"
+#import <AFNetworking/AFNetworking.h>
 
 @interface PasswordController ()
 
 @property AppDelegate *appDelegate;
 
-@property UITextField *phoneField;
 @property UITextField *nameField;
 @property UITextField *passwordField;
 @property UITextField *cfmPwdField;
@@ -133,11 +133,21 @@
     [submitButton setTitle:@"提交" forState:UIControlStateNormal];
     [submitButton addTarget:self action:@selector(clickSubmitButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:submitButton];
+    
+    
+    self.view.userInteractionEnabled = YES;
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(fingerTapped:)];
+    singleTap.delegate = self;
+    [self.view addGestureRecognizer:singleTap];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)fingerTapped:(UITapGestureRecognizer *)gestureRecognizer {
+    [self.view endEditing:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -149,10 +159,58 @@
 - (void)clickSubmitButton {
     [self.view endEditing:YES];
     
-    if( [self.phoneField.text isEqualToString:@""] || self.phoneField.text.length != 11 ){
-        HUD_TOAST_SHOW(@"手機號碼不正確");
+    if( [self.nameField.text isEqualToString:@""] ){
+        HUD_TOAST_SHOW(@"請輸入用戶名");
         return;
     }
+    
+    if( [self.passwordField.text isEqualToString:@""] ){
+        HUD_TOAST_SHOW(@"請輸入密碼");
+        return;
+    }
+    
+    if( [self.cfmPwdField.text isEqualToString:@""] ){
+        HUD_TOAST_SHOW(@"請再次輸入密碼");
+        return;
+    }
+    
+    if( ![self.cfmPwdField.text isEqualToString:self.passwordField.text] ){
+        HUD_TOAST_SHOW(@"兩次密碼輸入不一致");
+        return;
+    }
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.requestSerializer.timeoutInterval = 30.0f;
+    NSDictionary *parameters=@{
+                               @"user_username":self.phoneField.text,
+                               @"user_nickname":self.nameField.text,
+                               @"user_password":self.passwordField.text,
+                               @"user_platform":@"ios"
+                               };
+    HUD_WAITING_SHOW(@"Loading");
+    [manager POST:BASE_URL(@"user/signup") parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"成功.%@",responseObject);
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:NULL];
+        NSLog(@"results: %@", dic);
+        
+        int status = [[dic objectForKey:@"status"] intValue];
+        
+        HUD_WAITING_HIDE;
+        if( status == 1 ){
+            HUD_TOAST_POP_SHOW(@"註冊成功", [self.navigationController.viewControllers objectAtIndex:0]);
+        }else{
+            HUD_TOAST_SHOW(@"Network Error");
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"失败.%@",error);
+        NSLog(@"%@",[[NSString alloc] initWithData:error.userInfo[@"com.alamofire.serialization.response.error.data"] encoding:NSUTF8StringEncoding]);
+        
+        HUD_WAITING_HIDE;
+        HUD_TOAST_SHOW(@"Network Error");
+    }];
 }
 
 @end

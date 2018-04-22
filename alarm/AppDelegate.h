@@ -25,6 +25,8 @@
 @property NSMutableDictionary *userPain;
 @property NSMutableDictionary *exerciseTime;
 @property long exerciseTimeCount;
+@property NSMutableDictionary *weekStar;
+@property long weekStarCount;
 /*
  *  For Common UI
  */
@@ -41,6 +43,8 @@
 - (float)getScreenPercent;
 - (void)loadExerciseTime;
 - (void)saveExerciseTime:(long)timeSec;
+- (void)loadWeekStar;
+- (void)saveWeekStar:(long)star;
 - (NSString *)md5:(NSString *)string;
 @end
 

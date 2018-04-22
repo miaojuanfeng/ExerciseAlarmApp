@@ -43,7 +43,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        
+        self.backgroundColor = [UIColor whiteColor];
         if (nameArray.count && nameArray.count == countArray.count)
         {
             self.nameArray = nameArray;
@@ -66,6 +66,12 @@
             self.maxYCount = self.stageCount * self.stageSpaceCount;
             
             [self createBaseView];
+        }else{
+            UILabel *emptyLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, (self.frame.size.height-30)/2, self.frame.size.width, 30)];
+            emptyLabel.text = @"暫無數據";
+            emptyLabel.textAlignment = NSTextAlignmentCenter;
+            emptyLabel.textColor = [UIColor lightGrayColor];
+            [self addSubview:emptyLabel];
         }
     }
     return self;

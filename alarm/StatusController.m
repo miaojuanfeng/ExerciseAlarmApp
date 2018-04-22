@@ -23,6 +23,7 @@
 @property AppDelegate *appDelegate;
 
 @property UIButton *numButton1;
+@property UIButton *numButton2;
 @property UIButton *numButton3;
 @property UIButton *numButton4;
 @end
@@ -155,14 +156,13 @@
     titleTop2.textAlignment = NSTextAlignmentCenter;
     [view2 addSubview:titleTop2];
     //
-    UIButton *numButton2 = [[UIButton alloc] initWithFrame:CGRectMake(0, titleTop2.frame.origin.y+titleTop2.frame.size.height, view2.frame.size.width, viewHeight/3)];
-    numButton2.titleLabel.font = DEFAULT_FONT(30.0);
-    [numButton2 setTitle:@"23" forState:UIControlStateNormal];
-    [numButton2 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [numButton2 addTarget:self action:@selector(clickButton2) forControlEvents:UIControlEventTouchUpInside];
-    [view2 addSubview:numButton2];
+    self.numButton2 = [[UIButton alloc] initWithFrame:CGRectMake(0, titleTop2.frame.origin.y+titleTop2.frame.size.height, view2.frame.size.width, viewHeight/3)];
+    self.numButton2.titleLabel.font = DEFAULT_FONT(30.0);
+    [self.numButton2 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.numButton2 addTarget:self action:@selector(clickButton2) forControlEvents:UIControlEventTouchUpInside];
+    [view2 addSubview:self.numButton2];
     //
-    UILabel *titleBottom2 = [[UILabel alloc] initWithFrame:CGRectMake(0, numButton2.frame.origin.y+numButton2.frame.size.height, view2.frame.size.width, viewHeight/3)];
+    UILabel *titleBottom2 = [[UILabel alloc] initWithFrame:CGRectMake(0, self.numButton2.frame.origin.y+self.numButton2.frame.size.height, view2.frame.size.width, viewHeight/3)];
     titleBottom2.text = @"星";
     titleBottom2.font = DEFAULT_FONT(26.0);
     titleBottom2.textColor = [UIColor whiteColor];
@@ -324,6 +324,10 @@
      *  button1
      */
     [self.numButton1 setTitle:[NSString stringWithFormat:@"%ld", ( self.appDelegate.exerciseTimeCount % 3600 ) / 60] forState:UIControlStateNormal];
+    /*
+     *  button2
+     */
+    [self.numButton2 setTitle:[NSString stringWithFormat:@"%ld", self.appDelegate.weekStarCount] forState:UIControlStateNormal];
     /*
      *  button3
      */

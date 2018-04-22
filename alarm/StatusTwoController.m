@@ -39,7 +39,7 @@
     UILabel *num = [[UILabel alloc] initWithFrame:CGRectMake(20, marginTop+10+60, self.view.frame.size.width-40, 50)];
     num.textAlignment = NSTextAlignmentCenter;
     
-    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:@"23 星"];
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%ld 星", self.appDelegate.weekStarCount]];
     [str addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"AppleGothic" size:36.0] range:NSMakeRange(0,str.length-1)];
     num.attributedText = str;
     

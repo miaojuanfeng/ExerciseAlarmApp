@@ -96,6 +96,9 @@
     [self loadExerciseTime];
     NSLog(@"loadExerciseTime: %@", self.exerciseTime);
     
+    [self loadWeekStar];
+    NSLog(@"loadWeekStar: %@", self.weekStar);
+    
     self.painList = [[NSMutableArray alloc] init];
     [self.painList addObject:@"完全無痛"];
     [self.painList addObject:@"完全無痛"];
@@ -326,6 +329,44 @@
     for (NSString *y in self.exerciseTime) {
         long count = [[self.exerciseTime objectForKey:y] integerValue];
         self.exerciseTimeCount += count;
+    }
+}
+
+- (void)saveWeekStar:(long)star {
+    
+    NSDate *date = [NSDate date];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *comps = [calendar components:NSCalendarUnitWeekOfYear fromDate:date];
+    long week = [comps weekOfYear];
+    NSString *weekStr = [NSString stringWithFormat:@"%ld", week];
+    
+    long starCount = [self.weekStar objectForKey:weekStr] != nil ? [[self.weekStar objectForKey:weekStr] integerValue] : 0L;
+    starCount += star;
+    self.weekStarCount+=star;
+    [self.weekStar setValue:[NSString stringWithFormat:@"%ld", starCount] forKey:weekStr];
+    
+    NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsPath = [path objectAtIndex:0];
+    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"weekStar.plist"];
+    
+    NSFileManager *appFileManager = [NSFileManager defaultManager];
+    [appFileManager removeItemAtPath:plistPath error:nil];
+    
+    [self.weekStar writeToFile:plistPath atomically:YES];
+}
+
+- (void)loadWeekStar {
+    NSArray *pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *path = [pathArray objectAtIndex:0];
+    NSString *plistPath = [path stringByAppendingPathComponent:@"weekStar.plist"];
+    self.weekStar = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
+    if( self.weekStar == nil ){
+        self.weekStar = [[NSMutableDictionary alloc] init];
+    }
+    self.weekStarCount = 0;
+    for (NSString *w in self.weekStar) {
+        long count = [[self.weekStar objectForKey:w] integerValue];
+        self.weekStarCount += count;
     }
 }
 

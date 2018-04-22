@@ -25,6 +25,7 @@
 @property int scd;
 
 @property UIView *starButtonView;
+@property long star;
 @end
 
 @implementation PlayVideoController
@@ -106,6 +107,7 @@
     [rightButton.layer setBorderWidth:BORDER_WIDTH];
     [self.starView addSubview:rightButton];
     
+    self.star = 0;
     [self.view addSubview:self.starView];
 }
 
@@ -206,6 +208,7 @@
 }
 
 - (void)clickStarButton:(UIButton*)btn {
+    self.star = btn.tag;
     for(UIButton *starButton in self.starButtonView.subviews){
         if(starButton.tag <= btn.tag ){
             [starButton setTitle:@"\U0000e6ea" forState:UIControlStateNormal];
@@ -218,7 +221,10 @@
 }
 
 - (void)clickLeftButton {
-    
+    if(self.star>0){
+        [self.appDelegate saveWeekStar:self.star];
+    }
+    self.starView.hidden = YES;
 }
 
 - (void)clickRightButton {
