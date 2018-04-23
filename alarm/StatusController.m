@@ -244,7 +244,7 @@
     [titleTop5 addTarget:self action:@selector(clickStatusPainButton) forControlEvents:UIControlEventTouchUpInside];
     [view5 addSubview:titleTop5];
     //
-    UILabel *titleBottom5 = [[UILabel alloc] initWithFrame:CGRectMake(0, titleTop5.frame.origin.y+titleTop5.frame.size.height, view5.frame.size.width, viewHeight/2-10)];
+    UILabel *titleBottom5 = [[UILabel alloc] initWithFrame:CGRectMake(0, titleTop5.frame.origin.y+titleTop5.frame.size.height, view5.frame.size.width, view5.frame.size.height-titleTop5.frame.size.height-35)];
     titleBottom5.text = @"痛感自評";
     titleBottom5.font = DEFAULT_FONT(20.0);
     titleBottom5.textColor = [UIColor whiteColor];
@@ -267,7 +267,7 @@
     [titleTop6 addTarget:self action:@selector(clickExerciseTimeButton) forControlEvents:UIControlEventTouchUpInside];
     [view6 addSubview:titleTop6];
     //
-    UILabel *titleBottom6 = [[UILabel alloc] initWithFrame:CGRectMake(0, titleTop6.frame.origin.y+titleTop6.frame.size.height, view6.frame.size.width, viewHeight/2-10)];
+    UILabel *titleBottom6 = [[UILabel alloc] initWithFrame:CGRectMake(0, titleTop6.frame.origin.y+titleTop6.frame.size.height, view6.frame.size.width, view6.frame.size.height-titleTop6.frame.size.height-35)];
     titleBottom6.text = @"鍛煉計時";
     titleBottom6.font = DEFAULT_FONT(20.0);
     titleBottom6.textColor = [UIColor whiteColor];
