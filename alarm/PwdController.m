@@ -68,6 +68,12 @@
     [submitButton setTitle:@"提交" forState:UIControlStateNormal];
     [submitButton addTarget:self action:@selector(clickSaveButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:submitButton];
+    
+    
+    self.view.userInteractionEnabled = YES;
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(fingerTapped:)];
+    singleTap.delegate = self;
+    [self.view addGestureRecognizer:singleTap];
 }
 
 
@@ -100,7 +106,7 @@
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     manager.requestSerializer.timeoutInterval = 30.0f;
-    NSDictionary *parameters=@{@"user_id":[self.appDelegate.user objectForKey:@"id"], @"user_password":self.pwdField.text};
+    NSDictionary *parameters=@{@"user_id":[self.appDelegate.user objectForKey:@"user_id"], @"user_old_password":self.oldPwdField.text, @"user_password":self.pwdField.text};
     HUD_WAITING_SHOW(@"Loading");
     [manager POST:BASE_URL(@"user/update_password") parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
         
@@ -125,6 +131,10 @@
         HUD_WAITING_HIDE;
         HUD_TOAST_SHOW(@"Network Error");
     }];
+}
+
+-(void)fingerTapped:(UITapGestureRecognizer *)gestureRecognizer {
+    [self.view endEditing:YES];
 }
 
 @end
