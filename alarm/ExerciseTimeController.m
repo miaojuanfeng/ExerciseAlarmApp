@@ -84,17 +84,18 @@
     int min = ( ( self.scd / 100) % 3600 ) / 60;
     int hour = (int)( self.scd / 100) / 3600;
     
-    NSString *hourText = nil;
+//    NSString *hourText = nil;
     NSString *minText = nil;
     NSString *scdText = nil;
     NSString *mscdText = nil;
     
-    if (hour < 10) {
-        hourText = [[NSString alloc]initWithFormat:@"0%d", hour];
-    }else {
-        hourText = [[NSString alloc]initWithFormat:@"%d", hour];
-    }
+//    if (hour < 10) {
+//        hourText = [[NSString alloc]initWithFormat:@"0%d", hour];
+//    }else {
+//        hourText = [[NSString alloc]initWithFormat:@"%d", hour];
+//    }
     
+    min += hour * 60;
     if (min < 10) {
         minText = [[NSString alloc]initWithFormat:@"0%d", min];
     }else {
