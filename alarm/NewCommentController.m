@@ -86,7 +86,12 @@
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     manager.requestSerializer.timeoutInterval = 30.0f;
-    NSDictionary *parameters=@{@"user_username":self.contentView.text,@"user_password":self.contentView.text};
+    NSDictionary *parameters=@{
+                               @"comment_discuss_id":self.comment_discuss_id,
+                               @"comment_comment_id":self.comment_comment_id,
+                               @"comment_user_id":[self.appDelegate.user objectForKey:@"user_id"],
+                               @"comment_content":self.contentView.text
+                               };
     HUD_WAITING_SHOW(@"Loading");
     [manager POST:BASE_URL(@"comment/insert") parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
         
@@ -99,8 +104,7 @@
         
         HUD_WAITING_HIDE;
         if( status == 1 ){
-            
-            [self.navigationController popViewControllerAnimated:true];
+            HUD_TOAST_POP_SHOW(@"發佈成功", nil);
         }else{
             NSString *msg = [dic objectForKey:@"msg"];
             HUD_TOAST_SHOW(msg);

@@ -10,5 +10,6 @@
 
 @interface NewCommentController : UIViewController
 
-
+@property NSString *comment_discuss_id;
+@property NSString *comment_comment_id;
 @end

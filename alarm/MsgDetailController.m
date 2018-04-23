@@ -15,6 +15,8 @@
 
 @interface MsgDetailController ()
 @property AppDelegate *appDelegate;
+
+@property NSMutableDictionary *discuss;
 @end
 
 @implementation MsgDetailController
@@ -30,14 +32,16 @@
     
     
     self.appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    
-    [self loadData];
 }
 
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [self loadData];
 }
 
 - (void)loadData{
@@ -57,7 +61,8 @@
         
         HUD_WAITING_HIDE;
         if( status == 1 ){
-            [self updateLayout:[dic objectForKey:@"data"]];
+            self.discuss = [dic objectForKey:@"data"];
+            [self updateLayout];
         }else{
             NSString *msg = [dic objectForKey:@"msg"];
             HUD_TOAST_SHOW(msg);
@@ -71,8 +76,8 @@
     }];
 }
 
-- (void)updateLayout:(NSMutableDictionary*)msg {
-    self.navigationItem.title = [msg objectForKey:@"title"];
+- (void)updateLayout{
+    self.navigationItem.title = [self.discuss objectForKey:@"title"];
     
     CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
     float marginTop = rectStatus.size.height + self.navigationController.navigationBar.frame.size.height;
@@ -94,7 +99,7 @@
     descTitle.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     
     UILabel *desc = [[UILabel alloc] initWithFrame:CGRectMake(textMargin, descTitle.frame.size.height+descTitle.frame.origin.y, self.view.frame.size.width-textMargin*2, lineHeight)];
-    desc.text = [msg objectForKey:@"content"];
+    desc.text = [self.discuss objectForKey:@"content"];
     desc.numberOfLines = 0;
     [desc sizeToFit];
     //    desc.backgroundColor = [UIColor yellowColor];
@@ -111,8 +116,8 @@
     /*
      *  專家回復
      */
-    if( [msg objectForKey:@"expert"] != nil && [[msg objectForKey:@"expert"] objectForKey:@"id"] != nil ){
-        NSMutableDictionary *e = [msg objectForKey:@"expert"];
+    if( [self.discuss objectForKey:@"expert"] != nil && [[self.discuss objectForKey:@"expert"] objectForKey:@"id"] != nil ){
+        NSMutableDictionary *e = [self.discuss objectForKey:@"expert"];
         UILabel *expertTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(textMargin, titlePadding/2, self.view.frame.size.width-textMargin*2, lineHeight)];
         expertTitleLabel.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
         expertTitleLabel.text = @"專家回復";
@@ -149,8 +154,7 @@
     UIButton *newCommentButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width-112, titlePadding/2, 100, lineHeight)];
     [newCommentButton setTitle:@"添加評論" forState:UIControlStateNormal];
     newCommentButton.titleLabel.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
-    newCommentButton.tag = [[msg objectForKey:@"id"] longValue];
-    [newCommentButton addTarget:self action:@selector(clickNewComment:) forControlEvents:UIControlEventTouchUpInside];
+    [newCommentButton addTarget:self action:@selector(clickNewComment) forControlEvents:UIControlEventTouchUpInside];
     [newCommentButton setImage:[UIImage iconWithInfo:TBCityIconInfoMake(@"\U0000e6e0", 20, [UIColor whiteColor])] forState:UIControlStateNormal];
     
     UILabel *commentLabel = [[UILabel alloc] initWithFrame:CGRectMake(textMargin, titlePadding/2, 100, lineHeight)];
@@ -167,10 +171,15 @@
      *  评论列表
      */
     int lastY = commentView.frame.size.height+commentView.frame.origin.y+textMargin;
-    for(NSMutableDictionary *c in [msg objectForKey:@"comment"]){
+    for(NSMutableDictionary *c in [self.discuss objectForKey:@"comment"]){
         UILabel *commentUser = [[UILabel alloc] initWithFrame:CGRectMake(textMargin, 0, self.view.frame.size.width, lineHeight)];
         commentUser.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
-        commentUser.text = [NSString stringWithFormat:@"%@：", [c objectForKey:@"user_nickname"]];
+        NSString *reply_to_nickname = [c objectForKey:@"reply_to_nickname"];
+        if( [reply_to_nickname isEqualToString:@""] ){
+            commentUser.text = [NSString stringWithFormat:@"%@：", [c objectForKey:@"user_nickname"]];
+        }else{
+            commentUser.text = [NSString stringWithFormat:@"%@ 回復 %@：", [c objectForKey:@"user_nickname"], reply_to_nickname];
+        }
         
         UILabel *commentContent = [[UILabel alloc] initWithFrame:CGRectMake(textMargin, commentUser.frame.size.height+commentUser.frame.origin.y+textMargin, self.view.frame.size.width-textMargin*2, lineHeight)];
         commentContent.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
@@ -232,15 +241,18 @@
 //    }
 //}
 
-- (void)clickNewComment:(UIButton *)btn {
-    NSLog(@"id: %ld", btn.tag);
+- (void)clickNewComment{
     NewCommentController *newCommentController = [[NewCommentController alloc] init];
+    newCommentController.comment_discuss_id = [self.discuss objectForKey:@"id"];
+    newCommentController.comment_comment_id = @"0";
     [self.navigationController pushViewController:newCommentController animated:YES];
 }
 
 - (void)clickReplyComment:(UIButton *)btn {
     NSLog(@"id: %ld", btn.tag);
     NewCommentController *newCommentController = [[NewCommentController alloc] init];
+    newCommentController.comment_discuss_id = [self.discuss objectForKey:@"id"];
+    newCommentController.comment_comment_id = [NSString stringWithFormat:@"%ld", btn.tag];
     [self.navigationController pushViewController:newCommentController animated:YES];
 }
 
