@@ -5,7 +5,8 @@
 //  Created by Dreamover Studio on 22/1/2018.
 //  Copyright © 2018年 Dreamover Studio. All rights reserved.
 //
-
+#import "MacroDefine.h"
+#import "AppDelegate.h"
 #import <UserNotifications/UserNotifications.h>
 #import <AudioToolbox/AudioToolbox.h>
 #import "AddAlarmController.h"
@@ -15,6 +16,8 @@
 #import "AlarmWeekController.h"
 
 @interface AddAlarmController () <UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate,UIImagePickerControllerDelegate, SelectMusicControllerDelegate>
+
+@property AppDelegate *appDelegate;
 
 @property UIBarButtonItem *myButton;
 @property UITableView *tableView;
@@ -40,6 +43,8 @@
     
     CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
     float marginTop = rectStatus.size.height + self.navigationController.navigationBar.frame.size.height;
+    
+    self.appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
     self.datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, marginTop, self.view.frame.size.width, 216)];
     self.datePicker.datePickerMode = UIDatePickerModeTime;
@@ -304,7 +309,7 @@
     // > 通知的title
     content.title = [NSString localizedUserNotificationStringForKey:@"運動提醒" arguments:nil];
     // > 通知的要通知内容
-    content.body = [NSString localizedUserNotificationStringForKey:[NSString stringWithFormat:@"瑜伽運動 %@:%@", hh, mm] arguments:nil];
+    content.body = [NSString localizedUserNotificationStringForKey:[NSString stringWithFormat:@"%@ %@:%@", self.alarmTitle, hh, mm] arguments:nil];
     // > 通知的提示声音
     content.sound = [UNNotificationSound defaultSound];
 //    content.sound = [UNNotificationSound soundNamed:@"ring.wav"];
@@ -331,19 +336,8 @@
 //        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
         
         //////////
-        NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *documentsPath = [path objectAtIndex:0];
-        NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"alarmList.plist"];
-        
-        NSFileManager *fileManager = [NSFileManager defaultManager];
-        NSMutableArray *newsArr = nil;
-        if ([fileManager fileExistsAtPath:plistPath] == NO) {
-            newsArr = [[NSMutableArray alloc] init];
-        }else{
-            newsArr = [[NSMutableArray alloc] initWithContentsOfFile:plistPath];
-        }
-        [newsArr addObject:newsDict];
-        [newsArr writeToFile:plistPath atomically:YES];
+        [self.appDelegate.alarmList addObject:newsDict];
+        [self.appDelegate saveAlarmList];
         
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"運動鬧鐘" message:@"成功添加鬧鐘" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"確認" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {

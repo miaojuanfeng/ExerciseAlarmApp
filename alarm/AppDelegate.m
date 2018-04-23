@@ -114,6 +114,8 @@
     
     [self loadUserPain];
     
+    [self loadAlarmList];
+    
     [self loadUser];
     NSLog(@"%@", self.user);
     if( self.user == nil ){
@@ -423,6 +425,24 @@
     if( self.userPain == nil ){
         self.userPain = [[NSMutableDictionary alloc] init];
     }
+}
+
+- (void)loadAlarmList{
+    NSArray *pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *path = [pathArray objectAtIndex:0];
+    NSString *plistPath = [path stringByAppendingPathComponent:[NSString stringWithFormat:@"alarmList_%@.plist", [self.user objectForKey:@"id"]]];
+    self.alarmList = [[NSMutableArray alloc] initWithContentsOfFile:plistPath];
+    if( self.alarmList == nil ){
+        self.alarmList = [[NSMutableArray alloc] init];
+    }
+}
+
+- (void)saveAlarmList{
+    NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsPath = [path objectAtIndex:0];
+    NSString *plistPath = [documentsPath stringByAppendingPathComponent:[NSString stringWithFormat:@"alarmList_%@.plist", [self.user objectForKey:@"id"]]];
+    
+    [self.alarmList writeToFile:plistPath atomically:YES];
 }
 
 - (float)getScreenPercent{

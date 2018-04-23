@@ -5,14 +5,16 @@
 //  Created by Dreamover Studio on 22/1/2018.
 //  Copyright © 2018年 Dreamover Studio. All rights reserved.
 //
-
+#import "MacroDefine.h"
+#import "AppDelegate.h"
 #import "ListAlarmController.h"
 #import "AddAlarmController.h"
 
 @interface ListAlarmController () <UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate>
 @property UIBarButtonItem *myButton;
 @property UITableView *tableView;
-@property NSMutableArray *alarmList;
+
+@property AppDelegate *appDelegate;
 @end
 
 @implementation ListAlarmController
@@ -25,6 +27,8 @@
     CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
     float marginTop = rectStatus.size.height + self.navigationController.navigationBar.frame.size.height;
     
+    self.appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, marginTop, self.view.frame.size.width, self.view.frame.size.height-marginTop-self.tabBarController.tabBar.frame.size.height)];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
@@ -36,22 +40,12 @@
     self.navigationItem.rightBarButtonItem = self.myButton;
     
     self.navigationController.delegate = self;
-    
-    [self loadAlarmList];
 }
 
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)loadAlarmList{
-    NSArray *pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *path = [pathArray objectAtIndex:0];
-    NSString *plistPath = [path stringByAppendingPathComponent:@"alarmList.plist"];
-    self.alarmList = [[NSMutableArray alloc] initWithContentsOfFile:plistPath];
-//    NSLog(@"%@", self.alarmList);
 }
 
 - (void)clickEvent {
@@ -62,7 +56,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.alarmList.count;
+    return self.appDelegate.alarmList.count;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -98,7 +92,7 @@
 //            cell.accessoryView = switchview;
 //            break;
 //    }
-    NSMutableDictionary *alarmItem = self.alarmList[indexPath.row];
+    NSMutableDictionary *alarmItem = self.appDelegate.alarmList[indexPath.row];
     cell.textLabel.text = [NSString stringWithFormat:@"%@:%@", [alarmItem objectForKey:@"hour"], [alarmItem objectForKey:@"minute"]];
     cell.detailTextLabel.text = [alarmItem objectForKey:@"title"];
     switchview = [[UISwitch alloc] initWithFrame:CGRectZero];
@@ -111,6 +105,23 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    // 删除模型
+    [self.appDelegate.alarmList removeObjectAtIndex:indexPath.row];
+    [self.appDelegate saveAlarmList];
+    
+    // 刷新
+    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+}
+
+/**
+ *  修改Delete按钮文字为“删除”
+ */
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return @"删除";
+}
+
+
 //- (void)viewWillAppear:(BOOL)animated {
 //    [super viewWillAppear:animated];
 //    
@@ -120,9 +131,6 @@
 //}
 
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
-    
-    [self loadAlarmList];
-    NSLog(@"%ld", self.alarmList.count);
     [self.tableView reloadData];
 }
 

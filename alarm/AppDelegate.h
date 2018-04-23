@@ -27,6 +27,7 @@
 @property long exerciseTimeCount;
 @property NSMutableDictionary *weekStar;
 @property long weekStarCount;
+@property NSMutableArray *alarmList;
 /*
  *  For Common UI
  */
@@ -46,5 +47,7 @@
 - (void)loadWeekStar;
 - (void)saveWeekStar:(long)star;
 - (NSString *)md5:(NSString *)string;
+- (void)loadAlarmList;
+- (void)saveAlarmList;
 @end
 

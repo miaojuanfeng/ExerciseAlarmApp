@@ -23,7 +23,7 @@
 @property UIButton *stopButton;
 
 @property Boolean isOn;
-@property int scd;
+@property long long scd;
 @end
 
 @implementation ExerciseTimeController
@@ -40,7 +40,7 @@
     self.appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
     self.timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height/2-60, self.view.frame.size.width, 60)];
-    self.timeLabel.text = @"00:00:00";
+    self.timeLabel.text = @"00:00.00";
     self.timeLabel.textAlignment = NSTextAlignmentCenter;
     self.timeLabel.font = DEFAULT_FONT(56.0f);
     [self.view addSubview:self.timeLabel];
@@ -79,13 +79,15 @@
 }
 
 - (void)updateTimeLabel {
-    int hour = self.scd / 3600;
-    int min = ( self.scd % 3600 ) / 60;
-    int scd = self.scd % 60;
+    int mscd = self.scd % 100;
+    int scd = ( self.scd / 100) % 60;
+    int min = ( ( self.scd / 100) % 3600 ) / 60;
+    int hour = (int)( self.scd / 100) / 3600;
     
     NSString *hourText = nil;
     NSString *minText = nil;
     NSString *scdText = nil;
+    NSString *mscdText = nil;
     
     if (hour < 10) {
         hourText = [[NSString alloc]initWithFormat:@"0%d", hour];
@@ -105,7 +107,13 @@
         scdText = [[NSString alloc]initWithFormat:@"%d", scd];
     }
     
-    [self.timeLabel setText:[NSString stringWithFormat:@"%@:%@:%@", hourText, minText, scdText]];
+    if (mscd < 10) {
+        mscdText = [[NSString alloc]initWithFormat:@"0%d", mscd];
+    }else {
+        mscdText = [[NSString alloc]initWithFormat:@"%d", mscd];
+    }
+    
+    [self.timeLabel setText:[NSString stringWithFormat:@"%@:%@.%@", minText, scdText, mscdText]];
 }
 
 - (void)invalidateTimer {
@@ -115,7 +123,7 @@
 
 - (void)clickStartButton {
     self.isOn = true;
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 repeats:YES block:^(NSTimer * _Nonnull timer) {
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.01 repeats:YES block:^(NSTimer * _Nonnull timer) {
         self.scd++;
 //        NSLog(@"%d", self.scd);
         [self updateTimeLabel];
@@ -142,9 +150,9 @@
             [self clickPauseButton];
         }
         
-        int hour = self.scd / 3600;
-        int min = ( self.scd % 3600 ) / 60;
-        int scd = self.scd % 60;
+        int scd = ( self.scd / 100) % 60;
+        int min = ( ( self.scd / 100) % 3600 ) / 60;
+        int hour = (int)( self.scd / 100) / 3600;
         
         NSString *countTimeLabel = nil;
         if( hour > 0 ){
@@ -159,7 +167,7 @@
         
         UIAlertController* alert = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"您已經鍛煉%@", countTimeLabel] message:@"確認提交嗎？" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"確認" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-            [self.appDelegate saveExerciseTime:self.scd];
+            [self.appDelegate saveExerciseTime:self.scd/100];
             self.startButton.hidden = NO;
             self.pauseButton.hidden = YES;
             self.stopButton.hidden = YES;

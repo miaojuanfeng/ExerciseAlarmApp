@@ -106,38 +106,51 @@
     [descView addSubview:desc];
     
     [scrollView addSubview:descView];
+    
+    int commentOriginY = descView.frame.origin.y + descView.frame.size.height;
     /*
      *  專家回復
      */
-    UILabel *expertTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(textMargin, titlePadding/2, self.view.frame.size.width-textMargin*2, lineHeight)];
-    expertTitleLabel.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
-    expertTitleLabel.text = @"專家回復";
-    expertTitleLabel.textColor = [UIColor whiteColor];
-    
-    UIView *expertView = [[UIView alloc] initWithFrame:CGRectMake(0, descView.frame.size.height+descView.frame.origin.y, self.view.frame.size.width, expertTitleLabel.frame.size.height+titlePadding)];
-    expertView.backgroundColor = RGBA_COLOR(242, 134, 45, 1);
-    [expertView addSubview:expertTitleLabel];
-    
-    [scrollView addSubview:expertView];
-    
-    UILabel *expertContentLabel = [[UILabel alloc] initWithFrame:CGRectMake(textMargin, expertView.frame.size.height+expertView.frame.origin.y+textMargin, self.view.frame.size.width-textMargin*2, lineHeight)];
-    expertContentLabel.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
-    expertContentLabel.text = @"健康界人士比較支持早上運動，研究表明，早上運動可以最好地抑制血糖血脂的過度上升。但也有人認爲下午4點至6點之間運動較好。其實，選擇自己最為方便、并且能堅持下去的時間就是最合適的。健康界人士比較支持早上運動，研究表明，早上運動可以最好地抑制血糖血脂的過度上升。但也有人認爲下午4點至6點之間運動較好。其實，選擇自己最為方便、并且能堅持下去的時間就是最合適的。健康界人士比較支持早上運動，研究表明，早上運動可以最好地抑制血糖血脂的過度上升。但也有人認爲下午4點至6點之間運動較好。其實，選擇自己最為方便、并且能堅持下去的時間就是最合適的。健康界人士比較支持早上運動，研究脂的過度上升。但也有人認爲下午4點至6點之間運動較好。其實，選擇自己最為方便、并且能堅持下去的時間就是最合適的。健康界人士比較支持早上運動，研究表明，早上運動可以最好地抑制血糖血脂的過度上升。但也有人認爲下午4點至6點之間運動較好。其實，選擇自己最為方便、并且能堅持下去的時間就是最合適的。健康界人士比較支持早上運動，研究表明，早上運動可以最好地抑制血糖血脂的過度上升。但也有人認爲下午4點至6點之間運動較好。其實，選擇自己最為方便、并且能堅持下去的時間就是最合適的。健康界人士比較支持早上運動，研究表明，早上運動可以最好地抑制血糖血脂的過度上升。但也有人認爲下午4點至6點之間運動較好。其實，選擇自己最為方便、并且能堅持下去的時間就是最合適的。健康界人士比較支持早上運動，研究表明，早上運動可以最好地抑制血糖血脂的過度上升。但也有人認爲下午4點至6點之間運動較好。其實，選擇自己最為方便、并且能堅持下去的時間就是最合適的。";
-    expertContentLabel.numberOfLines = 0;
-    [expertContentLabel sizeToFit];
-    [scrollView addSubview:expertContentLabel];
-    
-    UILabel *expertContentLabelTime = [[UILabel alloc] initWithFrame:CGRectMake(textMargin, expertContentLabel.frame.size.height+expertContentLabel.frame.origin.y+textMargin, self.view.frame.size.width-textMargin*2, lineHeight)];
-    expertContentLabelTime.font = DEFAULT_FONT(12.0f);
-    expertContentLabelTime.text = @"2018/02/06";
-    [scrollView addSubview:expertContentLabelTime];
+    if( [msg objectForKey:@"expert"] != nil && [[msg objectForKey:@"expert"] objectForKey:@"id"] != nil ){
+        NSMutableDictionary *e = [msg objectForKey:@"expert"];
+        UILabel *expertTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(textMargin, titlePadding/2, self.view.frame.size.width-textMargin*2, lineHeight)];
+        expertTitleLabel.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
+        expertTitleLabel.text = @"專家回復";
+        expertTitleLabel.textColor = [UIColor whiteColor];
+        
+        UIView *expertView = [[UIView alloc] initWithFrame:CGRectMake(0, descView.frame.size.height+descView.frame.origin.y, self.view.frame.size.width, expertTitleLabel.frame.size.height+titlePadding)];
+        expertView.backgroundColor = RGBA_COLOR(242, 134, 45, 1);
+        [expertView addSubview:expertTitleLabel];
+        
+        [scrollView addSubview:expertView];
+        
+        UILabel *expertContentLabel = [[UILabel alloc] initWithFrame:CGRectMake(textMargin, expertView.frame.size.height+expertView.frame.origin.y+textMargin, self.view.frame.size.width-textMargin*2, lineHeight)];
+        expertContentLabel.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
+        expertContentLabel.text = [e objectForKey:@"content"];
+        expertContentLabel.numberOfLines = 0;
+        [expertContentLabel sizeToFit];
+        [scrollView addSubview:expertContentLabel];
+        
+        NSDate *date               = [NSDate dateWithTimeIntervalSince1970:[[e objectForKey:@"create_date"] intValue]];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"yyyy/MM/dd"];
+        NSString *dateString       = [formatter stringFromDate: date];
+        
+        UILabel *expertContentLabelTime = [[UILabel alloc] initWithFrame:CGRectMake(textMargin, expertContentLabel.frame.size.height+expertContentLabel.frame.origin.y+textMargin, self.view.frame.size.width-textMargin*2, lineHeight)];
+        expertContentLabelTime.font = DEFAULT_FONT(12.0f);
+        expertContentLabelTime.text = dateString;
+        [scrollView addSubview:expertContentLabelTime];
+        
+        commentOriginY = expertContentLabelTime.frame.origin.y + expertContentLabelTime.frame.size.height;
+    }
     /*
      *  添加评论
      */
     UIButton *newCommentButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width-112, titlePadding/2, 100, lineHeight)];
     [newCommentButton setTitle:@"添加評論" forState:UIControlStateNormal];
     newCommentButton.titleLabel.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
-    [newCommentButton addTarget:self action:@selector(clickNewComment) forControlEvents:UIControlEventTouchUpInside];
+    newCommentButton.tag = [[msg objectForKey:@"id"] longValue];
+    [newCommentButton addTarget:self action:@selector(clickNewComment:) forControlEvents:UIControlEventTouchUpInside];
     [newCommentButton setImage:[UIImage iconWithInfo:TBCityIconInfoMake(@"\U0000e6e0", 20, [UIColor whiteColor])] forState:UIControlStateNormal];
     
     UILabel *commentLabel = [[UILabel alloc] initWithFrame:CGRectMake(textMargin, titlePadding/2, 100, lineHeight)];
@@ -145,7 +158,7 @@
     commentLabel.text = @"評論";
     commentLabel.textColor = [UIColor whiteColor];
     
-    UIView *commentView = [[UIView alloc] initWithFrame:CGRectMake(0, expertContentLabelTime.frame.size.height+expertContentLabelTime.frame.origin.y+textMargin, self.view.frame.size.width, commentLabel.frame.size.height+titlePadding)];
+    UIView *commentView = [[UIView alloc] initWithFrame:CGRectMake(0, commentOriginY+textMargin, self.view.frame.size.width, commentLabel.frame.size.height+titlePadding)];
     commentView.backgroundColor = RGBA_COLOR(40, 122, 72, 1);
     [commentView addSubview:commentLabel];
     [commentView addSubview:newCommentButton];
@@ -154,25 +167,31 @@
      *  评论列表
      */
     int lastY = commentView.frame.size.height+commentView.frame.origin.y+textMargin;
-    for(int i=0;i<3;i++){
+    for(NSMutableDictionary *c in [msg objectForKey:@"comment"]){
         UILabel *commentUser = [[UILabel alloc] initWithFrame:CGRectMake(textMargin, 0, self.view.frame.size.width, lineHeight)];
         commentUser.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
-        commentUser.text = @"匿名用戶：";
+        commentUser.text = [NSString stringWithFormat:@"%@：", [c objectForKey:@"user_nickname"]];
         
         UILabel *commentContent = [[UILabel alloc] initWithFrame:CGRectMake(textMargin, commentUser.frame.size.height+commentUser.frame.origin.y+textMargin, self.view.frame.size.width-textMargin*2, lineHeight)];
         commentContent.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
-        commentContent.text = @"我最喜歡早晨鍛煉一刻鐘！我最喜歡早晨鍛煉一刻鐘！我最喜歡早晨鍛煉一刻鐘！我最喜歡早晨鍛煉一刻鐘！我最喜歡早晨鍛煉一刻鐘！我最喜歡早晨鍛煉一刻鐘！我最喜歡早晨鍛煉一刻鐘！我最喜歡早晨鍛煉一刻鐘！我ae最喜歡早晨鍛煉一刻鐘！s我最喜歡早晨鍛煉一刻鐘cd！我最喜歡早晨鍛煉d,一d刻鐘！我最喜歡早晨dc鍛煉一刻鐘！我最喜歡早晨鍛煉一刻鐘！我最喜歡早晨鍛煉一刻鐘！我最喜歡早晨鍛煉一刻鐘！我最喜歡dss最喜歡早晨鍛歡早晨鍛煉一刻鐘！";
+        commentContent.text = [c objectForKey:@"content"];
         commentContent.numberOfLines = 0;
         [commentContent sizeToFit];
         
+        NSDate *date               = [NSDate dateWithTimeIntervalSince1970:[[c objectForKey:@"create_date"] intValue]];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"yyyy/MM/dd"];
+        NSString *dateString       = [formatter stringFromDate: date];
+        
         UILabel *commentLabelTime = [[UILabel alloc] initWithFrame:CGRectMake(textMargin, commentContent.frame.size.height+commentContent.frame.origin.y+textMargin, self.view.frame.size.width-textMargin*2, lineHeight)];
         commentLabelTime.font = DEFAULT_FONT(12.0f);
-        commentLabelTime.text = @"2018/02/06";
+        commentLabelTime.text = dateString;
         
         UIButton *commentReplyButton = [[UIButton alloc] initWithFrame:CGRectMake(commentLabelTime.frame.size.width-85, commentContent.frame.size.height+commentContent.frame.origin.y+textMargin, 100, lineHeight)];
         [commentReplyButton setTitle:@"回復" forState:UIControlStateNormal];
         commentReplyButton.titleLabel.font = DEFAULT_FONT(12.0f);
-        [commentReplyButton addTarget:self action:@selector(clickReplyComment) forControlEvents:UIControlEventTouchUpInside];
+        commentReplyButton.tag = [[c objectForKey:@"id"] longValue];
+        [commentReplyButton addTarget:self action:@selector(clickReplyComment:) forControlEvents:UIControlEventTouchUpInside];
         [commentReplyButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [commentReplyButton setImage:[UIImage iconWithInfo:TBCityIconInfoMake(@"\U0000e70c", 18, [UIColor grayColor])] forState:UIControlStateNormal];
         
@@ -213,12 +232,14 @@
 //    }
 //}
 
-- (void)clickNewComment {
+- (void)clickNewComment:(UIButton *)btn {
+    NSLog(@"id: %ld", btn.tag);
     NewCommentController *newCommentController = [[NewCommentController alloc] init];
     [self.navigationController pushViewController:newCommentController animated:YES];
 }
 
-- (void)clickReplyComment {
+- (void)clickReplyComment:(UIButton *)btn {
+    NSLog(@"id: %ld", btn.tag);
     NewCommentController *newCommentController = [[NewCommentController alloc] init];
     [self.navigationController pushViewController:newCommentController animated:YES];
 }

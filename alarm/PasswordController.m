@@ -60,7 +60,6 @@
         self.phoneField = [[UITextField alloc] initWithFrame:CGRectMake(filedLabel.frame.origin.x+filedLabel.frame.size.width+10, 0, filedView.frame.size.width-filedLabel.frame.size.width-10, filedView.frame.size.height)];
         self.phoneField.backgroundColor = [UIColor whiteColor];
         self.phoneField.keyboardType = UIKeyboardTypePhonePad;
-        self.phoneField.text = @"16607978866";
         self.phoneField.enabled = NO;
         CALayer *phoneFieldBorder = [CALayer layer];
         phoneFieldBorder.frame = CGRectMake(0.0f, self.phoneField.frame.size.height-1, self.phoneField.frame.size.width, BORDER_WIDTH);
