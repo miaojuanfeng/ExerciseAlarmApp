@@ -59,7 +59,7 @@
     [self.view addSubview:tableTitle];
     
     
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, marginTop+10+170, self.view.frame.size.width, 300)];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, marginTop+10+170, self.view.frame.size.width, self.view.frame.size.height-marginTop-10-170-49)];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [self.view addSubview:self.tableView];
@@ -72,7 +72,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 6;
+    return 10;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -172,6 +172,58 @@
             [starLikeImage setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
             break;
         case 5:
+            num.text = @"6";
+            [cell addSubview:num];
+            name.text = @"參與者";
+            [cell addSubview:name];
+            str = [[NSMutableAttributedString alloc] initWithString:@"99 星"];
+            [str addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"AppleGothic" size:12.0] range:NSMakeRange(str.length-1, 1)];
+            star.attributedText = str;
+            [cell addSubview:star];
+            starLikeNum.text = @"2";
+            [starLikeImage setTitle:@"\U0000e708" forState:UIControlStateNormal];
+            [starLikeImage setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+            break;
+        case 6:
+            num.text = @"6";
+            [cell addSubview:num];
+            name.text = @"參與者";
+            [cell addSubview:name];
+            str = [[NSMutableAttributedString alloc] initWithString:@"99 星"];
+            [str addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"AppleGothic" size:12.0] range:NSMakeRange(str.length-1, 1)];
+            star.attributedText = str;
+            [cell addSubview:star];
+            starLikeNum.text = @"2";
+            [starLikeImage setTitle:@"\U0000e708" forState:UIControlStateNormal];
+            [starLikeImage setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+            break;
+        case 7:
+            num.text = @"6";
+            [cell addSubview:num];
+            name.text = @"參與者";
+            [cell addSubview:name];
+            str = [[NSMutableAttributedString alloc] initWithString:@"99 星"];
+            [str addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"AppleGothic" size:12.0] range:NSMakeRange(str.length-1, 1)];
+            star.attributedText = str;
+            [cell addSubview:star];
+            starLikeNum.text = @"2";
+            [starLikeImage setTitle:@"\U0000e708" forState:UIControlStateNormal];
+            [starLikeImage setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+            break;
+        case 8:
+            num.text = @"6";
+            [cell addSubview:num];
+            name.text = @"參與者";
+            [cell addSubview:name];
+            str = [[NSMutableAttributedString alloc] initWithString:@"99 星"];
+            [str addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"AppleGothic" size:12.0] range:NSMakeRange(str.length-1, 1)];
+            star.attributedText = str;
+            [cell addSubview:star];
+            starLikeNum.text = @"2";
+            [starLikeImage setTitle:@"\U0000e708" forState:UIControlStateNormal];
+            [starLikeImage setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+            break;
+        case 9:
             num.text = @"6";
             [cell addSubview:num];
             name.text = @"參與者";
