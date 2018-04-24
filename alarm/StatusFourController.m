@@ -53,16 +53,16 @@
     averageBottomBorder.backgroundColor = BORDER_COLOR;
     [averagePainView.layer addSublayer:averageBottomBorder];
     
-    UILabel *averageTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 100, 50)];
+    UILabel *averageTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 120, 50)];
     averageTitleLabel.text = @"平均疼痛等级";
-    averageTitleLabel.font = [UIFont fontWithName:@"AppleGothic" size:14.0];
+    averageTitleLabel.font = [UIFont fontWithName:@"AppleGothic" size:18.0];
     [averagePainView addSubview:averageTitleLabel];
     
     UIButton *averageMoreButton = [[UIButton alloc] initWithFrame:CGRectMake(averagePainView.frame.size.width-100, 15, 100, 24)];
 //    averageMoreButton.backgroundColor = [UIColor redColor];
     [averageMoreButton setTitle:@"查看詳情 >" forState:UIControlStateNormal];
     [averageMoreButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    averageMoreButton.titleLabel.font = [UIFont fontWithName:@"AppleGothic" size:14.0];
+    averageMoreButton.titleLabel.font = [UIFont fontWithName:@"AppleGothic" size:16.0];
     [averageMoreButton addTarget:self action:@selector(clickShowAveragePainButton) forControlEvents:UIControlEventTouchUpInside];
     [averagePainView addSubview:averageMoreButton];
     
@@ -70,7 +70,7 @@
     self.averageNum.textAlignment = NSTextAlignmentRight;
     [averagePainView addSubview:self.averageNum];
     
-    self.averagePainImage = [[UIImageView alloc] initWithFrame:CGRectMake(averagePainView.frame.size.width/2+10, 65, 32, 32)];
+    self.averagePainImage = [[UIImageView alloc] initWithFrame:CGRectMake(averagePainView.frame.size.width/2+10, 60, 42, 42)];
     [averagePainView addSubview:self.averagePainImage];
     
     [self.view addSubview:averagePainView];
@@ -82,16 +82,16 @@
     currentBottomBorder.backgroundColor = BORDER_COLOR;
     [currentPainView.layer addSublayer:currentBottomBorder];
     
-    UILabel *currentTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 100, 50)];
+    UILabel *currentTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 120, 50)];
     currentTitleLabel.text = @"當前疼痛等级";
-    currentTitleLabel.font = [UIFont fontWithName:@"AppleGothic" size:14.0];
+    currentTitleLabel.font = [UIFont fontWithName:@"AppleGothic" size:18.0];
     [currentPainView addSubview:currentTitleLabel];
     
     UIButton *currentMoreButton = [[UIButton alloc] initWithFrame:CGRectMake(currentPainView.frame.size.width-100, 15, 100, 24)];
     //    averageMoreButton.backgroundColor = [UIColor redColor];
     [currentMoreButton setTitle:@"查看詳情 >" forState:UIControlStateNormal];
     [currentMoreButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    currentMoreButton.titleLabel.font = [UIFont fontWithName:@"AppleGothic" size:14.0];
+    currentMoreButton.titleLabel.font = [UIFont fontWithName:@"AppleGothic" size:16.0];
     [currentMoreButton addTarget:self action:@selector(clickShowCurrentPainButton) forControlEvents:UIControlEventTouchUpInside];
     [currentPainView addSubview:currentMoreButton];
     
@@ -99,7 +99,7 @@
     self.currentNum.textAlignment = NSTextAlignmentRight;
     [currentPainView addSubview:self.currentNum];
     
-    self.currentPainImage = [[UIImageView alloc] initWithFrame:CGRectMake(currentPainView.frame.size.width/2+5, 57, 40, 50)];
+    self.currentPainImage = [[UIImageView alloc] initWithFrame:CGRectMake(currentPainView.frame.size.width/2+5, 52, 50, 60)];
     [currentPainView addSubview:self.currentPainImage];
     
     [self.view addSubview:currentPainView];
@@ -116,7 +116,7 @@
 //    [self.graphTodayButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
 //    self.graphTodayButton = 1;
 //    [self.graphTodayButton addTarget:self action:@selector(clickGraphButton:) forControlEvents:UIControlEventTouchUpInside];
-//    self.graphTodayButton.titleLabel.font = [UIFont fontWithName:@"AppleGothic" size:16.0];
+//    self.graphTodayButton.titleLabel.font = [UIFont fontWithName:@"AppleGothic" size:18.0];
 //
 //    [self updateLayer:self.graphTodayButton withColor:[UIColor blackColor]];
 //
@@ -131,7 +131,7 @@
     [self.graphSevenButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     self.graphSevenButton.tag = 2;
     [self.graphSevenButton addTarget:self action:@selector(clickGraphButton:) forControlEvents:UIControlEventTouchUpInside];
-    self.graphSevenButton.titleLabel.font = [UIFont fontWithName:@"AppleGothic" size:16.0];
+    self.graphSevenButton.titleLabel.font = [UIFont fontWithName:@"AppleGothic" size:18.0];
     
     [self updateLayer:self.graphSevenButton withColor:[UIColor blackColor]];
     
@@ -146,7 +146,7 @@
     [self.graphMonthButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     self.graphMonthButton.tag = 3;
     [self.graphMonthButton addTarget:self action:@selector(clickGraphButton:) forControlEvents:UIControlEventTouchUpInside];
-    self.graphMonthButton.titleLabel.font = [UIFont fontWithName:@"AppleGothic" size:16.0];
+    self.graphMonthButton.titleLabel.font = [UIFont fontWithName:@"AppleGothic" size:18.0];
     
     [self updateLayer:self.graphMonthButton withColor:[UIColor whiteColor]];
     
@@ -311,12 +311,14 @@
         average = (int)(total/count);
     }
     NSMutableAttributedString *averageStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%d 級", average]];
-    [averageStr addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"AppleGothic" size:36.0] range:NSMakeRange(0,averageStr.length-1)];
+    [averageStr addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"AppleGothic" size:46.0] range:NSMakeRange(0,averageStr.length-1)];
+    [averageStr addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"AppleGothic" size:18.0] range:NSMakeRange(averageStr.length-1,1)];
     self.averageNum.attributedText = averageStr;
     self.averagePainImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"Pain%d", average/2+1]];
     
     NSMutableAttributedString *currentStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%d 級", lastPain]];
-    [currentStr addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"AppleGothic" size:36.0] range:NSMakeRange(0,currentStr.length-1)];
+    [currentStr addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"AppleGothic" size:46.0] range:NSMakeRange(0,currentStr.length-1)];
+    [currentStr addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"AppleGothic" size:18.0] range:NSMakeRange(currentStr.length-1,1)];
     self.currentNum.attributedText = currentStr;
     if( lastPain > last2Pain ){
         self.currentPainImage.image = [UIImage imageNamed:@"PainUp"];

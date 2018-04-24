@@ -32,21 +32,21 @@
     
     self.appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
-    UIImageView *painImage = [[UIImageView alloc] initWithFrame:CGRectMake((self.view.frame.size.width-80)/2, marginTop+20, 80, 80)];
+    UIImageView *painImage = [[UIImageView alloc] initWithFrame:CGRectMake((self.view.frame.size.width-80)/2, marginTop+50, 80, 80)];
     painImage.image = [UIImage imageNamed:@"Pain2"];
     [self.view addSubview:painImage];
     
-    self.textLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, painImage.frame.origin.y+painImage.frame.size.height, self.view.frame.size.width-40, 80)];
+    self.textLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, painImage.frame.origin.y+painImage.frame.size.height+20, self.view.frame.size.width-40, 80)];
     self.textLabel.backgroundColor = [UIColor clearColor];
     self.textLabel.numberOfLines = 0;
-    self.textLabel.font =  [UIFont fontWithName:@"AppleGothic" size:16.0];
+//    self.textLabel.font =  [UIFont fontWithName:@"AppleGothic" size:20.0];
     self.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
     self.textLabel.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:self.textLabel];
     
-    UIButton *showPainButton = [[UIButton alloc] initWithFrame:CGRectMake((self.view.frame.size.width-140)/2, self.textLabel.frame.origin.y+self.textLabel.frame.size.height, 140, 24)];
+    UIButton *showPainButton = [[UIButton alloc] initWithFrame:CGRectMake((self.view.frame.size.width-180)/2, self.textLabel.frame.origin.y+self.textLabel.frame.size.height+20, 180, 34)];
     [showPainButton setTitle:@"查看詳細痛感說明" forState:UIControlStateNormal];
-    showPainButton.titleLabel.font = [UIFont fontWithName:@"AppleGothic" size:16.0];
+    showPainButton.titleLabel.font = [UIFont fontWithName:@"AppleGothic" size:18.0];
     showPainButton.backgroundColor = RGBA_COLOR(253, 159, 81, 1);
     [showPainButton addTarget:self action:@selector(clickShowPainButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:showPainButton];
@@ -76,7 +76,15 @@
     if( count > 0 ){
         average = (int)(total/count);
     }
-    self.textLabel.text = [NSString stringWithFormat:@"您的平均疼痛等級為 %d 級，屬於 %@", average, [self.appDelegate.painList objectAtIndex:average]];
+    
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    paragraphStyle.lineSpacing = 10;// 字体的行间距
+    
+    NSDictionary *attributes = @{
+                                 NSFontAttributeName:[UIFont fontWithName:@"AppleGothic" size:20.0],
+                                 NSParagraphStyleAttributeName:paragraphStyle
+                                 };
+    self.textLabel.attributedText = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"您的平均疼痛等級為 %d 級，屬於 %@", average, [self.appDelegate.painList objectAtIndex:average]] attributes:attributes];
 }
 
 @end

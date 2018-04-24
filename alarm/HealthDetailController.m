@@ -27,6 +27,7 @@
     float marginTop = rectStatus.size.height + self.navigationController.navigationBar.frame.size.height;
     
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, marginTop+10, self.view.frame.size.width-20, 20)];
+    titleLabel.font = [UIFont systemFontOfSize:18.0f];
     titleLabel.text = @"這裡是常識標題";
     [self.view addSubview:titleLabel];
     
@@ -44,7 +45,7 @@
     paragraphStyle.lineSpacing = 10;// 字体的行间距
     
     NSDictionary *attributes = @{
-                                 NSFontAttributeName:[UIFont fontWithName:@"AppleGothic" size:14.0],
+                                 NSFontAttributeName:[UIFont fontWithName:@"AppleGothic" size:16.0],
                                  NSParagraphStyleAttributeName:paragraphStyle
                                  };
     

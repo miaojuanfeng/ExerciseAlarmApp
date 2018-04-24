@@ -34,6 +34,7 @@
     float marginTop = rectStatus.size.height + self.navigationController.navigationBar.frame.size.height;
     
     UILabel *oldPwdLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, marginTop, self.view.frame.size.width-10, 64)];
+    oldPwdLabel.font = [UIFont systemFontOfSize:18.0];
     oldPwdLabel.text = @"輸入原密碼：";
     [self.view addSubview:oldPwdLabel];
     
@@ -44,6 +45,7 @@
     [self.view addSubview:self.oldPwdField];
     
     UILabel *newPwdLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, marginTop+76, self.view.frame.size.width-10, 64)];
+    newPwdLabel.font = [UIFont systemFontOfSize:18.0];
     newPwdLabel.text = @"輸入新密碼：";
     [self.view addSubview:newPwdLabel];
     
@@ -54,6 +56,7 @@
     [self.view addSubview:self.pwdField];
     
     UILabel *cnfPwdLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, marginTop+156, self.view.frame.size.width-10, 64)];
+    cnfPwdLabel.font = [UIFont systemFontOfSize:18.0];
     cnfPwdLabel.text = @"確認新密碼：";
     [self.view addSubview:cnfPwdLabel];
     

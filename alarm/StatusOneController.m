@@ -32,14 +32,15 @@
     
     UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(20, marginTop+10, self.view.frame.size.width-40, 50)];
     title.text = @"累積鍛煉";
-    title.font = [UIFont fontWithName:@"AppleGothic" size:16.0];
+    title.font = [UIFont fontWithName:@"AppleGothic" size:20.0];
     [self.view addSubview:title];
     
     UILabel *num = [[UILabel alloc] initWithFrame:CGRectMake(20, marginTop+10+60, self.view.frame.size.width-40, 50)];
     num.textAlignment = NSTextAlignmentCenter;
     
     NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%ld 分鐘", ( self.appDelegate.exerciseTimeCount % 3600 ) / 60]];
-    [str addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"AppleGothic" size:36.0] range:NSMakeRange(0,str.length-2)];
+    [str addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"AppleGothic" size:46.0] range:NSMakeRange(0,str.length-2)];
+    [str addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"AppleGothic" size:18.0] range:NSMakeRange(str.length-2,2)];
     num.attributedText = str;
     
     [self.view addSubview:num];
@@ -67,11 +68,11 @@
     [calendarView addSubview:_ptView];
     UILabel *timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, marginTop+10, self.view.frame.size.width-40, 50)];
     timeLabel.text = @"時間（分鐘）";
-    timeLabel.font = [UIFont fontWithName:@"AppleGothic" size:12.0];
+    timeLabel.font = [UIFont fontWithName:@"AppleGothic" size:16.0];
     [calendarView addSubview:timeLabel];
     UILabel *dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(_ptView.frame.size.width-10, _ptView.frame.size.width-20, self.view.frame.size.width-40, 50)];
     dateLabel.text = @"日期";
-    dateLabel.font = [UIFont fontWithName:@"AppleGothic" size:12.0];
+    dateLabel.font = [UIFont fontWithName:@"AppleGothic" size:16.0];
     [calendarView addSubview:dateLabel];
     [self.view addSubview:calendarView];
 }
