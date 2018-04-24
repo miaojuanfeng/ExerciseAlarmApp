@@ -17,12 +17,20 @@
 @interface StatusFourController () <YASimpleGraphDelegate>
 @property NSArray *allValues;
 @property NSArray *allDates;
-@property int graphButtonIndex;
 
 @property AppDelegate *appDelegate;
 
 @property UILabel *averageNum;
+@property UIImageView *averagePainImage;
 @property UILabel *currentNum;
+@property UIImageView *currentPainImage;
+
+@property UIButton *graphTodayButton;
+@property UIButton *graphSevenButton;
+@property UIButton *graphMonthButton;
+
+@property UIView *graphContainer;
+@property YASimpleGraphView *graphView;
 @end
 
 @implementation StatusFourController
@@ -62,9 +70,8 @@
     self.averageNum.textAlignment = NSTextAlignmentRight;
     [averagePainView addSubview:self.averageNum];
     
-    UIImageView *averagePainImage = [[UIImageView alloc] initWithFrame:CGRectMake(averagePainView.frame.size.width/2+10, 65, 32, 32)];
-    averagePainImage.image = [UIImage imageNamed:@"Pain2"];
-    [averagePainView addSubview:averagePainImage];
+    self.averagePainImage = [[UIImageView alloc] initWithFrame:CGRectMake(averagePainView.frame.size.width/2+10, 65, 32, 32)];
+    [averagePainView addSubview:self.averagePainImage];
     
     [self.view addSubview:averagePainView];
     
@@ -92,77 +99,58 @@
     self.currentNum.textAlignment = NSTextAlignmentRight;
     [currentPainView addSubview:self.currentNum];
     
-    UIImageView *currentPainImage = [[UIImageView alloc] initWithFrame:CGRectMake(currentPainView.frame.size.width/2+5, 57, 40, 50)];
-    currentPainImage.image = [UIImage imageNamed:@"PainUp"];
-    [currentPainView addSubview:currentPainImage];
+    self.currentPainImage = [[UIImageView alloc] initWithFrame:CGRectMake(currentPainView.frame.size.width/2+5, 57, 40, 50)];
+    [currentPainView addSubview:self.currentPainImage];
     
     [self.view addSubview:currentPainView];
     
     
     
     
-    
-    self.graphButtonIndex = 0;
-    
-    
-    
-    
     UIView *graphButtonView = [[UIView alloc] initWithFrame:CGRectMake(0, currentPainView.frame.origin.y+currentPainView.frame.size.height, self.view.frame.size.width, 50)];
     
-    UIButton *graphTodayButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, graphButtonView.frame.size.width/3, graphButtonView.frame.size.height-2)];
-    //    averageMoreButton.backgroundColor = [UIColor redColor];
-    [graphTodayButton setTitle:@"當日" forState:UIControlStateNormal];
-//    graphTodayButton.backgroundColor = [UIColor redColor];
-    [graphTodayButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [graphTodayButton addTarget:self action:@selector(clickGraphButton:) forControlEvents:UIControlEventTouchUpInside];
-    graphTodayButton.titleLabel.font = [UIFont fontWithName:@"AppleGothic" size:16.0];
-    
-    if( self.graphButtonIndex == 0 ){
-        CALayer *graphTodayBottomBorder = [CALayer layer];
-        graphTodayBottomBorder.frame = CGRectMake(0.0f, graphTodayButton.frame.size.height-1, graphTodayButton.frame.size.width, BORDER_WIDTH*2);
-        graphTodayBottomBorder.backgroundColor = [UIColor blackColor].CGColor;
-        [graphTodayButton.layer addSublayer:graphTodayBottomBorder];
-    }
-    
-    [graphButtonView addSubview:graphTodayButton];
+//    self.graphTodayButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, graphButtonView.frame.size.width/3, graphButtonView.frame.size.height-2)];
+//    //    averageMoreButton.backgroundColor = [UIColor redColor];
+//    [self.graphTodayButton setTitle:@"當日" forState:UIControlStateNormal];
+////    graphTodayButton.backgroundColor = [UIColor redColor];
+//    [self.graphTodayButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//    self.graphTodayButton = 1;
+//    [self.graphTodayButton addTarget:self action:@selector(clickGraphButton:) forControlEvents:UIControlEventTouchUpInside];
+//    self.graphTodayButton.titleLabel.font = [UIFont fontWithName:@"AppleGothic" size:16.0];
+//
+//    [self updateLayer:self.graphTodayButton withColor:[UIColor blackColor]];
+//
+//    [graphButtonView addSubview:self.graphTodayButton];
     
     ////////
     
-    UIButton *graphSevenButton = [[UIButton alloc] initWithFrame:CGRectMake(graphTodayButton.frame.origin.x+graphTodayButton.frame.size.width, 0, graphButtonView.frame.size.width/3, graphButtonView.frame.size.height-2)];
+    self.graphSevenButton = [[UIButton alloc] initWithFrame:CGRectMake(self.graphTodayButton.frame.origin.x+self.graphTodayButton.frame.size.width, 0, graphButtonView.frame.size.width/2, graphButtonView.frame.size.height-2)];
     //    averageMoreButton.backgroundColor = [UIColor redColor];
-    [graphSevenButton setTitle:@"7日" forState:UIControlStateNormal];
+    [self.graphSevenButton setTitle:@"7日" forState:UIControlStateNormal];
     //    graphTodayButton.backgroundColor = [UIColor redColor];
-    [graphSevenButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [graphSevenButton addTarget:self action:@selector(clickGraphButton:) forControlEvents:UIControlEventTouchUpInside];
-    graphSevenButton.titleLabel.font = [UIFont fontWithName:@"AppleGothic" size:16.0];
+    [self.graphSevenButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    self.graphSevenButton.tag = 2;
+    [self.graphSevenButton addTarget:self action:@selector(clickGraphButton:) forControlEvents:UIControlEventTouchUpInside];
+    self.graphSevenButton.titleLabel.font = [UIFont fontWithName:@"AppleGothic" size:16.0];
     
-    if( self.graphButtonIndex == 1 ){
-        CALayer *graphSevenBottomBorder = [CALayer layer];
-        graphSevenBottomBorder.frame = CGRectMake(0.0f, graphSevenButton.frame.size.height-1, graphSevenButton.frame.size.width, BORDER_WIDTH*2);
-        graphSevenBottomBorder.backgroundColor = [UIColor blackColor].CGColor;
-        [graphSevenButton.layer addSublayer:graphSevenBottomBorder];
-    }
+    [self updateLayer:self.graphSevenButton withColor:[UIColor blackColor]];
     
-    [graphButtonView addSubview:graphSevenButton];
+    [graphButtonView addSubview:self.graphSevenButton];
     
     ////////
     
-    UIButton *graphMonthButton = [[UIButton alloc] initWithFrame:CGRectMake(graphSevenButton.frame.origin.x+graphSevenButton.frame.size.width, 0, graphButtonView.frame.size.width/3, graphButtonView.frame.size.height-2)];
+    self.graphMonthButton = [[UIButton alloc] initWithFrame:CGRectMake(self.graphSevenButton.frame.origin.x+self.graphSevenButton.frame.size.width, 0, graphButtonView.frame.size.width/2, graphButtonView.frame.size.height-2)];
     //    averageMoreButton.backgroundColor = [UIColor redColor];
-    [graphMonthButton setTitle:@"一個月" forState:UIControlStateNormal];
+    [self.graphMonthButton setTitle:@"一個月" forState:UIControlStateNormal];
     //    graphTodayButton.backgroundColor = [UIColor redColor];
-    [graphMonthButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [graphMonthButton addTarget:self action:@selector(clickGraphButton:) forControlEvents:UIControlEventTouchUpInside];
-    graphMonthButton.titleLabel.font = [UIFont fontWithName:@"AppleGothic" size:16.0];
+    [self.graphMonthButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    self.graphMonthButton.tag = 3;
+    [self.graphMonthButton addTarget:self action:@selector(clickGraphButton:) forControlEvents:UIControlEventTouchUpInside];
+    self.graphMonthButton.titleLabel.font = [UIFont fontWithName:@"AppleGothic" size:16.0];
     
-    if( self.graphButtonIndex == 2 ){
-        CALayer *graphMonthBottomBorder = [CALayer layer];
-        graphMonthBottomBorder.frame = CGRectMake(0.0f, graphTodayButton.frame.size.height-1, graphTodayButton.frame.size.width, BORDER_WIDTH*2);
-        graphMonthBottomBorder.backgroundColor = [UIColor blackColor].CGColor;
-        [graphMonthButton.layer addSublayer:graphMonthBottomBorder];
-    }
+    [self updateLayer:self.graphMonthButton withColor:[UIColor whiteColor]];
     
-    [graphButtonView addSubview:graphMonthButton];
+    [graphButtonView addSubview:self.graphMonthButton];
     
     [self.view addSubview:graphButtonView];
     
@@ -170,30 +158,26 @@
     
     
     
-    UIView *graphContainer = [[UIView alloc] initWithFrame:CGRectMake(0, graphButtonView.frame.origin.y+graphButtonView.frame.size.height, self.view.frame.size.width, 200)];
+    self.graphContainer = [[UIView alloc] initWithFrame:CGRectMake(0, graphButtonView.frame.origin.y+graphButtonView.frame.size.height, self.view.frame.size.width, 200)];
 //    graphContainer.backgroundColor = [UIColor redColor];
     
     //初始化数据源
-    self.allValues = @[@"2",@"1",@"5",@"8",@"6",@"4",@"10"];
-    self.allDates = @[@"06/01",@"06/02",@"06/03",@"06/04",@"06/05",@"06/06",@"06/07"];
+    NSMutableArray *velueArray = [[NSMutableArray alloc] init];
+    NSMutableArray *dateArray = [[NSMutableArray alloc] init];
+    int c = 0;
+    for (NSString *date in self.appDelegate.userPain) {
+        [dateArray insertObject:[date substringFromIndex:5] atIndex:0];
+        [velueArray insertObject:[self.appDelegate.userPain objectForKey:date] atIndex:0];
+        if( c >= 7 ){
+            break;
+        }
+        c++;
+    }
+    self.allValues = [velueArray copy];
+    self.allDates = [dateArray copy];
+    [self drawGraph];
     
-    //初始化折线图并设置相应属性
-    YASimpleGraphView *graphView = [[YASimpleGraphView alloc]init];
-    graphView.frame = CGRectMake(0, 0, graphContainer.frame.size.width, graphContainer.frame.size.height);
-    graphView.backgroundColor = [UIColor whiteColor];
-    graphView.allValues = self.allValues;
-    graphView.allDates = self.allDates;
-    graphView.defaultShowIndex = self.allDates.count-1;
-    graphView.delegate = self;
-    graphView.lineColor = [UIColor grayColor];
-    graphView.lineWidth = 1.0/[UIScreen mainScreen].scale;
-    graphView.lineAlpha = 1.0;
-    graphView.enableTouchLine = YES;
-    [graphContainer addSubview:graphView];
-    
-    [graphView startDraw];
-    
-    [self.view addSubview:graphContainer];
+    [self.view addSubview:self.graphContainer];
 }
 
 
@@ -205,7 +189,11 @@
 
 //自定义X轴 显示标签索引
 - (NSArray *)incrementPositionsForXAxisOnLineGraph:(YASimpleGraphView *)graph {
-    return @[@0,@1,@2,@3,@4,@5,@6];
+    NSMutableArray *a = [[NSMutableArray alloc] init];
+    for (int i=0; i<self.allDates.count; i++) {
+        [a addObject:[NSString stringWithFormat:@"%d", i]];
+    }
+    return [a copy];
 }
 
 //Y轴坐标点数
@@ -247,8 +235,64 @@
     [self.navigationController pushViewController:currentPainController animated:YES];
 }
 
-- (void)clickGraphButton:(int) index{
-    self.graphButtonIndex = index;
+- (void)clickGraphButton:(UIButton*) btn{
+    [self updateLayer:self.graphTodayButton withColor:[UIColor whiteColor]];
+    [self updateLayer:self.graphSevenButton withColor:[UIColor whiteColor]];
+    [self updateLayer:self.graphMonthButton withColor:[UIColor whiteColor]];
+    
+    [self updateLayer:btn withColor:[UIColor blackColor]];
+    
+    //初始化数据源
+    NSMutableArray *velueArray = [[NSMutableArray alloc] init];
+    NSMutableArray *dateArray = [[NSMutableArray alloc] init];
+    int c = 0;
+    if( btn.tag == 2 ){
+        for (NSString *date in self.appDelegate.userPain) {
+            [dateArray insertObject:[date substringFromIndex:5] atIndex:0];
+            [velueArray insertObject:[self.appDelegate.userPain objectForKey:date] atIndex:0];
+            if( c >= 7 ){
+                break;
+            }
+            c++;
+        }
+    }else if( btn.tag == 3 ){
+        for (NSString *date in self.appDelegate.userPain) {
+            [dateArray insertObject:[date substringFromIndex:5] atIndex:0];
+            [velueArray insertObject:[self.appDelegate.userPain objectForKey:date] atIndex:0];
+            if( c >= 30 ){
+                break;
+            }
+            c++;
+        }
+    }
+    self.allValues = [velueArray copy];
+    self.allDates = [dateArray copy];
+    [self drawGraph];
+}
+
+- (void)drawGraph{
+    //初始化折线图并设置相应属性
+    self.graphView = [[YASimpleGraphView alloc]init];
+    self.graphView.frame = CGRectMake(0, 0, self.graphContainer.frame.size.width, self.graphContainer.frame.size.height);
+    self.graphView.backgroundColor = [UIColor whiteColor];
+    self.graphView.allValues = self.allValues;
+    self.graphView.allDates = self.allDates;
+    self.graphView.defaultShowIndex = self.allDates.count-1;
+    self.graphView.delegate = self;
+    self.graphView.lineColor = [UIColor grayColor];
+    self.graphView.lineWidth = 1.0/[UIScreen mainScreen].scale;
+    self.graphView.lineAlpha = 1.0;
+    self.graphView.enableTouchLine = YES;
+    [self.graphContainer addSubview:self.graphView];
+    
+    [self.graphView startDraw];
+}
+
+- (void)updateLayer:(UIButton*)btn withColor:(UIColor*)color{
+    CALayer *graphSevenBottomBorder = [CALayer layer];
+    graphSevenBottomBorder.frame = CGRectMake(0.0f, btn.frame.size.height-1, btn.frame.size.width, BORDER_WIDTH*2);
+    graphSevenBottomBorder.backgroundColor = color.CGColor;
+    [btn.layer addSublayer:graphSevenBottomBorder];
 }
 
 - (void)calcUserPain {
@@ -256,7 +300,9 @@
     long count = self.appDelegate.userPain.count;
     NSString *date = nil;
     int lastPain = 0;
+    int last2Pain = 0;
     for (date in self.appDelegate.userPain) {
+        last2Pain = lastPain;
         lastPain = [[self.appDelegate.userPain objectForKey:date] intValue];
         total += lastPain;
     }
@@ -267,10 +313,18 @@
     NSMutableAttributedString *averageStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%d 級", average]];
     [averageStr addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"AppleGothic" size:36.0] range:NSMakeRange(0,averageStr.length-1)];
     self.averageNum.attributedText = averageStr;
+    self.averagePainImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"Pain%d", average/2+1]];
     
     NSMutableAttributedString *currentStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%d 級", lastPain]];
     [currentStr addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"AppleGothic" size:36.0] range:NSMakeRange(0,currentStr.length-1)];
     self.currentNum.attributedText = currentStr;
+    if( lastPain > last2Pain ){
+        self.currentPainImage.image = [UIImage imageNamed:@"PainUp"];
+    }else if( lastPain < last2Pain ){
+        self.currentPainImage.image = [UIImage imageNamed:@"PainDown"];
+    }else{
+        self.currentPainImage.image = [UIImage imageNamed:@"PainStable"];
+    }
 }
 
 @end

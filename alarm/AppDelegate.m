@@ -113,6 +113,7 @@
     [self.painList addObject:@"極度疼痛"];
     
     [self loadUserPain];
+    NSLog(@"self.userPain: %@", self.userPain);
     
     [self loadAlarmList];
     

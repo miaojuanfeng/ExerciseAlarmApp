@@ -85,8 +85,13 @@
     
     vHeight = CGRectGetHeight(self.frame);
     vWidth = CGRectGetWidth(self.frame);
-    spaceY = (vHeight-BOTTOM_DASH_SPACE)/numberOfYAxis;
-    spaceX = (vWidth-2*START_X_VALUE)/(self.allDates.count-1);
+    if( self.allDates.count > 1 ){
+        spaceY = (vHeight-BOTTOM_DASH_SPACE)/numberOfYAxis;
+        spaceX = (vWidth-2*START_X_VALUE)/(self.allDates.count-1);
+    }else{
+        spaceY = (vHeight-BOTTOM_DASH_SPACE)/numberOfYAxis;
+        spaceX = (vWidth-2*START_X_VALUE);
+    }
     [self createYAxisValues];
     
     [self drawDashLines];

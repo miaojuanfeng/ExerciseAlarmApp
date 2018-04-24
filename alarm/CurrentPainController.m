@@ -17,6 +17,7 @@
 
 @property AppDelegate *appDelegate;
 @property UILabel *textLabel;
+@property UIImageView *painImage;
 @end
 
 @implementation CurrentPainController
@@ -32,11 +33,10 @@
     
     self.appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
-    UIImageView *painImage = [[UIImageView alloc] initWithFrame:CGRectMake((self.view.frame.size.width-80)/2, marginTop+20, 80, 80)];
-    painImage.image = [UIImage imageNamed:@"PainUp"];
-    [self.view addSubview:painImage];
+    self.painImage = [[UIImageView alloc] initWithFrame:CGRectMake((self.view.frame.size.width-80)/2, marginTop+20, 80, 80)];
+    [self.view addSubview:self.painImage];
     
-    self.textLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, painImage.frame.origin.y+painImage.frame.size.height, self.view.frame.size.width-40, 80)];
+    self.textLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, self.painImage.frame.origin.y+self.painImage.frame.size.height, self.view.frame.size.width-40, 80)];
     self.textLabel.backgroundColor = [UIColor clearColor];
     self.textLabel.numberOfLines = 0;
     self.textLabel.font =  [UIFont fontWithName:@"AppleGothic" size:16.0];
@@ -67,10 +67,23 @@
 
 - (void)showPain {
     int lastPain = 0;
+    int last2Pain = 0;
     for (NSString *date in self.appDelegate.userPain) {
+        last2Pain = lastPain;
         lastPain = [[self.appDelegate.userPain objectForKey:date] intValue];
     }
-    self.textLabel.text = [NSString stringWithFormat:@"您的當前疼痛等級為 %d 級，較上次有所 加劇", lastPain];
+    NSString *painText = nil;
+    if( lastPain > last2Pain ){
+        self.painImage.image = [UIImage imageNamed:@"PainUp"];
+        painText = @"加劇";
+    }else if( lastPain < last2Pain ){
+        self.painImage.image = [UIImage imageNamed:@"PainDown"];
+        painText = @"減輕";
+    }else{
+        self.painImage.image = [UIImage imageNamed:@"PainStable"];
+        painText = @"平穩";
+    }
+    self.textLabel.text = [NSString stringWithFormat:@"您的當前疼痛等級為 %d 級，較上次有所 %@", lastPain, painText];
 }
 
 @end
