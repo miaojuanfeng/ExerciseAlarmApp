@@ -101,19 +101,19 @@
     descTitle.text = @"問題詳述：";
     descTitle.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     
-    UILabel *desc = [[UILabel alloc] initWithFrame:CGRectMake(textMargin, descTitle.frame.size.height+descTitle.frame.origin.y, self.view.frame.size.width-textMargin*2, lineHeight)];
+    UILabel *desc = [[UILabel alloc] initWithFrame:CGRectMake(textMargin, descTitle.frame.size.height+textMargin, self.view.frame.size.width-textMargin*2, lineHeight)];
+    desc.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     desc.text = [self.discuss objectForKey:@"content"];
     desc.numberOfLines = 0;
     [desc sizeToFit];
-    //    desc.backgroundColor = [UIColor yellowColor];
-    desc.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
-    
+    [self.scrollView addSubview:desc];
+
     UIView *descView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.scrollView.frame.size.width, descTitle.frame.size.height+desc.frame.size.height+textMargin*1.2)];
-    //        descView.backgroundColor = [UIColor blueColor];
     [descView addSubview:descTitle];
     [descView addSubview:desc];
-    
+
     [self.scrollView addSubview:descView];
+
     
     int commentOriginY = descView.frame.origin.y + descView.frame.size.height;
     /*
@@ -125,30 +125,30 @@
         expertTitleLabel.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
         expertTitleLabel.text = @"專家回復";
         expertTitleLabel.textColor = [UIColor whiteColor];
-        
+
         UIView *expertView = [[UIView alloc] initWithFrame:CGRectMake(0, descView.frame.size.height+descView.frame.origin.y, self.view.frame.size.width, expertTitleLabel.frame.size.height+titlePadding)];
         expertView.backgroundColor = RGBA_COLOR(242, 134, 45, 1);
         [expertView addSubview:expertTitleLabel];
-        
+
         [self.scrollView addSubview:expertView];
-        
+
         UILabel *expertContentLabel = [[UILabel alloc] initWithFrame:CGRectMake(textMargin, expertView.frame.size.height+expertView.frame.origin.y+textMargin, self.view.frame.size.width-textMargin*2, lineHeight)];
         expertContentLabel.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
         expertContentLabel.text = [e objectForKey:@"content"];
         expertContentLabel.numberOfLines = 0;
         [expertContentLabel sizeToFit];
         [self.scrollView addSubview:expertContentLabel];
-        
+
         NSDate *date               = [NSDate dateWithTimeIntervalSince1970:[[e objectForKey:@"create_date"] intValue]];
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         [formatter setDateFormat:@"yyyy/MM/dd"];
         NSString *dateString       = [formatter stringFromDate: date];
-        
+
         UILabel *expertContentLabelTime = [[UILabel alloc] initWithFrame:CGRectMake(textMargin, expertContentLabel.frame.size.height+expertContentLabel.frame.origin.y+textMargin, self.view.frame.size.width-textMargin*2, lineHeight)];
         expertContentLabelTime.font = DEFAULT_FONT(12.0f);
         expertContentLabelTime.text = dateString;
         [self.scrollView addSubview:expertContentLabelTime];
-        
+
         commentOriginY = expertContentLabelTime.frame.origin.y + expertContentLabelTime.frame.size.height;
     }
     /*
@@ -159,12 +159,12 @@
     newCommentButton.titleLabel.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     [newCommentButton addTarget:self action:@selector(clickNewComment) forControlEvents:UIControlEventTouchUpInside];
     [newCommentButton setImage:[UIImage iconWithInfo:TBCityIconInfoMake(@"\U0000e6e0", 20, [UIColor whiteColor])] forState:UIControlStateNormal];
-    
+
     UILabel *commentLabel = [[UILabel alloc] initWithFrame:CGRectMake(textMargin, titlePadding/2, 100, lineHeight)];
     commentLabel.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     commentLabel.text = @"評論";
     commentLabel.textColor = [UIColor whiteColor];
-    
+
     UIView *commentView = [[UIView alloc] initWithFrame:CGRectMake(0, commentOriginY+textMargin, self.view.frame.size.width, commentLabel.frame.size.height+titlePadding)];
     commentView.backgroundColor = RGBA_COLOR(40, 122, 72, 1);
     [commentView addSubview:commentLabel];
@@ -183,22 +183,22 @@
         }else{
             commentUser.text = [NSString stringWithFormat:@"%@ 回復 %@：", [c objectForKey:@"user_nickname"], reply_to_nickname];
         }
-        
+
         UILabel *commentContent = [[UILabel alloc] initWithFrame:CGRectMake(textMargin, commentUser.frame.size.height+commentUser.frame.origin.y+textMargin, self.view.frame.size.width-textMargin*2, lineHeight)];
         commentContent.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
         commentContent.text = [c objectForKey:@"content"];
         commentContent.numberOfLines = 0;
         [commentContent sizeToFit];
-        
+
         NSDate *date               = [NSDate dateWithTimeIntervalSince1970:[[c objectForKey:@"create_date"] intValue]];
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         [formatter setDateFormat:@"yyyy/MM/dd"];
         NSString *dateString       = [formatter stringFromDate: date];
-        
+
         UILabel *commentLabelTime = [[UILabel alloc] initWithFrame:CGRectMake(textMargin, commentContent.frame.size.height+commentContent.frame.origin.y+textMargin, self.view.frame.size.width-textMargin*2, lineHeight)];
         commentLabelTime.font = DEFAULT_FONT(12.0f);
         commentLabelTime.text = dateString;
-        
+
         UIButton *commentReplyButton = [[UIButton alloc] initWithFrame:CGRectMake(commentLabelTime.frame.size.width-85, commentContent.frame.size.height+commentContent.frame.origin.y+textMargin, 100, lineHeight)];
         [commentReplyButton setTitle:@"回復" forState:UIControlStateNormal];
         commentReplyButton.titleLabel.font = DEFAULT_FONT(12.0f);
@@ -206,7 +206,7 @@
         [commentReplyButton addTarget:self action:@selector(clickReplyComment:) forControlEvents:UIControlEventTouchUpInside];
         [commentReplyButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [commentReplyButton setImage:[UIImage iconWithInfo:TBCityIconInfoMake(@"\U0000e70c", 18, [UIColor grayColor])] forState:UIControlStateNormal];
-        
+
         UIView *commentListView = [[UIView alloc] initWithFrame:CGRectMake(0, lastY, self.view.frame.size.width, commentContent.frame.size.height+commentLabelTime.frame.size.height+titlePadding*2)];
         CALayer *commentListBorder = [CALayer layer];
         commentListBorder.frame = CGRectMake(0.0f, commentListView.frame.size.height-1, commentListView.frame.size.width, BORDER_WIDTH);
@@ -216,33 +216,14 @@
         [commentListView addSubview:commentLabelTime];
         [commentListView addSubview:commentReplyButton];
         [commentListView addSubview:commentUser];
-        
+
         [self.scrollView addSubview:commentListView];
-        
+
         lastY = commentListView.frame.size.height+commentListView.frame.origin.y+textMargin*2;
         contentSize = commentListView.frame.size.height+commentListView.frame.origin.y;
     }
     self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, contentSize);
 }
-    
-    //- (void)clickButtonLeft {
-    //    NewQuestionController *newQuestionController = [[NewQuestionController alloc] init];
-    //    [self.navigationController pushViewController:newQuestionController animated:YES];
-    //}
-    //
-    //- (void)clickButtonRight {
-    //    MyMsgController *myMsgController = [[MyMsgController alloc] init];
-    //    [self.navigationController pushViewController:myMsgController animated:YES];
-    //}
-    
-//- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-//    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
-//        [cell setSeparatorInset:UIEdgeInsetsZero];
-//    }
-//    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
-//        [cell setLayoutMargins:UIEdgeInsetsZero];
-//    }
-//}
 
 - (void)clickNewComment{
     NewCommentController *newCommentController = [[NewCommentController alloc] init];

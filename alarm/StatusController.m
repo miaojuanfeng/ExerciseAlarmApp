@@ -26,6 +26,8 @@
 @property UIButton *numButton2;
 @property UIButton *numButton3;
 @property UIButton *numButton4;
+
+@property UILabel *titleBottom1;
 @end
 
 @implementation StatusController
@@ -133,12 +135,11 @@
     [self.numButton1 addTarget:self action:@selector(clickButton1) forControlEvents:UIControlEventTouchUpInside];
     [view1 addSubview:self.numButton1];
     //
-    UILabel *titleBottom1 = [[UILabel alloc] initWithFrame:CGRectMake(0, self.numButton1.frame.origin.y+self.numButton1.frame.size.height, view1.frame.size.width, viewHeight/3)];
-    titleBottom1.text = @"分鐘";
-    titleBottom1.font = DEFAULT_FONT(26.0);
-    titleBottom1.textColor = [UIColor whiteColor];
-    titleBottom1.textAlignment = NSTextAlignmentCenter;
-    [view1 addSubview:titleBottom1];
+    self.titleBottom1 = [[UILabel alloc] initWithFrame:CGRectMake(0, self.numButton1.frame.origin.y+self.numButton1.frame.size.height, view1.frame.size.width, viewHeight/3)];
+    self.titleBottom1.font = DEFAULT_FONT(26.0);
+    self.titleBottom1.textColor = [UIColor whiteColor];
+    self.titleBottom1.textAlignment = NSTextAlignmentCenter;
+    [view1 addSubview:self.titleBottom1];
     //
     [self.view addSubview:view1];
     /*
@@ -323,7 +324,15 @@
     /*
      *  button1
      */
-    [self.numButton1 setTitle:[NSString stringWithFormat:@"%ld", ( self.appDelegate.exerciseTimeCount % 3600 ) / 60] forState:UIControlStateNormal];
+    long min = ( self.appDelegate.exerciseTimeCount % 3600 ) / 60;
+    if( min > 99 ){
+        min = min/60;
+        self.titleBottom1.text = @"小時";
+    }else{
+        self.titleBottom1.text = @"分鐘";
+    }
+    
+    [self.numButton1 setTitle:[NSString stringWithFormat:@"%ld", min] forState:UIControlStateNormal];
     /*
      *  button2
      */
