@@ -15,7 +15,7 @@
 #import "ShowPhotoController.h"
 #import "AlarmWeekController.h"
 
-@interface AddAlarmController () <UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate,UIImagePickerControllerDelegate, SelectMusicControllerDelegate>
+@interface AddAlarmController () <UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate,UIImagePickerControllerDelegate, SelectMusicControllerDelegate, AlarmWeekControllerDelegate>
 
 @property AppDelegate *appDelegate;
 
@@ -31,6 +31,9 @@
 @property UIButton *photoButton;
 @property UIButton *soundButton;
 @property UILabel *titleLabel;
+@property NSMutableArray *alarmWeek;
+@property int weekCount;
+@property int doneCount;
 @end
 
 @implementation AddAlarmController
@@ -65,6 +68,8 @@
         self.soundId = 1000;
     }
     self.alarmTitle = @"鍛煉提醒";
+    self.alarmWeek = [NSMutableArray arrayWithObjects:@1,@1,@1,@1,@1,@1,@1,nil];
+    self.weekCount = 7;
     
     
 //    self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 280, self.view.frame.size.width, self.view.frame.size.height-280)];
@@ -104,14 +109,6 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    switch (section) {
-//        case 0:
-//            return 2;
-//            break;
-//        case 1:
-//            return 1;
-//            break;
-//    }
     return 2;
 }
 
@@ -228,7 +225,8 @@
                 }];
         }else if( indexPath.row == 1 ){
             AlarmWeekController *alarmWeekController = [[AlarmWeekController alloc] init];
-            alarmWeekController.alarmWeek = [NSMutableArray arrayWithObjects:@1,@1,@1,@1,@1,@1,@1,nil];
+            alarmWeekController.delegate = self;
+            alarmWeekController.alarmWeek = [self.alarmWeek mutableCopy];
             [self.navigationController pushViewController:alarmWeekController animated:YES];
         }
     }
@@ -299,55 +297,78 @@
     [newsDict setObject:self.photoName forKey:@"photo"];
     [newsDict setObject:[NSString stringWithFormat:@"%d", self.soundId] forKey:@"sound"];
     [newsDict setObject:@"1" forKey:@"status"];
+    [newsDict setObject:self.alarmWeek forKey:@"week"];
     
-    //  > 使用 UNUserNotificationCenter 来管理通知-- 单例
+    // 通知
     UNUserNotificationCenter* center = [UNUserNotificationCenter currentNotificationCenter];
-    
-    // > 需创建一个包含待通知内容的 UNMutableNotificationContent 对象，可变 UNNotificationContent 对象，不可变
-    // > 通知内容
     UNMutableNotificationContent* content = [[UNMutableNotificationContent alloc] init];
-    // > 通知的title
     content.title = [NSString localizedUserNotificationStringForKey:@"運動提醒" arguments:nil];
-    // > 通知的要通知内容
     content.body = [NSString localizedUserNotificationStringForKey:[NSString stringWithFormat:@"%@ %@:%@", self.alarmTitle, hh, mm] arguments:nil];
-    // > 通知的提示声音
     content.sound = [UNNotificationSound defaultSound];
-//    content.sound = [UNNotificationSound soundNamed:@"ring.wav"];
-//    content.sound = nil;
+    //    content.sound = [UNNotificationSound soundNamed:@"ring.wav"];
+    //    content.sound = nil;
     
     content.userInfo = newsDict;
+    self.doneCount = 0;
+    for (int i=0; i<self.alarmWeek.count; i++) {
+        if( [[self.alarmWeek objectAtIndex:i] boolValue] ){
+            components.weekday = [self getWeekDayWithIntegerDay:i];
+            components.hour = [hh intValue];
+            components.minute = [mm intValue];
+            UNCalendarNotificationTrigger *trigger = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:components repeats:YES];
+            UNNotificationRequest* request = [UNNotificationRequest requestWithIdentifier:@"FiveSecond" content:content trigger:trigger];
+
+            [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
+                NSLog(@"weeday: %d", [self getWeekDayWithIntegerDay:i]);
+                [self alarmComplete:newsDict];
+            }];
+        }
+    }
+}
+
+- (int)getWeekDayWithIntegerDay:(NSInteger)weekDay{
+    int integerDay = -1;
+    switch (weekDay) {
+        case 0:
+            integerDay = 2;
+            break;
+        case 1:
+            integerDay = 3;
+            break;
+        case 2:
+            integerDay = 4;
+            break;
+        case 3:
+            integerDay = 5;
+            break;
+        case 4:
+            integerDay = 6;
+            break;
+        case 5:
+            integerDay = 7;
+            break;
+        case 6:
+            integerDay = 1;
+            break;
+    }
+    return integerDay;
+}
+
+- (void)alarmComplete:(NSMutableDictionary *)newsDict{
+    self.doneCount++;
+    if( self.doneCount < self.weekCount ){
+        return;
+    }
     
-//    UNTimeIntervalNotificationTrigger* trigger = [UNTimeIntervalNotificationTrigger
-//                                                  triggerWithTimeInterval:60 repeats:YES];
-    components.hour = [hh intValue];
-    components.minute = [mm intValue];
-    UNCalendarNotificationTrigger *trigger = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:components repeats:YES];
+    [self.appDelegate.alarmList addObject:newsDict];
+    [self.appDelegate saveAlarmList];
     
-    UNNotificationRequest* request = [UNNotificationRequest requestWithIdentifier:@"FiveSecond"
-                                                                          content:content trigger:trigger];
-    //添加推送通知，等待通知即可！
-    [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
-        
-        // > 可在此设置添加后的一些设置
-        // > 例如alertVC。。
-//        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"運動鬧鐘" message:@"成功添加鬧鐘" preferredStyle:UIAlertControllerStyleAlert];
-//        UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"確認" style:UIAlertActionStyleCancel handler:nil];
-//        [alert addAction:confirmAction];
-//        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
-        
-        //////////
-        [self.appDelegate.alarmList addObject:newsDict];
-        [self.appDelegate saveAlarmList];
-        
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"運動鬧鐘" message:@"成功添加鬧鐘" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"確認" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-            [self.navigationController popViewControllerAnimated:YES];
-        }];
-        [alert addAction:confirmAction];
-        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"運動鬧鐘" message:@"成功添加鬧鐘" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"確認" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        [self.navigationController popViewControllerAnimated:YES];
     }];
-    
-//    [self.navigationController popViewControllerAnimated:true];
+    [alert addAction:confirmAction];
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)getSoundId:(unsigned int)soundId {
@@ -445,6 +466,11 @@
     CGContextRelease(ctx);
     CGImageRelease(cgimg);
     return img;
+}
+
+- (void)alarmWeek:(NSMutableArray *)alarmWeek withCount:(int) weekCount {
+    self.alarmWeek = alarmWeek;
+    self.weekCount = weekCount;
 }
 
 @end

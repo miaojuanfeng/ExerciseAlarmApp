@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol  AlarmWeekControllerDelegate <NSObject>
+- (void)alarmWeek:(NSMutableArray *)alarmWeek withCount:(int) weekCount;
+@end
+
 @interface AlarmWeekController : UIViewController
 @property NSMutableArray *alarmWeek;
+
+@property(nonatomic, weak) id<AlarmWeekControllerDelegate> delegate;
 @end

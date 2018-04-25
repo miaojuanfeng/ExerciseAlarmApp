@@ -6,11 +6,15 @@
 //  Copyright © 2018 Dreamover Studio. All rights reserved.
 //
 
+#import "MacroDefine.h"
+#import "AppDelegate.h"
 #import "AlarmWeekController.h"
 
 @interface AlarmWeekController () <UITableViewDataSource, UITableViewDelegate>
 @property UITableView *tableView;
 @property UIBarButtonItem *myButton;
+
+@property AppDelegate *appDelegate;
 @end
 
 @implementation AlarmWeekController
@@ -24,7 +28,9 @@
     CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
     float marginTop = rectStatus.size.height + self.navigationController.navigationBar.frame.size.height;
     
-    self.myButton = [[UIBarButtonItem alloc] initWithTitle:@"確定" style:UIBarButtonItemStylePlain target:self action:@selector(clickSaveButton)];
+    self.appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    self.myButton = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(clickSaveButton)];
     self.navigationItem.rightBarButtonItem = self.myButton;
     
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, marginTop, self.view.frame.size.width, self.view.frame.size.height-marginTop-self.tabBarController.tabBar.frame.size.height)];
@@ -43,10 +49,6 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 7;
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -78,6 +80,8 @@
     }
     if( [[self.alarmWeek objectAtIndex:indexPath.row] intValue] == 1 ){
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }else{
+        cell.accessoryType = UITableViewCellAccessoryNone;
     }
     return cell;
 }
@@ -96,6 +100,20 @@
 }
 
 - (void)clickSaveButton {
+    int onCount = 0;
+    for (int i=0; i<self.alarmWeek.count; i++) {
+        if( [[self.alarmWeek objectAtIndex:i] boolValue] ){
+            onCount++;
+        }
+    }
+    if( onCount == 0 ){
+        HUD_TOAST_SHOW(@"請至少選擇一天");
+        return;
+    }
+    
+    if ([self.delegate respondsToSelector:@selector(alarmWeek:withCount:)]) { // 如果协议响应了sendValue:方法
+        [self.delegate alarmWeek:self.alarmWeek withCount:onCount]; // 通知执行协议方法
+    }
     [self.navigationController popViewControllerAnimated:YES];
 }
 @end
