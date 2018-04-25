@@ -24,6 +24,7 @@
     // Do any additional setup after loading the view, typically from a nib.]
     self.view.backgroundColor = RGBA_COLOR(240, 240, 245, 1);
     self.navigationItem.title = @"添加評論";
+    self.navigationItem.leftBarButtonItem.title = @"";
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     

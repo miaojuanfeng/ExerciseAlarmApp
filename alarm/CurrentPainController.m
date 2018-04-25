@@ -68,10 +68,17 @@
 - (void)showPain {
     int lastPain = 0;
     int last2Pain = 0;
+    int i = 0;
     for (NSString *date in self.appDelegate.userPain) {
-        last2Pain = lastPain;
-        lastPain = [[self.appDelegate.userPain objectForKey:date] intValue];
+        if( i == 1 ){
+            last2Pain = [[self.appDelegate.userPain objectForKey:date] intValue];
+        }
+        if( i == 0 ){
+            lastPain = [[self.appDelegate.userPain objectForKey:date] intValue];
+        }
+        i++;
     }
+    
     NSString *painText = nil;
     if( lastPain > last2Pain ){
         self.painImage.image = [UIImage imageNamed:@"PainUp"];

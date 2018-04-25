@@ -16,6 +16,8 @@
 @interface MsgDetailController ()
 @property AppDelegate *appDelegate;
 
+@property UIScrollView *scrollView;
+
 @property NSMutableDictionary *discuss;
 @end
 
@@ -82,10 +84,11 @@
     CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
     float marginTop = rectStatus.size.height + self.navigationController.navigationBar.frame.size.height;
     
-    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, marginTop, self.view.frame.size.width, self.view.frame.size.height-marginTop)];
+    [self.scrollView removeFromSuperview];
+    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, marginTop, self.view.frame.size.width, self.view.frame.size.height-marginTop)];
     //    scrollView.backgroundColor = [UIColor orangeColor];
-    scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height);
-    [self.view addSubview:scrollView];
+    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height);
+    [self.view addSubview:self.scrollView];
     
     int contentSize = 0;
     int textMargin = 5;
@@ -105,12 +108,12 @@
     //    desc.backgroundColor = [UIColor yellowColor];
     desc.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     
-    UIView *descView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, scrollView.frame.size.width, descTitle.frame.size.height+desc.frame.size.height+textMargin*1.2)];
+    UIView *descView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.scrollView.frame.size.width, descTitle.frame.size.height+desc.frame.size.height+textMargin*1.2)];
     //        descView.backgroundColor = [UIColor blueColor];
     [descView addSubview:descTitle];
     [descView addSubview:desc];
     
-    [scrollView addSubview:descView];
+    [self.scrollView addSubview:descView];
     
     int commentOriginY = descView.frame.origin.y + descView.frame.size.height;
     /*
@@ -127,14 +130,14 @@
         expertView.backgroundColor = RGBA_COLOR(242, 134, 45, 1);
         [expertView addSubview:expertTitleLabel];
         
-        [scrollView addSubview:expertView];
+        [self.scrollView addSubview:expertView];
         
         UILabel *expertContentLabel = [[UILabel alloc] initWithFrame:CGRectMake(textMargin, expertView.frame.size.height+expertView.frame.origin.y+textMargin, self.view.frame.size.width-textMargin*2, lineHeight)];
         expertContentLabel.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
         expertContentLabel.text = [e objectForKey:@"content"];
         expertContentLabel.numberOfLines = 0;
         [expertContentLabel sizeToFit];
-        [scrollView addSubview:expertContentLabel];
+        [self.scrollView addSubview:expertContentLabel];
         
         NSDate *date               = [NSDate dateWithTimeIntervalSince1970:[[e objectForKey:@"create_date"] intValue]];
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -144,7 +147,7 @@
         UILabel *expertContentLabelTime = [[UILabel alloc] initWithFrame:CGRectMake(textMargin, expertContentLabel.frame.size.height+expertContentLabel.frame.origin.y+textMargin, self.view.frame.size.width-textMargin*2, lineHeight)];
         expertContentLabelTime.font = DEFAULT_FONT(12.0f);
         expertContentLabelTime.text = dateString;
-        [scrollView addSubview:expertContentLabelTime];
+        [self.scrollView addSubview:expertContentLabelTime];
         
         commentOriginY = expertContentLabelTime.frame.origin.y + expertContentLabelTime.frame.size.height;
     }
@@ -166,7 +169,7 @@
     commentView.backgroundColor = RGBA_COLOR(40, 122, 72, 1);
     [commentView addSubview:commentLabel];
     [commentView addSubview:newCommentButton];
-    [scrollView addSubview:commentView];
+    [self.scrollView addSubview:commentView];
     /*
      *  评论列表
      */
@@ -214,12 +217,12 @@
         [commentListView addSubview:commentReplyButton];
         [commentListView addSubview:commentUser];
         
-        [scrollView addSubview:commentListView];
+        [self.scrollView addSubview:commentListView];
         
         lastY = commentListView.frame.size.height+commentListView.frame.origin.y+textMargin*2;
         contentSize = commentListView.frame.size.height+commentListView.frame.origin.y;
     }
-    scrollView.contentSize = CGSizeMake(self.view.frame.size.width, contentSize);
+    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, contentSize);
 }
     
     //- (void)clickButtonLeft {
@@ -249,7 +252,6 @@
 }
 
 - (void)clickReplyComment:(UIButton *)btn {
-    NSLog(@"id: %ld", btn.tag);
     NewCommentController *newCommentController = [[NewCommentController alloc] init];
     newCommentController.comment_discuss_id = [self.discuss objectForKey:@"id"];
     newCommentController.comment_comment_id = [NSString stringWithFormat:@"%ld", btn.tag];

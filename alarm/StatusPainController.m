@@ -102,6 +102,8 @@
 }
 
 - (void)clickSubmitButton {
+    [self.view endEditing:YES];
+    
     int level = [self.numberField.text intValue];
     if( [self.numberField.text isEqualToString:@""] || level < 0 || level > 10 ){
         HUD_TOAST_SHOW(@"痛感等級不正確");

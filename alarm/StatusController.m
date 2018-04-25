@@ -336,8 +336,13 @@
      *  button4
      */
     int lastPain = 0;
+    int i = 0;
     for (NSString *date in self.appDelegate.userPain) {
-        lastPain = [[self.appDelegate.userPain objectForKey:date] intValue];
+        if( i == 0 ){
+            lastPain = [[self.appDelegate.userPain objectForKey:date] intValue];
+            break;
+        }
+        i++;
     }
     [self.numButton4 setTitle:[NSString stringWithFormat:@"%d", lastPain] forState:UIControlStateNormal];
 }

@@ -297,18 +297,22 @@
 
 - (void)calcUserPain {
     long total = 0;
-    long count = self.appDelegate.userPain.count;
-    NSString *date = nil;
     int lastPain = 0;
     int last2Pain = 0;
-    for (date in self.appDelegate.userPain) {
-        last2Pain = lastPain;
-        lastPain = [[self.appDelegate.userPain objectForKey:date] intValue];
-        total += lastPain;
+    int i = 0;
+    for (NSString *date in self.appDelegate.userPain) {
+        if( i == 1 ){
+            last2Pain = [[self.appDelegate.userPain objectForKey:date] intValue];
+        }
+        if( i == 0 ){
+            lastPain = [[self.appDelegate.userPain objectForKey:date] intValue];
+        }
+        total += [[self.appDelegate.userPain objectForKey:date] intValue];
+        i++;
     }
     int average = 0;
-    if( count > 0 ){
-        average = (int)(total/count);
+    if( self.appDelegate.userPain.count > 0 ){
+        average = (int)(total/self.appDelegate.userPain.count);
     }
     NSMutableAttributedString *averageStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%d 級", average]];
     [averageStr addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"AppleGothic" size:46.0] range:NSMakeRange(0,averageStr.length-1)];
