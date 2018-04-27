@@ -88,10 +88,21 @@
     UITableViewCell *cell = [[UITableViewCell alloc] init];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.textLabel.font = [UIFont systemFontOfSize:18.0];
+    UILabel *unreadView = nil;
     switch (indexPath.row) {
         case 0:
             cell.textLabel.text = @"我的問題";
             cell.imageView.image = [UIImage iconWithInfo:TBCityIconInfoMake(@"\U0000e6fa", 34, [UIColor lightGrayColor])];
+            if( [[self.appDelegate.user objectForKey:@"user_unread"] intValue] > 0 ){
+                unreadView = [[UILabel alloc] initWithFrame:CGRectMake(cell.frame.size.width, (cell.frame.size.height-20)/2, 20, 20)];
+                unreadView.backgroundColor = [UIColor redColor];
+                unreadView.layer.cornerRadius = unreadView.frame.size.width/2;
+                unreadView.layer.masksToBounds = YES;
+                unreadView.textColor = [UIColor whiteColor];
+                unreadView.text = [[self.appDelegate.user objectForKey:@"user_unread"] stringValue];
+                unreadView.textAlignment = NSTextAlignmentCenter;
+                [cell.contentView addSubview:unreadView];
+            }
             break;
         case 1:
             cell.textLabel.text = @"常見問題";
