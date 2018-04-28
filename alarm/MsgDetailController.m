@@ -13,7 +13,7 @@
 #import "NewCommentController.h"
 #import <AFNetworking/AFNetworking.h>
 
-@interface MsgDetailController ()
+@interface MsgDetailController () <NewCommentControllerDelegate>
 @property AppDelegate *appDelegate;
 
 @property UIScrollView *scrollView;
@@ -31,9 +31,9 @@
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     
-    
-    
     self.appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    [self loadData];
 }
 
 
@@ -42,9 +42,9 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewWillAppear:(BOOL)animated{
-    [self loadData];
-}
+//- (void)viewWillAppear:(BOOL)animated{
+//    [self loadData];
+//}
 
 - (void)loadData{
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -63,7 +63,9 @@
         
         HUD_WAITING_HIDE;
         if( status == 1 ){
-            self.discuss = [dic objectForKey:@"data"];
+            self.discuss = [[dic objectForKey:@"data"] mutableCopy];
+            NSArray *c = [self.discuss objectForKey:@"comment"];
+            [self.discuss setObject:[c mutableCopy] forKey:@"comment"];
             [self updateLayout];
         }else{
             NSString *msg = [dic objectForKey:@"msg"];
@@ -74,7 +76,7 @@
         NSLog(@"%@",[[NSString alloc] initWithData:error.userInfo[@"com.alamofire.serialization.response.error.data"] encoding:NSUTF8StringEncoding]);
         
         HUD_WAITING_HIDE;
-        HUD_TOAST_SHOW(@"Network Error");
+        HUD_TOAST_SHOW(MSG_ERROR_NETWORK);
     }];
 }
 
@@ -229,6 +231,7 @@
     NewCommentController *newCommentController = [[NewCommentController alloc] init];
     newCommentController.comment_discuss_id = [self.discuss objectForKey:@"id"];
     newCommentController.comment_comment_id = @"0";
+    newCommentController.delegate = self;
     [self.navigationController pushViewController:newCommentController animated:YES];
 }
 
@@ -236,7 +239,17 @@
     NewCommentController *newCommentController = [[NewCommentController alloc] init];
     newCommentController.comment_discuss_id = [self.discuss objectForKey:@"id"];
     newCommentController.comment_comment_id = [NSString stringWithFormat:@"%ld", btn.tag];
+    newCommentController.delegate = self;
     [self.navigationController pushViewController:newCommentController animated:YES];
 }
+
+
+- (void)updateComment:(NSMutableArray *)comment{
+    NSLog(@"%@", comment);
+    NSMutableArray *c = [self.discuss objectForKey:@"comment"];
+    [c addObject:comment];
+    [self updateLayout];
+}
+
 
 @end

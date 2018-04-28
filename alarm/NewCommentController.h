@@ -8,8 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol  NewCommentControllerDelegate <NSObject>
+- (void)updateComment:(NSMutableArray *)comment;
+@end
+
 @interface NewCommentController : UIViewController
 
 @property NSString *comment_discuss_id;
 @property NSString *comment_comment_id;
+
+@property(nonatomic, weak) id<NewCommentControllerDelegate> delegate;
+
 @end

@@ -67,6 +67,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     MsgDetailController *msgDetailController = [[MsgDetailController alloc] init];
+    msgDetailController.discussId = [[[self.discussList objectAtIndex:indexPath.row] objectForKey:@"id"] intValue];
     [self.navigationController pushViewController:msgDetailController animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -99,7 +100,7 @@
         NSLog(@"%@",[[NSString alloc] initWithData:error.userInfo[@"com.alamofire.serialization.response.error.data"] encoding:NSUTF8StringEncoding]);
         
         HUD_WAITING_HIDE;
-        HUD_TOAST_SHOW(@"Network Error");
+        HUD_TOAST_SHOW(MSG_ERROR_NETWORK);
     }];
 }
 

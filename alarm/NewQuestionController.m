@@ -91,6 +91,8 @@
 }
 
 - (void)clickSubmitButton {
+    [self.view endEditing:YES];
+    
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     manager.requestSerializer.timeoutInterval = 30.0f;
@@ -107,7 +109,7 @@
         
         HUD_WAITING_HIDE;
         if( status == 1 ){
-            [self.navigationController popViewControllerAnimated:true];
+            HUD_TOAST_POP_SHOW(@"發佈成功", nil);
         }else{
             NSString *msg = [dic objectForKey:@"msg"];
             HUD_TOAST_SHOW(msg);
@@ -117,7 +119,7 @@
         NSLog(@"%@",[[NSString alloc] initWithData:error.userInfo[@"com.alamofire.serialization.response.error.data"] encoding:NSUTF8StringEncoding]);
         
         HUD_WAITING_HIDE;
-        HUD_TOAST_SHOW(@"Network Error");
+        HUD_TOAST_SHOW(MSG_ERROR_NETWORK);
     }];
 }
 

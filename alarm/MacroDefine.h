@@ -71,4 +71,6 @@
 #define DEFAULT_FONT(s) [UIFont fontWithName:@"AppleGothic" size:[self.appDelegate getScreenPercent]*s]
 #define ICON_FONT(s) [UIFont fontWithName:@"iconfont" size:[self.appDelegate getScreenPercent]*s]
 
+#define MSG_ERROR_NETWORK @"鏈接不上服務器，請稍後再試"
+
 #endif /* MacroDefine_h */

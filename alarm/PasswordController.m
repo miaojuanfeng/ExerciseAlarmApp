@@ -201,14 +201,14 @@
         if( status == 1 ){
             HUD_TOAST_POP_SHOW(@"註冊成功", [self.navigationController.viewControllers objectAtIndex:0]);
         }else{
-            HUD_TOAST_SHOW(@"Network Error");
+            HUD_TOAST_SHOW(MSG_ERROR_NETWORK);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"失败.%@",error);
         NSLog(@"%@",[[NSString alloc] initWithData:error.userInfo[@"com.alamofire.serialization.response.error.data"] encoding:NSUTF8StringEncoding]);
         
         HUD_WAITING_HIDE;
-        HUD_TOAST_SHOW(@"Network Error");
+        HUD_TOAST_SHOW(MSG_ERROR_NETWORK);
     }];
 }
 

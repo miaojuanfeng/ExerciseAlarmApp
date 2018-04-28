@@ -221,6 +221,7 @@
 }
 
 - (void)clickLeftButton {
+    [self.appDelegate saveExerciseTime:self.scd];
     if(self.star>0){
         [self.appDelegate saveWeekStar:self.star];
     }

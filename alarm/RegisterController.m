@@ -160,14 +160,14 @@
                 validateController.verifyCode = [[dic objectForKey:@"data"] objectForKey:@"verify_code"];
                 [self.navigationController pushViewController:validateController animated:YES];
             }else{
-                HUD_TOAST_SHOW(@"Network Error");
+                HUD_TOAST_SHOW(MSG_ERROR_NETWORK);
             }
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             NSLog(@"失败.%@",error);
             NSLog(@"%@",[[NSString alloc] initWithData:error.userInfo[@"com.alamofire.serialization.response.error.data"] encoding:NSUTF8StringEncoding]);
             
             HUD_WAITING_HIDE;
-            HUD_TOAST_SHOW(@"Network Error");
+            HUD_TOAST_SHOW(MSG_ERROR_NETWORK);
         }];
     }];
     UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
