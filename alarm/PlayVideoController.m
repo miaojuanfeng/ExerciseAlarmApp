@@ -199,6 +199,7 @@
 -(void)mediaPlayerPlaybackFinished:(NSNotification *)notification{
     self.starView.hidden = NO;
     [self invalidateTimer];
+    [self.appDelegate saveExerciseTime:self.scd];
     NSLog(@"播放完成.%li",self.moviePlayer.playbackState);
 }
 
@@ -221,7 +222,6 @@
 }
 
 - (void)clickLeftButton {
-    [self.appDelegate saveExerciseTime:self.scd];
     if(self.star>0){
         [self.appDelegate saveWeekStar:self.star];
     }

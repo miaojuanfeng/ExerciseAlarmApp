@@ -95,8 +95,11 @@
     NSMutableDictionary *alarmItem = self.appDelegate.alarmList[indexPath.row];
     cell.textLabel.text = [NSString stringWithFormat:@"%@:%@", [alarmItem objectForKey:@"hour"], [alarmItem objectForKey:@"minute"]];
     cell.detailTextLabel.text = [alarmItem objectForKey:@"title"];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     switchview = [[UISwitch alloc] initWithFrame:CGRectZero];
-    switchview.on = [alarmItem objectForKey:@"status"];
+    switchview.on = [[alarmItem objectForKey:@"status"] boolValue];
+    switchview.tag = indexPath.row;
+    [switchview addTarget:self action:@selector(clickSwitchButton:) forControlEvents:UIControlEventValueChanged];
     cell.accessoryView = switchview;
     return cell;
 }
@@ -132,6 +135,17 @@
 
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
     [self.tableView reloadData];
+}
+
+- (void)clickSwitchButton:(UISwitch*)swt{
+    NSLog(@"%ld", swt.tag);
+    NSMutableDictionary *alarm = [self.appDelegate.alarmList objectAtIndex:swt.tag];
+    if( [swt isOn] ){
+        [alarm setObject:@1 forKey:@"status"];
+    }else{
+        [alarm setObject:@0 forKey:@"status"];
+    }
+    [self.appDelegate saveAlarmList];
 }
 
 @end

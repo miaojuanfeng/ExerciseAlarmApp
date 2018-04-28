@@ -116,6 +116,7 @@
     NSLog(@"self.userPain: %@", self.userPain);
     
     [self loadAlarmList];
+    NSLog(@"alarmList: %@", self.alarmList);
     
     [self loadUser];
     NSLog(@"%@", self.user);

@@ -279,39 +279,39 @@
 }
 
 - (void)clickEvent {
-    
-    NSDateComponents *components = [[NSDateComponents alloc] init];
-    NSDate *date = self.datePicker.date;
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"HH"];
-    NSString *hh = [dateFormatter stringFromDate:date];
-    [dateFormatter setDateFormat:@"mm"];
-    NSString *mm = [dateFormatter stringFromDate:date];
-    
-    //创建数据
-    NSMutableDictionary *newsDict = [NSMutableDictionary dictionary];
-    //赋值
-    [newsDict setObject:hh forKey:@"hour"];
-    [newsDict setObject:mm forKey:@"minute"];
-    [newsDict setObject:self.alarmTitle forKey:@"title"];
-    [newsDict setObject:self.photoName forKey:@"photo"];
-    [newsDict setObject:[NSString stringWithFormat:@"%d", self.soundId] forKey:@"sound"];
-    [newsDict setObject:@"1" forKey:@"status"];
-    [newsDict setObject:self.alarmWeek forKey:@"week"];
-    
-    // 通知
-    UNUserNotificationCenter* center = [UNUserNotificationCenter currentNotificationCenter];
-    UNMutableNotificationContent* content = [[UNMutableNotificationContent alloc] init];
-    content.title = [NSString localizedUserNotificationStringForKey:@"運動提醒" arguments:nil];
-    content.body = [NSString localizedUserNotificationStringForKey:[NSString stringWithFormat:@"%@ %@:%@", self.alarmTitle, hh, mm] arguments:nil];
-    content.sound = [UNNotificationSound defaultSound];
-    //    content.sound = [UNNotificationSound soundNamed:@"ring.wav"];
-    //    content.sound = nil;
-    
-    content.userInfo = newsDict;
     self.doneCount = 0;
     for (int i=0; i<self.alarmWeek.count; i++) {
         if( [[self.alarmWeek objectAtIndex:i] boolValue] ){
+            NSDateComponents *components = [[NSDateComponents alloc] init];
+            NSDate *date = self.datePicker.date;
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"HH"];
+            NSString *hh = [dateFormatter stringFromDate:date];
+            [dateFormatter setDateFormat:@"mm"];
+            NSString *mm = [dateFormatter stringFromDate:date];
+            
+            //创建数据
+            NSMutableDictionary *newsDict = [NSMutableDictionary dictionary];
+            //赋值
+            [newsDict setObject:hh forKey:@"hour"];
+            [newsDict setObject:mm forKey:@"minute"];
+            [newsDict setObject:self.alarmTitle forKey:@"title"];
+            [newsDict setObject:self.photoName forKey:@"photo"];
+            [newsDict setObject:[NSString stringWithFormat:@"%d", self.soundId] forKey:@"sound"];
+            [newsDict setObject:@"1" forKey:@"status"];
+            [newsDict setObject:self.alarmWeek forKey:@"week"];
+            
+            // 通知
+            UNUserNotificationCenter* center = [UNUserNotificationCenter currentNotificationCenter];
+            UNMutableNotificationContent* content = [[UNMutableNotificationContent alloc] init];
+            content.title = [NSString localizedUserNotificationStringForKey:@"運動提醒" arguments:nil];
+            content.body = [NSString localizedUserNotificationStringForKey:[NSString stringWithFormat:@"%@ %@:%@", self.alarmTitle, hh, mm] arguments:nil];
+            content.sound = [UNNotificationSound defaultSound];
+            //    content.sound = [UNNotificationSound soundNamed:@"ring.wav"];
+            //    content.sound = nil;
+            
+            content.userInfo = newsDict;
+            
             components.weekday = [self getWeekDayWithIntegerDay:i];
             components.hour = [hh intValue];
             components.minute = [mm intValue];
@@ -320,13 +320,14 @@
 
             [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
                 NSLog(@"weeday: %d", [self getWeekDayWithIntegerDay:i]);
+                NSLog(@"error: %@", [error localizedDescription]);
                 [self alarmComplete:newsDict];
             }];
         }
     }
 }
 
-- (int)getWeekDayWithIntegerDay:(NSInteger)weekDay{
+- (int)getWeekDayWithIntegerDay:(int)weekDay{
     int integerDay = -1;
     switch (weekDay) {
         case 0:

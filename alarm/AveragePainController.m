@@ -17,6 +17,8 @@
 
 @property AppDelegate *appDelegate;
 @property UILabel *textLabel;
+
+@property UIImageView *painImage;
 @end
 
 @implementation AveragePainController
@@ -32,11 +34,10 @@
     
     self.appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
-    UIImageView *painImage = [[UIImageView alloc] initWithFrame:CGRectMake((self.view.frame.size.width-80)/2, marginTop+50, 80, 80)];
-    painImage.image = [UIImage imageNamed:@"Pain2"];
-    [self.view addSubview:painImage];
+    self.painImage = [[UIImageView alloc] initWithFrame:CGRectMake((self.view.frame.size.width-80)/2, marginTop+50, 80, 80)];
+    [self.view addSubview:self.painImage];
     
-    self.textLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, painImage.frame.origin.y+painImage.frame.size.height+20, self.view.frame.size.width-40, 80)];
+    self.textLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, self.painImage.frame.origin.y+self.painImage.frame.size.height+20, self.view.frame.size.width-40, 80)];
     self.textLabel.backgroundColor = [UIColor clearColor];
     self.textLabel.numberOfLines = 0;
 //    self.textLabel.font =  [UIFont fontWithName:@"AppleGothic" size:20.0];
@@ -85,6 +86,7 @@
                                  NSParagraphStyleAttributeName:paragraphStyle
                                  };
     self.textLabel.attributedText = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"您的平均疼痛等級為 %d 級，屬於 %@", average, [self.appDelegate.painList objectAtIndex:average]] attributes:attributes];
+    self.painImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"Pain%d", average/2+1]];
 }
 
 @end
