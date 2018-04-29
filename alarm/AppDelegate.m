@@ -128,6 +128,10 @@
     
     [TBCityIconFont setFontName:@"iconfont"];
     
+//    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    NSArray *localNotifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
+    NSLog(@"localNotifications: %@", localNotifications);  
+    
     return YES;
 }
 
@@ -465,6 +469,90 @@
     }
 
     return result;
+}
+
+- (int)createNotification:(NSMutableDictionary*)userInfo {
+    NSMutableArray *alarmWeek = [userInfo objectForKey:@"week"];
+    NSString *hh = [userInfo objectForKey:@"hour"];
+    NSString *mm = [userInfo objectForKey:@"minute"];
+    NSString *alarmBody = [userInfo objectForKey:@"title"];
+    
+    int notificationCount = 0;
+    for (int i=0; i<alarmWeek.count; i++) {
+        if( [[alarmWeek objectAtIndex:i] boolValue] ){
+            UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+            //设置时区（跟随手机的时区）
+            localNotification.timeZone = [NSTimeZone defaultTimeZone];
+            if (localNotification) {
+                localNotification.alertTitle = @"運動提醒";
+                localNotification.alertBody = [NSString stringWithFormat:@"%@ %@:%@", alarmBody, hh, mm];
+                //小图标数字
+                localNotification.applicationIconBadgeNumber = 0;
+        //        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        //        [formatter setDateFormat:@"HH:mm:ss"];
+        //        NSDate *date = [formatter dateFromString:[NSString stringWithFormat:@"%@:%@:00", hh, mm]];
+                //通知发出的时间
+                //        localNotification.fireDate = date;
+                localNotification.fireDate = [self getNextWeekDay:[self getWeekDayWithIntegerDay:i] hour:[hh intValue] minute:[mm intValue]];
+            }
+            //循环通知的周期
+            localNotification.repeatInterval = kCFCalendarUnitWeek;
+            //设置userinfo方便撤销
+            localNotification.userInfo = userInfo;
+            //启动任务
+            [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+            
+            notificationCount++;
+        }
+    }
+    return notificationCount;
+}
+
+-(NSDate *)getNextWeekDay:(int)newWeekDay hour:(int)hour minute:(int)minute{
+    NSDateComponents * components = [[NSCalendar currentCalendar] components:NSCalendarUnitWeekday|NSCalendarUnitDay|NSCalendarUnitHour|NSCalendarUnitMinute|NSCalendarUnitSecond fromDate:[NSDate date]];
+    NSDateComponents *comps = [[NSDateComponents alloc] init] ;
+    NSInteger unitFlags = NSCalendarUnitEra | NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond | NSWeekCalendarUnit | NSCalendarUnitWeekday | NSCalendarUnitWeekdayOrdinal | NSCalendarUnitQuarter;
+    
+    comps = [[NSCalendar currentCalendar] components:unitFlags fromDate:[NSDate date]];
+    [comps setHour:hour];
+    [comps setMinute:minute];
+    [comps setSecond:0];
+    
+    int temp = 0;
+    int days = 0;
+    
+    temp = newWeekDay - components.weekday;
+    days = (temp >= 0 ? temp : temp + 7);
+    NSDate *newFireDate = [[[NSCalendar currentCalendar] dateFromComponents:comps] dateByAddingTimeInterval:3600 * 24 * days];
+    return newFireDate;
+}
+
+- (int)getWeekDayWithIntegerDay:(int)weekDay{
+    int integerDay = -1;
+    switch (weekDay) {
+        case 0:
+            integerDay = 2;
+            break;
+        case 1:
+            integerDay = 3;
+            break;
+        case 2:
+            integerDay = 4;
+            break;
+        case 3:
+            integerDay = 5;
+            break;
+        case 4:
+            integerDay = 6;
+            break;
+        case 5:
+            integerDay = 7;
+            break;
+        case 6:
+            integerDay = 1;
+            break;
+    }
+    return integerDay;
 }
 
 @end

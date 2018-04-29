@@ -49,5 +49,6 @@
 - (NSString *)md5:(NSString *)string;
 - (void)loadAlarmList;
 - (void)saveAlarmList;
+- (int)createNotification:(NSMutableDictionary*)userInfo;
 @end
 

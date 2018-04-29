@@ -33,7 +33,6 @@
 @property UILabel *titleLabel;
 @property NSMutableArray *alarmWeek;
 @property int weekCount;
-@property int doneCount;
 @end
 
 @implementation AddAlarmController
@@ -279,97 +278,102 @@
 }
 
 - (void)clickEvent {
-    self.doneCount = 0;
-    for (int i=0; i<self.alarmWeek.count; i++) {
-        if( [[self.alarmWeek objectAtIndex:i] boolValue] ){
-            NSDateComponents *components = [[NSDateComponents alloc] init];
-            NSDate *date = self.datePicker.date;
-            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-            [dateFormatter setDateFormat:@"HH"];
-            NSString *hh = [dateFormatter stringFromDate:date];
-            [dateFormatter setDateFormat:@"mm"];
-            NSString *mm = [dateFormatter stringFromDate:date];
-            
-            //创建数据
-            NSMutableDictionary *newsDict = [NSMutableDictionary dictionary];
-            //赋值
-            [newsDict setObject:hh forKey:@"hour"];
-            [newsDict setObject:mm forKey:@"minute"];
-            [newsDict setObject:self.alarmTitle forKey:@"title"];
-            [newsDict setObject:self.photoName forKey:@"photo"];
-            [newsDict setObject:[NSString stringWithFormat:@"%d", self.soundId] forKey:@"sound"];
-            [newsDict setObject:@"1" forKey:@"status"];
-            [newsDict setObject:self.alarmWeek forKey:@"week"];
-            
-            // 通知
-            UNUserNotificationCenter* center = [UNUserNotificationCenter currentNotificationCenter];
-            UNMutableNotificationContent* content = [[UNMutableNotificationContent alloc] init];
-            content.title = [NSString localizedUserNotificationStringForKey:@"運動提醒" arguments:nil];
-            content.body = [NSString localizedUserNotificationStringForKey:[NSString stringWithFormat:@"%@ %@:%@", self.alarmTitle, hh, mm] arguments:nil];
-            content.sound = [UNNotificationSound defaultSound];
-            //    content.sound = [UNNotificationSound soundNamed:@"ring.wav"];
-            //    content.sound = nil;
-            
-            content.userInfo = newsDict;
-            
-            components.weekday = [self getWeekDayWithIntegerDay:i];
-            components.hour = [hh intValue];
-            components.minute = [mm intValue];
-            UNCalendarNotificationTrigger *trigger = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:components repeats:YES];
-            UNNotificationRequest* request = [UNNotificationRequest requestWithIdentifier:@"FiveSecond" content:content trigger:trigger];
-
-            [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
-                NSLog(@"weeday: %d", [self getWeekDayWithIntegerDay:i]);
-                NSLog(@"error: %@", [error localizedDescription]);
-                [self alarmComplete:newsDict];
-            }];
-        }
-    }
-}
-
-- (int)getWeekDayWithIntegerDay:(int)weekDay{
-    int integerDay = -1;
-    switch (weekDay) {
-        case 0:
-            integerDay = 2;
-            break;
-        case 1:
-            integerDay = 3;
-            break;
-        case 2:
-            integerDay = 4;
-            break;
-        case 3:
-            integerDay = 5;
-            break;
-        case 4:
-            integerDay = 6;
-            break;
-        case 5:
-            integerDay = 7;
-            break;
-        case 6:
-            integerDay = 1;
-            break;
-    }
-    return integerDay;
-}
-
-- (void)alarmComplete:(NSMutableDictionary *)newsDict{
-    self.doneCount++;
-    if( self.doneCount < self.weekCount ){
-        return;
+//    // 设置一个按照固定时间的本地推送
+//    NSDate *now = [NSDate date];
+//    //取得系统时间
+//    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+//    NSDateComponents *components = [[NSDateComponents alloc] init];
+//    NSInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitWeekday | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
+//    components = [calendar components:unitFlags fromDate:now];
+//    NSInteger hour = [components hour];
+//    NSInteger min = [components minute];
+//    NSInteger sec = [components second];
+//    NSInteger week = [components weekday];
+//    NSLog(@"现在是%ld：%ld：%ld,周%ld",hour,min,sec,week);
+    
+    NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSTimeInterval a = [dat timeIntervalSince1970];
+    NSString *timeString = [NSString stringWithFormat:@"%f", a];
+    
+    NSDate *date = self.datePicker.date;
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"HH"];
+    NSString *hh = [dateFormatter stringFromDate:date];
+    [dateFormatter setDateFormat:@"mm"];
+    NSString *mm = [dateFormatter stringFromDate:date];
+    //创建数据
+    NSMutableDictionary *userInfo = [NSMutableDictionary dictionary];
+    //赋值
+    [userInfo setObject:timeString forKey:@"id"];
+    [userInfo setObject:hh forKey:@"hour"];
+    [userInfo setObject:mm forKey:@"minute"];
+    [userInfo setObject:self.alarmTitle forKey:@"title"];
+    [userInfo setObject:self.photoName forKey:@"photo"];
+    [userInfo setObject:[NSString stringWithFormat:@"%d", self.soundId] forKey:@"sound"];
+    [userInfo setObject:@"1" forKey:@"status"];
+    [userInfo setObject:self.alarmWeek forKey:@"week"];
+    //设置userinfo方便撤销
+    
+    if( [self.appDelegate createNotification:userInfo] == self.weekCount ){
+        [self.appDelegate.alarmList addObject:userInfo];
+        [self.appDelegate saveAlarmList];
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"運動鬧鐘" message:@"成功添加鬧鐘" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"確認" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }];
+        [alert addAction:confirmAction];
+        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
+    }else{
+        HUD_TOAST_SHOW(@"鬧鐘添加失敗");
     }
     
-    [self.appDelegate.alarmList addObject:newsDict];
-    [self.appDelegate saveAlarmList];
-    
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"運動鬧鐘" message:@"成功添加鬧鐘" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"確認" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        [self.navigationController popViewControllerAnimated:YES];
-    }];
-    [alert addAction:confirmAction];
-    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil];
+//    self.doneCount = 0;
+//    for (int i=0; i<self.alarmWeek.count; i++) {
+//        if( [[self.alarmWeek objectAtIndex:i] boolValue] ){
+//            NSDateComponents *components = [[NSDateComponents alloc] init];
+//            NSDate *date = self.datePicker.date;
+//            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//            [dateFormatter setDateFormat:@"HH"];
+//            NSString *hh = [dateFormatter stringFromDate:date];
+//            [dateFormatter setDateFormat:@"mm"];
+//            NSString *mm = [dateFormatter stringFromDate:date];
+//
+//            //创建数据
+//            NSMutableDictionary *newsDict = [NSMutableDictionary dictionary];
+//            //赋值
+//            [newsDict setObject:hh forKey:@"hour"];
+//            [newsDict setObject:mm forKey:@"minute"];
+//            [newsDict setObject:self.alarmTitle forKey:@"title"];
+//            [newsDict setObject:self.photoName forKey:@"photo"];
+//            [newsDict setObject:[NSString stringWithFormat:@"%d", self.soundId] forKey:@"sound"];
+//            [newsDict setObject:@"1" forKey:@"status"];
+//            [newsDict setObject:self.alarmWeek forKey:@"week"];
+//
+//            // 通知
+//            UNUserNotificationCenter* center = [UNUserNotificationCenter currentNotificationCenter];
+//            UNMutableNotificationContent* content = [[UNMutableNotificationContent alloc] init];
+//            content.title = [NSString localizedUserNotificationStringForKey:@"運動提醒" arguments:nil];
+//            content.body = [NSString localizedUserNotificationStringForKey:[NSString stringWithFormat:@"%@ %@:%@", self.alarmTitle, hh, mm] arguments:nil];
+//            content.sound = [UNNotificationSound defaultSound];
+//            //    content.sound = [UNNotificationSound soundNamed:@"ring.wav"];
+//            //    content.sound = nil;
+//
+//            content.userInfo = newsDict;
+//
+//            components.weekday = [self getWeekDayWithIntegerDay:i];
+//            components.hour = [hh intValue];
+//            components.minute = [mm intValue];
+//            UNCalendarNotificationTrigger *trigger = [UNCalendarNotificationTrigger triggerWithDateMatchingComponents:components repeats:YES];
+//            UNNotificationRequest* request = [UNNotificationRequest requestWithIdentifier:@"FiveSecond" content:content trigger:trigger];
+//
+//            [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
+//                NSLog(@"weeday: %d", [self getWeekDayWithIntegerDay:i]);
+////                NSLog(@"error: %@", [error localizedDescription]);
+//                [self alarmComplete:newsDict];
+//            }];
+//        }
+//    }
 }
 
 - (void)getSoundId:(unsigned int)soundId {

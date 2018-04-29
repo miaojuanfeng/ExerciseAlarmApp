@@ -109,6 +109,13 @@
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    // 刪除通知
+    NSString *alarmId = [[self.appDelegate.alarmList objectAtIndex:indexPath.row] objectForKey:@"id"];
+    for (UILocalNotification *obj in [UIApplication sharedApplication].scheduledLocalNotifications) {
+        if( [[obj.userInfo objectForKey:@"id"] isEqualToString:alarmId] ){
+            [[UIApplication sharedApplication] cancelLocalNotification:obj];
+        }
+    }
     // 删除模型
     [self.appDelegate.alarmList removeObjectAtIndex:indexPath.row];
     [self.appDelegate saveAlarmList];
@@ -141,8 +148,19 @@
     NSLog(@"%ld", swt.tag);
     NSMutableDictionary *alarm = [self.appDelegate.alarmList objectAtIndex:swt.tag];
     if( [swt isOn] ){
+        // 增加通知
+        [self.appDelegate createNotification:alarm];
+        // 改變狀態
         [alarm setObject:@1 forKey:@"status"];
     }else{
+        // 刪除通知
+        NSString *alarmId = [alarm objectForKey:@"id"];
+        for (UILocalNotification *obj in [UIApplication sharedApplication].scheduledLocalNotifications) {
+            if( [[obj.userInfo objectForKey:@"id"] isEqualToString:alarmId] ){
+                [[UIApplication sharedApplication] cancelLocalNotification:obj];
+            }
+        }
+        // 改變狀態
         [alarm setObject:@0 forKey:@"status"];
     }
     [self.appDelegate saveAlarmList];
