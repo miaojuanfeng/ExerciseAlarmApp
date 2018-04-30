@@ -120,19 +120,9 @@
         
         HUD_WAITING_HIDE;
         if( status == 1 ){
-//            NSDictionary *data = [dic objectForKey:@"data"];
-//            NSString *device_id = [data objectForKey:@"device_id"];
-//            
-//            NSMutableDictionary *device = [[NSMutableDictionary alloc] init];
-//            [device setObject:device_id forKey:@"device_id"];
-//            [device setObject:self.deviceTokenField.text forKey:@"device_token"];
-//            [device setObject:self.deviceNameField.text forKey:@"device_name"];
-//            [self.appDelegate.deviceList addObject:device];
-//            
-//            NSLog(@"%@", self.appDelegate.deviceList);
-//            [self.appDelegate saveDeviceList:device];
-//
             [self.appDelegate saveUser:[dic objectForKey:@"data"]];
+            [self.appDelegate loadUserData];
+            [self.appDelegate activeNotification];
             [self dismissViewControllerAnimated:YES completion:nil];
         }else{
             NSString *msg = [dic objectForKey:@"msg"];

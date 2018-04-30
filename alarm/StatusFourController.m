@@ -271,6 +271,14 @@
 }
 
 - (void)drawGraph{
+    if( self.allValues.count == 0 || self.allDates.count == 0 || self.allValues.count != self.allDates.count ){
+        UILabel *emptyLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, (self.graphContainer.frame.size.height-30)/2, self.graphContainer.frame.size.width, 30)];
+        emptyLabel.text = @"暫無數據";
+        emptyLabel.textColor = [UIColor lightGrayColor];
+        emptyLabel.textAlignment = NSTextAlignmentCenter;
+        [self.graphContainer addSubview:emptyLabel];
+        return;
+    }
     //初始化折线图并设置相应属性
     self.graphView = [[YASimpleGraphView alloc]init];
     self.graphView.frame = CGRectMake(0, 0, self.graphContainer.frame.size.width, self.graphContainer.frame.size.height);

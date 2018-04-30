@@ -72,65 +72,7 @@
 //    self.hudWaiting.contentColor = [UIColor whiteColor];
 //    [self.hudWaiting hideAnimated:NO];
     
-    [self loadSelectVideoList];
-//    self.videoList = [[NSMutableArray alloc] init];
-    if( self.videoList.count == 0 ){
-        for(int i=0;i<10;i++){
-            NSMutableDictionary *t = [[NSMutableDictionary alloc] init];
-            [t setObject:[NSString stringWithFormat:@"视频%d", i] forKey:@"title"];
-            [t setObject:[NSString stringWithFormat:@"%d", false] forKey:@"isShow"];
-            [self.videoList addObject:t];
-        }
-    }
-    
-    /*
-     *  加载日历数组
-     */
-    [self loadCalendar];
-    /*
-     *  App启动时，记录下日期，累积天数
-     */
-    [self saveCalendar];
-    NSLog(@"saveCalendar: %@", self.calendarList);
-    
-    [self loadExerciseTime];
-    NSLog(@"loadExerciseTime: %@", self.exerciseTime);
-    
-    [self loadWeekStar];
-    NSLog(@"loadWeekStar: %@", self.weekStar);
-    
-    self.painList = [[NSMutableArray alloc] init];
-    [self.painList addObject:@"完全無痛"];
-    [self.painList addObject:@"完全無痛"];
-    [self.painList addObject:@"輕微疼痛"];
-    [self.painList addObject:@"輕微疼痛"];
-    [self.painList addObject:@"中度疼痛"];
-    [self.painList addObject:@"中度疼痛"];
-    [self.painList addObject:@"重度疼痛"];
-    [self.painList addObject:@"重度疼痛"];
-    [self.painList addObject:@"劇烈疼痛"];
-    [self.painList addObject:@"劇烈疼痛"];
-    [self.painList addObject:@"極度疼痛"];
-    
-    [self loadUserPain];
-    NSLog(@"self.userPain: %@", self.userPain);
-    
-    [self loadAlarmList];
-    NSLog(@"alarmList: %@", self.alarmList);
-    
-    [self loadUser];
-    NSLog(@"%@", self.user);
-    if( self.user == nil ){
-        LoginController *loginController = [[LoginController alloc] init];
-        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:loginController];
-        [self.window.rootViewController presentViewController:nav animated:YES completion:nil];
-    }
-    
-    [TBCityIconFont setFontName:@"iconfont"];
-    
-//    [[UIApplication sharedApplication] cancelAllLocalNotifications];
-    NSArray *localNotifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
-    NSLog(@"localNotifications: %@", localNotifications);  
+    [self loadUserData];
     
     return YES;
 }
@@ -172,18 +114,11 @@
     NSString *subtitle = content.subtitle;  // 推送消息的副标题
     NSString *title = content.title;  // 推送消息的标题
     
-    if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+    if( [notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]] ){
         NSLog(@"iOS10 前台收到远程通知");
-        
-    }
-    else {
+    }else{
         // 判断为本地通知
         NSLog(@"iOS10 前台收到本地通知:{\\\\nbody:%@，\\\\ntitle:%@,\\\\nsubtitle:%@,\\\\nbadge：%@，\\\\nsound：%@，\\\\nuserInfo：%@\\\\n}",body,title,subtitle,badge,sound,userInfo);
-        
-//        NSString *path = [[NSBundle mainBundle] pathForResource:@"ring" ofType:@"wav"];
-//        SystemSoundID soundID;
-//        AudioServicesCreateSystemSoundID ((__bridge CFURLRef)[NSURL fileURLWithPath:path], &soundID);
-//        AudioServicesPlaySystemSound (soundID);
     }
     
     NoiseController *noiseController = [[NoiseController alloc] init];
@@ -204,19 +139,12 @@
     UNNotificationSound *sound = content.sound;  // 推送消息的声音
     NSString *subtitle = content.subtitle;  // 推送消息的副标题
     NSString *title = content.title;  // 推送消息的标题
-    if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+    if( [response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]] ){
         NSLog(@"iOS10 收到远程通知");
-        
-    }
-    else {
+    }else{
         // 判断为本地通知
         NSLog(@"iOS10 收到本地通知:{\\\\nbody:%@，\\\\ntitle:%@,\\\\nsubtitle:%@,\\\\nbadge：%@，\\\\nsound：%@，\\\\nuserInfo：%@\\\\n}",body,title,subtitle,badge,sound,userInfo);
     }
-    
-//    NSString *path = [[NSBundle mainBundle] pathForResource:@"ring" ofType:@"wav"];
-//    SystemSoundID soundID;
-//    AudioServicesCreateSystemSoundID ((__bridge CFURLRef)[NSURL fileURLWithPath:path], &soundID);
-//    AudioServicesPlaySystemSound (soundID);
     
     NoiseController *noiseController = [[NoiseController alloc] init];
     noiseController.userInfo = userInfo;
@@ -279,7 +207,7 @@
     
     NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsPath = [path objectAtIndex:0];
-    NSString *plistPath = [documentsPath stringByAppendingPathComponent:[NSString stringWithFormat:@"calendar_%@.plist", [self.user objectForKey:@"id"]]];
+    NSString *plistPath = [documentsPath stringByAppendingPathComponent:[NSString stringWithFormat:@"calendar_%@.plist", [self.user objectForKey:@"user_id"]]];
     
     NSFileManager *appFileManager = [NSFileManager defaultManager];
     [appFileManager removeItemAtPath:plistPath error:nil];
@@ -290,7 +218,7 @@
 - (void)loadCalendar {
     NSArray *pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *path = [pathArray objectAtIndex:0];
-    NSString *plistPath = [path stringByAppendingPathComponent:[NSString stringWithFormat:@"calendar_%@.plist", [self.user objectForKey:@"id"]]];
+    NSString *plistPath = [path stringByAppendingPathComponent:[NSString stringWithFormat:@"calendar_%@.plist", [self.user objectForKey:@"user_id"]]];
     self.calendarList = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
     if( self.calendarList == nil ){
         self.calendarList = [[NSMutableDictionary alloc] init];
@@ -316,7 +244,7 @@
     
     NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsPath = [path objectAtIndex:0];
-    NSString *plistPath = [documentsPath stringByAppendingPathComponent:[NSString stringWithFormat:@"exerciseTime_%@.plist", [self.user objectForKey:@"id"]]];
+    NSString *plistPath = [documentsPath stringByAppendingPathComponent:[NSString stringWithFormat:@"exerciseTime_%@.plist", [self.user objectForKey:@"user_id"]]];
     
     NSFileManager *appFileManager = [NSFileManager defaultManager];
     [appFileManager removeItemAtPath:plistPath error:nil];
@@ -327,7 +255,7 @@
 - (void)loadExerciseTime {
     NSArray *pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *path = [pathArray objectAtIndex:0];
-    NSString *plistPath = [path stringByAppendingPathComponent:[NSString stringWithFormat:@"exerciseTime_%@.plist", [self.user objectForKey:@"id"]]];
+    NSString *plistPath = [path stringByAppendingPathComponent:[NSString stringWithFormat:@"exerciseTime_%@.plist", [self.user objectForKey:@"user_id"]]];
     self.exerciseTime = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
     if( self.exerciseTime == nil ){
         self.exerciseTime = [[NSMutableDictionary alloc] init];
@@ -354,7 +282,7 @@
     
     NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsPath = [path objectAtIndex:0];
-    NSString *plistPath = [documentsPath stringByAppendingPathComponent:[NSString stringWithFormat:@"weekStar_%@.plist", [self.user objectForKey:@"id"]]];
+    NSString *plistPath = [documentsPath stringByAppendingPathComponent:[NSString stringWithFormat:@"weekStar_%@.plist", [self.user objectForKey:@"user_id"]]];
     
     NSFileManager *appFileManager = [NSFileManager defaultManager];
     [appFileManager removeItemAtPath:plistPath error:nil];
@@ -365,7 +293,7 @@
 - (void)loadWeekStar {
     NSArray *pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *path = [pathArray objectAtIndex:0];
-    NSString *plistPath = [path stringByAppendingPathComponent:[NSString stringWithFormat:@"weekStar_%@.plist", [self.user objectForKey:@"id"]]];
+    NSString *plistPath = [path stringByAppendingPathComponent:[NSString stringWithFormat:@"weekStar_%@.plist", [self.user objectForKey:@"user_id"]]];
     self.weekStar = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
     if( self.weekStar == nil ){
         self.weekStar = [[NSMutableDictionary alloc] init];
@@ -382,10 +310,10 @@
     NSString *documentsPath = [path objectAtIndex:0];
     NSString *plistPath = nil;
     
-    plistPath = [documentsPath stringByAppendingPathComponent:[NSString stringWithFormat:@"videoList_%@.plist", [self.user objectForKey:@"id"]]];
+    plistPath = [documentsPath stringByAppendingPathComponent:[NSString stringWithFormat:@"videoList_%@.plist", [self.user objectForKey:@"user_id"]]];
     [self.videoList writeToFile:plistPath atomically:YES];
     
-    plistPath = [documentsPath stringByAppendingPathComponent:[NSString stringWithFormat:@"selectVideoList_%@.plist", [self.user objectForKey:@"id"]]];
+    plistPath = [documentsPath stringByAppendingPathComponent:[NSString stringWithFormat:@"selectVideoList_%@.plist", [self.user objectForKey:@"user_id"]]];
     [self.selectVideoList writeToFile:plistPath atomically:YES];
 }
 
@@ -394,13 +322,13 @@
     NSString *path = [pathArray objectAtIndex:0];
     NSString *plistPath = nil;
     
-    plistPath = [path stringByAppendingPathComponent:[NSString stringWithFormat:@"videoList_%@.plist", [self.user objectForKey:@"id"]]];
+    plistPath = [path stringByAppendingPathComponent:[NSString stringWithFormat:@"videoList_%@.plist", [self.user objectForKey:@"user_id"]]];
     self.videoList = [[NSMutableArray alloc] initWithContentsOfFile:plistPath];
     if( self.videoList == nil ){
         self.videoList = [[NSMutableArray alloc] init];
     }
     
-    plistPath = [path stringByAppendingPathComponent:[NSString stringWithFormat:@"selectVideoList_%@.plist", [self.user objectForKey:@"id"]]];
+    plistPath = [path stringByAppendingPathComponent:[NSString stringWithFormat:@"selectVideoList_%@.plist", [self.user objectForKey:@"user_id"]]];
     self.selectVideoList = [[NSMutableArray alloc] initWithContentsOfFile:plistPath];
     if( self.selectVideoList == nil ){
         self.selectVideoList = [[NSMutableArray alloc] init];
@@ -410,7 +338,7 @@
 - (void)saveUserPain:(int) pain {
     NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsPath = [path objectAtIndex:0];
-    NSString *plistPath = [documentsPath stringByAppendingPathComponent:[NSString stringWithFormat:@"userPain_%@.plist", [self.user objectForKey:@"id"]]];
+    NSString *plistPath = [documentsPath stringByAppendingPathComponent:[NSString stringWithFormat:@"userPain_%@.plist", [self.user objectForKey:@"user_id"]]];
     
     NSDate *time = [NSDate dateWithTimeIntervalSinceNow:0];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -425,7 +353,7 @@
 - (void)loadUserPain {
     NSArray *pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *path = [pathArray objectAtIndex:0];
-    NSString *plistPath = [path stringByAppendingPathComponent:[NSString stringWithFormat:@"userPain_%@.plist", [self.user objectForKey:@"id"]]];
+    NSString *plistPath = [path stringByAppendingPathComponent:[NSString stringWithFormat:@"userPain_%@.plist", [self.user objectForKey:@"user_id"]]];
     self.userPain = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
     if( self.userPain == nil ){
         self.userPain = [[NSMutableDictionary alloc] init];
@@ -435,7 +363,7 @@
 - (void)loadAlarmList{
     NSArray *pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *path = [pathArray objectAtIndex:0];
-    NSString *plistPath = [path stringByAppendingPathComponent:[NSString stringWithFormat:@"alarmList_%@.plist", [self.user objectForKey:@"id"]]];
+    NSString *plistPath = [path stringByAppendingPathComponent:[NSString stringWithFormat:@"alarmList_%@.plist", [self.user objectForKey:@"user_id"]]];
     self.alarmList = [[NSMutableArray alloc] initWithContentsOfFile:plistPath];
     if( self.alarmList == nil ){
         self.alarmList = [[NSMutableArray alloc] init];
@@ -445,7 +373,7 @@
 - (void)saveAlarmList{
     NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsPath = [path objectAtIndex:0];
-    NSString *plistPath = [documentsPath stringByAppendingPathComponent:[NSString stringWithFormat:@"alarmList_%@.plist", [self.user objectForKey:@"id"]]];
+    NSString *plistPath = [documentsPath stringByAppendingPathComponent:[NSString stringWithFormat:@"alarmList_%@.plist", [self.user objectForKey:@"user_id"]]];
     
     [self.alarmList writeToFile:plistPath atomically:YES];
 }
@@ -488,11 +416,7 @@
                 localNotification.alertBody = [NSString stringWithFormat:@"%@ %@:%@", alarmBody, hh, mm];
                 //小图标数字
                 localNotification.applicationIconBadgeNumber = 0;
-        //        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        //        [formatter setDateFormat:@"HH:mm:ss"];
-        //        NSDate *date = [formatter dateFromString:[NSString stringWithFormat:@"%@:%@:00", hh, mm]];
                 //通知发出的时间
-                //        localNotification.fireDate = date;
                 localNotification.fireDate = [self getNextWeekDay:[self getWeekDayWithIntegerDay:i] hour:[hh intValue] minute:[mm intValue]];
             }
             //循环通知的周期
@@ -508,6 +432,26 @@
     return notificationCount;
 }
 
+- (void)activeNotification{
+    for (NSMutableDictionary *alarm in self.alarmList) {
+        [self createNotification:alarm];
+    }
+    NSArray *localNotifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
+    NSLog(@"localNotifications: %@", localNotifications);
+}
+
+- (void)deleteNotification:(NSString*)alarmId{
+    for (UILocalNotification *obj in [UIApplication sharedApplication].scheduledLocalNotifications) {
+        if( [[obj.userInfo objectForKey:@"id"] isEqualToString:alarmId] ){
+            [[UIApplication sharedApplication] cancelLocalNotification:obj];
+        }
+    }
+}
+
+- (void)clearNotification{
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+}
+
 -(NSDate *)getNextWeekDay:(int)newWeekDay hour:(int)hour minute:(int)minute{
     NSDateComponents * components = [[NSCalendar currentCalendar] components:NSCalendarUnitWeekday|NSCalendarUnitDay|NSCalendarUnitHour|NSCalendarUnitMinute|NSCalendarUnitSecond fromDate:[NSDate date]];
     NSDateComponents *comps = [[NSDateComponents alloc] init] ;
@@ -521,7 +465,7 @@
     int temp = 0;
     int days = 0;
     
-    temp = newWeekDay - components.weekday;
+    temp = (int)(newWeekDay - components.weekday);
     days = (temp >= 0 ? temp : temp + 7);
     NSDate *newFireDate = [[[NSCalendar currentCalendar] dateFromComponents:comps] dateByAddingTimeInterval:3600 * 24 * days];
     return newFireDate;
@@ -553,6 +497,71 @@
             break;
     }
     return integerDay;
+}
+
+- (void)loadUserData{
+    /*
+     *  最先加載
+     */
+    [self loadUser];
+    NSLog(@"self.user: %@", self.user);
+    if( self.user == nil ){
+        LoginController *loginController = [[LoginController alloc] init];
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:loginController];
+        [self.window.rootViewController presentViewController:nav animated:YES completion:nil];
+    }
+    
+    
+    [self loadSelectVideoList];
+    if( self.videoList.count == 0 ){
+        for(int i=0;i<10;i++){
+            NSMutableDictionary *t = [[NSMutableDictionary alloc] init];
+            [t setObject:[NSString stringWithFormat:@"视频%d", i] forKey:@"title"];
+            [t setObject:[NSString stringWithFormat:@"%d", false] forKey:@"isShow"];
+            [self.videoList addObject:t];
+        }
+    }
+    
+    /*
+     *  加载日历数组
+     */
+    [self loadCalendar];
+    /*
+     *  App启动时，记录下日期，累积天数
+     */
+    [self saveCalendar];
+    NSLog(@"saveCalendar: %@", self.calendarList);
+    
+    [self loadExerciseTime];
+    NSLog(@"loadExerciseTime: %@", self.exerciseTime);
+    
+    [self loadWeekStar];
+    NSLog(@"loadWeekStar: %@", self.weekStar);
+    
+    self.painList = [[NSMutableArray alloc] init];
+    [self.painList addObject:@"完全無痛"];
+    [self.painList addObject:@"完全無痛"];
+    [self.painList addObject:@"輕微疼痛"];
+    [self.painList addObject:@"輕微疼痛"];
+    [self.painList addObject:@"中度疼痛"];
+    [self.painList addObject:@"中度疼痛"];
+    [self.painList addObject:@"重度疼痛"];
+    [self.painList addObject:@"重度疼痛"];
+    [self.painList addObject:@"劇烈疼痛"];
+    [self.painList addObject:@"劇烈疼痛"];
+    [self.painList addObject:@"極度疼痛"];
+    
+    [self loadUserPain];
+    NSLog(@"self.userPain: %@", self.userPain);
+    
+    [self loadAlarmList];
+    NSLog(@"alarmList: %@", self.alarmList);
+    
+    [TBCityIconFont setFontName:@"iconfont"];
+    
+    //    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    NSArray *localNotifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
+    NSLog(@"localNotifications: %@", localNotifications);
 }
 
 @end

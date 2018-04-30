@@ -139,6 +139,7 @@
 
 - (void)clickLogoutButton {
     [self.appDelegate deleteUser];
+    [self.appDelegate clearNotification];
     LoginController *loginController = [[LoginController alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:loginController];
     [self presentViewController:nav animated:YES completion:nil];

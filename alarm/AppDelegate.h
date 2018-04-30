@@ -50,5 +50,9 @@
 - (void)loadAlarmList;
 - (void)saveAlarmList;
 - (int)createNotification:(NSMutableDictionary*)userInfo;
+- (void)activeNotification;
+- (void)deleteNotification:(NSString*)alarmId;
+- (void)clearNotification;
+- (void)loadUserData;
 @end
 
