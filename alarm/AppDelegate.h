@@ -54,5 +54,6 @@
 - (void)deleteNotification:(NSString*)alarmId;
 - (void)clearNotification;
 - (void)loadUserData;
+- (void)uploadUserData;
 @end
 

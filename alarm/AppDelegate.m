@@ -15,6 +15,7 @@
 #import "LoginController.h"
 #import "TBCityIconFont.h"
 #import <CommonCrypto/CommonDigest.h>
+#import <AFNetworking/AFNetworking.h>
 
 @interface AppDelegate () <UNUserNotificationCenterDelegate>
 
@@ -509,6 +510,7 @@
         LoginController *loginController = [[LoginController alloc] init];
         UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:loginController];
         [self.window.rootViewController presentViewController:nav animated:YES completion:nil];
+        return;
     }
     
     
@@ -562,6 +564,39 @@
     //    [[UIApplication sharedApplication] cancelAllLocalNotifications];
     NSArray *localNotifications = [[UIApplication sharedApplication] scheduledLocalNotifications];
     NSLog(@"localNotifications: %@", localNotifications);
+    
+    [self uploadUserData];
+}
+
+- (void)uploadUserData{
+    NSMutableDictionary *userData = [[NSMutableDictionary alloc] init];
+    [userData setObject:self.selectVideoList forKey:@"select_video_list"];
+    [userData setObject:self.calendarList forKey:@"calendar_list"];
+    [userData setObject:self.exerciseTime forKey:@"exercise_time"];
+    [userData setObject:self.weekStar forKey:@"week_star"];
+    [userData setObject:self.userPain forKey:@"user_pain"];
+    [userData setObject:self.alarmList forKey:@"alarm_list"];
+    NSData *data = [NSJSONSerialization dataWithJSONObject:userData options:NSJSONWritingSortedKeys error:nil];
+    NSString *str = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+    
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.requestSerializer.timeoutInterval = 30.0f;
+    NSDictionary *parameters=@{
+                               @"user_id":[self.user objectForKey:@"user_id"],
+                               @"user_data":str
+                               };
+    [manager POST:BASE_URL(@"user/upload_data") parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"成功.%@",responseObject);
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:NULL];
+        NSLog(@"results: %@", dic);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"失败.%@",error);
+        NSLog(@"%@",[[NSString alloc] initWithData:error.userInfo[@"com.alamofire.serialization.response.error.data"] encoding:NSUTF8StringEncoding]);
+    }];
 }
 
 @end
