@@ -36,7 +36,7 @@
     
     UIButton *registButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width-40-25, 44, 40, 24)];
     [registButton setTitle:@"註冊" forState:UIControlStateNormal];
-    registButton.titleLabel.font = [UIFont fontWithName:@"AppleGothic" size:16.0];
+    registButton.titleLabel.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     [registButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [registButton addTarget:self action:@selector(clickRegisterButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:registButton];
@@ -47,6 +47,7 @@
     self.userField = [[UITextField alloc] initWithFrame:CGRectMake(10, 10, userView.frame.size.width-20, 34)];
     self.userField.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.userField.placeholder = @"手機號";
+    self.userField.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     self.userField.keyboardType = UIKeyboardTypePhonePad;
     CALayer *userFieldBorder = [CALayer layer];
     userFieldBorder.frame = CGRectMake(0.0f, self.userField.frame.size.height-1, self.userField.frame.size.width, BORDER_WIDTH);
@@ -57,6 +58,7 @@
     self.passwordField = [[UITextField alloc] initWithFrame:CGRectMake(10, self.userField.frame.origin.y+self.userField.frame.size.height+10, userView.frame.size.width-20, 34)];
     self.passwordField.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.passwordField.placeholder = @"密碼";
+    self.passwordField.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     [self.passwordField setSecureTextEntry:YES];
     CALayer *passwordFieldBorder = [CALayer layer];
     passwordFieldBorder.frame = CGRectMake(0.0f, self.passwordField.frame.size.height-1, self.passwordField.frame.size.width, BORDER_WIDTH);
@@ -71,6 +73,7 @@
     submitButton.backgroundColor = RGBA_COLOR(49, 132, 225, 1);
     submitButton.layer.cornerRadius = 15;
     submitButton.layer.masksToBounds = YES;
+    submitButton.titleLabel.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     [submitButton setTitle:@"登錄" forState:UIControlStateNormal];
     [submitButton addTarget:self action:@selector(clickLoginButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:submitButton];
@@ -80,8 +83,8 @@
     [str addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:strRange];
     
     UIButton *forgetPwdButton = [[UIButton alloc] initWithFrame:CGRectMake((self.view.frame.size.width-240)/2, submitButton.frame.origin.y+submitButton.frame.size.height+40, 240, 24)];
+    forgetPwdButton.titleLabel.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     [forgetPwdButton setAttributedTitle:str forState:UIControlStateNormal];
-    forgetPwdButton.titleLabel.font = [UIFont fontWithName:@"AppleGothic" size:16.0];
     [forgetPwdButton addTarget:self action:@selector(clickForgetPwdButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:forgetPwdButton];
     

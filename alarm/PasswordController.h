@@ -10,6 +10,6 @@
 
 @interface PasswordController : UIViewController
 
-@property UITextField *phoneField;
+@property NSString *phoneNumber;
 
 @end

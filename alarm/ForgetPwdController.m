@@ -11,7 +11,7 @@
 #import "AppDelegate.h"
 
 @interface ForgetPwdController ()
-
+@property AppDelegate *appDelegate;
 @end
 
 @implementation ForgetPwdController
@@ -26,6 +26,8 @@
     CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
     float marginTop = rectStatus.size.height + self.navigationController.navigationBar.frame.size.height;
     
+    self.appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
     UIImage *shoolImage = [UIImage imageNamed:@"ShoolLogo"];
     float imageWidth = self.view.frame.size.width-50;
     float imageHeight = imageWidth/shoolImage.size.width*shoolImage.size.height;
@@ -33,10 +35,10 @@
     imageView.image = shoolImage;
     [self.view addSubview:imageView];
     
-    UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(50/2, imageView.frame.origin.y+imageView.frame.size.height+20, self.view.frame.size.width-50, 120)];
+    UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(50/2, imageView.frame.origin.y+imageView.frame.size.height+20, self.view.frame.size.width-50, 135)];
     textView.backgroundColor = RGBA_COLOR(158, 218, 182, 1);
     textView.editable = NO;
-    textView.font = [UIFont fontWithName:@"AppleGothic" size:16.0];
+    textView.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     textView.text = @"請通過下述方式聯絡我們，以找回手機號或密碼。\n\n電話：1122-3344\n電郵：imse@hku.hk";
     
     [self.view addSubview:textView];
@@ -46,6 +48,7 @@
     submitButton.backgroundColor = RGBA_COLOR(49, 132, 225, 1);
     submitButton.layer.cornerRadius = 15;
     submitButton.layer.masksToBounds = YES;
+    submitButton.titleLabel.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     [submitButton setTitle:@"退出應用程式" forState:UIControlStateNormal];
     [submitButton addTarget:self action:@selector(clickQuitButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:submitButton];

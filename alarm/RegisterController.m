@@ -39,14 +39,14 @@
     
     UILabel *phoneLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, marginTop+100, self.view.frame.size.width-40, 30)];
     phoneLabel.text = @"請輸入您的手機號";
-    phoneLabel.font = [UIFont systemFontOfSize:18.0f];
+    phoneLabel.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     phoneLabel.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:phoneLabel];
     
     UIView *textView = [[UIView alloc] initWithFrame:CGRectMake(80/2, phoneLabel.frame.origin.y+phoneLabel.frame.size.height+50, self.view.frame.size.width-80, 40)];
 //    textView.backgroundColor = RGBA_COLOR(44, 106, 81, 1);
     
-    self.codePicker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, -23, 50, 85)];
+    self.codePicker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, -28, 60, 95)];
 //    self.codePicker.backgroundColor = [UIColor redColor];
     self.codePicker.delegate = self;
     self.codePicker.tintAdjustmentMode = NSTextAlignmentLeft;
@@ -60,6 +60,7 @@
     self.phoneField.backgroundColor = [UIColor whiteColor];
     self.phoneField.keyboardType = UIKeyboardTypePhonePad;
     self.phoneField.placeholder = @"請輸入您的手機號";
+    self.phoneField.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     CALayer *phoneFieldBorder = [CALayer layer];
     phoneFieldBorder.frame = CGRectMake(0.0f, self.phoneField.frame.size.height-1, self.phoneField.frame.size.width, BORDER_WIDTH);
     phoneFieldBorder.backgroundColor = BORDER_COLOR;
@@ -74,6 +75,7 @@
     submitButton.backgroundColor = RGBA_COLOR(244, 106, 81, 1);
     submitButton.layer.cornerRadius = 15;
     submitButton.layer.masksToBounds = YES;
+    submitButton.titleLabel.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     [submitButton setTitle:@"下一步" forState:UIControlStateNormal];
     [submitButton addTarget:self action:@selector(clickNextButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:submitButton];
@@ -116,7 +118,7 @@
         pickerLabel.adjustsFontSizeToFitWidth = YES;
         [pickerLabel setTextAlignment:NSTextAlignmentLeft];
         [pickerLabel setBackgroundColor:[UIColor clearColor]];
-        [pickerLabel setFont:[UIFont systemFontOfSize:18]];
+        [pickerLabel setFont:DEFAULT_FONT(DEFAULT_FONT_SIZE)];
     }
     // Fill the label text here
     pickerLabel.text=[self pickerView:pickerView titleForRow:row forComponent:component];

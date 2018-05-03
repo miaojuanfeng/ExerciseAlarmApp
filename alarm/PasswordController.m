@@ -11,10 +11,11 @@
 #import "PasswordController.h"
 #import <AFNetworking/AFNetworking.h>
 
-@interface PasswordController ()
+@interface PasswordController () <UIGestureRecognizerDelegate>
 
 @property AppDelegate *appDelegate;
 
+@property UITextField *phoneField;
 @property UITextField *nameField;
 @property UITextField *passwordField;
 @property UITextField *cfmPwdField;
@@ -55,12 +56,15 @@
     
         filedLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, filedView.frame.size.height)];
         filedLabel.text = @"手機號碼";
+        filedLabel.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
         [filedView addSubview:filedLabel];
     
         self.phoneField = [[UITextField alloc] initWithFrame:CGRectMake(filedLabel.frame.origin.x+filedLabel.frame.size.width+10, 0, filedView.frame.size.width-filedLabel.frame.size.width-10, filedView.frame.size.height)];
         self.phoneField.backgroundColor = [UIColor whiteColor];
         self.phoneField.keyboardType = UIKeyboardTypePhonePad;
         self.phoneField.enabled = NO;
+        self.phoneField.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
+        self.phoneField.text = self.phoneNumber;
         CALayer *phoneFieldBorder = [CALayer layer];
         phoneFieldBorder.frame = CGRectMake(0.0f, self.phoneField.frame.size.height-1, self.phoneField.frame.size.width, BORDER_WIDTH);
         phoneFieldBorder.backgroundColor = BORDER_COLOR;
@@ -73,11 +77,13 @@
     
         filedLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, filedView.frame.size.height)];
         filedLabel.text = @"用戶名";
+        filedLabel.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
         [filedView addSubview:filedLabel];
     
         self.nameField = [[UITextField alloc] initWithFrame:CGRectMake(filedLabel.frame.origin.x+filedLabel.frame.size.width+10, 0, filedView.frame.size.width-filedLabel.frame.size.width-10, filedView.frame.size.height)];
         self.nameField.backgroundColor = [UIColor whiteColor];
         self.nameField.placeholder = @"請設置用戶名";
+        self.nameField.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
         CALayer *nameFieldBorder = [CALayer layer];
         nameFieldBorder.frame = CGRectMake(0.0f, self.nameField.frame.size.height-1, self.nameField.frame.size.width, BORDER_WIDTH);
         nameFieldBorder.backgroundColor = BORDER_COLOR;
@@ -90,12 +96,14 @@
     
         filedLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, filedView.frame.size.height)];
         filedLabel.text = @"設置密碼";
+        filedLabel.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
         [filedView addSubview:filedLabel];
     
         self.passwordField = [[UITextField alloc] initWithFrame:CGRectMake(filedLabel.frame.origin.x+filedLabel.frame.size.width+10, 0, filedView.frame.size.width-filedLabel.frame.size.width-10, filedView.frame.size.height)];
         self.passwordField.backgroundColor = [UIColor whiteColor];
         self.passwordField.secureTextEntry = YES;
         self.passwordField.placeholder = @"請設置密碼";
+        self.passwordField.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
         CALayer *passwordFieldBorder = [CALayer layer];
         passwordFieldBorder.frame = CGRectMake(0.0f, self.passwordField.frame.size.height-1, self.passwordField.frame.size.width, BORDER_WIDTH);
         passwordFieldBorder.backgroundColor = BORDER_COLOR;
@@ -108,12 +116,14 @@
     
         filedLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, filedView.frame.size.height)];
         filedLabel.text = @"確認密碼";
+        filedLabel.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
         [filedView addSubview:filedLabel];
     
         self.cfmPwdField = [[UITextField alloc] initWithFrame:CGRectMake(filedLabel.frame.origin.x+filedLabel.frame.size.width+10, 0, filedView.frame.size.width-filedLabel.frame.size.width-10, filedView.frame.size.height)];
         self.cfmPwdField.backgroundColor = [UIColor whiteColor];
         self.cfmPwdField.secureTextEntry = YES;
         self.cfmPwdField.placeholder = @"請再次輸入密碼";
+        self.cfmPwdField.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
         CALayer *cfmPwdFieldBorder = [CALayer layer];
         cfmPwdFieldBorder.frame = CGRectMake(0.0f, self.cfmPwdField.frame.size.height-1, self.cfmPwdField.frame.size.width, BORDER_WIDTH);
         cfmPwdFieldBorder.backgroundColor = BORDER_COLOR;
@@ -129,6 +139,7 @@
     submitButton.backgroundColor = RGBA_COLOR(244, 106, 81, 1);
     submitButton.layer.cornerRadius = 15;
     submitButton.layer.masksToBounds = YES;
+    submitButton.titleLabel.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     [submitButton setTitle:@"提交" forState:UIControlStateNormal];
     [submitButton addTarget:self action:@selector(clickSubmitButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:submitButton];

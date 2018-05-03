@@ -35,7 +35,7 @@
     
     UILabel *phoneLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, marginTop+100, self.view.frame.size.width-40, 30)];
     phoneLabel.text = @"請輸入驗證碼";
-    phoneLabel.font = [UIFont systemFontOfSize:18.0f];
+    phoneLabel.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     phoneLabel.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:phoneLabel];
     
@@ -46,6 +46,7 @@
     self.codeField.backgroundColor = [UIColor whiteColor];
     self.codeField.keyboardType = UIKeyboardTypePhonePad;
     self.codeField.placeholder = @"請輸入驗證碼";
+    self.codeField.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     CALayer *phoneFieldBorder = [CALayer layer];
     phoneFieldBorder.frame = CGRectMake(0.0f, self.codeField.frame.size.height-1, self.codeField.frame.size.width, BORDER_WIDTH);
     phoneFieldBorder.backgroundColor = BORDER_COLOR;
@@ -60,6 +61,7 @@
     submitButton.backgroundColor = RGBA_COLOR(244, 106, 81, 1);
     submitButton.layer.cornerRadius = 15;
     submitButton.layer.masksToBounds = YES;
+    submitButton.titleLabel.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     [submitButton setTitle:@"下一步" forState:UIControlStateNormal];
     [submitButton addTarget:self action:@selector(clickNextButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:submitButton];
@@ -87,7 +89,7 @@
     }
     
     PasswordController *passwordController = [[PasswordController alloc] init];
-    passwordController.phoneField.text = self.phoneNumber;
+    passwordController.phoneNumber = self.phoneNumber;
     [self.navigationController pushViewController:passwordController animated:YES];
 }
 
