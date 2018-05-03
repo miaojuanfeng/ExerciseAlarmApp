@@ -39,22 +39,24 @@
     
     self.appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
-    self.timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height/2-60, self.view.frame.size.width, 60)];
+    self.timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height/2-70, self.view.frame.size.width, 70)];
     self.timeLabel.text = @"00:00.00";
     self.timeLabel.textAlignment = NSTextAlignmentCenter;
-    self.timeLabel.font = DEFAULT_FONT(56.0f);
+    self.timeLabel.font = DEFAULT_FONT(66.0f);
     [self.view addSubview:self.timeLabel];
     
     UIView *buttonGroup = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-49, self.view.frame.size.width, 49)];
     
     self.startButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, buttonGroup.frame.size.height)];
     self.startButton.backgroundColor = RGBA_COLOR(244 ,106, 81, 1);
+    self.startButton.titleLabel.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     [self.startButton setTitle:@"開始鍛煉" forState:UIControlStateNormal];
     [self.startButton addTarget:self action:@selector(clickStartButton) forControlEvents:UIControlEventTouchUpInside];
     [buttonGroup addSubview:self.startButton];
     
     self.pauseButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, buttonGroup.frame.size.width/2, buttonGroup.frame.size.height)];
     self.pauseButton.backgroundColor = RGBA_COLOR(243, 160, 144, 1);
+    self.pauseButton.titleLabel.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     [self.pauseButton setTitle:@"暫停鍛煉" forState:UIControlStateNormal];
     [self.pauseButton addTarget:self action:@selector(clickPauseButton) forControlEvents:UIControlEventTouchUpInside];
     [buttonGroup addSubview:self.pauseButton];
@@ -62,6 +64,7 @@
 
     self.stopButton = [[UIButton alloc] initWithFrame:CGRectMake(buttonGroup.frame.size.width/2, 0, buttonGroup.frame.size.width/2, buttonGroup.frame.size.height)];
     self.stopButton.backgroundColor = RGBA_COLOR(244, 106, 81, 1);
+    self.stopButton.titleLabel.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     [self.stopButton setTitle:@"完成鍛煉并提交" forState:UIControlStateNormal];
     [self.stopButton addTarget:self action:@selector(clickStopButton) forControlEvents:UIControlEventTouchUpInside];
     [buttonGroup addSubview:self.stopButton];

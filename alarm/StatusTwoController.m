@@ -138,7 +138,7 @@
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     manager.requestSerializer.timeoutInterval = 30.0f;
     NSDictionary *parameters=@{@"user_id":[self.appDelegate.user objectForKey:@"user_id"]};
-    HUD_WAITING_SHOW(@"Loading");
+    HUD_WAITING_SHOW(MSG_LOADING);
     [manager POST:BASE_URL(@"user/user_star") parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -171,7 +171,7 @@
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     manager.requestSerializer.timeoutInterval = 30.0f;
     NSDictionary *parameters=@{@"user_id":[self.appDelegate.user objectForKey:@"user_id"], @"star_num":[NSString stringWithFormat:@"%ld", self.appDelegate.weekStarCount]};
-    HUD_WAITING_SHOW(@"Loading");
+    HUD_WAITING_SHOW(MSG_LOADING);
     [manager POST:BASE_URL(@"user/upload_star") parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -202,7 +202,7 @@
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     manager.requestSerializer.timeoutInterval = 30.0f;
     NSDictionary *parameters=@{@"star_id":star_id, @"user_id":[self.appDelegate.user objectForKey:@"user_id"]};
-    HUD_WAITING_SHOW(@"Loading");
+    HUD_WAITING_SHOW(MSG_LOADING);
     [manager POST:BASE_URL(@"user/user_like") parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {

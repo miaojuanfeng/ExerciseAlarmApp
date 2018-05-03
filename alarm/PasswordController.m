@@ -198,7 +198,7 @@
                                @"user_password":self.passwordField.text,
                                @"user_platform":@"ios"
                                };
-    HUD_WAITING_SHOW(@"Loading");
+    HUD_WAITING_SHOW(MSG_LOADING);
     [manager POST:BASE_URL(@"user/signup") parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {

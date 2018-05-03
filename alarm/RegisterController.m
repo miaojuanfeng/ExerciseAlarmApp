@@ -144,7 +144,7 @@
         manager.responseSerializer = [AFHTTPResponseSerializer serializer];
         manager.requestSerializer.timeoutInterval = 30.0f;
         NSDictionary *parameters=@{@"user_username":[NSString stringWithFormat:@"%@%@", self.codeField, self.phoneField.text], @"user_platform":@"ios"};
-        HUD_WAITING_SHOW(@"Loading");
+        HUD_WAITING_SHOW(MSG_LOADING);
         [manager POST:BASE_URL(@"user/verify") parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
             
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {

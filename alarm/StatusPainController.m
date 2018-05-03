@@ -38,20 +38,19 @@
 //    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"提交" style:UIBarButtonItemStylePlain target:self action:@selector(clickSubmitButton)];
 //    self.navigationItem.rightBarButtonItem = rightButton;
     
-    UIView *boxView = [[UIView alloc] initWithFrame:CGRectMake(20, marginTop+20, self.view.frame.size.width-40, 280)];
+    UIView *boxView = [[UIView alloc] initWithFrame:CGRectMake(20, marginTop+20, self.view.frame.size.width-40, 290)];
     boxView.backgroundColor = [UIColor whiteColor];
     
     UILabel *textLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 20, boxView.frame.size.width-40, 140)];
     textLabel.backgroundColor = [UIColor clearColor];
     textLabel.numberOfLines = 0;
-    textLabel.font =  [UIFont fontWithName:@"AppleGothic" size:18.0];
     textLabel.lineBreakMode = NSLineBreakByWordWrapping;
     
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     paragraphStyle.lineSpacing = 10;// 字体的行间距
     
     NSDictionary *attributes = @{
-                                 NSFontAttributeName:[UIFont systemFontOfSize:18],
+                                 NSFontAttributeName:DEFAULT_FONT(DEFAULT_FONT_SIZE),
                                  NSParagraphStyleAttributeName:paragraphStyle
                                  };
     textLabel.attributedText = [[NSAttributedString alloc] initWithString:@"請在以下空格輸入一個0-10的數字，表示您的痛感程度：0代表完全無痛，10代表極度劇痛，由0至10痛感依次遞增。" attributes:attributes];
@@ -59,17 +58,17 @@
     
     [boxView addSubview:textLabel];
     
-    UIButton *showPainButton = [[UIButton alloc] initWithFrame:CGRectMake(20, textLabel.frame.origin.y+textLabel.frame.size.height+10, 140, 24)];
+    UIButton *showPainButton = [[UIButton alloc] initWithFrame:CGRectMake(20, textLabel.frame.origin.y+textLabel.frame.size.height+10, 180, 34)];
     [showPainButton setTitle:@"查看詳細痛感說明" forState:UIControlStateNormal];
-    showPainButton.titleLabel.font = [UIFont fontWithName:@"AppleGothic" size:16.0];
+    showPainButton.titleLabel.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     showPainButton.backgroundColor = RGBA_COLOR(253, 159, 81, 1);
     [showPainButton addTarget:self action:@selector(clickShowPainButton) forControlEvents:UIControlEventTouchUpInside];
     [boxView addSubview:showPainButton];
     
-    self.numberField = [[UITextField alloc] initWithFrame:CGRectMake(80, showPainButton.frame.origin.y+showPainButton.frame.size.height+20, self.view.frame.size.width-160, 34)];
+    self.numberField = [[UITextField alloc] initWithFrame:CGRectMake((boxView.frame.size.width-220)/2, showPainButton.frame.origin.y+showPainButton.frame.size.height+20, 220, 44)];
     self.numberField.placeholder = @"輸入一個0-10的整数";
+    self.numberField.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     self.numberField.borderStyle = UITextBorderStyleRoundedRect;
-    self.numberField.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.numberField.keyboardType = UIKeyboardTypeNumberPad;
     [boxView addSubview:self.numberField];
     
@@ -77,6 +76,7 @@
     
     UIButton *submitButton = [[UIButton alloc] initWithFrame:CGRectMake(250/2, boxView.frame.origin.y+boxView.frame.size.height+30, self.view.frame.size.width-250, 44)];
     submitButton.backgroundColor = RGBA_COLOR(49, 132, 225, 1);
+    submitButton.titleLabel.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     submitButton.layer.cornerRadius = 15;
     submitButton.layer.masksToBounds = YES;
     [submitButton setTitle:@"提交" forState:UIControlStateNormal];

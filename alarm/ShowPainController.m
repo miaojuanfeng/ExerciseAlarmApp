@@ -9,10 +9,12 @@
 #import <Foundation/Foundation.h>
 
 #import "MacroDefine.h"
+#import "AppDelegate.h"
 #import "ShowPainController.h"
 
 @interface ShowPainController ()
 @property UITableView *tableView;
+@property AppDelegate *appDelegate;
 @end
 
 @implementation ShowPainController
@@ -25,6 +27,8 @@
     
     CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
     float marginTop = rectStatus.size.height + self.navigationController.navigationBar.frame.size.height;
+    
+    self.appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
     UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithTitle:@"關閉" style:UIBarButtonItemStylePlain target:self action:@selector(clickCloseButton)];
     self.navigationItem.leftBarButtonItem = leftButton;
@@ -67,26 +71,32 @@
     
     UILabel *painLabel6 = [[UILabel alloc] initWithFrame:CGRectMake(painNumber.frame.origin.x+painNumber.frame.size.width, 0, imageWidth*3, imageHeight)];
     painLabel6.text = @"極度劇痛";
+    painLabel6.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     [painView addSubview:painLabel6];
     
     UILabel *painLabel5 = [[UILabel alloc] initWithFrame:CGRectMake(painNumber.frame.origin.x+painNumber.frame.size.width, painImage6.frame.origin.y+painImage6.frame.size.height+imageGap, imageWidth*3, imageHeight)];
     painLabel5.text = @"劇烈疼痛";
+    painLabel5.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     [painView addSubview:painLabel5];
     
     UILabel *painLabel4 = [[UILabel alloc] initWithFrame:CGRectMake(painNumber.frame.origin.x+painNumber.frame.size.width, painImage5.frame.origin.y+painImage5.frame.size.height+imageGap, imageWidth*3, imageHeight)];
     painLabel4.text = @"重度疼痛";
+    painLabel4.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     [painView addSubview:painLabel4];
     
     UILabel *painLabel3 = [[UILabel alloc] initWithFrame:CGRectMake(painNumber.frame.origin.x+painNumber.frame.size.width, painImage4.frame.origin.y+painImage4.frame.size.height+imageGap, imageWidth*3, imageHeight)];
     painLabel3.text = @"中度疼痛";
+    painLabel3.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     [painView addSubview:painLabel3];
     
     UILabel *painLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(painNumber.frame.origin.x+painNumber.frame.size.width, painImage3.frame.origin.y+painImage3.frame.size.height+imageGap, imageWidth*3, imageHeight)];
     painLabel2.text = @"輕微疼痛";
+    painLabel2.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     [painView addSubview:painLabel2];
     
     UILabel *painLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(painNumber.frame.origin.x+painNumber.frame.size.width, painImage2.frame.origin.y+painImage2.frame.size.height+imageGap, imageWidth*3, imageHeight)];
     painLabel1.text = @"完全無痛";
+    painLabel1.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     [painView addSubview:painLabel1];
     
     [self.view addSubview:painView];

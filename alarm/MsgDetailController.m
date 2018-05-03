@@ -51,7 +51,7 @@
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     manager.requestSerializer.timeoutInterval = 30.0f;
     NSDictionary *parameters=nil;
-    HUD_WAITING_SHOW(@"Loading");
+    HUD_WAITING_SHOW(MSG_LOADING);
     [manager POST:[NSString stringWithFormat:@"%@/%d", BASE_URL(@"discuss/select/detail"), self.discussId] parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {

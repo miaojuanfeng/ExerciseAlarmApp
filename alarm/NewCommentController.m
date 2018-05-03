@@ -95,7 +95,7 @@
                                @"comment_user_id":[self.appDelegate.user objectForKey:@"user_id"],
                                @"comment_content":self.contentView.text
                                };
-    HUD_WAITING_SHOW(@"Loading");
+    HUD_WAITING_SHOW(MSG_LOADING);
     [manager POST:BASE_URL(@"comment/insert") parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
