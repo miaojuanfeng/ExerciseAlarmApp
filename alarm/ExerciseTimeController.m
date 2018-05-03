@@ -11,8 +11,9 @@
 #import "MacroDefine.h"
 #import "AppDelegate.h"
 #import "ExerciseTimeController.h"
+#import "UIViewController+BackButtonHandler.h"
 
-@interface ExerciseTimeController ()
+@interface ExerciseTimeController () <BackButtonHandlerProtocol>
 @property AppDelegate *appDelegate;
 
 @property NSTimer *timer;
@@ -127,6 +128,7 @@
 
 - (void)clickStartButton {
     self.isOn = true;
+    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
     self.timer = [NSTimer scheduledTimerWithTimeInterval:0.01 repeats:YES block:^(NSTimer * _Nonnull timer) {
         self.scd++;
 //        NSLog(@"%d", self.scd);
@@ -195,6 +197,27 @@
     }];
     [alert addAction:defaultAction];
     [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (BOOL)navigationShouldPopOnBackButton{
+    if( self.isOn || self.scd > 0 ){
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"正在進行鍛煉計時" message:@"確認離開嗎？" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"確認" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+            self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+            [self.navigationController popViewControllerAnimated:YES];
+        }];
+        UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+            
+        }];
+        [alert addAction:defaultAction];
+        [alert addAction:cancelAction];
+        [self presentViewController:alert animated:YES completion:nil];
+    }else{
+        self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    
+    return NO;
 }
 
 - (void)viewDidDisappear:(BOOL)animated {

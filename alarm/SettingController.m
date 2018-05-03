@@ -6,6 +6,7 @@
 //  Copyright © 2018年 Dreamover Studio. All rights reserved.
 //
 
+#import "MacroDefine.h"
 #import "SettingController.h"
 #import "PwdController.h"
 #import "HelpController.h"
@@ -39,6 +40,7 @@
     
     UIButton *logoutButton = [[UIButton alloc] initWithFrame:CGRectMake(10, self.view.frame.size.height-200, self.view.frame.size.width-20, 44)];
     logoutButton.backgroundColor = [UIColor blueColor];
+    logoutButton.titleLabel.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     [logoutButton setTitle:@"登出這個賬戶" forState:UIControlStateNormal];
     [logoutButton addTarget:self action:@selector(clickLogoutButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:logoutButton];
@@ -79,7 +81,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [[UITableViewCell alloc] init];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.textLabel.font = [UIFont systemFontOfSize:18.0];
+    cell.textLabel.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     if( indexPath.section == 0 ){
         switch( indexPath.row ){
             case 0:

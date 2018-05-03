@@ -45,6 +45,7 @@
 		99EDCC5B205E7DA90063DA06 /* ForgetPwdController.m in Sources */ = {isa = PBXBuildFile; fileRef = 99EDCC5A205E7DA90063DA06 /* ForgetPwdController.m */; };
 		AA0B09616A843BFF7F371CB0 /* libPods-alarmUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66D176312CBDFB3308B59DD6 /* libPods-alarmUITests.a */; };
 		CE01F3FD202359A100040FC4 /* MyCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE01F3FC202359A100040FC4 /* MyCollectionViewCell.m */; };
+		CE0AF518209ABF40007A55D8 /* UIViewController+BackButtonHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CE0AF516209ABF40007A55D8 /* UIViewController+BackButtonHandler.m */; };
 		CE1A4979201A01DD005CB860 /* HYBAnimationClock.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1A4977201A01DC005CB860 /* HYBAnimationClock.m */; };
 		CE1A497C201A0219005CB860 /* HYBClockView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1A497B201A0219005CB860 /* HYBClockView.m */; };
 		CE1DBC33206A524100632D86 /* SelectVideoController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE1DBC32206A524100632D86 /* SelectVideoController.m */; };
@@ -179,6 +180,8 @@
 		CA5FDCF42E9364E1951359C9 /* Pods-alarmUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-alarmUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-alarmUITests/Pods-alarmUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		CE01F3FB2023598500040FC4 /* MyCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyCollectionViewCell.h; sourceTree = "<group>"; };
 		CE01F3FC202359A100040FC4 /* MyCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyCollectionViewCell.m; sourceTree = "<group>"; };
+		CE0AF516209ABF40007A55D8 /* UIViewController+BackButtonHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+BackButtonHandler.m"; sourceTree = "<group>"; };
+		CE0AF517209ABF40007A55D8 /* UIViewController+BackButtonHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+BackButtonHandler.h"; sourceTree = "<group>"; };
 		CE1A4977201A01DC005CB860 /* HYBAnimationClock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HYBAnimationClock.m; sourceTree = "<group>"; };
 		CE1A4978201A01DD005CB860 /* HYBAnimationClock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYBAnimationClock.h; sourceTree = "<group>"; };
 		CE1A497A201A0219005CB860 /* HYBClockView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HYBClockView.h; sourceTree = "<group>"; };
@@ -283,6 +286,7 @@
 		9907369A2016344C002EFEC5 = {
 			isa = PBXGroup;
 			children = (
+				CE0AF515209ABF32007A55D8 /* UIViewController+BackButtonHandler */,
 				CE35786A207F148C009049E2 /* TBCityIcon */,
 				CE50102B205A598700467D5A /* Assets.xcassets */,
 				CE357867207F129C009049E2 /* YASimpleGraphView */,
@@ -552,6 +556,15 @@
 				66D176312CBDFB3308B59DD6 /* libPods-alarmUITests.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CE0AF515209ABF32007A55D8 /* UIViewController+BackButtonHandler */ = {
+			isa = PBXGroup;
+			children = (
+				CE0AF517209ABF40007A55D8 /* UIViewController+BackButtonHandler.h */,
+				CE0AF516209ABF40007A55D8 /* UIViewController+BackButtonHandler.m */,
+			);
+			path = "UIViewController+BackButtonHandler";
 			sourceTree = "<group>";
 		};
 		CE357867207F129C009049E2 /* YASimpleGraphView */ = {
@@ -929,6 +942,7 @@
 				990C85352042EECE00D36C9E /* YXDayCell.m in Sources */,
 				990C85142042B20C00D36C9E /* StatusTwoController.m in Sources */,
 				990C850A2042AFE400D36C9E /* StatusOneController.m in Sources */,
+				CE0AF518209ABF40007A55D8 /* UIViewController+BackButtonHandler.m in Sources */,
 				CEA7ECCC2045161C006A9D7F /* ShowPhotoController.m in Sources */,
 				990736AB2016344C002EFEC5 /* AppDelegate.m in Sources */,
 				CEB2526F2080C26900F334A8 /* RegisterController.m in Sources */,

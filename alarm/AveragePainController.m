@@ -40,14 +40,13 @@
     self.textLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, self.painImage.frame.origin.y+self.painImage.frame.size.height+20, self.view.frame.size.width-40, 80)];
     self.textLabel.backgroundColor = [UIColor clearColor];
     self.textLabel.numberOfLines = 0;
-//    self.textLabel.font =  [UIFont fontWithName:@"AppleGothic" size:20.0];
     self.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
     self.textLabel.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:self.textLabel];
     
     UIButton *showPainButton = [[UIButton alloc] initWithFrame:CGRectMake((self.view.frame.size.width-180)/2, self.textLabel.frame.origin.y+self.textLabel.frame.size.height+20, 180, 34)];
     [showPainButton setTitle:@"查看詳細痛感說明" forState:UIControlStateNormal];
-    showPainButton.titleLabel.font = [UIFont fontWithName:@"AppleGothic" size:18.0];
+    showPainButton.titleLabel.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     showPainButton.backgroundColor = RGBA_COLOR(253, 159, 81, 1);
     [showPainButton addTarget:self action:@selector(clickShowPainButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:showPainButton];
@@ -82,7 +81,7 @@
     paragraphStyle.lineSpacing = 10;// 字体的行间距
     
     NSDictionary *attributes = @{
-                                 NSFontAttributeName:[UIFont fontWithName:@"AppleGothic" size:20.0],
+                                 NSFontAttributeName:DEFAULT_FONT(DEFAULT_FONT_SIZE),
                                  NSParagraphStyleAttributeName:paragraphStyle
                                  };
     self.textLabel.attributedText = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"您的平均疼痛等級為 %d 級，屬於 %@", average, [self.appDelegate.painList objectAtIndex:average]] attributes:attributes];

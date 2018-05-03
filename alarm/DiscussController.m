@@ -87,7 +87,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [[UITableViewCell alloc] init];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.textLabel.font = [UIFont systemFontOfSize:18.0];
+    cell.textLabel.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     UILabel *unreadView = nil;
     switch (indexPath.row) {
         case 0:

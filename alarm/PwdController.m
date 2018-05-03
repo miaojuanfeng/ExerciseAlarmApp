@@ -12,7 +12,7 @@
 #import "PwdController.h"
 #import <AFNetworking/AFNetworking.h>
 
-@interface PwdController ()
+@interface PwdController () <UIGestureRecognizerDelegate>
 @property AppDelegate *appDelegate;
 
 @property UITextField *oldPwdField;
@@ -34,40 +34,44 @@
     float marginTop = rectStatus.size.height + self.navigationController.navigationBar.frame.size.height;
     
     UILabel *oldPwdLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, marginTop, self.view.frame.size.width-10, 64)];
-    oldPwdLabel.font = [UIFont systemFontOfSize:18.0];
+    oldPwdLabel.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     oldPwdLabel.text = @"輸入原密碼：";
     [self.view addSubview:oldPwdLabel];
     
-    self.oldPwdField = [[UITextField alloc] initWithFrame:CGRectMake(10, marginTop+46, self.view.frame.size.width-20, 34)];
+    self.oldPwdField = [[UITextField alloc] initWithFrame:CGRectMake(10, marginTop+46, self.view.frame.size.width-20, 44)];
     self.oldPwdField.borderStyle = UITextBorderStyleRoundedRect;
     self.oldPwdField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    self.oldPwdField.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     [self.oldPwdField setSecureTextEntry:YES];
     [self.view addSubview:self.oldPwdField];
     
     UILabel *newPwdLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, marginTop+76, self.view.frame.size.width-10, 64)];
-    newPwdLabel.font = [UIFont systemFontOfSize:18.0];
+    newPwdLabel.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     newPwdLabel.text = @"輸入新密碼：";
     [self.view addSubview:newPwdLabel];
     
-    self.pwdField = [[UITextField alloc] initWithFrame:CGRectMake(10, marginTop+124, self.view.frame.size.width-20, 34)];
+    self.pwdField = [[UITextField alloc] initWithFrame:CGRectMake(10, marginTop+124, self.view.frame.size.width-20, 44)];
     self.pwdField.borderStyle = UITextBorderStyleRoundedRect;
     self.pwdField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    self.pwdField.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     [self.pwdField setSecureTextEntry:YES];
     [self.view addSubview:self.pwdField];
     
     UILabel *cnfPwdLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, marginTop+156, self.view.frame.size.width-10, 64)];
-    cnfPwdLabel.font = [UIFont systemFontOfSize:18.0];
+    cnfPwdLabel.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     cnfPwdLabel.text = @"確認新密碼：";
     [self.view addSubview:cnfPwdLabel];
     
-    self.cmfPwdField = [[UITextField alloc] initWithFrame:CGRectMake(10, marginTop+204, self.view.frame.size.width-20, 34)];
+    self.cmfPwdField = [[UITextField alloc] initWithFrame:CGRectMake(10, marginTop+204, self.view.frame.size.width-20, 44)];
     self.cmfPwdField.borderStyle = UITextBorderStyleRoundedRect;
     self.cmfPwdField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    self.cmfPwdField.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     [self.cmfPwdField setSecureTextEntry:YES];
     [self.view addSubview:self.cmfPwdField];
     
     UIButton *submitButton = [[UIButton alloc] initWithFrame:CGRectMake(10, marginTop+286, self.view.frame.size.width-20, 44)];
     submitButton.backgroundColor = [UIColor blueColor];
+    submitButton.titleLabel.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     [submitButton setTitle:@"提交" forState:UIControlStateNormal];
     [submitButton addTarget:self action:@selector(clickSaveButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:submitButton];

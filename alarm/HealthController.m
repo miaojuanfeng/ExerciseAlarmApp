@@ -9,11 +9,13 @@
 #import <Foundation/Foundation.h>
 
 #import "MacroDefine.h"
+#import "AppDelegate.h"
 #import "HealthController.h"
 #import "HealthDetailController.h"
 
 @interface HealthController () <UITableViewDelegate, UITableViewDataSource>
 @property UITableView *tableView;
+@property AppDelegate *appDelegate;
 @end
 
 @implementation HealthController
@@ -26,6 +28,8 @@
     
     CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
     float marginTop = rectStatus.size.height + self.navigationController.navigationBar.frame.size.height;
+    
+    self.appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, marginTop, self.view.frame.size.width, self.view.frame.size.height-marginTop-self.tabBarController.tabBar.frame.size.height)];
     self.tableView.dataSource = self;
@@ -55,7 +59,7 @@
 //    titleView.backgroundColor = [UIColor redColor];
     
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, titleView.frame.size.width, 20)];
-    titleLabel.font = [UIFont systemFontOfSize:18.0];
+    titleLabel.font = [UIFont fontWithName:@"AppleGothic" size:18.0];
     [titleView addSubview:titleLabel];
     
     UILabel *descLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, titleView.frame.size.height-15, titleView.frame.size.width, 15)];

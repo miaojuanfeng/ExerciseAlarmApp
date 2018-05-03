@@ -39,6 +39,7 @@
     self.titleField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, contentView.frame.size.width, 44)];
     [self setTextFieldLeftPadding:self.titleField forWidth:5];
     self.titleField.backgroundColor = [UIColor whiteColor];
+    self.titleField.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     self.titleField.placeholder = @"輸入標題";
     [contentView addSubview:self.titleField];
     //
@@ -48,7 +49,7 @@
     //
     self.contentView = [[UITextView alloc] initWithFrame:CGRectMake(0, line.frame.origin.y+line.frame.size.height, contentView.frame.size.width, 200)];
     self.contentView.text = @"輸入內容";
-    self.contentView.font = [UIFont systemFontOfSize:17.0f];
+    self.contentView.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     self.contentView.textColor = RGBA_COLOR(199, 199, 205, 1);
     self.contentView.delegate = self;
     [contentView addSubview:self.contentView];
@@ -57,6 +58,7 @@
     submitButton.backgroundColor = RGBA_COLOR(49, 132, 225, 1);
     submitButton.layer.cornerRadius = 15;
     submitButton.layer.masksToBounds = YES;
+    submitButton.titleLabel.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     [submitButton setTitle:@"提交" forState:UIControlStateNormal];
     [submitButton addTarget:self action:@selector(clickSubmitButton) forControlEvents:UIControlEventTouchUpInside];
     [contentView addSubview:submitButton];
