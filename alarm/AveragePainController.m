@@ -66,11 +66,15 @@
 }
 
 - (void)showPain {
-    int total = 0;
-    long count = self.appDelegate.userPain.count;
+    long total = 0;
+    int count = 0;
     for (NSString *date in self.appDelegate.userPain) {
-        int pain = [[self.appDelegate.userPain objectForKey:date] intValue];
-        total += pain;
+        NSMutableArray *temp = [self.appDelegate.userPain objectForKey:date];
+        count += temp.count;
+        for (NSMutableDictionary *t in temp) {
+            int pain = [[t objectForKey:@"pain"] intValue];
+            total += pain;
+        }
     }
     int average = 0;
     if( count > 0 ){

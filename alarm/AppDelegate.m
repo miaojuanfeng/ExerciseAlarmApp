@@ -345,8 +345,19 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     NSString *date = [dateFormatter stringFromDate:time];
+    [dateFormatter setDateFormat:@"HH:mm"];
+    NSString *hhmm = [dateFormatter stringFromDate:time];
     
-    [self.userPain setObject:[NSString stringWithFormat:@"%d", pain] forKey:date];
+    NSMutableArray *temp = [self.userPain objectForKey:date];
+    NSMutableDictionary *t = [[NSMutableDictionary alloc] init];
+    if( temp == nil ){
+        temp = [[NSMutableArray alloc] init];
+    }
+    [t setObject:hhmm forKey:@"time"];
+    [t setObject:[NSString stringWithFormat:@"%d", pain] forKey:@"pain"];
+    [temp addObject:t];
+    
+    [self.userPain setObject:temp forKey:date];
     
     [self.userPain writeToFile:plistPath atomically:YES];
 }

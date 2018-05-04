@@ -6,6 +6,8 @@
 //  Copyright © 2018 Dreamover Studio. All rights reserved.
 //
 
+#import "MacroDefine.h"
+#import "AppDelegate.h"
 #import <Foundation/Foundation.h>
 #import <MediaPlayer/MediaPlayer.h>
 #import "VideoDetailController.h"
@@ -13,6 +15,8 @@
 
 @interface VideoDetailController ()
 @property MPMoviePlayerViewController *playerVC;
+
+@property AppDelegate *appDelegate;
 @end
 
 @implementation VideoDetailController
@@ -26,9 +30,11 @@
     CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
     float marginTop = rectStatus.size.height + self.navigationController.navigationBar.frame.size.height;
     
+    self.appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
     UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(20, marginTop+10, self.view.frame.size.width-40, 50)];
     title.text = @"動作說明";
-    title.font = [UIFont fontWithName:@"AppleGothic" size:16.0];
+    title.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     [self.view addSubview:title];
     
     UIImage *image1 = [UIImage imageNamed:@"action1.png"];
@@ -46,6 +52,7 @@
     UIButton *showVideoButton = [[UIButton alloc] initWithFrame:CGRectMake((self.view.frame.size.width-100)/2, marginTop+10+76+imageHeight, 100, 44)];
     [showVideoButton setTitle:@"影片示範" forState:UIControlStateNormal];
     showVideoButton.titleLabel.font = [UIFont fontWithName:@"AppleGothic" size:16.0];
+    showVideoButton.titleLabel.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     [showVideoButton addTarget:self action:@selector(clickShowVideo) forControlEvents:UIControlEventTouchUpInside];
     [showVideoButton setBackgroundColor:[UIColor blueColor]];
     [self.view addSubview:showVideoButton];

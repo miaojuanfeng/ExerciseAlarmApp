@@ -352,8 +352,15 @@
     int i = 0;
     for (NSString *date in self.appDelegate.userPain) {
         if( i == 0 ){
-            lastPain = [[self.appDelegate.userPain objectForKey:date] intValue];
-            break;
+            int j = 0;
+            NSMutableArray *temp = [self.appDelegate.userPain objectForKey:date];
+            for (NSMutableDictionary *t in temp) {
+                if( j == temp.count-1 ){
+                    lastPain = [[t objectForKey:@"pain"] intValue];
+                    break;
+                }
+                j++;
+            }
         }
         i++;
     }

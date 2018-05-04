@@ -69,11 +69,18 @@
     int last2Pain = 0;
     int i = 0;
     for (NSString *date in self.appDelegate.userPain) {
-        if( i == 1 ){
-            last2Pain = [[self.appDelegate.userPain objectForKey:date] intValue];
-        }
+        NSMutableArray *temp = [self.appDelegate.userPain objectForKey:date];
         if( i == 0 ){
-            lastPain = [[self.appDelegate.userPain objectForKey:date] intValue];
+            int j = 0;
+            for (NSMutableDictionary *t in temp) {
+                int pain = [[t objectForKey:@"pain"] intValue];
+                if( j == temp.count-1 ){
+                    lastPain = pain;
+                }else{
+                    last2Pain = pain;
+                }
+                j++;
+            }
         }
         i++;
     }

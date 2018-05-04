@@ -109,22 +109,22 @@
     
     UIView *graphButtonView = [[UIView alloc] initWithFrame:CGRectMake(0, currentPainView.frame.origin.y+currentPainView.frame.size.height, self.view.frame.size.width, 50)];
     
-//    self.graphTodayButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, graphButtonView.frame.size.width/3, graphButtonView.frame.size.height-2)];
-//    //    averageMoreButton.backgroundColor = [UIColor redColor];
-//    [self.graphTodayButton setTitle:@"當日" forState:UIControlStateNormal];
-////    graphTodayButton.backgroundColor = [UIColor redColor];
-//    [self.graphTodayButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//    self.graphTodayButton = 1;
-//    [self.graphTodayButton addTarget:self action:@selector(clickGraphButton:) forControlEvents:UIControlEventTouchUpInside];
-//    self.graphTodayButton.titleLabel.font = [UIFont fontWithName:@"AppleGothic" size:18.0];
-//
-//    [self updateLayer:self.graphTodayButton withColor:[UIColor blackColor]];
-//
-//    [graphButtonView addSubview:self.graphTodayButton];
+    self.graphTodayButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, graphButtonView.frame.size.width/3, graphButtonView.frame.size.height-2)];
+    //    averageMoreButton.backgroundColor = [UIColor redColor];
+    [self.graphTodayButton setTitle:@"當日" forState:UIControlStateNormal];
+//    graphTodayButton.backgroundColor = [UIColor redColor];
+    [self.graphTodayButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    self.graphTodayButton.tag = 1;
+    [self.graphTodayButton addTarget:self action:@selector(clickGraphButton:) forControlEvents:UIControlEventTouchUpInside];
+    self.graphTodayButton.titleLabel.font = [UIFont fontWithName:@"AppleGothic" size:18.0];
+
+    [self updateLayer:self.graphTodayButton withColor:[UIColor blackColor]];
+
+    [graphButtonView addSubview:self.graphTodayButton];
     
     ////////
     
-    self.graphSevenButton = [[UIButton alloc] initWithFrame:CGRectMake(self.graphTodayButton.frame.origin.x+self.graphTodayButton.frame.size.width, 0, graphButtonView.frame.size.width/2, graphButtonView.frame.size.height-2)];
+    self.graphSevenButton = [[UIButton alloc] initWithFrame:CGRectMake(self.graphTodayButton.frame.origin.x+self.graphTodayButton.frame.size.width, 0, graphButtonView.frame.size.width/3, graphButtonView.frame.size.height-2)];
     //    averageMoreButton.backgroundColor = [UIColor redColor];
     [self.graphSevenButton setTitle:@"7日" forState:UIControlStateNormal];
     //    graphTodayButton.backgroundColor = [UIColor redColor];
@@ -133,13 +133,13 @@
     [self.graphSevenButton addTarget:self action:@selector(clickGraphButton:) forControlEvents:UIControlEventTouchUpInside];
     self.graphSevenButton.titleLabel.font = [UIFont fontWithName:@"AppleGothic" size:18.0];
     
-    [self updateLayer:self.graphSevenButton withColor:[UIColor blackColor]];
+    [self updateLayer:self.graphSevenButton withColor:[UIColor whiteColor]];
     
     [graphButtonView addSubview:self.graphSevenButton];
     
     ////////
     
-    self.graphMonthButton = [[UIButton alloc] initWithFrame:CGRectMake(self.graphSevenButton.frame.origin.x+self.graphSevenButton.frame.size.width, 0, graphButtonView.frame.size.width/2, graphButtonView.frame.size.height-2)];
+    self.graphMonthButton = [[UIButton alloc] initWithFrame:CGRectMake(self.graphSevenButton.frame.origin.x+self.graphSevenButton.frame.size.width, 0, graphButtonView.frame.size.width/3, graphButtonView.frame.size.height-2)];
     //    averageMoreButton.backgroundColor = [UIColor redColor];
     [self.graphMonthButton setTitle:@"一個月" forState:UIControlStateNormal];
     //    graphTodayButton.backgroundColor = [UIColor redColor];
@@ -162,16 +162,20 @@
 //    graphContainer.backgroundColor = [UIColor redColor];
     
     //初始化数据源
+    NSDate *time = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *date = [dateFormatter stringFromDate:time];
+    
     NSMutableArray *velueArray = [[NSMutableArray alloc] init];
     NSMutableArray *dateArray = [[NSMutableArray alloc] init];
-    int c = 0;
-    for (NSString *date in self.appDelegate.userPain) {
-        [dateArray insertObject:[date substringFromIndex:5] atIndex:0];
-        [velueArray insertObject:[self.appDelegate.userPain objectForKey:date] atIndex:0];
-        if( c >= 7 ){
-            break;
+    
+    NSMutableArray *temp = [self.appDelegate.userPain objectForKey:date];
+    if( temp != nil ){
+        for (NSMutableDictionary *t in temp) {
+            [dateArray addObject:[t objectForKey:@"time"]];
+            [velueArray addObject:[t objectForKey:@"pain"]];
         }
-        c++;
     }
     self.allValues = [velueArray copy];
     self.allDates = [dateArray copy];
@@ -246,10 +250,31 @@
     NSMutableArray *velueArray = [[NSMutableArray alloc] init];
     NSMutableArray *dateArray = [[NSMutableArray alloc] init];
     int c = 0;
-    if( btn.tag == 2 ){
+    if( btn.tag == 1 ){
+        NSDate *time = [NSDate dateWithTimeIntervalSinceNow:0];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        NSString *date = [dateFormatter stringFromDate:time];
+        
+        NSMutableArray *temp = [self.appDelegate.userPain objectForKey:date];
+        if( temp != nil ){
+            for (NSMutableDictionary *t in temp) {
+                [dateArray addObject:[t objectForKey:@"time"]];
+                [velueArray addObject:[t objectForKey:@"pain"]];
+            }
+        }
+    }else if( btn.tag == 2 ){
         for (NSString *date in self.appDelegate.userPain) {
+            NSMutableArray *temp = [self.appDelegate.userPain objectForKey:date];
+            int j = 0;
+            int total = 0;
+            for(NSMutableDictionary *t in temp){
+                total += [[t objectForKey:@"pain"] intValue];
+                j++;
+            }
+            
             [dateArray insertObject:[date substringFromIndex:5] atIndex:0];
-            [velueArray insertObject:[self.appDelegate.userPain objectForKey:date] atIndex:0];
+            [velueArray insertObject:[NSString stringWithFormat:@"%d", total/j] atIndex:0];
             if( c >= 7 ){
                 break;
             }
@@ -257,8 +282,16 @@
         }
     }else if( btn.tag == 3 ){
         for (NSString *date in self.appDelegate.userPain) {
+            NSMutableArray *temp = [self.appDelegate.userPain objectForKey:date];
+            int j = 0;
+            int total = 0;
+            for(NSMutableDictionary *t in temp){
+                total += [[t objectForKey:@"pain"] intValue];
+                j++;
+            }
+            
             [dateArray insertObject:[date substringFromIndex:5] atIndex:0];
-            [velueArray insertObject:[self.appDelegate.userPain objectForKey:date] atIndex:0];
+            [velueArray insertObject:[NSString stringWithFormat:@"%d", total/j] atIndex:0];
             if( c >= 30 ){
                 break;
             }
@@ -308,19 +341,33 @@
     int lastPain = 0;
     int last2Pain = 0;
     int i = 0;
+    int count = 0;
     for (NSString *date in self.appDelegate.userPain) {
-        if( i == 1 ){
-            last2Pain = [[self.appDelegate.userPain objectForKey:date] intValue];
-        }
+        NSMutableArray *temp = [self.appDelegate.userPain objectForKey:date];
+        count += temp.count;
         if( i == 0 ){
-            lastPain = [[self.appDelegate.userPain objectForKey:date] intValue];
+            int j = 0;
+            for (NSMutableDictionary *t in temp) {
+                int pain = [[t objectForKey:@"pain"] intValue];
+                if( j == temp.count-1 ){
+                    lastPain = pain;
+                }else{
+                    last2Pain = pain;
+                }
+                j++;
+                total += pain;
+            }
+        }else{
+           for (NSMutableDictionary *t in temp) {
+               int pain = [[t objectForKey:@"pain"] intValue];
+               total += pain;
+           }
         }
-        total += [[self.appDelegate.userPain objectForKey:date] intValue];
         i++;
     }
     int average = 0;
-    if( self.appDelegate.userPain.count > 0 ){
-        average = (int)(total/self.appDelegate.userPain.count);
+    if( count > 0 ){
+        average = (int)(total/count);
     }
     NSMutableAttributedString *averageStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%d 級", average]];
     [averageStr addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"AppleGothic" size:46.0] range:NSMakeRange(0,averageStr.length-1)];
