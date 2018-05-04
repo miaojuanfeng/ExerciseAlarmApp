@@ -149,6 +149,7 @@
         UILabel *expertContentLabelTime = [[UILabel alloc] initWithFrame:CGRectMake(textMargin, expertContentLabel.frame.size.height+expertContentLabel.frame.origin.y+textMargin, self.view.frame.size.width-textMargin*2, lineHeight)];
         expertContentLabelTime.font = DEFAULT_FONT(12.0f);
         expertContentLabelTime.text = dateString;
+        expertContentLabelTime.textColor = [UIColor grayColor];
         [self.scrollView addSubview:expertContentLabelTime];
 
         commentOriginY = expertContentLabelTime.frame.origin.y + expertContentLabelTime.frame.size.height;
@@ -179,6 +180,7 @@
     for(NSMutableDictionary *c in [self.discuss objectForKey:@"comment"]){
         UILabel *commentUser = [[UILabel alloc] initWithFrame:CGRectMake(textMargin, 0, self.view.frame.size.width, lineHeight)];
         commentUser.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
+        commentUser.textColor = [UIColor grayColor];
         NSString *reply_to_nickname = [c objectForKey:@"reply_to_nickname"];
         if( [reply_to_nickname isEqualToString:@""] ){
             commentUser.text = [NSString stringWithFormat:@"%@：", [c objectForKey:@"user_nickname"]];
@@ -199,6 +201,7 @@
 
         UILabel *commentLabelTime = [[UILabel alloc] initWithFrame:CGRectMake(textMargin, commentContent.frame.size.height+commentContent.frame.origin.y+textMargin, self.view.frame.size.width-textMargin*2, lineHeight)];
         commentLabelTime.font = DEFAULT_FONT(12.0f);
+        commentLabelTime.textColor = [UIColor grayColor];
         commentLabelTime.text = dateString;
 
         UIButton *commentReplyButton = [[UIButton alloc] initWithFrame:CGRectMake(commentLabelTime.frame.size.width-85, commentContent.frame.size.height+commentContent.frame.origin.y+textMargin, 100, lineHeight)];
