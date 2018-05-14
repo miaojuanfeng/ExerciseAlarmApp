@@ -25,6 +25,8 @@
 
 @property Boolean isOn;
 @property long long scd;
+
+@property NSMutableDictionary *tempTime;
 @end
 
 @implementation ExerciseTimeController
@@ -74,6 +76,48 @@
     [self.view addSubview:buttonGroup];
     
     self.isOn = false;
+    self.scd = 0;
+    [self loadTempTime];
+    NSLog(@"%@", self.tempTime);
+    
+    NSString *background_time_string = [self.tempTime objectForKey:@"background_time"];
+    NSString *is_on_string = [self.tempTime objectForKey:@"is_on"];
+    NSString *time_count_string = [self.tempTime objectForKey:@"time_count"];
+    if( background_time_string != nil && is_on_string != nil && time_count_string != nil ){
+        
+        NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+        NSTimeInterval a = [dat timeIntervalSince1970] * 100;
+        long long foreground_time = [[NSString stringWithFormat:@"%.0f", a] longLongValue];
+        
+        long long background_time = [background_time_string longLongValue];
+        Boolean is_on = ![is_on_string boolValue];
+        long long time_count = [time_count_string longLongValue] + ( foreground_time - background_time );
+        
+        int scd = ( time_count / 100) % 60;
+        int min = ( ( time_count / 100) % 3600 ) / 60;
+        int hour = (int)( time_count / 100) / 3600;
+        
+        NSString *countTimeLabel = nil;
+        if( hour > 0 ){
+            countTimeLabel = [NSString stringWithFormat:@"%d時%d分%d秒", hour, min, scd];
+        }else if( min > 0 ){
+            countTimeLabel = [NSString stringWithFormat:@"%d分%d秒", min, scd];
+        }else if( scd > 0 ){
+            countTimeLabel = [NSString stringWithFormat:@"%d秒", scd];
+        }
+        
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"記錄到上次鍛煉了%@", countTimeLabel] message:@"是否繼續鍛煉？" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"繼續鍛煉" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+            self.scd = time_count;
+            [self updateTimeLabel];
+        }];
+        UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"重新計時" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+            [self deleteTempTime];
+        }];
+        [alert addAction:defaultAction];
+        [alert addAction:cancelAction];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
 }
 
 
@@ -129,6 +173,10 @@
 - (void)clickStartButton {
     self.isOn = true;
     self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    if( self.scd == 0 ){
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationEnterBackground) name:UIApplicationDidEnterBackgroundNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationEnterForeground) name:UIApplicationDidBecomeActiveNotification object:nil];
+    }
     self.timer = [NSTimer scheduledTimerWithTimeInterval:0.01 repeats:YES block:^(NSTimer * _Nonnull timer) {
         self.scd++;
 //        NSLog(@"%d", self.scd);
@@ -143,6 +191,7 @@
     if( self.isOn ){
         [self invalidateTimer];
         self.isOn = false;
+//        [[NSNotificationCenter defaultCenter] removeObserver:self];
         [self.pauseButton setTitle:@"繼續鍛煉" forState:UIControlStateNormal];
     }else{
         [self clickStartButton];
@@ -193,7 +242,9 @@
 - (void)doneExercise {
     UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"提交成功，您可以在 纍積鍛煉 中查看您的鍛煉記錄！" message:nil preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"確認" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-        
+        self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationEnterBackground) name:UIApplicationDidEnterBackgroundNotification object:nil];
+        [[NSNotificationCenter defaultCenter] removeObserver:self];
     }];
     [alert addAction:defaultAction];
     [self presentViewController:alert animated:YES completion:nil];
@@ -223,6 +274,71 @@
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     [self invalidateTimer];
+    [self deleteTempTime];
+}
+
+- (void)applicationEnterBackground {
+    NSLog(@"Go to Backend");
+    if( self.scd > 0 ){
+        NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+        NSTimeInterval a = [dat timeIntervalSince1970] * 100;
+        NSString *timeString = [NSString stringWithFormat:@"%.0f", a];
+        [self.tempTime setObject:timeString forKey:@"background_time"];
+        [self.tempTime setObject:[NSString stringWithFormat:@"%d", self.isOn] forKey:@"is_on"];
+        [self.tempTime setObject:[NSString stringWithFormat:@"%lld", self.scd] forKey:@"time_count"];
+        [self saveTempTime];
+        if( self.timer != nil ){
+            [self invalidateTimer];
+        }
+    }
+}
+
+- (void)applicationEnterForeground {
+    NSLog(@"Go to frontend");
+    [self loadTempTime];
+    NSLog(@"%@", self.tempTime);
+    if( [[self.tempTime objectForKey:@"is_on"] boolValue] ){
+        NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+        NSTimeInterval a = [dat timeIntervalSince1970] * 100;
+        long long foreground_time = [[NSString stringWithFormat:@"%.0f", a] longLongValue];
+        long long background_time = [[self.tempTime objectForKey:@"background_time"] longLongValue];
+        long scd = foreground_time - background_time;
+        self.scd = [[self.tempTime objectForKey:@"time_count"] longLongValue] + scd;
+        [self updateTimeLabel];
+        NSLog(@"%ld", scd);
+        self.isOn = ![[self.tempTime objectForKey:@"is_on"] boolValue];
+        [self clickPauseButton];
+    }
+}
+
+- (void)loadTempTime {
+    NSArray *pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *path = [pathArray objectAtIndex:0];
+    NSString *plistPath = [path stringByAppendingPathComponent:[NSString stringWithFormat:@"tempTime_%@.plist", [self.appDelegate.user objectForKey:@"user_id"]]];
+    self.tempTime = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
+    if( self.tempTime == nil ){
+        self.tempTime = [[NSMutableDictionary alloc] init];
+    }
+}
+
+- (void)saveTempTime {
+    NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsPath = [path objectAtIndex:0];
+    NSString *plistPath = nil;
+    
+    plistPath = [documentsPath stringByAppendingPathComponent:[NSString stringWithFormat:@"tempTime_%@.plist", [self.appDelegate.user objectForKey:@"user_id"]]];
+    [self.tempTime writeToFile:plistPath atomically:YES];
+}
+
+- (void)deleteTempTime {
+    NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsPath = [path objectAtIndex:0];
+    NSString *plistPath = nil;
+    
+    plistPath = [documentsPath stringByAppendingPathComponent:[NSString stringWithFormat:@"tempTime_%@.plist", [self.appDelegate.user objectForKey:@"user_id"]]];
+    
+    NSFileManager *appFileManager = [NSFileManager defaultManager];
+    [appFileManager removeItemAtPath:plistPath error:nil];
 }
 
 @end
