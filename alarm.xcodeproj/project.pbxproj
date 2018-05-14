@@ -1134,7 +1134,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dreamover.ExerciseAlarm;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "cf184096-4a30-4d1f-8a0a-045656cc98c8";
+				PROVISIONING_PROFILE = "52f4b1c3-083b-4b9b-b410-788d334807a9";
 				PROVISIONING_PROFILE_SPECIFIER = ExerciseAlarm_Dis;
 			};
 			name = Release;
