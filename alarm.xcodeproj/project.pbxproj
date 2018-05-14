@@ -689,7 +689,7 @@
 				TargetAttributes = {
 					990736A22016344C002EFEC5 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = R4M5UMCGE9;
+						DevelopmentTeam = 552BG9NDGT;
 						ProvisioningStyle = Manual;
 					};
 					990736BB2016344C002EFEC5 = {
@@ -1109,13 +1109,13 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = R4M5UMCGE9;
+				DEVELOPMENT_TEAM = 552BG9NDGT;
 				INFOPLIST_FILE = alarm/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dreamover.alarm;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dreamover.ExerciseAlarm;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "979d546d-3ba2-4a79-b246-81b227d76353";
+				PROVISIONING_PROFILE = "fa4acc70-13cc-4bd1-bee5-98d1eb77e538";
 				PROVISIONING_PROFILE_SPECIFIER = ExerciseAlarm_Dev;
 			};
 			name = Debug;
@@ -1128,13 +1128,13 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = R4M5UMCGE9;
+				DEVELOPMENT_TEAM = 552BG9NDGT;
 				INFOPLIST_FILE = alarm/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.dreamover.alarm;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dreamover.ExerciseAlarm;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c54828a5-5d4a-49b9-9412-ec1594f2de8c";
+				PROVISIONING_PROFILE = "cf184096-4a30-4d1f-8a0a-045656cc98c8";
 				PROVISIONING_PROFILE_SPECIFIER = ExerciseAlarm_Dis;
 			};
 			name = Release;
