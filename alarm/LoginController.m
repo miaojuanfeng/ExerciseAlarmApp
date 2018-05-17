@@ -34,12 +34,12 @@
     
     self.appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
-    UIButton *registButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width-40-25, 44, 40, 24)];
-    [registButton setTitle:@"註冊" forState:UIControlStateNormal];
-    registButton.titleLabel.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
-    [registButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [registButton addTarget:self action:@selector(clickRegisterButton) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:registButton];
+//    UIButton *registButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width-40-25, 44, 40, 24)];
+//    [registButton setTitle:@"註冊" forState:UIControlStateNormal];
+//    registButton.titleLabel.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
+//    [registButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//    [registButton addTarget:self action:@selector(clickRegisterButton) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:registButton];
     
     UIView *userView = [[UIView alloc] initWithFrame:CGRectMake(50/2, (self.view.frame.size.height-100)/2-100, self.view.frame.size.width-50, 100)];
     userView.backgroundColor = [UIColor whiteColor];

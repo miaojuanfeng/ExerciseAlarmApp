@@ -106,17 +106,10 @@
             countTimeLabel = [NSString stringWithFormat:@"%d秒", scd];
         }
         
-        UIAlertController* alert = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"記錄到上次鍛煉了%@", countTimeLabel] message:@"是否繼續鍛煉？" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"繼續鍛煉" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-            self.scd = time_count;
-            [self updateTimeLabel];
-        }];
-        UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"重新計時" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-            [self deleteTempTime];
-        }];
-        [alert addAction:defaultAction];
-        [alert addAction:cancelAction];
-        [self presentViewController:alert animated:YES completion:nil];
+        self.scd = time_count;
+        self.isOn = is_on;
+        [self updateTimeLabel];
+        [self clickPauseButton];
     }
 }
 
@@ -146,8 +139,11 @@
     min += hour * 60;
     if (min < 10) {
         minText = [[NSString alloc]initWithFormat:@"0%d", min];
-    }else {
+    }else if(min < 999){
         minText = [[NSString alloc]initWithFormat:@"%d", min];
+    }else{
+        self.timeLabel.font = DEFAULT_FONT(56.0f);
+        minText = @"999+";
     }
 
     if (scd < 10) {
@@ -231,7 +227,7 @@
             [self doneExercise];
         }];
         UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-            
+            [self clickPauseButton];
         }];
         [alert addAction:defaultAction];
         [alert addAction:cancelAction];
