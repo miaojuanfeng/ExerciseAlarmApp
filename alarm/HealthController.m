@@ -59,11 +59,11 @@
 //    titleView.backgroundColor = [UIColor redColor];
     
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, titleView.frame.size.width, 20)];
-    titleLabel.font = [UIFont fontWithName:@"AppleGothic" size:18.0];
+    titleLabel.font = [UIFont fontWithName:@"AppleGothic" size:DEFAULT_FONT_SIZE];
     [titleView addSubview:titleLabel];
     
     UILabel *descLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, titleView.frame.size.height-15, titleView.frame.size.width, 15)];
-    descLabel.font = [UIFont fontWithName:@"AppleGothic" size:16.0];
+    descLabel.font = [UIFont fontWithName:@"AppleGothic" size:DEFAULT_FONT_SIZE-2];
     [titleView addSubview:descLabel];
     
     [cell.contentView addSubview:titleView];

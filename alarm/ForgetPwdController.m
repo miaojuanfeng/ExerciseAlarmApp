@@ -35,7 +35,7 @@
     imageView.image = shoolImage;
     [self.view addSubview:imageView];
     
-    UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(50/2, imageView.frame.origin.y+imageView.frame.size.height+20, self.view.frame.size.width-50, 135)];
+    UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(50/2, imageView.frame.origin.y+imageView.frame.size.height+20, self.view.frame.size.width-50, 150)];
     textView.backgroundColor = RGBA_COLOR(158, 218, 182, 1);
     textView.editable = NO;
     textView.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);

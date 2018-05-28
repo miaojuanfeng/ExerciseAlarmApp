@@ -51,7 +51,6 @@
     
     UIButton *showVideoButton = [[UIButton alloc] initWithFrame:CGRectMake((self.view.frame.size.width-100)/2, marginTop+10+76+imageHeight, 100, 44)];
     [showVideoButton setTitle:@"影片示範" forState:UIControlStateNormal];
-    showVideoButton.titleLabel.font = [UIFont fontWithName:@"AppleGothic" size:16.0];
     showVideoButton.titleLabel.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     [showVideoButton addTarget:self action:@selector(clickShowVideo) forControlEvents:UIControlEventTouchUpInside];
     [showVideoButton setBackgroundColor:[UIColor blueColor]];

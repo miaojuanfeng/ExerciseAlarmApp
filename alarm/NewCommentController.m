@@ -78,7 +78,7 @@
 
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
-    if([textView.text isEqualToString:@"輸入內容"]){
+    if( [textView.text isEqualToString:@"輸入內容"] ){
         textView.text=@"";
         textView.textColor = [UIColor blackColor];
     }
@@ -86,6 +86,11 @@
 
 - (void)clickSubmitButton {
     [self.view endEditing:YES];
+    
+    if( [self.contentView.text isEqualToString:@"輸入內容"] ){
+        HUD_TOAST_SHOW(@"請輸入內容");
+        return;
+    }
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];

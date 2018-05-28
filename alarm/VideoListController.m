@@ -6,6 +6,7 @@
 //  Copyright © 2018年 Dreamover Studio. All rights reserved.
 //
 
+#import "MacroDefine.h"
 #import "AppDelegate.h"
 #import "VideoListController.h"
 #import "VideoDetailController.h"
@@ -58,7 +59,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
 
-    UIFont *newFont = [UIFont fontWithName:@"AppleGothic" size:18.0];
+    UIFont *newFont = [UIFont fontWithName:@"AppleGothic" size:DEFAULT_FONT_SIZE];
     cell.textLabel.font = newFont;
     cell.textLabel.text = [[self.appDelegate.selectVideoList objectAtIndex:indexPath.row] objectForKey:@"title"];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@%ld", @"\n", indexPath.row ];

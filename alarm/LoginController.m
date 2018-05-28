@@ -82,7 +82,7 @@
     NSRange strRange = {0, [str length]};
     [str addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:strRange];
     
-    UIButton *forgetPwdButton = [[UIButton alloc] initWithFrame:CGRectMake((self.view.frame.size.width-240)/2, submitButton.frame.origin.y+submitButton.frame.size.height+40, 240, 24)];
+    UIButton *forgetPwdButton = [[UIButton alloc] initWithFrame:CGRectMake((self.view.frame.size.width-300)/2, submitButton.frame.origin.y+submitButton.frame.size.height+40, 300, 24)];
     forgetPwdButton.titleLabel.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     [forgetPwdButton setAttributedTitle:str forState:UIControlStateNormal];
     [forgetPwdButton addTarget:self action:@selector(clickForgetPwdButton) forControlEvents:UIControlEventTouchUpInside];

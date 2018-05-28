@@ -37,15 +37,16 @@
     
     UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(20, marginTop+10, self.view.frame.size.width-40, 50)];
     title.text = @"總共獲得";
-    title.font = [UIFont fontWithName:@"AppleGothic" size:20.0];
+    title.font = DEFAULT_FONT(20);
     [self.view addSubview:title];
     
     UILabel *num = [[UILabel alloc] initWithFrame:CGRectMake(20, marginTop+10+60, self.view.frame.size.width-40, 50)];
     num.textAlignment = NSTextAlignmentCenter;
     
-    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%ld 星", self.appDelegate.weekStarCount]];
-    [str addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"AppleGothic" size:46.0] range:NSMakeRange(0,str.length-1)];
-    [str addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"AppleGothic" size:18.0] range:NSMakeRange(str.length-1,1)];
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%ld \U0000e6ea", self.appDelegate.weekStarCount]];
+    [str addAttribute:NSFontAttributeName value:DEFAULT_FONT(46.0) range:NSMakeRange(0,str.length-1)];
+    [str addAttribute:NSFontAttributeName value:ICON_FONT(34) range:NSMakeRange(str.length-1,1)];
+    [str addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(str.length-1,1)];
     num.attributedText = str;
     
     [self.view addSubview:num];
@@ -54,11 +55,11 @@
     tableTitle.backgroundColor = RGBA_COLOR(166, 213, 75, 1);
     UILabel *titleLeft = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 100, tableTitle.frame.size.height)];
     titleLeft.text = @"本週排名";
-    titleLeft.font = [UIFont fontWithName:@"AppleGothic" size:16.0];
+    titleLeft.font = DEFAULT_FONT(16);
     [tableTitle addSubview:titleLeft];
     self.titleRight = [[UILabel alloc] initWithFrame:CGRectMake(tableTitle.frame.size.width-110, 0, 100, tableTitle.frame.size.height)];
 //    self.titleRight.text = @"12/150";
-    self.titleRight.font = [UIFont fontWithName:@"AppleGothic" size:16.0];
+    self.titleRight.font = DEFAULT_FONT(16);
     self.titleRight.textAlignment = NSTextAlignmentRight;
     [tableTitle addSubview:self.titleRight];
     [self.view addSubview:tableTitle];
@@ -85,7 +86,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
-    UIFont *newFont = [UIFont fontWithName:@"AppleGothic" size:16.0];
+    UIFont *newFont = DEFAULT_FONT(16);
     UILabel *num = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 20, cell.frame.size.height)];
     num.font = newFont;
     UILabel *name = [[UILabel alloc] initWithFrame:CGRectMake(30, 0, 150, cell.frame.size.height)];
@@ -96,13 +97,13 @@
     
     UIView *starLikeView = [[UIView alloc] initWithFrame:CGRectMake(cell.frame.size.width+15, 0, 25, cell.frame.size.height)];
     UILabel *starLikeNum = [[UILabel alloc] initWithFrame:CGRectMake(0, 2, starLikeView.frame.size.width, 25)];
-    newFont = [UIFont fontWithName:@"AppleGothic" size:9.0];
+    newFont = DEFAULT_FONT(9);
     starLikeNum.font = newFont;
     starLikeNum.textAlignment = NSTextAlignmentCenter;
     [starLikeView addSubview:starLikeNum];
 //    starLikeView.backgroundColor = [UIColor redColor];
     UIButton *starLikeImage = [[UIButton alloc] initWithFrame:CGRectMake((starLikeView.frame.size.width-15)/2, 22, 15, 15)];
-    starLikeImage.titleLabel.font = ICON_FONT(16.0);
+    starLikeImage.titleLabel.font = ICON_FONT(16);
     starLikeImage.tag = indexPath.row;
 //    [starLikeImage addTarget:self action:@selector(clickLikeButton:) forControlEvents:UIControlEventTouchUpInside];
     [starLikeView addSubview:starLikeImage];
@@ -113,8 +114,9 @@
     [cell addSubview:num];
     name.text = [[self.starList objectAtIndex:indexPath.row] objectForKey:@"user_nickname"];
     [cell addSubview:name];
-    str = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ 星", [[self.starList objectAtIndex:indexPath.row] objectForKey:@"star_num"]]];
-    [str addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"AppleGothic" size:14.0] range:NSMakeRange(str.length-1, 1)];
+    str = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ \U0000e6ea", [[self.starList objectAtIndex:indexPath.row] objectForKey:@"star_num"]]];
+    [str addAttribute:NSFontAttributeName value:ICON_FONT(24) range:NSMakeRange(str.length-1,1)];
+    [str addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(str.length-1,1)];
     star.attributedText = str;
     [cell addSubview:star];
     starLikeNum.text = [[[self.starList objectAtIndex:indexPath.row] objectForKey:@"like_num"] stringValue];

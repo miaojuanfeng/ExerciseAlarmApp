@@ -110,7 +110,8 @@
                 [_circleView createCricleByLocationisTop:NO color:[UIColor redColor]];
                 //[_circleView stareAnimationWithPercentage:0.5];
                 
-                [_circleView createCricleByLocationisTop:YES color:[UIColor blueColor]];
+//                [_circleView createCricleByLocationisTop:YES color:[UIColor blueColor]];
+                [_circleView createCricleByLocationisTop:YES color:[UIColor redColor]];
                 //[_circleView stareAnimationWithPercentage:0.5];
                 //[_circleView stareAnimationWithPercentage:1];
                 //_pointV.hidden = NO;

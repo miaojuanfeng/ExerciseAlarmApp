@@ -63,6 +63,13 @@
 //    [self.view addSubview:self.tableView];
 //    self.tableView.frame = CGRectMake(0, 64+self.calendarHeight, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-64-self.calendarHeight);
     
+    UILabel *calendarDesc = [[UILabel alloc] initWithFrame:CGRectMake(10, self.calendar.frame.origin.y+450, self.view.frame.size.width-20, 50)];
+    calendarDesc.text = @"該頁面記錄您使用此程式的纍計天數，具體日期在日曆中以“⭕️”標記";
+    calendarDesc.textAlignment = NSTextAlignmentLeft;
+    calendarDesc.textColor = [UIColor lightGrayColor];
+    calendarDesc.numberOfLines = 0;
+    [self.view addSubview:calendarDesc];
+    
     self.isAllowPostNoti = YES;
 }
 

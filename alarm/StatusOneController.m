@@ -47,7 +47,7 @@
     
     
     
-    long t = ( self.appDelegate.exerciseTime.count - 7 );
+    long t = ( self.appDelegate.exerciseTime.count - 30 );
     long c = 0;
     NSMutableArray *nameArray = [[NSMutableArray alloc] init];
     NSMutableArray *countArray = [[NSMutableArray alloc] init];
@@ -74,6 +74,13 @@
     dateLabel.text = @"日期";
     dateLabel.font = [UIFont fontWithName:@"AppleGothic" size:16.0];
     [calendarView addSubview:dateLabel];
+    
+    UILabel *calendarTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, dateLabel.frame.origin.y+dateLabel.frame.size.height, calendarView.frame.size.width, 20)];
+    calendarTitle.text = @"每日鍛煉時間";
+    calendarTitle.textColor = [UIColor lightGrayColor];
+    calendarTitle.textAlignment = NSTextAlignmentCenter;
+    [calendarView addSubview:calendarTitle];
+    
     [self.view addSubview:calendarView];
 }
 

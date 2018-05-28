@@ -72,12 +72,13 @@
     starTitle.font = DEFAULT_FONT(22.0f);
     [self.starView addSubview:starTitle];
     
-    UILabel *starDesc = [[UILabel alloc] initWithFrame:CGRectMake(20, starTitle.frame.origin.y+starTitle.frame.size.height+20, self.starView.frame.size.width-40, 30)];
-    starDesc.text = @"給自己的表現一個分數吧！";
+    UILabel *starDesc = [[UILabel alloc] initWithFrame:CGRectMake(20, starTitle.frame.origin.y+starTitle.frame.size.height+20, self.starView.frame.size.width-40, 60)];
+    starDesc.text = @"給自己的表現一個\n分數吧！";
     starDesc.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
+    starDesc.numberOfLines = 0;
     [self.starView addSubview:starDesc];
     
-    self.starButtonView = [[UIView alloc] initWithFrame:CGRectMake(20, starDesc.frame.origin.y+starDesc.frame.size.height+20, self.starView.frame.size.width-40, 40)];
+    self.starButtonView = [[UIView alloc] initWithFrame:CGRectMake(20, starDesc.frame.origin.y+starDesc.frame.size.height+10, self.starView.frame.size.width-40, 40)];
 //    starButtonView.backgroundColor = [UIColor blueColor];
     for (int i=1; i<=5; i++) {
         UIButton *starButton = [[UIButton alloc] initWithFrame:CGRectMake((i-1)*(2+40), 0, 40, 40)];
