@@ -65,11 +65,14 @@
     [showPainButton addTarget:self action:@selector(clickShowPainButton) forControlEvents:UIControlEventTouchUpInside];
     [boxView addSubview:showPainButton];
     
-    self.numberField = [[UITextField alloc] initWithFrame:CGRectMake((boxView.frame.size.width-220)/2, showPainButton.frame.origin.y+showPainButton.frame.size.height+20, 220, 44)];
+    self.numberField = [[UITextField alloc] initWithFrame:CGRectMake(20, showPainButton.frame.origin.y+showPainButton.frame.size.height+20, boxView.frame.size.width-40, 44)];
     self.numberField.placeholder = @"輸入一個0-10的整数";
     self.numberField.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
-    self.numberField.borderStyle = UITextBorderStyleRoundedRect;
     self.numberField.keyboardType = UIKeyboardTypeNumberPad;
+    CALayer *numberFieldBorder = [CALayer layer];
+    numberFieldBorder.frame = CGRectMake(0.0f, self.numberField.frame.size.height-1, self.numberField.frame.size.width, BORDER_WIDTH);
+    numberFieldBorder.backgroundColor = BORDER_COLOR;
+    [self.numberField.layer addSublayer:numberFieldBorder];
     [boxView addSubview:self.numberField];
     
     [self.view addSubview:boxView];
@@ -114,6 +117,7 @@
     UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"確認" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
         //响应事件
         [self.appDelegate saveUserPain:level];
+        self.numberField.text = @"";
         
         StatusFourController *statusFourController = [[StatusFourController alloc] init];
         [self.navigationController pushViewController:statusFourController animated:YES];
