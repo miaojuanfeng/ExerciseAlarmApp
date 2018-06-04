@@ -81,7 +81,17 @@
 }
 
 - (void)updateLayout{
-    self.navigationItem.title = [self.discuss objectForKey:@"title"];
+    NSString *title = [self.discuss objectForKey:@"title"];
+    if( ![title isEqualToString:@""] ){
+        self.navigationItem.title = title;
+    }else{
+        NSString *content = [self.discuss objectForKey:@"content"];
+        if( content.length > 18 ){
+            self.navigationItem.title = [NSString stringWithFormat:@"%@...", [content substringToIndex:18]];
+        }else{
+            self.navigationItem.title = content;
+        }
+    }
     
     CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
     float marginTop = rectStatus.size.height + self.navigationController.navigationBar.frame.size.height;
@@ -102,8 +112,9 @@
     UILabel *descTitle= [[UILabel alloc] initWithFrame:CGRectMake(textMargin, textMargin, self.view.frame.size.width-textMargin*2, lineHeight)];
     descTitle.text = @"問題詳述：";
     descTitle.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
+    descTitle.textColor = [UIColor grayColor];
     
-    UILabel *desc = [[UILabel alloc] initWithFrame:CGRectMake(textMargin, descTitle.frame.size.height+textMargin, self.view.frame.size.width-textMargin*2, lineHeight)];
+    UILabel *desc = [[UILabel alloc] initWithFrame:CGRectMake(textMargin, descTitle.frame.size.height+textMargin*2, self.view.frame.size.width-textMargin*2, lineHeight)];
     desc.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     desc.text = [self.discuss objectForKey:@"content"];
     desc.numberOfLines = 0;

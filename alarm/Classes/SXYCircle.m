@@ -20,7 +20,7 @@
         self.backgroundColor = [UIColor clearColor];
         
         //默认圆宽度4
-        _circleWidth = 1;
+        _circleWidth = 4;
         //默认背景圆环为淡淡灰色
         _backCircleClor = [UIColor whiteColor];
         //默认进度圆环为橙色

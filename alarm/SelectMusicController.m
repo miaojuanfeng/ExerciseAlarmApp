@@ -6,6 +6,8 @@
 //  Copyright © 2018年 Dreamover Studio. All rights reserved.
 //
 
+#import "MacroDefine.h"
+#import "AppDelegate.h"
 #import "SelectMusicController.h"
 #import <AudioToolbox/AudioToolbox.h>
 
@@ -13,6 +15,8 @@
 @property UITableView *tableView;
 @property UIBarButtonItem *myButton;
 @property NSMutableArray *soundArr;
+
+@property AppDelegate *appDelegate;
 @end
 
 @implementation SelectMusicController
@@ -25,6 +29,8 @@
     
     CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
     float marginTop = rectStatus.size.height + self.navigationController.navigationBar.frame.size.height;
+    
+    self.appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
     self.myButton = [[UIBarButtonItem alloc] initWithTitle:@"確定" style:UIBarButtonItemStylePlain target:self action:@selector(clickSaveButton)];
     self.navigationItem.rightBarButtonItem = self.myButton;
@@ -417,6 +423,7 @@
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
     NSMutableDictionary *soundDic = [self.soundArr objectAtIndex:indexPath.row];
     cell.textLabel.text = [NSString stringWithFormat:@"%@", [soundDic objectForKey:@"name"]];
+    cell.textLabel.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     if( [[soundDic objectForKey:@"id"] intValue] == self.soundId ){
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }

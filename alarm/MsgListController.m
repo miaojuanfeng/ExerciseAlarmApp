@@ -78,7 +78,17 @@
     UITableViewCell *cell = [[UITableViewCell alloc] init];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.textLabel.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
-    cell.textLabel.text = [[self.discussList objectAtIndex:indexPath.row] objectForKey:@"title"];
+    NSString *title = [[self.discussList objectAtIndex:indexPath.row] objectForKey:@"title"];
+    if( ![title isEqualToString:@""] ){
+        cell.textLabel.text = title;
+    }else{
+        NSString *content = [[self.discussList objectAtIndex:indexPath.row] objectForKey:@"content"];
+//        if( content.length > 12 ){
+//            cell.textLabel.text = [NSString stringWithFormat:@"%@...", [content substringToIndex:12]];
+//        }else{
+            cell.textLabel.text = content;
+//        }
+    }
     cell.imageView.image = [UIImage iconWithInfo:TBCityIconInfoMake(@"\U0000e6fa", 34, [UIColor lightGrayColor])];
     return cell;
 }

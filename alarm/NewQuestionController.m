@@ -95,12 +95,8 @@
 - (void)clickSubmitButton {
     [self.view endEditing:YES];
     
-    if( [self.titleField.text isEqualToString:@""] ){
-        HUD_TOAST_SHOW(@"請輸入標題");
-        return;
-    }
-    if( [self.contentView.text isEqualToString:@"輸入內容"] ){
-        HUD_TOAST_SHOW(@"請輸入內容");
+    if( [self.titleField.text isEqualToString:@""] && [self.contentView.text isEqualToString:@"輸入內容"] ){
+        HUD_TOAST_SHOW(@"請輸入標題或內容");
         return;
     }
     

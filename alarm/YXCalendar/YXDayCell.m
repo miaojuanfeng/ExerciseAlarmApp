@@ -100,11 +100,13 @@
 }
 - (void)drawCircle{
     NSString *currentDate = [[YXDateHelpObject manager] getStrFromDateFormat:@"MM-dd" Date:_cellDate];
+    NSString *currentMonth = [[YXDateHelpObject manager] getStrFromDateFormat:@"MM" Date:self.currentDate];
     _pointV.hidden = YES;
     _circleView.hidden = YES;
     if (_eventArray.count) {
         for (NSString *strDate in _eventArray) {
-            if ([strDate isEqualToString:currentDate]) {
+            NSString *strMonth = [[YXDateHelpObject manager] getStrFromDateFormat:@"MM" Date:[[YXDateHelpObject manager] getDataFromStrFormat:@"MM-dd" String:strDate]];
+            if ([strDate isEqualToString:currentDate] && [strMonth isEqualToString:currentMonth]) {
                 _circleView.hidden = NO;
                 
                 [_circleView createCricleByLocationisTop:NO color:[UIColor redColor]];

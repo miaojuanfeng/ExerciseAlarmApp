@@ -163,9 +163,9 @@
     [self.numButton2 addTarget:self action:@selector(clickButton2) forControlEvents:UIControlEventTouchUpInside];
     [view2 addSubview:self.numButton2];
     //
-    UILabel *titleBottom2 = [[UILabel alloc] initWithFrame:CGRectMake(0, self.numButton2.frame.origin.y+self.numButton2.frame.size.height, view2.frame.size.width, viewHeight/3)];
-    titleBottom2.text = @"星";
-    titleBottom2.font = DEFAULT_FONT(26.0);
+    UILabel *titleBottom2 = [[UILabel alloc] initWithFrame:CGRectMake(0, self.numButton2.frame.origin.y+self.numButton2.frame.size.height-5, view2.frame.size.width, viewHeight/3)];
+    titleBottom2.text = @"\U0000e6ea";
+    titleBottom2.font = ICON_FONT(40.0);
     titleBottom2.textColor = [UIColor whiteColor];
     titleBottom2.textAlignment = NSTextAlignmentCenter;
     [view2 addSubview:titleBottom2];

@@ -53,6 +53,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
+    cell.textLabel.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     switch ( indexPath.row ) {
         case 0:
             cell.textLabel.text = @"星期一";

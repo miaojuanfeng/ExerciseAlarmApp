@@ -69,6 +69,7 @@
     self.numberField.placeholder = @"輸入一個0-10的整数";
     self.numberField.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     self.numberField.keyboardType = UIKeyboardTypeNumberPad;
+    [self.numberField becomeFirstResponder];
     CALayer *numberFieldBorder = [CALayer layer];
     numberFieldBorder.frame = CGRectMake(0.0f, self.numberField.frame.size.height-1, self.numberField.frame.size.width, BORDER_WIDTH);
     numberFieldBorder.backgroundColor = BORDER_COLOR;

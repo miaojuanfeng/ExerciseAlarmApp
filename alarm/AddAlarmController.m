@@ -84,16 +84,19 @@
     
     self.photoButton = [[UIButton alloc] init];
     [self.photoButton setTitle:@"查看" forState:UIControlStateNormal];
+    self.photoButton.titleLabel.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     [self.photoButton addTarget:self action:@selector(clickShowPhotoButton) forControlEvents:UIControlEventTouchUpInside];
     [self.photoButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
     
     self.soundButton = [[UIButton alloc] init];
     [self.soundButton setTitle:@"試聽" forState:UIControlStateNormal];
+    self.soundButton.titleLabel.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     [self.soundButton addTarget:self action:@selector(clickShowSoundButton) forControlEvents:UIControlEventTouchUpInside];
     [self.soundButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
     
     self.titleLabel = [[UILabel alloc] init];
     self.titleLabel.textColor = [UIColor lightGrayColor];
+    self.titleLabel.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     self.titleLabel.textAlignment = NSTextAlignmentRight;
 }
 
@@ -126,17 +129,18 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [[UITableViewCell alloc] init];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.textLabel.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
     if( indexPath.section == 0 ){
         switch ( indexPath.row ) {
             case 0:
                 cell.textLabel.text = @"圖片";
                 cell.imageView.image = [UIImage imageNamed:@"gallery"];
-                self.photoButton.frame = CGRectMake(cell.frame.size.width - 20, 0, 40, cell.frame.size.height);
+                self.photoButton.frame = CGRectMake(cell.frame.size.width - 20, 4, 40, cell.frame.size.height);
                 break;
             case 1:
                 cell.textLabel.text = @"鈴聲";
                 cell.imageView.image = [UIImage imageNamed:@"music"];
-                self.soundButton.frame = CGRectMake(cell.frame.size.width - 20, 0, 40, cell.frame.size.height);
+                self.soundButton.frame = CGRectMake(cell.frame.size.width - 20, 4, 40, cell.frame.size.height);
                 break;
         }
     }else if( indexPath.section == 1 ){
@@ -144,7 +148,7 @@
             case 0:
                 cell.textLabel.text = @"標題";
                 cell.imageView.image = [UIImage imageNamed:@"settings"];
-                self.titleLabel.frame = CGRectMake(cell.frame.size.width - 83, 0, 100, cell.frame.size.height);
+                self.titleLabel.frame = CGRectMake(cell.frame.size.width - 83, 4, 100, cell.frame.size.height);
                 break;
             case 1:
                 cell.textLabel.text = @"重複";
