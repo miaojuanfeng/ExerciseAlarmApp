@@ -58,6 +58,7 @@
 		CE446F6220280A4B009320EC /* HelpController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE446F6120280A4B009320EC /* HelpController.m */; };
 		CE446F6420280A57009320EC /* AboutController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE446F6320280A57009320EC /* AboutController.m */; };
 		CE446F6820280A78009320EC /* VersionController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE446F6720280A78009320EC /* VersionController.m */; };
+		CE4F52B520C7F0B100760223 /* SelectRecordController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4F52B420C7F0B100760223 /* SelectRecordController.m */; };
 		CE50102C205A598700467D5A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE50102B205A598700467D5A /* Assets.xcassets */; };
 		CE50102F205A5EDD00467D5A /* StatusPainController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE50102E205A5EDD00467D5A /* StatusPainController.m */; };
 		CE501032205A66C400467D5A /* ShowPainController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE501031205A66C400467D5A /* ShowPainController.m */; };
@@ -206,6 +207,8 @@
 		CE446F6520280A61009320EC /* AboutController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AboutController.h; sourceTree = "<group>"; };
 		CE446F6620280A6D009320EC /* VersionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VersionController.h; sourceTree = "<group>"; };
 		CE446F6720280A78009320EC /* VersionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VersionController.m; sourceTree = "<group>"; };
+		CE4F52B420C7F0B100760223 /* SelectRecordController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectRecordController.m; sourceTree = "<group>"; };
+		CE4F52B620C7F0C000760223 /* SelectRecordController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectRecordController.h; sourceTree = "<group>"; };
 		CE501028205A2F3800467D5A /* MacroDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MacroDefine.h; sourceTree = "<group>"; };
 		CE50102B205A598700467D5A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = alarm/Assets.xcassets; sourceTree = "<group>"; };
 		CE50102D205A5EDD00467D5A /* StatusPainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusPainController.h; sourceTree = "<group>"; };
@@ -410,13 +413,15 @@
 			isa = PBXGroup;
 			children = (
 				990736AC2016344C002EFEC5 /* AddAlarmController.h */,
-				CEA01CEC202338020001DAF0 /* ListAlarmController.h */,
-				9920D21420177C0900DA8D6D /* SelectMusicController.h */,
 				990736AD2016344C002EFEC5 /* AddAlarmController.m */,
-				CE8B78A82047B78B00522F65 /* AlarmWeekController.m */,
 				CE8B78AA2047B79D00522F65 /* AlarmWeekController.h */,
+				CE8B78A82047B78B00522F65 /* AlarmWeekController.m */,
+				CEA01CEC202338020001DAF0 /* ListAlarmController.h */,
 				CEA01CEA202337A60001DAF0 /* ListAlarmController.m */,
+				9920D21420177C0900DA8D6D /* SelectMusicController.h */,
 				9920D21520177C2800DA8D6D /* SelectMusicController.m */,
+				CE4F52B620C7F0C000760223 /* SelectRecordController.h */,
+				CE4F52B420C7F0B100760223 /* SelectRecordController.m */,
 				CEA7ECCA2045160A006A9D7F /* ShowPhotoController.h */,
 				CEA7ECCB2045161C006A9D7F /* ShowPhotoController.m */,
 			);
@@ -426,14 +431,14 @@
 		990C85172042C65400D36C9E /* VideoTab */ = {
 			isa = PBXGroup;
 			children = (
-				CEBEC2A32043C7BE00540DBB /* PlayVideoController.m */,
 				CEBEC2A52043C7CD00540DBB /* PlayVideoController.h */,
+				CEBEC2A32043C7BE00540DBB /* PlayVideoController.m */,
 				CE446F5C20280713009320EC /* VideoDetailController.h */,
 				CE446F5A202806FE009320EC /* VideoDetailController.m */,
 				9920D219201785A600DA8D6D /* VideoListController.h */,
 				9920D2172017859900DA8D6D /* VideoListController.m */,
-				CE1DBC32206A524100632D86 /* SelectVideoController.m */,
 				CE1DBC35206A526200632D86 /* SelectVideoController.h */,
+				CE1DBC32206A524100632D86 /* SelectVideoController.m */,
 			);
 			name = VideoTab;
 			sourceTree = "<group>";
@@ -464,14 +469,14 @@
 				CEBEC2A12043B85D00540DBB /* DiscussController.m */,
 				990C851E2042CF8400D36C9E /* NewQuestionController.h */,
 				990C851F2042CF9600D36C9E /* NewQuestionController.m */,
-				990C85212042D95D00D36C9E /* MyMsgController.m */,
 				990C85232042D96B00D36C9E /* MyMsgController.h */,
+				990C85212042D95D00D36C9E /* MyMsgController.m */,
 				990C85242042DCAC00D36C9E /* MsgDetailController.h */,
 				990C85252042DCBD00D36C9E /* MsgDetailController.m */,
-				990C85272042EA8C00D36C9E /* NewCommentController.m */,
 				990C85292042EA9D00D36C9E /* NewCommentController.h */,
-				99B664C0206D35CC00D0F112 /* MsgListController.m */,
+				990C85272042EA8C00D36C9E /* NewCommentController.m */,
 				99B664C2206D35DC00D0F112 /* MsgListController.h */,
+				99B664C0206D35CC00D0F112 /* MsgListController.m */,
 			);
 			name = DiscussTab;
 			sourceTree = "<group>";
@@ -542,8 +547,8 @@
 				CEB2526D2080C23D00F334A8 /* RegisterTab */,
 				99EDCC56205E53CF0063DA06 /* LoginController.h */,
 				99EDCC57205E53CF0063DA06 /* LoginController.m */,
-				99EDCC5A205E7DA90063DA06 /* ForgetPwdController.m */,
 				99EDCC5C205E7DB80063DA06 /* ForgetPwdController.h */,
+				99EDCC5A205E7DA90063DA06 /* ForgetPwdController.m */,
 			);
 			name = UserTab;
 			sourceTree = "<group>";
@@ -583,8 +588,8 @@
 				CE35786B207F14B1009049E2 /* TBCityIconFont.m */,
 				CE35786E207F14D4009049E2 /* TBCityIconInfo.h */,
 				CE35786F207F14E6009049E2 /* TBCityIconInfo.m */,
-				CE357871207F14FF009049E2 /* UIImage+TBCityIconFont.m */,
 				CE357873207F150B009049E2 /* UIImage+TBCityIconFont.h */,
+				CE357871207F14FF009049E2 /* UIImage+TBCityIconFont.m */,
 			);
 			path = TBCityIcon;
 			sourceTree = "<group>";
@@ -594,8 +599,8 @@
 			children = (
 				CE501048205A995700467D5A /* HealthController.h */,
 				CE50104A205A997000467D5A /* HealthController.m */,
-				994F56ED206BE4B700F4333A /* HealthDetailController.m */,
 				994F56EF206BE4C800F4333A /* HealthDetailController.h */,
+				994F56ED206BE4B700F4333A /* HealthDetailController.m */,
 			);
 			name = HealthTab;
 			sourceTree = "<group>";
@@ -603,12 +608,12 @@
 		CEB2526D2080C23D00F334A8 /* RegisterTab */ = {
 			isa = PBXGroup;
 			children = (
-				CEB2526E2080C26900F334A8 /* RegisterController.m */,
 				CEB252702080C27100F334A8 /* RegisterController.h */,
+				CEB2526E2080C26900F334A8 /* RegisterController.m */,
 				CEB252712080C9FB00F334A8 /* ValidateController.h */,
 				CEB252722080CA0400F334A8 /* ValidateController.m */,
-				CEB252742080CC3800F334A8 /* PasswordController.m */,
 				CEB252762080CC4400F334A8 /* PasswordController.h */,
+				CEB252742080CC3800F334A8 /* PasswordController.m */,
 			);
 			name = RegisterTab;
 			sourceTree = "<group>";
@@ -904,6 +909,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE4F52B520C7F0B100760223 /* SelectRecordController.m in Sources */,
 				990C85132042B20C00D36C9E /* StatusThreeController.m in Sources */,
 				CE50102F205A5EDD00467D5A /* StatusPainController.m in Sources */,
 				9920D21C2017860D00DA8D6D /* SettingController.m in Sources */,

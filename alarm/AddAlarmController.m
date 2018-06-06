@@ -12,10 +12,11 @@
 #import "AddAlarmController.h"
 #import "SelectPhotoController.h"
 #import "SelectMusicController.h"
+#import "SelectRecordController.h"
 #import "ShowPhotoController.h"
 #import "AlarmWeekController.h"
 
-@interface AddAlarmController () <UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate,UIImagePickerControllerDelegate, SelectMusicControllerDelegate, AlarmWeekControllerDelegate>
+@interface AddAlarmController () <UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate,UIImagePickerControllerDelegate, SelectMusicControllerDelegate, SelectRecordControllerDelegate, AlarmWeekControllerDelegate>
 
 @property AppDelegate *appDelegate;
 
@@ -135,12 +136,12 @@
             case 0:
                 cell.textLabel.text = @"圖片";
                 cell.imageView.image = [UIImage imageNamed:@"gallery"];
-                self.photoButton.frame = CGRectMake(cell.frame.size.width - 20, 4, 40, cell.frame.size.height);
+                self.photoButton.frame = CGRectMake(cell.frame.size.width - 20, 4, 80, cell.frame.size.height);
                 break;
             case 1:
                 cell.textLabel.text = @"鈴聲";
                 cell.imageView.image = [UIImage imageNamed:@"music"];
-                self.soundButton.frame = CGRectMake(cell.frame.size.width - 20, 4, 40, cell.frame.size.height);
+                self.soundButton.frame = CGRectMake(cell.frame.size.width - 20, 4, 80, cell.frame.size.height);
                 break;
         }
     }else if( indexPath.section == 1 ){
@@ -148,7 +149,8 @@
             case 0:
                 cell.textLabel.text = @"標題";
                 cell.imageView.image = [UIImage imageNamed:@"settings"];
-                self.titleLabel.frame = CGRectMake(cell.frame.size.width - 83, 4, 100, cell.frame.size.height);
+                self.titleLabel.frame = CGRectMake(cell.frame.size.width - 83, 4, 125, cell.frame.size.height);
+                self.titleLabel.textAlignment = NSTextAlignmentRight;
                 break;
             case 1:
                 cell.textLabel.text = @"重複";
@@ -160,7 +162,6 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    SelectMusicController *selectMusicController = nil;
     if( indexPath.section == 0 ){
         if (indexPath.row == 0) {
                 self.actionSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
@@ -199,10 +200,29 @@
                     
                 }];
         }else if(indexPath.row == 1){
-                selectMusicController = [[SelectMusicController alloc] init];
-                selectMusicController.soundId = self.soundId;
-                selectMusicController.delegate = self;
-                [self.navigationController pushViewController:selectMusicController animated:YES];
+                self.actionSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+                UIAlertAction *cameraAction = [UIAlertAction actionWithTitle:@"錄音" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    SelectRecordController *selectRecordController = [[SelectRecordController alloc] init];
+                    selectRecordController.soundId = self.soundId;
+                    selectRecordController.delegate = self;
+                    [self.navigationController pushViewController:selectRecordController animated:YES];
+                }];
+                UIAlertAction *photoLibraryAction = [UIAlertAction actionWithTitle:@"從系統鈴聲選擇" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    SelectMusicController *selectMusicController = [[SelectMusicController alloc] init];
+                    selectMusicController.soundId = self.soundId;
+                    selectMusicController.delegate = self;
+                    [self.navigationController pushViewController:selectMusicController animated:YES];
+                }];
+                UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                    
+                }];
+                [cancelAction setValue:[UIColor redColor] forKey:@"_titleTextColor"];
+                [self.actionSheet addAction:cameraAction];
+                [self.actionSheet addAction:photoLibraryAction];
+                [self.actionSheet addAction:cancelAction];
+                [self presentViewController:self.actionSheet animated:YES completion:^{
+                    
+                }];
         }
     }else if( indexPath.section == 1 ){
         if( indexPath.row == 0 ){
