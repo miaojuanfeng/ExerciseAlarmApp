@@ -69,6 +69,7 @@
 		CE5CA0222088838A008C810E /* iconfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE5CA0212088836C008C810E /* iconfont.ttf */; };
 		CE8B78A92047B78B00522F65 /* AlarmWeekController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE8B78A82047B78B00522F65 /* AlarmWeekController.m */; };
 		CEA01CEB202337A60001DAF0 /* ListAlarmController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA01CEA202337A60001DAF0 /* ListAlarmController.m */; };
+		CEA46AE320C7F5DF00246D4E /* AddRecordController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA46AE220C7F5DF00246D4E /* AddRecordController.m */; };
 		CEA7ECCC2045161C006A9D7F /* ShowPhotoController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA7ECCB2045161C006A9D7F /* ShowPhotoController.m */; };
 		CEB2526F2080C26900F334A8 /* RegisterController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB2526E2080C26900F334A8 /* RegisterController.m */; };
 		CEB252732080CA0400F334A8 /* ValidateController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB252722080CA0400F334A8 /* ValidateController.m */; };
@@ -228,6 +229,8 @@
 		CE8B78AA2047B79D00522F65 /* AlarmWeekController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlarmWeekController.h; sourceTree = "<group>"; };
 		CEA01CEA202337A60001DAF0 /* ListAlarmController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListAlarmController.m; sourceTree = "<group>"; };
 		CEA01CEC202338020001DAF0 /* ListAlarmController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListAlarmController.h; sourceTree = "<group>"; };
+		CEA46AE120C7F5DF00246D4E /* AddRecordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddRecordController.h; sourceTree = "<group>"; };
+		CEA46AE220C7F5DF00246D4E /* AddRecordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddRecordController.m; sourceTree = "<group>"; };
 		CEA7ECCA2045160A006A9D7F /* ShowPhotoController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowPhotoController.h; sourceTree = "<group>"; };
 		CEA7ECCB2045161C006A9D7F /* ShowPhotoController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowPhotoController.m; sourceTree = "<group>"; };
 		CEB2526E2080C26900F334A8 /* RegisterController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterController.m; sourceTree = "<group>"; };
@@ -412,6 +415,8 @@
 		990C85162042C62700D36C9E /* AlarmTab */ = {
 			isa = PBXGroup;
 			children = (
+				CEA46AE120C7F5DF00246D4E /* AddRecordController.h */,
+				CEA46AE220C7F5DF00246D4E /* AddRecordController.m */,
 				990736AC2016344C002EFEC5 /* AddAlarmController.h */,
 				990736AD2016344C002EFEC5 /* AddAlarmController.m */,
 				CE8B78AA2047B79D00522F65 /* AlarmWeekController.h */,
@@ -946,6 +951,7 @@
 				CE1A497C201A0219005CB860 /* HYBClockView.m in Sources */,
 				CE446F6820280A78009320EC /* VersionController.m in Sources */,
 				990C85352042EECE00D36C9E /* YXDayCell.m in Sources */,
+				CEA46AE320C7F5DF00246D4E /* AddRecordController.m in Sources */,
 				990C85142042B20C00D36C9E /* StatusTwoController.m in Sources */,
 				990C850A2042AFE400D36C9E /* StatusOneController.m in Sources */,
 				CE0AF518209ABF40007A55D8 /* UIViewController+BackButtonHandler.m in Sources */,

@@ -9,6 +9,7 @@
 #import "MacroDefine.h"
 #import "AppDelegate.h"
 #import "SelectRecordController.h"
+#import "AddRecordController.h"
 #import <AudioToolbox/AudioToolbox.h>
 
 @interface SelectRecordController () <UITableViewDataSource, UITableViewDelegate>
@@ -464,6 +465,7 @@
 }
 
 - (void)clickRecordButton {
-    NSLog(@"Recording");
+    AddRecordController *addRecordController = [[AddRecordController alloc] init];
+    [self.navigationController pushViewController:addRecordController animated:YES];
 }
 @end
