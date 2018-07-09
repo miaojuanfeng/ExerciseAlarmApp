@@ -278,7 +278,7 @@
     [self.view addSubview:view6];
     
     if( [[self.appDelegate.user objectForKey:@"user_unread"] intValue] > 0 ){
-        [self.tabBarController.childViewControllers[4].tabBarItem setBadgeValue:[[self.appDelegate.user objectForKey:@"user_unread"] stringValue]];
+//        [self.tabBarController.childViewControllers[4].tabBarItem setBadgeValue:[[self.appDelegate.user objectForKey:@"user_unread"] stringValue]];
     }
 }
 

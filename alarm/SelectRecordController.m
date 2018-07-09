@@ -10,14 +10,17 @@
 #import "AppDelegate.h"
 #import "SelectRecordController.h"
 #import "AddRecordController.h"
-#import <AudioToolbox/AudioToolbox.h>
+#import <AVFoundation/AVFoundation.h>
 
-@interface SelectRecordController () <UITableViewDataSource, UITableViewDelegate>
+@interface SelectRecordController () <UITableViewDataSource, UITableViewDelegate, AddRecordControllerDelegate>
 @property UITableView *tableView;
 @property UIBarButtonItem *myButton;
 @property NSMutableArray *soundArr;
 
 @property AppDelegate *appDelegate;
+
+@property AVAudioSession *session;
+@property AVAudioPlayer *player;
 @end
 
 @implementation SelectRecordController
@@ -51,367 +54,13 @@
     
     self.automaticallyAdjustsScrollViewInsets = false;
     
-    self.soundArr = [[NSMutableArray alloc] init];
-    NSMutableDictionary *soundDic;
+    self.soundArr = self.appDelegate.recordList;
     
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"new-mail" forKey:@"name"]; [soundDic setObject:@"1000" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"mail-sent" forKey:@"name"]; [soundDic setObject:@"1001" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"Voicemail" forKey:@"name"]; [soundDic setObject:@"1002" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"ReceivedMessage" forKey:@"name"]; [soundDic setObject:@"1003" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"SentMessage" forKey:@"name"]; [soundDic setObject:@"1004" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"alarm" forKey:@"name"]; [soundDic setObject:@"1005" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"low_power" forKey:@"name"]; [soundDic setObject:@"1006" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"sms-received1" forKey:@"name"]; [soundDic setObject:@"1007" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"sms-received2" forKey:@"name"]; [soundDic setObject:@"1008" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"sms-received3" forKey:@"name"]; [soundDic setObject:@"1009" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"sms-received4" forKey:@"name"]; [soundDic setObject:@"1010" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"sms-received1" forKey:@"name"]; [soundDic setObject:@"1012" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"sms-received5" forKey:@"name"]; [soundDic setObject:@"1013" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"sms-received6" forKey:@"name"]; [soundDic setObject:@"1014" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"Voicemail" forKey:@"name"]; [soundDic setObject:@"1015" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"tweet_sent" forKey:@"name"]; [soundDic setObject:@"1016" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"Anticipate" forKey:@"name"]; [soundDic setObject:@"1020" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"Bloom" forKey:@"name"]; [soundDic setObject:@"1021" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"Calypso" forKey:@"name"]; [soundDic setObject:@"1022" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"Choo_Choo" forKey:@"name"]; [soundDic setObject:@"1023" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"Descent" forKey:@"name"]; [soundDic setObject:@"1024" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"Fanfare" forKey:@"name"]; [soundDic setObject:@"1025" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"Ladder" forKey:@"name"]; [soundDic setObject:@"1026" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"Minuet" forKey:@"name"]; [soundDic setObject:@"1027" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"News_Flash" forKey:@"name"]; [soundDic setObject:@"1028" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"Noir" forKey:@"name"]; [soundDic setObject:@"1029" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"Sherwood_Forest" forKey:@"name"]; [soundDic setObject:@"1030" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"Spell" forKey:@"name"]; [soundDic setObject:@"1031" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"Suspense" forKey:@"name"]; [soundDic setObject:@"1032" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"Telegraph" forKey:@"name"]; [soundDic setObject:@"1033" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"Tiptoes" forKey:@"name"]; [soundDic setObject:@"1034" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"Typewriters" forKey:@"name"]; [soundDic setObject:@"1035" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"Update" forKey:@"name"]; [soundDic setObject:@"1036" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"ussd" forKey:@"name"]; [soundDic setObject:@"1050" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"SIMToolkitCallDropped" forKey:@"name"]; [soundDic setObject:@"1051" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"SIMToolkitGeneralBeep" forKey:@"name"]; [soundDic setObject:@"1052" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"SIMToolkitNegativeACK" forKey:@"name"]; [soundDic setObject:@"1053" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"SIMToolkitPositiveACK" forKey:@"name"]; [soundDic setObject:@"1054" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"SIMToolkitSMS" forKey:@"name"]; [soundDic setObject:@"1055" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"Tink" forKey:@"name"]; [soundDic setObject:@"1057" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"ct-busy" forKey:@"name"]; [soundDic setObject:@"1070" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"ct-congestion" forKey:@"name"]; [soundDic setObject:@"1071" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"ct-path-ack" forKey:@"name"]; [soundDic setObject:@"1072" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"ct-error" forKey:@"name"]; [soundDic setObject:@"1073" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"ct-call-waiting" forKey:@"name"]; [soundDic setObject:@"1074" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"ct-keytone2" forKey:@"name"]; [soundDic setObject:@"1075" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"lock" forKey:@"name"]; [soundDic setObject:@"1100" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"unlock" forKey:@"name"]; [soundDic setObject:@"1101" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"Tink" forKey:@"name"]; [soundDic setObject:@"1103" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"Tock" forKey:@"name"]; [soundDic setObject:@"1104" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"Tock" forKey:@"name"]; [soundDic setObject:@"1105" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"beep-beep" forKey:@"name"]; [soundDic setObject:@"1106" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"RingerChanged" forKey:@"name"]; [soundDic setObject:@"1107" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"photoShutter" forKey:@"name"]; [soundDic setObject:@"1108" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"shake" forKey:@"name"]; [soundDic setObject:@"1109" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"jbl_begin" forKey:@"name"]; [soundDic setObject:@"1110" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"jbl_confirm" forKey:@"name"]; [soundDic setObject:@"1111" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"jbl_cancel" forKey:@"name"]; [soundDic setObject:@"1112" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"begin_record" forKey:@"name"]; [soundDic setObject:@"1113" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"end_record" forKey:@"name"]; [soundDic setObject:@"1114" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"jbl_ambiguous" forKey:@"name"]; [soundDic setObject:@"1115" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"jbl_no_match" forKey:@"name"]; [soundDic setObject:@"1116" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"begin_video_record" forKey:@"name"]; [soundDic setObject:@"1117" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"end_video_record" forKey:@"name"]; [soundDic setObject:@"1118" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"vc~invitation-accepted" forKey:@"name"]; [soundDic setObject:@"1150" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"vc~ringing" forKey:@"name"]; [soundDic setObject:@"1151" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"vc~ended" forKey:@"name"]; [soundDic setObject:@"1152" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"ct-call-waiting" forKey:@"name"]; [soundDic setObject:@"1153" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"vc~ringing" forKey:@"name"]; [soundDic setObject:@"1154" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"dtmf-0" forKey:@"name"]; [soundDic setObject:@"1200" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"dtmf-1" forKey:@"name"]; [soundDic setObject:@"1201" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"dtmf-2" forKey:@"name"]; [soundDic setObject:@"1202" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"dtmf-3" forKey:@"name"]; [soundDic setObject:@"1203" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"dtmf-4" forKey:@"name"]; [soundDic setObject:@"1204" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"dtmf-5" forKey:@"name"]; [soundDic setObject:@"1205" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"dtmf-6" forKey:@"name"]; [soundDic setObject:@"1206" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"dtmf-7" forKey:@"name"]; [soundDic setObject:@"1207" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"dtmf-8" forKey:@"name"]; [soundDic setObject:@"1208" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"dtmf-9" forKey:@"name"]; [soundDic setObject:@"1209" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"dtmf-star" forKey:@"name"]; [soundDic setObject:@"1210" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"dtmf-pound" forKey:@"name"]; [soundDic setObject:@"1211" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"long_low_short_high" forKey:@"name"]; [soundDic setObject:@"1254" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"short_double_high" forKey:@"name"]; [soundDic setObject:@"1255" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"short_low_high" forKey:@"name"]; [soundDic setObject:@"1256" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"short_double_low" forKey:@"name"]; [soundDic setObject:@"1257" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"short_double_low" forKey:@"name"]; [soundDic setObject:@"1258" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"middle_9_short_double_low" forKey:@"name"]; [soundDic setObject:@"1259" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"Voicemail" forKey:@"name"]; [soundDic setObject:@"1300" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"ReceivedMessage" forKey:@"name"]; [soundDic setObject:@"1301" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"new-mail" forKey:@"name"]; [soundDic setObject:@"1302" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"mail-sent" forKey:@"name"]; [soundDic setObject:@"1303" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"alarm" forKey:@"name"]; [soundDic setObject:@"1304" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"lock" forKey:@"name"]; [soundDic setObject:@"1305" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"Tock" forKey:@"name"]; [soundDic setObject:@"1306" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"sms-received1" forKey:@"name"]; [soundDic setObject:@"1307" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"sms-received2" forKey:@"name"]; [soundDic setObject:@"1308" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"sms-received3" forKey:@"name"]; [soundDic setObject:@"1309" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"sms-received4" forKey:@"name"]; [soundDic setObject:@"1310" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"sms-received1" forKey:@"name"]; [soundDic setObject:@"1312" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"sms-received5" forKey:@"name"]; [soundDic setObject:@"1313" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"sms-received6" forKey:@"name"]; [soundDic setObject:@"1314" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"Voicemail" forKey:@"name"]; [soundDic setObject:@"1315" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"Anticipate" forKey:@"name"]; [soundDic setObject:@"1320" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"Bloom" forKey:@"name"]; [soundDic setObject:@"1321" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"Calypso" forKey:@"name"]; [soundDic setObject:@"1322" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"Choo_Choo" forKey:@"name"]; [soundDic setObject:@"1323" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"Descent" forKey:@"name"]; [soundDic setObject:@"1324" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"Fanfare" forKey:@"name"]; [soundDic setObject:@"1325" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"Ladder" forKey:@"name"]; [soundDic setObject:@"1326" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"Minuet" forKey:@"name"]; [soundDic setObject:@"1327" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"News_Flash" forKey:@"name"]; [soundDic setObject:@"1328" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"Noir" forKey:@"name"]; [soundDic setObject:@"1329" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"Sherwood_Forest" forKey:@"name"]; [soundDic setObject:@"1330" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"Spell" forKey:@"name"]; [soundDic setObject:@"1331" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"Suspense" forKey:@"name"]; [soundDic setObject:@"1332" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"Telegraph" forKey:@"name"]; [soundDic setObject:@"1333" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"Tiptoes" forKey:@"name"]; [soundDic setObject:@"1334" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"Typewriters" forKey:@"name"]; [soundDic setObject:@"1335" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    soundDic = [NSMutableDictionary dictionary];
-    [soundDic setObject:@"Update" forKey:@"name"]; [soundDic setObject:@"1336" forKey:@"id"];
-    [self.soundArr addObject:soundDic];
-    //    NSLog(@"%@", self.soundArr);
+    if( self.soundArr.count == 0 ){
+        self.myButton.enabled = NO;
+    }else{
+        self.recordPath = [[self.soundArr objectAtIndex:0] objectForKey:@"path"];
+    }
 }
 
 
@@ -433,7 +82,7 @@
     NSMutableDictionary *soundDic = [self.soundArr objectAtIndex:indexPath.row];
     cell.textLabel.text = [NSString stringWithFormat:@"%@", [soundDic objectForKey:@"name"]];
     cell.textLabel.font = DEFAULT_FONT(DEFAULT_FONT_SIZE);
-    if( [[soundDic objectForKey:@"id"] intValue] == self.soundId ){
+    if( [soundDic objectForKey:@"path"] == self.recordPath ){
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
     return cell;
@@ -448,24 +97,75 @@
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
     //
-    AudioServicesDisposeSystemSoundID(self.soundId);
-    NSMutableDictionary *soundDic = [self.soundArr objectAtIndex:indexPath.row];
-    self.soundId = [[soundDic objectForKey:@"id"] intValue];
-    AudioServicesPlaySystemSound(self.soundId);
-    NSLog(@"%d", self.soundId);
+    if( [self.player isPlaying] ){
+        [self.player stop];
+    }else{
+        NSMutableDictionary *soundDic = [self.soundArr objectAtIndex:indexPath.row];
+        self.recordPath = [soundDic objectForKey:@"path"];
+        self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/%@", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject], self.recordPath]] error:nil];
+        AVAudioSession *session = [AVAudioSession sharedInstance];
+        NSError *sessionError;
+        [session setCategory:AVAudioSessionCategoryPlayAndRecord error:&sessionError];
+        if (session == nil) {
+            NSLog(@"Error creating session: %@",[sessionError description]);
+        }else{
+            [session setActive:YES error:nil];
+        }
+        self.session = session;
+        [self.session setCategory:AVAudioSessionCategoryPlayback error:nil];
+        [self.player play];
+        NSLog(@"%@", self.recordPath);
+    }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)clickSaveButton {
-    AudioServicesDisposeSystemSoundID(self.soundId);
-    if(self.delegate && [self.delegate respondsToSelector:@selector(getSoundId:)]){
-        [self.delegate getSoundId:self.soundId];
+//    AudioServicesDisposeSystemSoundID(self.soundId);
+    [self.player stop];
+    if(self.delegate && [self.delegate respondsToSelector:@selector(getRecordPath:)]){
+        [self.delegate getRecordPath:self.recordPath];
     }
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)clickRecordButton {
     AddRecordController *addRecordController = [[AddRecordController alloc] init];
+    addRecordController.delegate = self;
+    addRecordController.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:addRecordController animated:YES];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [self.tableView reloadData];
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    // 刪除文件
+    NSString *filePath = [NSString stringWithFormat:@"%@/%@", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject], [[self.appDelegate.recordList objectAtIndex:indexPath.row] objectForKey:@"path"]];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    BOOL fileExists = [fileManager fileExistsAtPath:filePath];
+    if (fileExists) {
+        [fileManager removeItemAtPath:filePath error:nil];
+    }
+    // 删除模型
+    [self.appDelegate.recordList removeObjectAtIndex:indexPath.row];
+    [self.appDelegate saveRecordList];
+    
+    // 刷新
+    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+    
+    if( self.soundArr.count == 0 ){
+        self.myButton.enabled = NO;
+    }
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return @"删除";
+}
+
+- (void)getRecordPath:(NSString *)recordPath{
+    self.recordPath = recordPath;
+    self.myButton.enabled = YES;
+    NSLog(@"ddd: %@", recordPath);
 }
 @end

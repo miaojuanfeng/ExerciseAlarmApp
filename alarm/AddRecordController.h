@@ -9,13 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @protocol AddRecordControllerDelegate <NSObject>
-- (void)getSoundId:(unsigned int)soundId;
+- (void)getRecordPath:(NSString*)recordPath;
 @end
 
 @interface AddRecordController : UIViewController
 
 @property (nonatomic, weak) id<AddRecordControllerDelegate> delegate;
 
-@property unsigned int soundId;
+@property NSString *recordPath;
 
 @end

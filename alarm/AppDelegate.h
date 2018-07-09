@@ -19,6 +19,7 @@
 //
 @property NSMutableArray *videoList;
 @property NSMutableArray *selectVideoList;
+@property NSMutableArray *recordList;
 @property NSMutableDictionary *calendarList;
 @property long calendarCount;
 @property NSMutableArray *painList;
@@ -55,5 +56,7 @@
 - (void)clearNotification;
 - (void)loadUserData;
 - (void)uploadUserData;
+- (void)loadRecordList;
+- (void)saveRecordList;
 @end
 

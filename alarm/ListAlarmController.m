@@ -111,6 +111,13 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     // 刪除通知
     [self.appDelegate deleteNotification:[[self.appDelegate.alarmList objectAtIndex:indexPath.row] objectForKey:@"id"]];
+    // 删除图片
+    NSString *filePath = [NSString stringWithFormat:@"%@/Documents/%@", NSHomeDirectory(), [[self.appDelegate.alarmList objectAtIndex:indexPath.row] objectForKey:@"photo"]];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    BOOL fileExists = [fileManager fileExistsAtPath:filePath];
+    if (fileExists) {
+        [fileManager removeItemAtPath:filePath error:nil];
+    }
     // 删除模型
     [self.appDelegate.alarmList removeObjectAtIndex:indexPath.row];
     [self.appDelegate saveAlarmList];

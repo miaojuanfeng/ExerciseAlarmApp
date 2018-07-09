@@ -551,6 +551,9 @@
     [self loadWeekStar];
     NSLog(@"loadWeekStar: %@", self.weekStar);
     
+    [self loadRecordList];
+    NSLog(@"loadRecordList: %@", self.recordList);
+    
     self.painList = [[NSMutableArray alloc] init];
     [self.painList addObject:@"完全無痛"];
     [self.painList addObject:@"完全無痛"];
@@ -609,5 +612,24 @@
         NSLog(@"%@",[[NSString alloc] initWithData:error.userInfo[@"com.alamofire.serialization.response.error.data"] encoding:NSUTF8StringEncoding]);
     }];
 }
+
+- (void)loadRecordList{
+    NSArray *pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *path = [pathArray objectAtIndex:0];
+    NSString *plistPath = [path stringByAppendingPathComponent:[NSString stringWithFormat:@"recordList_%@.plist", [self.user objectForKey:@"user_id"]]];
+    self.recordList = [[NSMutableArray alloc] initWithContentsOfFile:plistPath];
+    if( self.recordList == nil ){
+        self.recordList = [[NSMutableArray alloc] init];
+    }
+}
+
+- (void)saveRecordList{
+    NSArray *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsPath = [path objectAtIndex:0];
+    NSString *plistPath = [documentsPath stringByAppendingPathComponent:[NSString stringWithFormat:@"recordList_%@.plist", [self.user objectForKey:@"user_id"]]];
+    
+    [self.recordList writeToFile:plistPath atomically:YES];
+}
+
 
 @end

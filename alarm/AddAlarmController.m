@@ -15,6 +15,7 @@
 #import "SelectRecordController.h"
 #import "ShowPhotoController.h"
 #import "AlarmWeekController.h"
+#import <AVFoundation/AVFoundation.h>
 
 @interface AddAlarmController () <UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate,UIImagePickerControllerDelegate, SelectMusicControllerDelegate, SelectRecordControllerDelegate, AlarmWeekControllerDelegate>
 
@@ -27,6 +28,8 @@
 //@property UIImageView *imageView;
 @property NSString *photoName;
 @property unsigned int soundId;
+@property NSString *recordPath;
+@property NSString *soundType;
 @property NSString *alarmTitle;
 @property UIActivityIndicatorView *activityIndicator;
 @property UIButton *photoButton;
@@ -34,6 +37,9 @@
 @property UILabel *titleLabel;
 @property NSMutableArray *alarmWeek;
 @property int weekCount;
+
+@property AVAudioSession *session;
+@property AVAudioPlayer *player;
 @end
 
 @implementation AddAlarmController
@@ -64,6 +70,7 @@
     
     
     self.photoName = @"";
+    self.recordPath = @"";
     if( self.soundId == 0 ){
         self.soundId = 1000;
     }
@@ -136,12 +143,12 @@
             case 0:
                 cell.textLabel.text = @"圖片";
                 cell.imageView.image = [UIImage imageNamed:@"gallery"];
-                self.photoButton.frame = CGRectMake(cell.frame.size.width - 20, 4, 80, cell.frame.size.height);
+                self.photoButton.frame = CGRectMake(cell.frame.size.width - 40, 4, 80, cell.frame.size.height);
                 break;
             case 1:
                 cell.textLabel.text = @"鈴聲";
                 cell.imageView.image = [UIImage imageNamed:@"music"];
-                self.soundButton.frame = CGRectMake(cell.frame.size.width - 20, 4, 80, cell.frame.size.height);
+                self.soundButton.frame = CGRectMake(cell.frame.size.width - 40, 4, 80, cell.frame.size.height);
                 break;
         }
     }else if( indexPath.section == 1 ){
@@ -149,7 +156,7 @@
             case 0:
                 cell.textLabel.text = @"標題";
                 cell.imageView.image = [UIImage imageNamed:@"settings"];
-                self.titleLabel.frame = CGRectMake(cell.frame.size.width - 83, 4, 125, cell.frame.size.height);
+                self.titleLabel.frame = CGRectMake(cell.frame.size.width - 103, 4, 125, cell.frame.size.height);
                 self.titleLabel.textAlignment = NSTextAlignmentRight;
                 break;
             case 1:
@@ -203,7 +210,7 @@
                 self.actionSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
                 UIAlertAction *cameraAction = [UIAlertAction actionWithTitle:@"錄音" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                     SelectRecordController *selectRecordController = [[SelectRecordController alloc] init];
-                    selectRecordController.soundId = self.soundId;
+                    selectRecordController.recordPath = self.recordPath;
                     selectRecordController.delegate = self;
                     [self.navigationController pushViewController:selectRecordController animated:YES];
                 }];
@@ -333,7 +340,9 @@
     [userInfo setObject:mm forKey:@"minute"];
     [userInfo setObject:self.alarmTitle forKey:@"title"];
     [userInfo setObject:self.photoName forKey:@"photo"];
+    [userInfo setObject:self.soundType forKey:@"soundType"];
     [userInfo setObject:[NSString stringWithFormat:@"%d", self.soundId] forKey:@"sound"];
+    [userInfo setObject:self.recordPath forKey:@"recordPath"];
     [userInfo setObject:@"1" forKey:@"status"];
     [userInfo setObject:self.alarmWeek forKey:@"week"];
     //设置userinfo方便撤销
@@ -401,8 +410,20 @@
 }
 
 - (void)getSoundId:(unsigned int)soundId {
+    self.soundType = @"sound";
     self.soundId = soundId;
     NSLog(@"Delegate: %d", soundId);
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:0];
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    [cell.contentView addSubview:self.soundButton];
+}
+
+- (void)getRecordPath:(NSString*)recordPath {
+    NSLog(@"recordPath: %@", recordPath);
+    
+    self.soundType = @"record";
+    self.recordPath = recordPath;
     
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:0];
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
@@ -417,7 +438,26 @@
 }
 
 - (void)clickShowSoundButton {
-    AudioServicesPlaySystemSound(self.soundId);
+    if( [self.soundType isEqualToString:@"sound"] ){
+        AudioServicesPlaySystemSound(self.soundId);
+    }else if( [self.soundType isEqualToString:@"record"] ){
+        if( [self.player isPlaying] ){
+            [self.player stop];
+        }else{
+            self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/%@", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject], self.recordPath]] error:nil];
+            AVAudioSession *session = [AVAudioSession sharedInstance];
+            NSError *sessionError;
+            [session setCategory:AVAudioSessionCategoryPlayAndRecord error:&sessionError];
+            if (session == nil) {
+                NSLog(@"Error creating session: %@",[sessionError description]);
+            }else{
+                [session setActive:YES error:nil];
+            }
+            self.session = session;
+            [self.session setCategory:AVAudioSessionCategoryPlayback error:nil];
+            [self.player play];
+        }
+    }
 }
 
 - (UIImage *)fixOrientation:(UIImage *)aImage {

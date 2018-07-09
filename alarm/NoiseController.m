@@ -8,9 +8,16 @@
 
 #import "NoiseController.h"
 #import <AudioToolbox/AudioToolbox.h>
+#import <AVFoundation/AVFoundation.h>
 
 @interface NoiseController ()
+
+@property NSString *soundType;
 @property SystemSoundID soudId;
+@property NSString *recordPath;
+
+@property AVAudioSession *session;
+@property AVAudioPlayer *player;
 @end
 
 @implementation NoiseController
@@ -23,7 +30,9 @@
     self.soudId = 1000;
     
     NSString *photoName = [self.userInfo objectForKey:@"photo"];
+    self.soundType = [self.userInfo objectForKey:@"soundType"];
     self.soudId = [[self.userInfo objectForKey:@"sound"] intValue];
+    self.recordPath = [self.userInfo objectForKey:@"recordPath"];
     NSString *hh = [self.userInfo objectForKey:@"hour"];
     NSString *mm = [self.userInfo objectForKey:@"minute"];
     NSString *title = [self.userInfo objectForKey:@"title"];
@@ -63,9 +72,26 @@
     closeButton.frame = CGRectMake(self.view.frame.size.width/2 - 50, self.view.frame.size.height - 100, 100, 50);
     [imageView addSubview:closeButton];
     
-    AudioServicesAddSystemSoundCompletion(self.soudId, NULL, NULL, soundCompleteCallback, NULL);
-    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
-    AudioServicesPlaySystemSound(self.soudId);
+    if( [self.soundType isEqualToString:@"sound"] ){
+        AudioServicesAddSystemSoundCompletion(self.soudId, NULL, NULL, soundCompleteCallback, NULL);
+        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+        AudioServicesPlaySystemSound(self.soudId);
+    }else if( [self.soundType isEqualToString:@"record"] ){
+        self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/%@", [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject], self.recordPath]] error:nil];
+        AVAudioSession *session = [AVAudioSession sharedInstance];
+        NSError *sessionError;
+        [session setCategory:AVAudioSessionCategoryPlayAndRecord error:&sessionError];
+        if (session == nil) {
+            NSLog(@"Error creating session: %@",[sessionError description]);
+        }else{
+            [session setActive:YES error:nil];
+        }
+        self.session = session;
+        [self.session setCategory:AVAudioSessionCategoryPlayback error:nil];
+        self.player.numberOfLoops = -1;
+        [self.player play];
+        NSLog(@"%@", self.recordPath);
+    }
 }
 
 void soundCompleteCallback(SystemSoundID sound,void * clientData) {
@@ -85,9 +111,14 @@ void soundCompleteCallback(SystemSoundID sound,void * clientData) {
 }
 
 - (void)clickEvent {
-    AudioServicesDisposeSystemSoundID(kSystemSoundID_Vibrate);
-    AudioServicesDisposeSystemSoundID(self.soudId);
-    AudioServicesRemoveSystemSoundCompletion(self.soudId);
+    if( [self.soundType isEqualToString:@"sound"] ){
+        AudioServicesDisposeSystemSoundID(kSystemSoundID_Vibrate);
+        AudioServicesDisposeSystemSoundID(self.soudId);
+        AudioServicesRemoveSystemSoundCompletion(self.soudId);
+    }else if( [self.soundType isEqualToString:@"record"] ){
+        [self.player stop];
+    }
+    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
