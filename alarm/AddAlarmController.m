@@ -71,6 +71,7 @@
     
     self.photoName = @"";
     self.recordPath = @"";
+    self.soundType = @"sound";
     if( self.soundId == 0 ){
         self.soundId = 1000;
     }

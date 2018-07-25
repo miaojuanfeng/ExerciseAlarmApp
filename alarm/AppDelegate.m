@@ -430,6 +430,8 @@
                 localNotification.applicationIconBadgeNumber = 0;
                 //通知发出的时间
                 localNotification.fireDate = [self getNextWeekDay:[self getWeekDayWithIntegerDay:i] hour:[hh intValue] minute:[mm intValue]];
+                //设置提醒的声音，可以自己添加声音文件，这里设置为默认提示声
+                localNotification.soundName = UILocalNotificationDefaultSoundName;
             }
             //循环通知的周期
             localNotification.repeatInterval = kCFCalendarUnitWeek;
